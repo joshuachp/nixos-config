@@ -1,8 +1,5 @@
 { config, pkgs, lib, ... }: {
-  imports = [
-    ./gnupg.nix
-    ./rclone.nix
-  ];
+  imports = [ ./gnupg.nix ./rclone.nix ];
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
@@ -16,6 +13,8 @@
     # Shells
     fish
     nushell
+
+    direnv
 
     # Utils
     curl
@@ -64,4 +63,8 @@
     git.enable = true;
     tmux.enable = true;
   };
+
+  # Lorri
+  services.lorri.enable = true;
+
 }

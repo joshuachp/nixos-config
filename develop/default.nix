@@ -11,8 +11,11 @@
   ];
 
   environment.systemPackages = with pkgs; [
-    # Tools
+    # Git
     git
+    pre-commit
+
+    # Tools
     gnumake
     sqlite
   ];

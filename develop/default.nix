@@ -18,5 +18,6 @@
     # Tools
     gnumake
     sqlite
+    hyperfine
   ];
 }

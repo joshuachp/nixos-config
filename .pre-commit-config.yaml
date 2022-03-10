@@ -1,9 +1,12 @@
 repos:
-  - repo: local
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.1.0
     hooks:
-      - id: nixpkgs-fmt
-        name: nixpkgs-fmt
-        description: Format nix code with nixpkgs-fmt.
-        entry: nixpkgs-fmt
-        language: rust
-        files: \.nix$
+      - id: trailing-whitespace
+      - id: end-of-file-fixer
+      - id: check-yaml
+      - id: check-added-large-files
+  - repo: https://github.com/joshuachp/pre-commit-hooks
+    rev: 0.1.0
+    hooks:
+      - id: nix-nixpkgs-fmt

@@ -1,4 +1,4 @@
-{config, pkgs,...}: {
+{ config, pkgs, ... }: {
   programs = {
     # GPG
     ssh.startAgent = false;

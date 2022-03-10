@@ -9,4 +9,4 @@ repos:
   - repo: https://github.com/joshuachp/pre-commit-hooks
     rev: 0.1.0
     hooks:
-      - id: nix-nixpkgs-fmt
+      - id: nix-nixfmt

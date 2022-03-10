@@ -4,8 +4,7 @@ with lib;
 let
   defaultUser = "joshuachp";
   syschdemd = import ./syschdemd.nix { inherit lib pkgs config defaultUser; };
-in
-{
+in {
   imports = [ ./hardware-configuration.nix ];
 
   # WSL is closer to a container than anything else

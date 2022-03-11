@@ -16,8 +16,9 @@
     pre-commit
 
     # Tools
+    entr
     gnumake
-    sqlite
     hyperfine
+    sqlite
   ];
 }

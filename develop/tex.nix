@@ -1,6 +1,7 @@
 { pkgs, ... }: {
   environment.systemPackages = with pkgs; [
-    texlive.combined.scheme-medium
+    (texlive.combine { inherit (pkgs.texlive) scheme-medium sectsty; })
+
     texlab
   ];
 }

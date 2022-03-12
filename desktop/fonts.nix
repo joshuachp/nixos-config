@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ... }: {
+{ config, pkgs, lib, nerd-font-symbols, ... }: {
 
   fonts = {
     fonts = with pkgs; [
@@ -8,7 +8,9 @@
       noto-fonts-extra
 
       jetbrains-mono
-      # nerdfonts
+
+      # Symbols
+      nerd-font-symbols
 
       # Microsoft fonts
       corefonts

@@ -21,6 +21,7 @@
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.joshuachp = {
     isNormalUser = true;
+    group = "joshuachp";
     description = "Joshua Chapman";
     extraGroups = [ "wheel" "networkmanager" ];
     shell = pkgs.zsh;

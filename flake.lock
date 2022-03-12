@@ -36,6 +36,36 @@
         "type": "github"
       }
     },
+    "flake-utils_2": {
+      "locked": {
+        "lastModified": 1644229661,
+        "narHash": "sha256-1YdnJAsNy69bpcjuoKdOYQX0YxZBiCYZo4Twxerqv7k=",
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "rev": "3cecb5b042f7f209c56ffd8371b2711a290ec797",
+        "type": "github"
+      },
+      "original": {
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "type": "github"
+      }
+    },
+    "nerd-font-symbols": {
+      "inputs": {
+        "flake-utils": "flake-utils_2",
+        "nixpkgs": "nixpkgs"
+      },
+      "locked": {
+        "narHash": "sha256-Os8kl8CQLm3xGzBQ/fhkdEFxnQJfNbQWvJRwEZuZbfY=",
+        "path": "/nix/store/bar6yhbsq9gs15zr25l762lq7sjln2gw-source/packages/nerdfont-symbols",
+        "type": "path"
+      },
+      "original": {
+        "path": "/nix/store/bar6yhbsq9gs15zr25l762lq7sjln2gw-source/packages/nerdfont-symbols",
+        "type": "path"
+      }
+    },
     "nixos-hardware": {
       "locked": {
         "lastModified": 1646751686,
@@ -54,6 +84,20 @@
     },
     "nixpkgs": {
       "locked": {
+        "lastModified": 1646955661,
+        "narHash": "sha256-AYLta1PubJnrkv15+7G+6ErW5m9NcI9wSdJ+n7pKAe0=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "e9545762b032559c27d8ec9141ed63ceca1aa1ac",
+        "type": "github"
+      },
+      "original": {
+        "id": "nixpkgs",
+        "type": "indirect"
+      }
+    },
+    "nixpkgs_2": {
+      "locked": {
         "lastModified": 1646497237,
         "narHash": "sha256-Ccpot1h/rV8MgcngDp5OrdmLTMaUTbStZTR5/sI7zW0=",
         "owner": "NixOS",
@@ -71,8 +115,9 @@
       "inputs": {
         "fenix": "fenix",
         "flake-utils": "flake-utils",
+        "nerd-font-symbols": "nerd-font-symbols",
         "nixos-hardware": "nixos-hardware",
-        "nixpkgs": "nixpkgs"
+        "nixpkgs": "nixpkgs_2"
       }
     },
     "rust-analyzer-src": {

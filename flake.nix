@@ -22,6 +22,7 @@
         ./desktop
         ./develop
         ./system/nixos
+        ./system/common/network
         nixos-hardware.nixosModules.common-cpu-amd
         nixos-hardware.nixosModules.common-gpu-amd
         nixos-hardware.nixosModules.common-pc-laptop

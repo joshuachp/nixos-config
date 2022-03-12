@@ -58,11 +58,11 @@
       },
       "locked": {
         "narHash": "sha256-Os8kl8CQLm3xGzBQ/fhkdEFxnQJfNbQWvJRwEZuZbfY=",
-        "path": "/nix/store/bar6yhbsq9gs15zr25l762lq7sjln2gw-source/packages/nerdfont-symbols",
+        "path": "/nix/store/fhm47sp6zhajv3z57zsksx5sm4gavhpn-source/packages/nerd-font-symbols",
         "type": "path"
       },
       "original": {
-        "path": "/nix/store/bar6yhbsq9gs15zr25l762lq7sjln2gw-source/packages/nerdfont-symbols",
+        "path": "/nix/store/fhm47sp6zhajv3z57zsksx5sm4gavhpn-source/packages/nerd-font-symbols",
         "type": "path"
       }
     },

@@ -26,7 +26,7 @@ in {
       monospace = [ "JetBrains Mono" ];
       sansSerif = [ "Noto Sans" ];
       serif = [ "Noto Serif" ];
-      emoji = [ "Noto Color Emoji" "Nerd Font Symbols" ];
+      emoji = [ "Noto Color Emoji" "Symbols Nerd Font" ];
     };
   };
 

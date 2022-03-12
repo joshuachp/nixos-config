@@ -1,4 +1,8 @@
-{ config, pkgs, lib, nerd-font-symbols, ... }: {
+{ config, pkgs, lib, flake-utils, nerd-font-symbols, ... }:
+let
+  system = flake-utils.lib.system.x86_64-linux;
+  nerd-font-symbols-pkg = nerd-font-symbols.defaultPackage.${system};
+in {
   fonts = {
     fonts = with pkgs; [
       noto-fonts
@@ -9,7 +13,7 @@
       jetbrains-mono
 
       # Symbols
-      nerd-font-symbols
+      nerd-font-symbols-pkg
 
       # Microsoft fonts
       corefonts

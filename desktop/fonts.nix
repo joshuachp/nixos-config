@@ -1,5 +1,4 @@
 { config, pkgs, lib, nerd-font-symbols, ... }: {
-
   fonts = {
     fonts = with pkgs; [
       noto-fonts

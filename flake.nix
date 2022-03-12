@@ -8,7 +8,7 @@
       url = "github:nix-community/fenix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nerd-font-symbols = { url = "./packages/nerd-font-symbols"; };
+    nerd-font-symbols = { url = "path:./packages/nerd-font-symbols"; };
   };
   outputs = { self, nixpkgs, nixos-hardware, fenix, flake-utils, ... }@attrs: {
     # Nixos

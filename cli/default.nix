@@ -13,19 +13,21 @@
     # Shells
     fish
     nushell
-
     direnv
 
-    # Utils
-    curl
-    wget
+    # Files
     fzf
+    rclone
+    file
+
+    # Security
     gnupg
     pinentry
-    rclone
     gopass
 
     # Network utils
+    curl
+    wget
     iproute2
     socat
 

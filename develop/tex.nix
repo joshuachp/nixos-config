@@ -1,3 +1,3 @@
 { pkgs, ... }: {
-  environment.systemPackages = with pkgs; [ texlive.combined.scheme-small ];
+  environment.systemPackages = with pkgs; [ texlive.combined.scheme-medium ];
 }

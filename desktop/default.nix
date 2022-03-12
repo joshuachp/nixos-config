@@ -42,6 +42,7 @@
     # Browser
     firefox
     chromium
+    brave
 
     # Gnome
     gnome3.dconf-editor

@@ -57,12 +57,12 @@
         "nixpkgs": "nixpkgs"
       },
       "locked": {
-        "narHash": "sha256-3mou1gLJfxnLmoTrjK3UF857FmMwdv877vduajYco8w=",
-        "path": "./packages/nerd-font-symbols",
+        "narHash": "sha256-hGCBXLGO+AE65PqGHg1+UALX4lYfuNGWjwedNVmG7X0=",
+        "path": "packages/nerd-font-symbols",
         "type": "path"
       },
       "original": {
-        "path": "./packages/nerd-font-symbols",
+        "path": "packages/nerd-font-symbols",
         "type": "path"
       }
     },

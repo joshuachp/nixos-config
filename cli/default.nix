@@ -20,6 +20,9 @@
     rclone
     file
 
+    # Document
+    pandoc
+
     # Security
     gnupg
     pinentry

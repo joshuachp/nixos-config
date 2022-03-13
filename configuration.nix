@@ -1,7 +1,11 @@
 # Edit this configuration file to define what should be installed on
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
-{ config, pkgs, ... }: {
+{
+  config,
+  pkgs,
+  ...
+}: {
   # Set your time zone.
   time.timeZone = "Europe/Rome";
 
@@ -22,7 +26,7 @@
   users.users.joshuachp = {
     isNormalUser = true;
     description = "Joshua Chapman";
-    extraGroups = [ "wheel" "networkmanager" ];
+    extraGroups = ["wheel" "networkmanager"];
     shell = pkgs.zsh;
     openssh.authorizedKeys.keys = [
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPSZcROTKTFoBg//2EdP2aBq9gFzYFSbwRugF/mG1EOx cardno:14 250 662"
@@ -61,5 +65,4 @@
       experimental-features = nix-command flakes
     '';
   };
-
 }

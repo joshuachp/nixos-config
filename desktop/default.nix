@@ -1,5 +1,10 @@
-{ config, pkgs, lib, ... }: {
-  imports = [ ./fonts.nix ./services.nix ];
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}: {
+  imports = [./fonts.nix ./services.nix];
 
   # Xorg
   services.xserver = {
@@ -10,7 +15,7 @@
     # Enable touchpad support (enabled default in most desktopManager).
     libinput = {
       enable = true;
-      touchpad = { tapping = true; };
+      touchpad = {tapping = true;};
     };
     # Desktop environment
     displayManager.gdm.enable = true;
@@ -29,7 +34,7 @@
     printing.enable = false;
 
     # Udev
-    udev.packages = with pkgs; [ gnome3.gnome-settings-daemon ];
+    udev.packages = with pkgs; [gnome3.gnome-settings-daemon];
   };
 
   environment.systemPackages = with pkgs; [
@@ -62,5 +67,5 @@
     yubikey-touch-detector
   ];
 
-  environment.gnome.excludePackages = with pkgs; [ epiphany ];
+  environment.gnome.excludePackages = with pkgs; [epiphany];
 }

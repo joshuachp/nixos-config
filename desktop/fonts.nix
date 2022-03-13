@@ -1,5 +1,11 @@
-{ config, pkgs, lib, flake-utils, nerd-font-symbols, ... }:
-let
+{
+  config,
+  pkgs,
+  lib,
+  flake-utils,
+  nerd-font-symbols,
+  ...
+}: let
   system = flake-utils.lib.system.x86_64-linux;
   nerd-font-symbols-pkg = nerd-font-symbols.defaultPackage.${system};
 in {
@@ -23,11 +29,10 @@ in {
     fontDir.enable = true;
 
     fontconfig.defaultFonts = {
-      monospace = [ "JetBrains Mono" ];
-      sansSerif = [ "Noto Sans" ];
-      serif = [ "Noto Serif" ];
-      emoji = [ "Noto Color Emoji" "Symbols Nerd Font" ];
+      monospace = ["JetBrains Mono"];
+      sansSerif = ["Noto Sans"];
+      serif = ["Noto Serif"];
+      emoji = ["Noto Color Emoji" "Symbols Nerd Font"];
     };
   };
-
 }

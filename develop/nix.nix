@@ -1,5 +1,4 @@
-{ pkgs, ... }: {
-
+{pkgs, ...}: {
   environment.systemPackages = with pkgs; [
     nixfmt
     nixpkgs-fmt
@@ -9,5 +8,4 @@
 
     statix
   ];
-
 }

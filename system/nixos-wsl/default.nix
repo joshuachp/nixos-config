@@ -1,11 +1,15 @@
-{ lib, pkgs, config, modulesPath, ... }:
-
-with lib;
-let
+{
+  lib,
+  pkgs,
+  config,
+  modulesPath,
+  ...
+}:
+with lib; let
   defaultUser = "joshuachp";
-  syschdemd = import ./syschdemd.nix { inherit lib pkgs config defaultUser; };
+  syschdemd = import ./syschdemd.nix {inherit lib pkgs config defaultUser;};
 in {
-  imports = [ ./hardware-configuration.nix ];
+  imports = [./hardware-configuration.nix];
 
   # WSL is closer to a container than anything else
   boot.isContainer = true;
@@ -22,7 +26,7 @@ in {
   users.users.root = {
     shell = "${syschdemd}/bin/syschdemd";
     # Otherwise WSL fails to login as root with "initgroups failed 5"
-    extraGroups = [ "root" ];
+    extraGroups = ["root"];
   };
 
   # Hostname

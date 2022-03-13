@@ -1,4 +1,4 @@
-{ ... }: {
+{...}: {
   services.resolved = {
     enable = true;
     fallbackDns = [

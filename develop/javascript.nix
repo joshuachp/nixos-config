@@ -1,3 +1,3 @@
-{ pkgs, ... }: {
-  environment.systemPackages = with pkgs; [ nodePackages.prettier ];
+{pkgs, ...}: {
+  environment.systemPackages = with pkgs; [nodePackages.prettier];
 }

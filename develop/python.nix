@@ -1,1 +1,1 @@
-{ pkgs, ... }: { environment.systemPackages = with pkgs; [ python3Full ]; }
+{pkgs, ...}: {environment.systemPackages = with pkgs; [python3Full];}

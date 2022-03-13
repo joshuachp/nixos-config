@@ -1,5 +1,10 @@
-{ config, pkgs, lib, ... }: {
-  services.xserver.videoDrivers = lib.mkAfter [ "nvidia" ];
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}: {
+  services.xserver.videoDrivers = lib.mkAfter ["nvidia"];
 
   hardware.nvidia = {
     powerManagement = {

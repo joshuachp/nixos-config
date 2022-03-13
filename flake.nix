@@ -8,9 +8,16 @@
       url = "github:nix-community/fenix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nerd-font-symbols = { url = "path:packages/nerd-font-symbols"; };
+    nerd-font-symbols = {url = "path:packages/nerd-font-symbols";};
   };
-  outputs = { self, nixpkgs, nixos-hardware, fenix, flake-utils, ... }@attrs: {
+  outputs = {
+    self,
+    nixpkgs,
+    nixos-hardware,
+    fenix,
+    flake-utils,
+    ...
+  } @ attrs: {
     # Nixos
     nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
       system = flake-utils.lib.system.x86_64-linux;
@@ -36,7 +43,7 @@
       system = flake-utils.lib.system.x86_64-linux;
       specialArgs = attrs;
 
-      modules = [ ./cli ./configuration.nix ./develop ./system/nixos-wsl ];
+      modules = [./cli ./configuration.nix ./develop ./system/nixos-wsl];
     };
   };
 }

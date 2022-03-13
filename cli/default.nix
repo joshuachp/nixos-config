@@ -1,5 +1,10 @@
-{ config, pkgs, lib, ... }: {
-  imports = [ ./gnupg.nix ./rclone.nix ];
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}: {
+  imports = [./gnupg.nix ./rclone.nix];
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
@@ -53,7 +58,6 @@
     feh
     polybar
     rofi
-
   ];
 
   # Programs
@@ -71,5 +75,4 @@
 
   # Lorri
   services.lorri.enable = true;
-
 }

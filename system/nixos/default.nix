@@ -1,5 +1,10 @@
-{ config, pkgs, lib, ... }: {
-  imports = [ ./hardware-configuration.nix ./video-configuration.nix ];
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}: {
+  imports = [./hardware-configuration.nix ./video-configuration.nix];
 
   boot.plymouth.enable = true;
 
@@ -32,5 +37,5 @@
   hardware.pulseaudio.enable = false;
 
   # Yubikey
-  services.udev.packages = [ pkgs.yubikey-personalization ];
+  services.udev.packages = [pkgs.yubikey-personalization];
 }

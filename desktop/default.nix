@@ -1,5 +1,5 @@
 { config, pkgs, lib, ... }: {
-  imports = [ ./fonts.nix ];
+  imports = [ ./fonts.nix ./services.nix ];
 
   # Xorg
   services.xserver = {

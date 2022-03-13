@@ -29,7 +29,7 @@
 
   # Enable sound.
   sound.enable = true;
-  hardware.pulseaudio.enable = true;
+  hardware.pulseaudio.enable = false;
 
   # Yubikey
   services.udev.packages = [ pkgs.yubikey-personalization ];

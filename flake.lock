@@ -135,11 +135,11 @@
       },
       "locked": {
         "narHash": "sha256-O+DWSRVX6OYtPDi0ccfrF/E5dT2z/RIbMIcgEZ8HNZU=",
-        "path": "packages/nerd-font-symbols",
+        "path": "/home/joshuachp/share/repos/github/nixos-config/packages/nerd-font-symbols",
         "type": "path"
       },
       "original": {
-        "path": "packages/nerd-font-symbols",
+        "path": "/home/joshuachp/share/repos/github/nixos-config/packages/nerd-font-symbols",
         "type": "path"
       }
     },

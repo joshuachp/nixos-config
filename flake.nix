@@ -8,7 +8,8 @@
       url = "github:nix-community/fenix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nerd-font-symbols = {url = "path:packages/nerd-font-symbols";};
+    # TODO: this is an hack there should be a better way to import this
+    nerd-font-symbols = {url = "path:/home/joshuachp/share/repos/github/nixos-config/packages/nerd-font-symbols";};
     neovim-nightly-overlay = {
       url = "github:nix-community/neovim-nightly-overlay";
       inputs.nixpkgs.follows = "nixpkgs";

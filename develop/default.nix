@@ -12,6 +12,7 @@
     ./nix.nix
     ./python.nix
     ./rust.nix
+    ./sh.nix
     ./tex.nix
   ];
 

@@ -9,6 +9,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nerd-font-symbols = {url = "path:packages/nerd-font-symbols";};
+    neovim-nightly-overlay = {
+      url = "github:nix-community/neovim-nightly-overlay";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
   outputs = {
     self,
@@ -16,6 +20,7 @@
     nixos-hardware,
     fenix,
     flake-utils,
+    neovim-nightly-overlay,
     ...
   } @ attrs: {
     # Nixos

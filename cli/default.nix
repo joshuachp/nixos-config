@@ -1,13 +1,13 @@
 {
-  config,
   pkgs,
-  lib,
   neovim-nightly-overlay,
   ...
 }: {
   imports = [./gnupg.nix];
 
-  nixpkgs.overlays = [neovim-nightly-overlay.overlay];
+  nixpkgs.overlays = [
+    neovim-nightly-overlay.overlay
+  ];
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
@@ -55,7 +55,9 @@
     starship
 
     # Editor
-    neovim-nightly
+    (neovim.overrideAttrs (oas: {
+      wrapRc = false;
+    }))
 
     # Desktop
     feh

@@ -1,6 +1,8 @@
 {
   pkgs,
   neovim-nightly-overlay,
+  system,
+  jump,
   ...
 }: {
   imports = [./gnupg.nix];
@@ -9,8 +11,6 @@
     neovim-nightly-overlay.overlay
   ];
 
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
   environment.systemPackages = with pkgs; [
     # System utils
     pciutils
@@ -63,6 +63,9 @@
     feh
     polybar
     rofi
+
+    # Personal
+    jump.defaultPackage.${system}
   ];
 
   # Programs

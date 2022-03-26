@@ -9,11 +9,12 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     # TODO: this is an hack there should be a better way to import this
-    nerd-font-symbols = {url = "path:/home/joshuachp/share/repos/github/nixos-config/packages/nerd-font-symbols";};
+    nerd-font-symbols.url = "path:/home/joshuachp/share/repos/github/nixos-config/packages/nerd-font-symbols";
     neovim-nightly-overlay = {
       url = "github:nix-community/neovim-nightly-overlay";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    jump.url = "github:joshuachp/jump";
   };
   outputs = {
     self,
@@ -25,9 +26,11 @@
     ...
   } @ attrs: {
     # Nixos
-    nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
+    nixosConfigurations.nixos = nixpkgs.lib.nixosSystem (let
       system = flake-utils.lib.system.x86_64-linux;
-      specialArgs = attrs;
+    in {
+      inherit system;
+      specialArgs = attrs // {inherit system;};
 
       modules = [
         ./cli
@@ -42,7 +45,7 @@
         nixos-hardware.nixosModules.common-pc-laptop-hdd
         nixos-hardware.nixosModules.common-pc-laptop-acpi_call
       ];
-    };
+    });
 
     # Wsl
     nixosConfigurations.nixos-wsl = nixpkgs.lib.nixosSystem {

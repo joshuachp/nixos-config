@@ -26,6 +26,7 @@
     gnumake
     hyperfine
     sqlite
+    vale
 
     # Various
     nodePackages.vim-language-server

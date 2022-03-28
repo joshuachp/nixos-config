@@ -65,7 +65,7 @@
     rofi
 
     # Personal
-    jump.defaultPackage.${system}
+    jump.packages.${system}.default
   ];
 
   # Programs

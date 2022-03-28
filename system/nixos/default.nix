@@ -38,4 +38,11 @@
 
   # Yubikey
   services.udev.packages = [pkgs.yubikey-personalization];
+
+  # Sudo U2F
+  security.pam.u2f = {
+    enable = true;
+    control = "sufficient";
+    cue = true;
+  };
 }

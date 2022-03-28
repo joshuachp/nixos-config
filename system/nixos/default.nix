@@ -7,6 +7,7 @@
   imports = [./hardware-configuration.nix ./video-configuration.nix];
 
   boot.plymouth.enable = true;
+  security.tpm2.enable = true;
 
   networking = {
     hostName = "nixos";

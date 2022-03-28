@@ -48,11 +48,13 @@
     });
 
     # Wsl
-    nixosConfigurations.nixos-wsl = nixpkgs.lib.nixosSystem {
+    nixosConfigurations.nixos-wsl = nixpkgs.lib.nixosSystem (let
       system = flake-utils.lib.system.x86_64-linux;
-      specialArgs = attrs;
+    in {
+      inherit system;
+      specialArgs = attrs // {inherit system;};
 
       modules = [./cli ./configuration.nix ./develop ./system/nixos-wsl];
-    };
+    });
   };
 }

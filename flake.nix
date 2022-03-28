@@ -9,12 +9,18 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     # TODO: this is an hack there should be a better way to import this
-    nerd-font-symbols.url = "path:/home/joshuachp/share/repos/github/nixos-config/packages/nerd-font-symbols";
+    nerd-font-symbols = {
+      url = "path:/home/joshuachp/share/repos/github/nixos-config/packages/nerd-font-symbols";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     neovim-nightly-overlay = {
       url = "github:nix-community/neovim-nightly-overlay";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    jump.url = "github:joshuachp/jump";
+    jump = {
+      url = "github:joshuachp/jump";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
   outputs = {
     self,

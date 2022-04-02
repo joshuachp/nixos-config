@@ -8,6 +8,7 @@
       "2a07:a8c1::#John--Blackbox-4ee8d8.dns2.nextdns.io"
       "2a07:a8c1::#John--Blackbox-4ee8d8.dns2.nextdns.io"
     ];
+    dnssec = "allow-downgrade";
     extraConfig = ''
       DNSOverTLS=opportunistic
     '';

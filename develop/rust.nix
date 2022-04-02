@@ -15,5 +15,6 @@
     ])
 
     rust-analyzer
+    cargo-criterion
   ];
 }

@@ -59,11 +59,6 @@
       wrapRc = false;
     }))
 
-    # Desktop
-    feh
-    polybar
-    rofi
-
     # Personal
     jump.packages.${system}.default
   ];

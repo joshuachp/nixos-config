@@ -41,6 +41,11 @@
     # Terminal
     alacritty
 
+    # Desktop
+    feh
+    polybar
+    rofi
+
     # Editor
     vscode
 
@@ -66,6 +71,9 @@
     # Other
     pinentry-gnome
     yubikey-touch-detector
+
+    # Tools
+    gnuplot
   ];
 
   environment.gnome.excludePackages = with pkgs; [epiphany];

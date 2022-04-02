@@ -58,6 +58,7 @@
     # Apps
     element-desktop
     signal-desktop
+    spotify
     tdesktop
     thunderbird
     zathura

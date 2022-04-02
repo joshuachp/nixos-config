@@ -55,6 +55,7 @@
     brave
 
     # Gnome
+    gnome-podcasts
     gnome3.dconf-editor
     gnome3.gnome-tweaks
     gnomeExtensions.appindicator

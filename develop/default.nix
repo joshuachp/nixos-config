@@ -19,6 +19,7 @@
   environment.systemPackages = with pkgs; [
     # Git
     git
+    git-extras
     pre-commit
 
     # Tools

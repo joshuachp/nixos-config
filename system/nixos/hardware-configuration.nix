@@ -56,6 +56,8 @@
 
   swapDevices = [{device = "/dev/Linux/swap";}];
 
-  hardware.cpu.amd.updateMicrocode =
-    lib.mkDefault config.hardware.enableRedistributableFirmware;
+  hardware = {
+    enableRedistributableFirmware = true;
+    cpu.amd.updateMicrocode = true;
+  };
 }

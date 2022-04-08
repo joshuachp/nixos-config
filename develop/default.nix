@@ -26,6 +26,7 @@
     entr
     gnumake
     hyperfine
+    jq
     sqlite
     vale
 

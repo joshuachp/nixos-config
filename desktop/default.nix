@@ -67,8 +67,7 @@
     spotify
     tdesktop
     thunderbird
-    # TODO: re-add, currently breaking for meason 6.0 update. Upstream already merged https://github.com/NixOS/nixpkgs/issues/167700
-    # zathura
+    zathura
 
     # Other
     pinentry-gnome

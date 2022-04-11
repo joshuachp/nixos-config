@@ -22,13 +22,21 @@
     git-extras
     pre-commit
 
-    # Tools
+    # Code
+    delta
+    difftastic
+    jq
+
+    # Make
     entr
     gnumake
-    hyperfine
-    jq
+
+    # Other
     sqlite
     vale
+
+    # Perf
+    hyperfine
 
     # Various
     nodePackages.vim-language-server

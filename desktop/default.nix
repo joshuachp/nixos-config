@@ -30,8 +30,6 @@
       evolution-data-server.enable = true;
       gnome-online-accounts.enable = true;
     };
-    # Enable CUPS to print documents.
-    printing.enable = false;
 
     # Udev
     udev.packages = with pkgs; [gnome3.gnome-settings-daemon];

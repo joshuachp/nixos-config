@@ -1,5 +1,6 @@
 {pkgs, ...}: {
   environment.systemPackages = with pkgs; [
+    nodejs
     nodePackages."@tailwindcss/language-server"
     nodePackages.prettier
     nodePackages.typescript

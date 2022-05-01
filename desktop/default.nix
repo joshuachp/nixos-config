@@ -74,6 +74,7 @@
     # Tools
     gnuplot
     xclip
+    wl-clipboard
   ];
 
   environment.gnome.excludePackages = with pkgs; [epiphany];

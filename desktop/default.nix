@@ -73,6 +73,7 @@
 
     # Tools
     gnuplot
+    xclip
   ];
 
   environment.gnome.excludePackages = with pkgs; [epiphany];

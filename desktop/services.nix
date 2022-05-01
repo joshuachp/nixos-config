@@ -6,4 +6,13 @@
     wireplumber.enable = true;
     pulse.enable = true;
   };
+
+  # Printers
+  services.printing = {
+    enable = true;
+    drivers = [pkgs.hplip];
+  };
+
+  # Smart-Cards
+  services.pcscd.enable = true;
 }

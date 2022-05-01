@@ -37,10 +37,6 @@
   sound.enable = true;
   hardware.pulseaudio.enable = false;
 
-  # Printers
-  services.printing.enable = true;
-  services.printing.drivers = [pkgs.hplip];
-
   # Yubikey
   services.udev.packages = [pkgs.yubikey-personalization];
 

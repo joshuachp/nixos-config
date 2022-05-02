@@ -65,6 +65,7 @@
     spotify
     tdesktop
     thunderbird
+    vlc
     zathura
 
     # Other

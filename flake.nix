@@ -43,8 +43,9 @@
         ./configuration.nix
         ./desktop
         ./develop
-        ./system/nixos
+        ./nix
         ./system/common/network
+        ./system/nixos
         nixos-hardware.nixosModules.common-cpu-amd
         nixos-hardware.nixosModules.common-gpu-amd
         nixos-hardware.nixosModules.common-pc-laptop
@@ -60,7 +61,13 @@
       inherit system;
       specialArgs = attrs // {inherit system;};
 
-      modules = [./cli ./configuration.nix ./develop ./system/nixos-wsl];
+      modules = [
+        ./cli
+        ./configuration.nix
+        ./develop
+        ./nix
+        ./system/nixos-wsl
+      ];
     });
   };
 }

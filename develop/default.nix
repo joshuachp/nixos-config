@@ -7,6 +7,7 @@
   imports = [
     ./c_cpp.nix
     ./go.nix
+    ./haskell.nix
     ./javascript.nix
     ./lua.nix
     ./nix.nix

@@ -2,7 +2,11 @@
   description = "NixOS configuration with flakes";
   inputs = {
     nixpkgs.url = "nixpkgs/nixos-unstable";
-    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
+    nixos-hardware.url = "github:NixOS/nixos-hardware";
+    nixos-wsl = {
+      url = "github:nix-community/NixOS-WSL";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     flake-utils.url = "github:numtide/flake-utils";
     fenix = {
       url = "github:nix-community/fenix";
@@ -26,6 +30,7 @@
     self,
     nixpkgs,
     nixos-hardware,
+    nixos-wsl,
     fenix,
     flake-utils,
     neovim-nightly-overlay,
@@ -67,6 +72,7 @@
         ./develop
         ./nix
         ./system/nixos-wsl
+        nixos-wsl.nixosModules.wsl
       ];
     });
   };

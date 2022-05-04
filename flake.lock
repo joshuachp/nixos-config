@@ -8,11 +8,11 @@
         "rust-analyzer-src": "rust-analyzer-src"
       },
       "locked": {
-        "lastModified": 1651583166,
-        "narHash": "sha256-rWrHeYLMYd5LmDgYAv44mcnGeMEoD/Sz0jol4fFcAG8=",
+        "lastModified": 1651645757,
+        "narHash": "sha256-MPurraS7GZHpicpLzjY9hK3wUIhju8Yz50BR0pJNt5M=",
         "owner": "nix-community",
         "repo": "fenix",
-        "rev": "2263c2111988cc5e80520225ad16afc98c22a494",
+        "rev": "7e75d8af9165305d2c96fed2b79322a170b6bf03",
         "type": "github"
       },
       "original": {
@@ -67,6 +67,22 @@
         "owner": "edolstra",
         "repo": "flake-compat",
         "rev": "b4a34015c698c7793d592d66adbab377907a2be8",
+        "type": "github"
+      },
+      "original": {
+        "owner": "edolstra",
+        "repo": "flake-compat",
+        "type": "github"
+      }
+    },
+    "flake-compat_3": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1648199409,
+        "narHash": "sha256-JwPKdC2PoVBkG6E+eWw3j6BMR6sL3COpYWfif7RVb8Y=",
+        "owner": "edolstra",
+        "repo": "flake-compat",
+        "rev": "64a525ee38886ab9028e6f61790de0832aa3ef03",
         "type": "github"
       },
       "original": {
@@ -135,6 +151,21 @@
         "type": "github"
       }
     },
+    "flake-utils_5": {
+      "locked": {
+        "lastModified": 1649676176,
+        "narHash": "sha256-OWKJratjt2RW151VUlJPRALb7OU2S5s+f0vLj4o1bHM=",
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "rev": "a4b154ebbdc88c8498a5c7b01589addc9e9cb678",
+        "type": "github"
+      },
+      "original": {
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "type": "github"
+      }
+    },
     "jump": {
       "inputs": {
         "fenix": "fenix_2",
@@ -191,11 +222,11 @@
       },
       "locked": {
         "dir": "contrib",
-        "lastModified": 1651541395,
-        "narHash": "sha256-5ZOZxbN/yORBiBGjEFfvtQEF0bdcF3J9j7ntCstK/M8=",
+        "lastModified": 1651646287,
+        "narHash": "sha256-xWQxM3buv/6qHIGueSeiX+rxyyPwD2GjW3xx1PznvJU=",
         "owner": "neovim",
         "repo": "neovim",
-        "rev": "13520aae163bfc243fc050cf16b89082c0896eaf",
+        "rev": "95b7851f620928b6a93dc0198be31959b16c53d9",
         "type": "github"
       },
       "original": {
@@ -214,11 +245,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1651566045,
-        "narHash": "sha256-ArCu6eMXqTKhqRNWJpf5+k6JdSO3VYozMeZIREMvuE0=",
+        "lastModified": 1651652222,
+        "narHash": "sha256-j1CB3qIQAAeeEWneXgTPeLQn6AGpJ+ncwGjdtaPZKh8=",
         "owner": "nix-community",
         "repo": "neovim-nightly-overlay",
-        "rev": "69cb2715f7b8c552d81715221b0cefad9a16a66b",
+        "rev": "955a1284b13683f46f949efa3fff52d9b9cc50f8",
         "type": "github"
       },
       "original": {
@@ -235,7 +266,7 @@
         ]
       },
       "locked": {
-        "lastModified": 1648488066,
+        "lastModified": 1648450788,
         "narHash": "sha256-6oXX4ul/XOY65i9kjVad34E4jtZ8zzEfPRrjRvZ+9gI=",
         "path": "/home/joshuachp/share/repos/github/nixos-config/packages/nerd-font-symbols",
         "type": "path"
@@ -256,8 +287,29 @@
       },
       "original": {
         "owner": "NixOS",
-        "ref": "master",
         "repo": "nixos-hardware",
+        "type": "github"
+      }
+    },
+    "nixos-wsl": {
+      "inputs": {
+        "flake-compat": "flake-compat_3",
+        "flake-utils": "flake-utils_5",
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1651096409,
+        "narHash": "sha256-KUpb6NNvv65SCQ1Zqm9hFxXVjtF8T7VltZwlb79ngqg=",
+        "owner": "nix-community",
+        "repo": "NixOS-WSL",
+        "rev": "506d46f8b7509080388ab5d3c6daca5a1097f649",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-community",
+        "repo": "NixOS-WSL",
         "type": "github"
       }
     },
@@ -284,17 +336,18 @@
         "neovim-nightly-overlay": "neovim-nightly-overlay",
         "nerd-font-symbols": "nerd-font-symbols",
         "nixos-hardware": "nixos-hardware",
+        "nixos-wsl": "nixos-wsl",
         "nixpkgs": "nixpkgs"
       }
     },
     "rust-analyzer-src": {
       "flake": false,
       "locked": {
-        "lastModified": 1651506532,
-        "narHash": "sha256-OoQOmRJjLglbqx7CEiD6BGg8aoYeZyRMPDkRmh4DLCw=",
+        "lastModified": 1651578631,
+        "narHash": "sha256-3Y9MFzb5h9CWWhC2338jBfGCG57/yZnaFYMjyBITiBo=",
         "owner": "rust-lang",
         "repo": "rust-analyzer",
-        "rev": "6262b60153d56dc40c41c055b9d200c0ce03be7a",
+        "rev": "0ee4e6a22d79f58b6b459dbc874d6b90a4495d83",
         "type": "github"
       },
       "original": {

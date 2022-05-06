@@ -7,7 +7,7 @@
     # GPG
     ssh.startAgent = false;
     gnupg.agent = {
-      enable = config.networking.hostName != "nixos-wsl";
+      enable = true;
       enableSSHSupport = true;
       pinentryFlavor = "curses";
     };

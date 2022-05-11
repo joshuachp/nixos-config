@@ -16,5 +16,6 @@
 
     rust-analyzer
     cargo-criterion
+    cargo-edit
   ];
 }

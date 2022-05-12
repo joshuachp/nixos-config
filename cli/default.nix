@@ -3,6 +3,7 @@
   neovim-nightly-overlay,
   system,
   jump,
+  note,
   ...
 }: {
   imports = [./gnupg.nix];
@@ -61,6 +62,7 @@
 
     # Personal
     jump.packages.${system}.default
+    note.packages.${system}.default
   ];
 
   # Programs

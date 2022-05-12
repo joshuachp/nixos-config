@@ -25,6 +25,12 @@
       url = "github:joshuachp/jump";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    note = {
+      url = "github:joshuachp/note";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.flake-utils.follows = "flake-utils";
+      inputs.fenix.follows = "fenix";
+    };
   };
   outputs = {
     self,

@@ -8,11 +8,11 @@
         "rust-analyzer-src": "rust-analyzer-src"
       },
       "locked": {
-        "lastModified": 1652337039,
-        "narHash": "sha256-BXUqWLzK7GxuLu/eytN2z5lCX2mv95pbx3OpE+Wa8vw=",
+        "lastModified": 1652423487,
+        "narHash": "sha256-LsmokM3Q+O1lyVXPrsq85Y1OYtcff9sCfoZY4oq7cl8=",
         "owner": "nix-community",
         "repo": "fenix",
-        "rev": "26f7a34feeb2cae057b98d499f92c20ce161440d",
+        "rev": "1cec27b3a6ebb4d16fd81c5b816edbe4147518ba",
         "type": "github"
       },
       "original": {
@@ -260,11 +260,11 @@
       },
       "locked": {
         "dir": "contrib",
-        "lastModified": 1652318767,
-        "narHash": "sha256-MBQPRltM2vod7CrR3ui6NKdvfindNnwjmhkTre4LWZY=",
+        "lastModified": 1652412677,
+        "narHash": "sha256-JUtGjeDI8BKRzKHJPpaovIzuYFcdWrm5HYwSYbd+kcc=",
         "owner": "neovim",
         "repo": "neovim",
-        "rev": "a2d4b862f16ed9814ce45a865a3596c958e066af",
+        "rev": "030417d80bac7fb3e9574b7cb1b81dca8fedda32",
         "type": "github"
       },
       "original": {
@@ -283,11 +283,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1652343706,
-        "narHash": "sha256-9ii0GE9Wna3r043b27fEKq+G2xkWxDz/0CWi5ppwibM=",
+        "lastModified": 1652430051,
+        "narHash": "sha256-lmQ+GkuL9yo3VPdEYBZZ414VNjn9fCQQIkBRJndDEco=",
         "owner": "nix-community",
         "repo": "neovim-nightly-overlay",
-        "rev": "3bbb08eace50f391839a898c944a226d9e32a71d",
+        "rev": "1705145729ba13e76e2aea94db719a5c592604fe",
         "type": "github"
       },
       "original": {
@@ -304,7 +304,7 @@
         ]
       },
       "locked": {
-        "lastModified": 1648488066,
+        "lastModified": 1648450788,
         "narHash": "sha256-6oXX4ul/XOY65i9kjVad34E4jtZ8zzEfPRrjRvZ+9gI=",
         "path": "/home/joshuachp/share/repos/github/nixos-config/packages/nerd-font-symbols",
         "type": "path"
@@ -381,11 +381,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1652389478,
-        "narHash": "sha256-FS4g242FA8Q9lbbdSEWIMyalqFqFRebiwHsFSarQgFA=",
+        "lastModified": 1652454386,
+        "narHash": "sha256-5HjT//vrEjTEAPmJwyNXzdnSwaHtS5MsskbEuj6VaBo=",
         "owner": "joshuachp",
         "repo": "note",
-        "rev": "83bd4907c996fb9e52066dc26289ad678bed00bb",
+        "rev": "346a698c291d229c898997c61c9b0ef00873c7b3",
         "type": "github"
       },
       "original": {

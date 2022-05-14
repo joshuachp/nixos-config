@@ -37,7 +37,11 @@
   documentation = {
     enable = true;
     nixos.enable = true;
-    man.enable = true;
+    man = {
+      enable = true;
+      generateCaches = true;
+      dev.enable = true;
+    };
   };
 
   # Enable unfreee pacakges

@@ -36,11 +36,11 @@
   # Manpages
   documentation = {
     enable = true;
+    dev.enable = true;
     nixos.enable = true;
     man = {
       enable = true;
       generateCaches = true;
-      dev.enable = true;
     };
   };
 

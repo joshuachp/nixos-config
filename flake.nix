@@ -54,6 +54,7 @@
         ./configuration.nix
         ./desktop
         ./develop
+        ./hacking
         ./nix
         ./system/common/network
         ./system/nixos

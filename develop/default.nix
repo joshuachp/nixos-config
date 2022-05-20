@@ -39,6 +39,9 @@
     # Perf
     hyperfine
 
+    # Debug
+    gdb
+
     # Various
     nodePackages.vim-language-server
   ];

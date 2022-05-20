@@ -1,6 +1,8 @@
 {pkgs, ...}: {
   environment.systemPackages = with pkgs; [
-    radare2
     cutter
+    ghidra-bin
+
+    radare2
   ];
 }

@@ -43,6 +43,7 @@
       generateCaches = true;
     };
   };
+  environment.systemPackages = [pkgs.man-pages pkgs.man-pages-posix];
 
   # Enable unfreee pacakges
   nixpkgs.config.allowUnfree = true;

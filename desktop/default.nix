@@ -67,6 +67,7 @@
     thunderbird
     vlc
     zathura
+    godot
 
     # Other
     pinentry-gnome

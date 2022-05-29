@@ -6,6 +6,7 @@
     wireplumber.enable = true;
     pulse.enable = true;
   };
+  security.rtkit.enable = true;
 
   # Printers
   services.printing = {

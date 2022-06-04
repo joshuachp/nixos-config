@@ -41,6 +41,7 @@
 
     # Debug
     gdb
+    lldb
 
     # Various
     nodePackages.vim-language-server

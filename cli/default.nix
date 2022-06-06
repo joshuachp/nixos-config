@@ -13,9 +13,6 @@
   ];
 
   environment.systemPackages = with pkgs; [
-    # Nix
-    cachix
-
     # System utils
     pciutils
 

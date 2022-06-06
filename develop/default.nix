@@ -33,7 +33,7 @@
     gnumake
 
     # Other
-    sqlite
+    sqlite-interactive
     vale
 
     # Perf

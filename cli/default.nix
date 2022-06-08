@@ -1,12 +1,11 @@
-{
-  pkgs,
-  neovim-nightly-overlay,
-  system,
-  jump,
-  note,
-  ...
+{ pkgs
+, neovim-nightly-overlay
+, system
+, jump
+, note
+, ...
 }: {
-  imports = [./gnupg.nix];
+  imports = [ ./gnupg.nix ];
 
   nixpkgs.overlays = [
     neovim-nightly-overlay.overlay

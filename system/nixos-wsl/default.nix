@@ -1,5 +1,5 @@
-{_, ...}: {
-  imports = [./hardware-configuration.nix];
+{ _, ... }: {
+  imports = [ ./hardware-configuration.nix ];
 
   wsl = {
     enable = true;

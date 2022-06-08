@@ -1,10 +1,9 @@
-{
-  config,
-  pkgs,
-  lib,
-  ...
+{ config
+, pkgs
+, lib
+, ...
 }: {
-  imports = [./hardware-configuration.nix ./video-configuration.nix];
+  imports = [ ./hardware-configuration.nix ./video-configuration.nix ];
 
   boot.plymouth.enable = true;
   security.tpm2.enable = true;
@@ -38,7 +37,7 @@
   hardware.pulseaudio.enable = false;
 
   # Yubikey
-  services.udev.packages = [pkgs.yubikey-personalization];
+  services.udev.packages = [ pkgs.yubikey-personalization ];
 
   # Sudo U2F
   security.pam.u2f = {

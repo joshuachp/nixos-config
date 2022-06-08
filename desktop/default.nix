@@ -1,10 +1,9 @@
-{
-  config,
-  pkgs,
-  lib,
-  ...
+{ config
+, pkgs
+, lib
+, ...
 }: {
-  imports = [./fonts.nix ./services.nix];
+  imports = [ ./fonts.nix ./services.nix ];
 
   # Xorg
   services.xserver = {
@@ -15,7 +14,7 @@
     # Enable touchpad support (enabled default in most desktopManager).
     libinput = {
       enable = true;
-      touchpad = {tapping = true;};
+      touchpad = { tapping = true; };
     };
     # Desktop environment
     displayManager.gdm.enable = true;
@@ -32,7 +31,7 @@
     };
 
     # Udev
-    udev.packages = with pkgs; [gnome3.gnome-settings-daemon];
+    udev.packages = with pkgs; [ gnome3.gnome-settings-daemon ];
   };
 
   environment.systemPackages = with pkgs; [
@@ -79,5 +78,5 @@
     wl-clipboard
   ];
 
-  environment.gnome.excludePackages = with pkgs; [epiphany];
+  environment.gnome.excludePackages = with pkgs; [ epiphany ];
 }

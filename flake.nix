@@ -34,55 +34,61 @@
       inputs.fenix.follows = "fenix";
     };
   };
-  outputs = {
-    self,
-    nixpkgs,
-    nixos-hardware,
-    nixos-wsl,
-    fenix,
-    flake-utils,
-    neovim-nightly-overlay,
-    ...
-  } @ attrs: {
-    # Nixos
-    nixosConfigurations.nixos = nixpkgs.lib.nixosSystem (let
-      system = flake-utils.lib.system.x86_64-linux;
-    in {
-      inherit system;
-      specialArgs = attrs // {inherit system;};
+  outputs =
+    { self
+    , nixpkgs
+    , nixos-hardware
+    , nixos-wsl
+    , fenix
+    , flake-utils
+    , neovim-nightly-overlay
+    , ...
+    } @ attrs: {
+      # Nixos
+      nixosConfigurations.nixos = nixpkgs.lib.nixosSystem (
+        let
+          system = flake-utils.lib.system.x86_64-linux;
+        in
+        {
+          inherit system;
+          specialArgs = attrs // { inherit system; };
 
-      modules = [
-        ./cli
-        ./configuration.nix
-        ./desktop
-        ./develop
-        ./hacking
-        ./nix
-        ./system/common/network
-        ./system/nixos
-        nixos-hardware.nixosModules.common-cpu-amd
-        nixos-hardware.nixosModules.common-gpu-amd
-        nixos-hardware.nixosModules.common-pc-laptop
-        nixos-hardware.nixosModules.common-pc-laptop-hdd
-        nixos-hardware.nixosModules.common-pc-laptop-acpi_call
-      ];
-    });
+          modules = [
+            ./cli
+            ./configuration.nix
+            ./desktop
+            ./develop
+            ./hacking
+            ./nix
+            ./system/common/network
+            ./system/nixos
+            nixos-hardware.nixosModules.common-cpu-amd
+            nixos-hardware.nixosModules.common-gpu-amd
+            nixos-hardware.nixosModules.common-pc-laptop
+            nixos-hardware.nixosModules.common-pc-laptop-hdd
+            nixos-hardware.nixosModules.common-pc-laptop-acpi_call
+          ];
+        }
+      );
 
-    # Wsl
-    nixosConfigurations.nixos-wsl = nixpkgs.lib.nixosSystem (let
-      system = flake-utils.lib.system.x86_64-linux;
-    in {
-      inherit system;
-      specialArgs = attrs // {inherit system;};
+      # Wsl
+      nixosConfigurations.nixos-wsl = nixpkgs.lib.nixosSystem (
+        let
+          system = flake-utils.lib.system.x86_64-linux;
+        in
+        {
+          inherit system;
+          specialArgs = attrs // { inherit system; };
 
-      modules = [
-        ./cli
-        ./configuration.nix
-        ./develop
-        ./nix
-        ./system/nixos-wsl
-        nixos-wsl.nixosModules.wsl
-      ];
-    });
-  };
+          modules = [
+            ./cli
+            ./configuration.nix
+            ./develop
+            ./nix
+            ./system/nixos-wsl
+            nixos-wsl.nixosModules.wsl
+          ];
+        }
+      );
+    };
 }

@@ -1,4 +1,4 @@
-{pkgs, ...}: {
+{ pkgs, ... }: {
   # Sound
   services.pipewire = {
     enable = true;
@@ -12,7 +12,7 @@
   # Printers
   services.printing = {
     enable = true;
-    drivers = [pkgs.hplip];
+    drivers = [ pkgs.hplip ];
   };
 
   # Smart-Cards

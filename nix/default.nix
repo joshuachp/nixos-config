@@ -1,12 +1,16 @@
-{ pkgs, ... }: {
+{ config
+, pkgs
+, ...
+}: {
   imports = [ ./cachix.nix ];
+  config = {
+    environment.systemPackages = with pkgs; [
+      cachix
+    ];
 
-  environment.systemPackages = with pkgs; [
-    cachix
-  ];
-
-  nix.gc = {
-    automatic = true;
-    dates = "weekly";
+    nix.gc = {
+      automatic = true;
+      dates = "weekly";
+    };
   };
 }

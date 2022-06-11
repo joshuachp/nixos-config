@@ -1,1 +1,8 @@
-{ pkgs, ... }: { environment.systemPackages = with pkgs; [ go ]; }
+{ config
+, pkgs
+, ...
+}: {
+  config = {
+    environment.systemPackages = with pkgs; [ go ];
+  };
+}

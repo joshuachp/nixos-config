@@ -8,56 +8,57 @@
 , ...
 }: {
   imports = [ (modulesPath + "/installer/scan/not-detected.nix") ];
-
-  # Use the systemd-boot EFI boot loader.
-  boot.loader = {
-    systemd-boot.enable = true;
-    efi = {
-      canTouchEfiVariables = true;
-      efiSysMountPoint = "/boot/efi";
+  config = {
+    # Use the systemd-boot EFI boot loader.
+    boot.loader = {
+      systemd-boot.enable = true;
+      efi = {
+        canTouchEfiVariables = true;
+        efiSysMountPoint = "/boot/efi";
+      };
     };
-  };
 
-  boot.initrd.availableKernelModules = [ "xhci_pci" "nvme" "ahci" "usbhid" "sd_mod" ];
-  boot.initrd.kernelModules = [ "dm-snapshot" ];
-  boot.kernelModules = [ "kvm-amd" ];
-  boot.extraModulePackages = [ ];
+    boot.initrd.availableKernelModules = [ "xhci_pci" "nvme" "ahci" "usbhid" "sd_mod" ];
+    boot.initrd.kernelModules = [ "dm-snapshot" ];
+    boot.kernelModules = [ "kvm-amd" ];
+    boot.extraModulePackages = [ ];
 
-  boot.initrd.luks.devices.crypted = {
-    device = "/dev/disk/by-uuid/e21bee4a-6c26-46c1-8233-362e198db016";
-  };
+    boot.initrd.luks.devices.crypted = {
+      device = "/dev/disk/by-uuid/e21bee4a-6c26-46c1-8233-362e198db016";
+    };
 
-  fileSystems."/" = {
-    device = "/dev/Linux/root";
-    fsType = "btrfs";
-  };
+    fileSystems."/" = {
+      device = "/dev/Linux/root";
+      fsType = "btrfs";
+    };
 
-  fileSystems."/boot/efi" = {
-    device = "/dev/disk/by-uuid/0F4B-952D";
-    fsType = "vfat";
-  };
+    fileSystems."/boot/efi" = {
+      device = "/dev/disk/by-uuid/0F4B-952D";
+      fsType = "vfat";
+    };
 
-  fileSystems."/home" = {
-    device = "/dev/Linux/home";
-    fsType = "btrfs";
-  };
+    fileSystems."/home" = {
+      device = "/dev/Linux/home";
+      fsType = "btrfs";
+    };
 
-  fileSystems."/home/joshuachp/share" = {
-    device = "/dev/Linux/share";
-    fsType = "btrfs";
-    options = [ "defaults" "user" "exec" ];
-  };
+    fileSystems."/home/joshuachp/share" = {
+      device = "/dev/Linux/share";
+      fsType = "btrfs";
+      options = [ "defaults" "user" "exec" ];
+    };
 
-  fileSystems."/var" = {
-    device = "/dev/Linux/var";
-    fsType = "btrfs";
-  };
+    fileSystems."/var" = {
+      device = "/dev/Linux/var";
+      fsType = "btrfs";
+    };
 
-  swapDevices = [{ device = "/dev/Linux/swap"; }];
+    swapDevices = [{ device = "/dev/Linux/swap"; }];
 
-  hardware = {
-    enableRedistributableFirmware = true;
-    cpu.amd.updateMicrocode = true;
-    bluetooth.enable = true;
+    hardware = {
+      enableRedistributableFirmware = true;
+      cpu.amd.updateMicrocode = true;
+      bluetooth.enable = true;
+    };
   };
 }

@@ -1,11 +1,16 @@
-{ pkgs, ... }: {
-  environment.systemPackages = with pkgs; [
-    nixfmt
-    nixpkgs-fmt
-    alejandra
+{ config
+, pkgs
+, ...
+}: {
+  config = {
+    environment.systemPackages = with pkgs; [
+      nixfmt
+      nixpkgs-fmt
+      alejandra
 
-    rnix-lsp
+      rnix-lsp
 
-    statix
-  ];
+      statix
+    ];
+  };
 }

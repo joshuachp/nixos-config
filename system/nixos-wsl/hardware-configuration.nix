@@ -8,21 +8,22 @@
 , ...
 }: {
   imports = [ ];
+  config = {
+    boot.initrd.availableKernelModules = [ ];
+    boot.initrd.kernelModules = [ ];
+    boot.kernelModules = [ ];
+    boot.extraModulePackages = [ ];
 
-  boot.initrd.availableKernelModules = [ ];
-  boot.initrd.kernelModules = [ ];
-  boot.kernelModules = [ ];
-  boot.extraModulePackages = [ ];
+    fileSystems."/" = {
+      device = "/dev/sdb";
+      fsType = "ext4";
+    };
 
-  fileSystems."/" = {
-    device = "/dev/sdb";
-    fsType = "ext4";
-  };
+    swapDevices = [ ];
 
-  swapDevices = [ ];
-
-  hardware = {
-    enableRedistributableFirmware = true;
-    cpu.amd.updateMicrocode = true;
+    hardware = {
+      enableRedistributableFirmware = true;
+      cpu.amd.updateMicrocode = true;
+    };
   };
 }

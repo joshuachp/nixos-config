@@ -1,4 +1,5 @@
-{ pkgs
+{ config
+, pkgs
 , neovim-nightly-overlay
 , system
 , jump
@@ -6,77 +7,77 @@
 , ...
 }: {
   imports = [ ./gnupg.nix ];
+  config = {
+    nixpkgs.overlays = [
+      neovim-nightly-overlay.overlay
+    ];
+    environment.systemPackages = with pkgs; [
+      # System utils
+      pciutils
 
-  nixpkgs.overlays = [
-    neovim-nightly-overlay.overlay
-  ];
+      # Configuration
+      chezmoi
 
-  environment.systemPackages = with pkgs; [
-    # System utils
-    pciutils
+      # Shells
+      fish
+      nushell
+      direnv
 
-    # Configuration
-    chezmoi
+      # Files
+      fzf
+      rclone
+      file
 
-    # Shells
-    fish
-    nushell
-    direnv
+      # Document
+      pandoc
 
-    # Files
-    fzf
-    rclone
-    file
+      # Security
+      gnupg
+      pinentry
+      gopass
 
-    # Document
-    pandoc
+      # Network utils
+      curl
+      wget
+      iproute2
+      socat
 
-    # Security
-    gnupg
-    pinentry
-    gopass
+      # Rust CLI programs
+      bat
+      exa
+      fd
+      ripgrep
 
-    # Network utils
-    curl
-    wget
-    iproute2
-    socat
+      # Checkers
+      shellcheck
 
-    # Rust CLI programs
-    bat
-    exa
-    fd
-    ripgrep
+      # Terminal
+      starship
 
-    # Checkers
-    shellcheck
+      # Editor
+      (neovim.overrideAttrs (oas: {
+        wrapRc = false;
+      }))
 
-    # Terminal
-    starship
+      # Personal
+      jump.packages.${system}.default
+      note.packages.${system}.default
+    ];
 
-    # Editor
-    (neovim.overrideAttrs (oas: {
-      wrapRc = false;
-    }))
-
-    # Personal
-    jump.packages.${system}.default
-    note.packages.${system}.default
-  ];
-
-  # Programs
-  programs = {
-    zsh = {
-      enable = true;
-      autosuggestions.enable = true;
-      syntaxHighlighting.enable = true;
+    # Programs
+    programs = {
+      zsh = {
+        enable = true;
+        autosuggestions.enable = true;
+        syntaxHighlighting.enable = true;
+      };
+      less.enable = true;
+      neovim.enable = true;
+      git.enable = true;
+      tmux.enable = true;
     };
-    less.enable = true;
-    neovim.enable = true;
-    git.enable = true;
-    tmux.enable = true;
-  };
 
-  # Lorri
-  services.lorri.enable = true;
+    # Lorri
+    services.lorri.enable = true;
+  };
 }

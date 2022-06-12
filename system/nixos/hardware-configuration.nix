@@ -19,7 +19,7 @@
     };
 
     boot.initrd.availableKernelModules = [ "xhci_pci" "nvme" "ahci" "usbhid" "sd_mod" ];
-    boot.initrd.kernelModules = [ "dm-snapshot" ];
+    boot.initrd.kernelModules = [ "dm-snapshot" "amdgpu" ];
     boot.kernelModules = [ "kvm-amd" ];
     boot.extraModulePackages = [ ];
 

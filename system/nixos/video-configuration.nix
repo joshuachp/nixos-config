@@ -4,6 +4,10 @@
 , ...
 }: {
   config = {
+    services.xserver.displayManager.gdm.debug = true;
+    services.xserver.verbose = lib.mkForce 7;
+    services.xserver.exportConfiguration = true;
+
     services.xserver.videoDrivers = [
       "nvidia"
       "amdgpu"
@@ -22,12 +26,7 @@
         vaapiVdpau
       ];
 
-      extraPackages32 = with pkgs; [
-        driversi686Linux.amdvlk
-      ];
-
       driSupport = true;
-      driSupport32Bit = true;
     };
 
 
@@ -48,19 +47,41 @@
       };
     };
 
-    services.xserver.deviceSection = ''
-      Option "AllowExternalGpus"
+    environment.etc."X11/xorg.conf.d/10-amdgpu.conf".text = ''
+      Section "OutputClass"
+          Identifier "AMDgpu"
+          MatchDriver "amdgpu"
+          Driver "amdgpu"
+      EndSection
     '';
 
-    services.xserver.serverLayoutSection = ''
-      Inactive "Device-nvidia[0]"
-      Option "AllowNVIDIAGPUScreens"
+    environment.etc."X11/xorg.conf.d/10-radeon.conf".text = ''
+      Section "OutputClass"
+          Identifier "Radeon"
+          MatchDriver "radeon"
+          Driver "radeon"
+      EndSection
     '';
 
-    services.xserver.displayManager.sessionCommands = ''
-      ${pkgs.xorg.xrandr}/bin/xrandr --setprovideroutputsource 1 0
+    environment.etc."X11/xorg.conf.d/10-nvidia.conf".text = ''
+      Section "OutputClass"
+          Identifier "nvidia"
+          MatchDriver "nvidia-drm"
+          Driver "nvidia"
+          Option "AllowEmptyInitialConfiguration"
+          Option "SLI" "Auto"
+          Option "BaseMosaic" "on"
+      EndSection
+
+      Section "ServerLayout"
+          Identifier "layout"
+          Option "AllowNVIDIAGPUScreens"
+      EndSection
     '';
+
+    services.xserver.config = lib.mkForce "";
 
     services.xserver.displayManager.gdm.wayland = false;
+
   };
 }

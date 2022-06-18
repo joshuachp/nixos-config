@@ -3,7 +3,13 @@
 , lib
 , ...
 }: {
-  imports = [ ./fonts.nix ./services.nix ];
+  imports = [
+    ./fonts.nix
+    ./services.nix
+    ./window_manager/gnome.nix
+    ./window_manager/i3.nix
+  ];
+
   config = {
     # Xorg
     services.xserver = {
@@ -18,45 +24,21 @@
       };
       # Desktop environment
       displayManager.gdm.enable = true;
-      desktopManager.gnome.enable = true;
-      windowManager.i3.enable = true;
     };
 
-    # List services that you want to enable:
-    services = {
-      gnome = {
-        gnome-keyring.enable = true;
-        evolution-data-server.enable = true;
-        gnome-online-accounts.enable = true;
-      };
-
-      # Udev
-      udev.packages = with pkgs; [ gnome3.gnome-settings-daemon ];
-    };
 
     environment.systemPackages = with pkgs; [
       # Terminal
       alacritty
 
-      # Desktop
-      feh
-      polybar
-      rofi
-
       # Editor
       vscode
+      godot
 
       # Browser
       firefox
       chromium
       brave
-
-      # Gnome
-      gnome-podcasts
-      gnome3.dconf-editor
-      gnome3.gnome-tweaks
-      gnomeExtensions.appindicator
-      papirus-icon-theme
 
       # Apps
       element-desktop
@@ -66,7 +48,6 @@
       thunderbird
       vlc
       zathura
-      godot
 
       # Other
       pinentry-gnome
@@ -77,8 +58,5 @@
       xclip
       wl-clipboard
     ];
-
-    environment.gnome.excludePackages = with pkgs; [ epiphany ];
-
   };
 }

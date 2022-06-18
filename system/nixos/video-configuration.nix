@@ -4,16 +4,13 @@
 , ...
 }: {
   config = {
-    services.xserver.displayManager.gdm.debug = true;
-    services.xserver.verbose = lib.mkForce 7;
     services.xserver.exportConfiguration = true;
 
     services.xserver.videoDrivers = [
-      "nvidia"
-      "amdgpu"
-      "radeon"
       "modesetting"
       "fbdev"
+      "amdgpu"
+      "nvidia"
     ];
 
     hardware.opengl = {

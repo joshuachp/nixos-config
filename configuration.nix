@@ -37,6 +37,7 @@
     documentation = {
       enable = true;
       dev.enable = true;
+      info.enable = true;
       nixos.enable = true;
       man = {
         enable = true;

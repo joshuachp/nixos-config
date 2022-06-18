@@ -27,7 +27,7 @@
       isNormalUser = true;
       description = "Joshua Chapman";
       extraGroups = [ "wheel" "networkmanager" ];
-      shell = pkgs.zsh;
+      shell = pkgs.fish;
       openssh.authorizedKeys.keys = [
         "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPSZcROTKTFoBg//2EdP2aBq9gFzYFSbwRugF/mG1EOx cardno:14 250 662"
       ];

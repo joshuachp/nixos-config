@@ -3,6 +3,9 @@
 , ...
 }: {
   config = {
-    environment.systemPackages = with pkgs; [ go ];
+    environment.systemPackages = with pkgs; [
+      go
+      gopls
+    ];
   };
 }

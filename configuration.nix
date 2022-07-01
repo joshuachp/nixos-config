@@ -16,11 +16,6 @@
       keyMap = "it";
     };
 
-    # TODO: remove this when this MR reaches unstable https://github.com/NixOS/nixpkgs/pull/179194
-    i18n.supportedLocales = [
-      "en_US.UTF-8/UTF-8"
-    ];
-
     # Environment variables, useful for the root user
     environment.variables = {
       EDITOR = "nvim";

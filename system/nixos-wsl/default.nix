@@ -8,6 +8,7 @@
       automountPath = "/mnt";
       defaultUser = "joshuachp";
       startMenuLaunchers = true;
+      docker-desktop.enable = true;
     };
 
     networking.hostName = "nixos-wsl";

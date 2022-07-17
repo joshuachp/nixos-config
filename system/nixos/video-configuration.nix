@@ -80,13 +80,17 @@
 
     services.xserver.serverLayoutSection = lib.mkForce "";
 
+    services.xserver.screenSection = ''
+      GPUDevice "Device-amdgpu[0]"
+    '';
+
     services.xserver.drivers = [{
       name = "amdgpu";
-      display = true;
+      display = false;
       modules = [ pkgs.xorg.xf86videoamdgpu ];
-      screenSection = ''
-        GPUDevice "Device-nvidia[0]"
-      '';
+      #screenSection = ''
+      #  GPUDevice "Device-nvidia[0]"
+      #'';
     }];
 
     services.xserver.displayManager.gdm.wayland = false;

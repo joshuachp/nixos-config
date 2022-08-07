@@ -47,6 +47,7 @@
       tdesktop
       thunderbird
       vlc
+      xournalpp
       zathura
 
       # Other

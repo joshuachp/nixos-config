@@ -4,8 +4,7 @@
 }: {
   config = {
     environment.systemPackages = with pkgs; [
-      (texlive.combine { inherit (pkgs.texlive) scheme-medium sectsty; })
-
+      texlive.combined.scheme-small
       texlab
     ];
   };

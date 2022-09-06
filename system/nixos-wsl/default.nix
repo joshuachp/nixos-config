@@ -1,4 +1,5 @@
 { config
+, pkgs
 , ...
 }: {
   imports = [ ./hardware-configuration.nix ];
@@ -18,6 +19,10 @@
       [network]
       hostname = nixos-wsl
     '';
+
+    environment.systemPackages = with pkgs; [
+      pinentry-curses
+    ];
 
     security.sudo.wheelNeedsPassword = false;
   };

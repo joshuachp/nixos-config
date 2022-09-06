@@ -32,8 +32,6 @@
       pandoc
 
       # Security
-      gnupg
-      pinentry
       gopass
 
       # Network utils

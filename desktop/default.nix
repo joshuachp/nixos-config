@@ -17,6 +17,7 @@
       # Configure keymap in X11
       layout = "it";
       xkbOptions = "eurosign:e";
+      xkbVariant = "basic";
       # Enable touchpad support (enabled default in most desktopManager).
       libinput = {
         enable = true;

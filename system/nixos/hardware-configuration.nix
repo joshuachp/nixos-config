@@ -5,6 +5,7 @@
 , lib
 , pkgs
 , modulesPath
+, system
 , ...
 }: {
   imports = [ (modulesPath + "/installer/scan/not-detected.nix") ];
@@ -56,6 +57,7 @@
 
     swapDevices = [{ device = "/dev/Linux/swap"; }];
 
+    nixpkgs.hostPlatform = lib.mkDefault system;
     hardware = {
       enableRedistributableFirmware = true;
       cpu.amd.updateMicrocode = true;

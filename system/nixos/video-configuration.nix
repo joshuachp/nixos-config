@@ -94,7 +94,7 @@
     }];
 
     services.xserver.displayManager.setupCommands = ''
-      xrandr --setprovideroutputsource 1 0
+      ${pkgs.xorg.xrandr} --setprovideroutputsource 1 0
     '';
 
     services.xserver.displayManager.gdm.wayland = false;

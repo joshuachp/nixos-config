@@ -95,6 +95,7 @@
 
     services.xserver.displayManager.setupCommands = ''
       ${pkgs.xorg.xrandr} --setprovideroutputsource 1 0
+      ${pkgs.xorg.xrandr} --auto
     '';
 
     services.xserver.displayManager.gdm.wayland = false;

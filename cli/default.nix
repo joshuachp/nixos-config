@@ -4,6 +4,7 @@
 , system
 , jump
 , note
+, tools
 , ...
 }: {
   imports = [ ./gnupg.nix ];
@@ -60,6 +61,8 @@
       # Personal
       jump.packages.${system}.default
       note.packages.${system}.default
+      tools.packages.${system}.rust-tools
+      tools.packages.${system}.shell-tools
     ];
 
     # Programs

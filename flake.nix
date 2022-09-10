@@ -23,6 +23,12 @@
       inputs.flake-utils.follows = "flake-utils";
       inputs.fenix.follows = "fenix";
     };
+    tools = {
+      url = "github:joshuachp/tools";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.flake-utils.follows = "flake-utils";
+      inputs.fenix.follows = "fenix";
+    };
     note = {
       url = "github:joshuachp/note";
       inputs.nixpkgs.follows = "nixpkgs";

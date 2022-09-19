@@ -69,6 +69,10 @@
     programs = {
       zsh = {
         enable = true;
+
+        enableGlobalCompInit = false;
+        histFile = "$HOME/.cache/zsh/zsh_history";
+
         autosuggestions.enable = true;
         syntaxHighlighting.enable = true;
       };

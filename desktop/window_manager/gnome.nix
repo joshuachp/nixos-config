@@ -14,7 +14,7 @@
       };
 
       # Udev
-      udev.packages = with pkgs; [ gnome3.gnome-settings-daemon ];
+      udev.packages = with pkgs; [ gnome.gnome-settings-daemon ];
 
     };
 
@@ -22,8 +22,8 @@
 
     environment.systemPackages = with pkgs; [
       gnome-podcasts
-      gnome3.dconf-editor
-      gnome3.gnome-tweaks
+      gnome.dconf-editor
+      gnome.gnome-tweaks
       gnomeExtensions.appindicator
       papirus-icon-theme
     ];

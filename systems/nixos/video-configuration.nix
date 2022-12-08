@@ -101,7 +101,7 @@
     services.xserver.displayManager.gdm.wayland = false;
 
     # Specialization for using the AMD as primary GPU
-    specialisation."Single Monitor".configuration = {
+    specialisation.singleMonitor.configuration = {
       hardware.nvidia = lib.mkForce {
         powerManagement = {
           enable = true;

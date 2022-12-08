@@ -43,6 +43,7 @@
 
       # Apps
       element-desktop
+      libreoffice
       signal-desktop
       spotify
       tdesktop

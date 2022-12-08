@@ -56,51 +56,26 @@
     , flake-utils
     , neovim-nightly-overlay
     , ...
-    } @ attrs: {
+    } @ inputs:
+    let
+      mkSystem = import ./lib/mkSystem.nix;
+      overlays = [
+        fenix.overlays.default
+        neovim-nightly-overlay.overlay
+      ];
+      systems = flake-utils.lib.system;
+    in
+    {
       # Nixos
-      nixosConfigurations.nixos = nixpkgs.lib.nixosSystem (
-        let
-          system = flake-utils.lib.system.x86_64-linux;
-        in
-        {
-          inherit system;
-          specialArgs = attrs // { inherit system; };
-
-          modules = [
-            ./cli
-            ./configuration.nix
-            ./desktop
-            ./develop
-            ./hacking
-            ./nix
-            ./system/common/network
-            ./system/nixos
-            nixos-hardware.nixosModules.common-cpu-amd
-            nixos-hardware.nixosModules.common-pc-laptop
-            nixos-hardware.nixosModules.common-pc-laptop-hdd
-            nixos-hardware.nixosModules.common-pc-laptop-acpi_call
-          ];
-        }
-      );
+      nixosConfigurations.nixos = mkSystem "nixos" {
+        inherit inputs overlays;
+        system = systems.x86_64-linux;
+      };
 
       # Wsl
-      nixosConfigurations.nixos-wsl = nixpkgs.lib.nixosSystem (
-        let
-          system = flake-utils.lib.system.x86_64-linux;
-        in
-        {
-          inherit system;
-          specialArgs = attrs // { inherit system; };
-
-          modules = [
-            ./cli
-            ./configuration.nix
-            ./develop
-            ./nix
-            ./system/nixos-wsl
-            nixos-wsl.nixosModules.wsl
-          ];
-        }
-      );
+      nixosConfigurations.nixos-wsl = mkSystem "nixos-wsl" {
+        inherit inputs overlays;
+        system = systems.x86_64-linux;
+      };
     };
 }

@@ -1,15 +1,36 @@
 { config
 , pkgs
 , lib
+, nixos-hardware
 , ...
 }: {
-  imports = [ ./hardware-configuration.nix ./video-configuration.nix ];
+  imports = [
+    ./hardware-configuration.nix
+    ./video-configuration.nix
+
+    # Modules
+    ../../modules/cli.nix
+    ../../modules/desktop
+    ../../modules/develop
+    ../../modules/documentation.nix
+    ../../modules/gnupg.nix
+    ../../modules/hacking.nix
+    ../../modules/localization.nix
+    ../../modules/localtime.nix
+    ../../modules/network.nix
+    ../../modules/nix
+
+    # Hardware configuration
+    nixos-hardware.nixosModules.common-cpu-amd
+    nixos-hardware.nixosModules.common-pc-laptop
+    nixos-hardware.nixosModules.common-pc-laptop-hdd
+    nixos-hardware.nixosModules.common-pc-laptop-acpi_call
+  ];
   config = {
     boot.plymouth.enable = true;
     security.tpm2.enable = true;
 
     networking = {
-      hostName = "nixos";
       # The global useDHCP flag is deprecated, therefore explicitly set to false here.
       # Per-interface useDHCP will be mandatory in the future, so this generated config
       # replicates the default behaviour.

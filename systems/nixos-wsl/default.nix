@@ -1,8 +1,21 @@
 { config
 , pkgs
+, nixos-wsl
 , ...
 }: {
-  imports = [ ./hardware-configuration.nix ];
+  imports = [
+    ./hardware-configuration.nix
+    # Modules
+    ../../modules/cli.nix
+    ../../modules/develop
+    ../../modules/documentation.nix
+    ../../modules/gnupg.nix
+    ../../modules/localization.nix
+    ../../modules/localtime.nix
+    ../../modules/nix
+    # Wsl configuration
+    nixos-wsl.nixosModules.wsl
+  ];
   config = {
     wsl = {
       enable = true;
@@ -14,8 +27,6 @@
         automount.root = "/mnt";
       };
     };
-
-    networking.hostName = "nixos-wsl";
 
     environment.systemPackages = with pkgs; [
       pinentry-curses

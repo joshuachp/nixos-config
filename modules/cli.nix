@@ -9,9 +9,6 @@
 }: {
   imports = [ ./gnupg.nix ];
   config = {
-    nixpkgs.overlays = [
-      neovim-nightly-overlay.overlay
-    ];
     environment.systemPackages = with pkgs; [
       # System utils
       pciutils
@@ -77,16 +74,10 @@
         syntaxHighlighting.enable = true;
       };
       less.enable = true;
-      neovim.enable = true;
       git.enable = true;
       tmux.enable = true;
     };
 
-    # Environment variables, useful for the root user
-    environment.variables = {
-      EDITOR = "nvim";
-      VISUAL = "nvim";
-    };
 
     # Lorri
     services.lorri.enable = true;

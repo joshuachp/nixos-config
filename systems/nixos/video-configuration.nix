@@ -99,5 +99,31 @@
     '';
 
     services.xserver.displayManager.gdm.wayland = false;
+
+    # Specialization for using the AMD as primary GPU
+    specialisation."Single Monitor".configuration = {
+      hardware.nvidia = lib.mkForce {
+        powerManagement = {
+          enable = true;
+          finegrained = true;
+        };
+
+        prime = {
+          offload.enable = true;
+          sync.enable = false;
+        };
+      };
+
+      services.xserver.screenSection = lib.mkForce "";
+
+      services.xserver.drivers = lib.mkForce [{
+        name = "amdgpu";
+        display = false;
+        modules = [ pkgs.xorg.xf86videoamdgpu ];
+        screenSection = ''
+          GPUDevice "Device-nvidia[0]"
+        '';
+      }];
+    };
   };
 }

@@ -82,6 +82,12 @@
       tmux.enable = true;
     };
 
+    # Environment variables, useful for the root user
+    environment.variables = {
+      EDITOR = "nvim";
+      VISUAL = "nvim";
+    };
+
     # Lorri
     services.lorri.enable = true;
   };

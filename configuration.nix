@@ -16,12 +16,6 @@
       keyMap = "it";
     };
 
-    # Environment variables, useful for the root user
-    environment.variables = {
-      EDITOR = "nvim";
-      VISUAL = "nvim";
-    };
-
     # Define a user account. Don't forget to set a password with ‘passwd’.
     users.users.joshuachp = {
       isNormalUser = true;
@@ -46,8 +40,6 @@
     };
     environment.systemPackages = [ pkgs.man-pages pkgs.man-pages-posix ];
 
-    # Enable unfreee pacakges
-    nixpkgs.config.allowUnfree = true;
     system = {
       # This value determines the NixOS release from which the default
       # settings for stateful data, like file locations and database versions
@@ -62,13 +54,6 @@
         enable = false;
         allowReboot = false;
       };
-    };
-
-    # Flakes
-    nix = {
-      extraOptions = ''
-        experimental-features = nix-command flakes
-      '';
     };
   };
 }

@@ -1,14 +1,23 @@
 {
   description = "NixOS configuration with flakes";
   inputs = {
-    nixpkgs.url = "nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:nixos/nixpkgs/release-22.11";
+    # We use the unstable nixpkgs repo for some packages.
+    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixpkgs-unstable";
+
+    # Hardware configuration
     nixos-hardware.url = "github:NixOS/nixos-hardware";
+
     nixos-wsl = {
       url = "github:nix-community/NixOS-WSL";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.flake-utils.follows = "flake-utils";
     };
+
+    # Package utilities
     flake-utils.url = "github:numtide/flake-utils";
+
+    # Overlays
     fenix = {
       url = "github:nix-community/fenix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -17,6 +26,8 @@
       url = "github:nix-community/neovim-nightly-overlay";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    #  My packages
     jump = {
       url = "github:joshuachp/jump";
       inputs.nixpkgs.follows = "nixpkgs";

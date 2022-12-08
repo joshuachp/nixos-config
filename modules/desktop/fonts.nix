@@ -14,6 +14,8 @@
         noto-fonts-emoji
         noto-fonts-extra
 
+        dejavu_fonts
+
         jetbrains-mono
 
         # Symbols

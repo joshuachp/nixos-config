@@ -63,19 +63,28 @@
         fenix.overlays.default
         neovim-nightly-overlay.overlay
       ];
-      systems = flake-utils.lib.system;
+      system = flake-utils.lib.system.x86_64-linux;
     in
     {
       # Nixos
       nixosConfigurations.nixos = mkSystem "nixos" {
-        inherit inputs overlays;
-        system = systems.x86_64-linux;
+        inherit inputs system overlays;
       };
 
       # Wsl
       nixosConfigurations.nixos-wsl = mkSystem "nixos-wsl" {
-        inherit inputs overlays;
-        system = systems.x86_64-linux;
+        inherit inputs system overlays;
       };
+
+      # Devshell
+      devShells.${system}.default =
+        let
+          pkgs = nixpkgs.legacyPackages.${system};
+        in
+        pkgs.mkShell {
+          buildInputs = with pkgs; [
+            pre-commit
+          ];
+        };
     };
 }

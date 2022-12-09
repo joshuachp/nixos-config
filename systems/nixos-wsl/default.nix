@@ -1,10 +1,11 @@
 { config
 , pkgs
 , nixos-wsl
+, lib
 , ...
 }: {
   imports = [
-    ./hardware-configuration.nix
+    # ./hardware-configuration.nix
     # Modules
     ../../modules/cli.nix
     ../../modules/develop
@@ -21,9 +22,13 @@
       enable = true;
       defaultUser = "joshuachp";
       startMenuLaunchers = true;
-      docker-desktop.enable = true;
+
+      interop = {
+        includePath = false;
+      };
 
       wslConf = {
+        interop.enabled = false;
         automount.root = "/mnt";
       };
     };

@@ -12,9 +12,7 @@
     ];
 
     # Enable flakes system wide, this will no loner be necessary in some future release
-    nix.extraOptions = ''
-      experimental-features = nix-command flakes
-    '';
+    nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
     nix.settings.auto-optimise-store = true;
 

@@ -14,6 +14,7 @@
     ../../modules/localization.nix
     ../../modules/localtime.nix
     ../../modules/nix
+    ../../modules/services.nix
     # Wsl configuration
     nixos-wsl.nixosModules.wsl
   ];

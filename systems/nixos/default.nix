@@ -19,6 +19,7 @@
     ../../modules/localtime.nix
     ../../modules/network.nix
     ../../modules/nix
+    ../../modules/services.nix
 
     # Hardware configuration
     nixos-hardware.nixosModules.common-cpu-amd

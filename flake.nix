@@ -22,11 +22,12 @@
       url = "github:nix-community/fenix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    neovim-nightly-overlay = {
-      url = "github:nix-community/neovim-nightly-overlay";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
 
+    # My modules
+    neovim-config = {
+      url = "github:joshuachp/neovim-config";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
+    };
     #  My packages
     jump = {
       url = "github:joshuachp/jump";
@@ -54,14 +55,13 @@
     , nixos-wsl
     , fenix
     , flake-utils
-    , neovim-nightly-overlay
+    , neovim-config
     , ...
     } @ inputs:
     let
       mkSystem = import ./lib/mkSystem.nix;
       overlays = [
         fenix.overlays.default
-        neovim-nightly-overlay.overlay
       ];
       system = flake-utils.lib.system.x86_64-linux;
     in
@@ -69,11 +69,17 @@
       # Nixos
       nixosConfigurations.nixos = mkSystem "nixos" {
         inherit inputs system overlays;
+        modules = [
+          neovim-config.nixosModules.default
+        ];
       };
 
       # Wsl
       nixosConfigurations.nixos-wsl = mkSystem "nixos-wsl" {
         inherit inputs system overlays;
+        modules = [
+          neovim-config.nixosModules.default
+        ];
       };
 
       # Devshell
@@ -84,6 +90,8 @@
         pkgs.mkShell {
           buildInputs = with pkgs; [
             pre-commit
+            nixpkgs-fmt
+            statix
           ];
         };
     };

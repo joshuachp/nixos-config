@@ -1,6 +1,5 @@
 { config
 , pkgs
-, neovim-nightly-overlay
 , system
 , jump
 , note
@@ -49,11 +48,6 @@
 
       # Terminal
       starship
-
-      # Editor
-      (neovim.overrideAttrs (oas: {
-        wrapRc = false;
-      }))
 
       # Personal
       jump.packages.${system}.default

@@ -1,5 +1,9 @@
-name: { inputs, system, overlays }:
-
+# Function to configure a nixosSystem
+name: { inputs
+      , system
+      , overlays ? [ ]
+      , modules ? [ ]
+      }:
 inputs.nixpkgs.lib.nixosSystem {
   inherit system;
   specialArgs = inputs // {
@@ -15,5 +19,5 @@ inputs.nixpkgs.lib.nixosSystem {
     ../modules
     ../users
     ../systems/${name}
-  ];
+  ] ++ modules;
 }

@@ -3,9 +3,11 @@ name: { inputs
       , system
       , overlays ? [ ]
       , modules ? [ ]
+      , nixpkgs ? inputs.nixpkgs
       }:
-inputs.nixpkgs.lib.nixosSystem {
+nixpkgs.lib.nixosSystem {
   inherit system;
+
   specialArgs = inputs // {
     inherit system;
     hostname = name;

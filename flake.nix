@@ -1,6 +1,7 @@
 {
   description = "NixOS configuration with flakes";
   inputs = {
+    # x86_64-linux and aarch64-linux support
     nixpkgs.url = "github:nixos/nixpkgs/nixos-22.11";
     # We use the unstable nixpkgs repo for some packages.
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixpkgs-unstable";
@@ -50,7 +51,10 @@
   };
   outputs =
     { self
+      # Nixpkgs
     , nixpkgs
+    , nixpkgs-unstable
+      # Modules
     , nixos-hardware
     , nixos-wsl
     , fenix
@@ -63,29 +67,40 @@
       overlays = [
         fenix.overlays.default
       ];
-      system = flake-utils.lib.system.x86_64-linux;
+      base-system = flake-utils.lib.system.x86_64-linux;
+      arm-system = flake-utils.lib.system.aarch64-linux;
     in
     {
-      # Nixos
-      nixosConfigurations.nixos = mkSystem "nixos" {
-        inherit inputs system overlays;
-        modules = [
-          neovim-config.nixosModules.default
-        ];
+      nixosConfigurations = {
+        # Nixos
+        nixos = mkSystem "nixos" {
+          inherit inputs overlays;
+          system = base-system;
+          modules = [
+            neovim-config.nixosModules.default
+          ];
+        };
+        # Wsl
+        nixos-wsl = mkSystem "nixos-wsl" {
+          inherit inputs overlays;
+          system = base-system;
+          modules = [
+            neovim-config.nixosModules.default
+          ];
+        };
+        # Raspberry PI 3B
+        nixos-rpi = mkSystem "nixos-rpi" {
+          inherit inputs overlays;
+          # System of the RPi 3B is ARM64
+          system = arm-system;
+        };
       };
 
-      # Wsl
-      nixosConfigurations.nixos-wsl = mkSystem "nixos-wsl" {
-        inherit inputs system overlays;
-        modules = [
-          neovim-config.nixosModules.default
-        ];
-      };
 
-      # Devshell
-      devShells.${system}.default =
+      # Dev-Shell
+      devShells.${base-system}.default =
         let
-          pkgs = nixpkgs.legacyPackages.${system};
+          pkgs = nixpkgs.legacyPackages.${base-system};
         in
         pkgs.mkShell {
           buildInputs = with pkgs; [

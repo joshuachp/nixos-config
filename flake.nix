@@ -72,6 +72,7 @@
       mkSystem = import ./lib/mkSystem.nix;
       overlays = [
         fenix.overlays.default
+        (import ./overlays)
       ];
       base-system = flake-utils.lib.system.x86_64-linux;
       arm-system = flake-utils.lib.system.aarch64-linux;

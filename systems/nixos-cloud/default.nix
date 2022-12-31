@@ -1,6 +1,8 @@
 { config, ... }: {
   imports = [
     ./hardware-configuration.nix
+    ./services.nix
+    # Modules
     ../../modules/localization.nix
     ../../modules/localtime.nix
     ../../modules/nix

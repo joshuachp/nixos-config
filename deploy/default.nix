@@ -5,12 +5,12 @@
   nodes.nixos-cloud =
     let
       nixos-cloud = self.nixosConfigurations.nixos-cloud;
-      sshPorts = nixos-cloud.config.services.openssh.ports;
-      sshOpts = builtins.concatMap (port: [ "-p" (toString port) ]) sshPorts;
+      sshPort = nixos-cloud.config.deploy.port;
       hostname = nixos-cloud.config.deploy.hostname;
     in
     {
-      inherit sshOpts hostname;
+      inherit hostname;
+      sshOpts = [ "-p" (toString sshPort) ];
       # Users
       sshUser = "root";
       user = "root";

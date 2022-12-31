@@ -1,4 +1,4 @@
-{ ... }: {
+{ config, ... }: {
   imports = [
     ./hardware-configuration.nix
     ../../modules/localization.nix
@@ -7,7 +7,7 @@
   ];
   config =
     let
-      sshPort = 6422;
+      sshPort = config.deploy.port;
     in
     {
       boot.cleanTmpDir = true;

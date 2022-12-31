@@ -6,6 +6,11 @@
     # We use the unstable nixpkgs repo for some packages.
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixpkgs-unstable";
 
+    # deploy
+    deploy-rs = {
+      url = "github:serokell/deploy-rs";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     # Hardware configuration
     nixos-hardware.url = "github:NixOS/nixos-hardware";
 
@@ -55,6 +60,7 @@
     , nixpkgs
     , nixpkgs-unstable
       # Modules
+    , deploy-rs
     , nixos-hardware
     , nixos-wsl
     , fenix
@@ -104,6 +110,8 @@
         in
         pkgs.mkShell {
           buildInputs = with pkgs; [
+            deploy-rs.packages.${base-system}.default
+
             pre-commit
             nixpkgs-fmt
             statix

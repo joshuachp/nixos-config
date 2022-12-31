@@ -53,19 +53,27 @@
       inputs.flake-utils.follows = "flake-utils";
       inputs.fenix.follows = "fenix";
     };
+
+    # Private configuration
+    privateConf = {
+      url = "github:joshuachp/nixos-private-config";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
   outputs =
     { self
       # Nixpkgs
     , nixpkgs
     , nixpkgs-unstable
-      # Modules
+      # Tools
     , deploy-rs
+      # Modules
     , nixos-hardware
     , nixos-wsl
     , fenix
     , flake-utils
     , neovim-config
+    , privateConf
     , ...
     } @ inputs:
     let
@@ -74,7 +82,7 @@
         fenix.overlays.default
         (import ./overlays)
       ];
-      base-system = flake-utils.lib.system.x86_64-linux;
+      baseSystem = flake-utils.lib.system.x86_64-linux;
       arm-system = flake-utils.lib.system.aarch64-linux;
     in
     {
@@ -82,7 +90,7 @@
         # Nixos
         nixos = mkSystem "nixos" {
           inherit inputs overlays;
-          system = base-system;
+          system = baseSystem;
           modules = [
             neovim-config.nixosModules.default
           ];
@@ -90,7 +98,7 @@
         # Wsl
         nixos-wsl = mkSystem "nixos-wsl" {
           inherit inputs overlays;
-          system = base-system;
+          system = baseSystem;
           modules = [
             neovim-config.nixosModules.default
           ];
@@ -101,17 +109,28 @@
           # System of the RPi 3B is ARM64
           system = arm-system;
         };
+        # Cloud
+        nixos-cloud = mkSystem "nixos-cloud" {
+          inherit inputs overlays;
+          system = baseSystem;
+          modules = [ privateConf.nixosModules.nixos-cloud ];
+        };
       };
 
+      # Deployment configuration
+      deploy = import ./deploy { inherit self privateConf deploy-rs; };
+
+      # This is highly advised, and will prevent many possible mistakes
+      checks = builtins.mapAttrs (system: deployLib: deployLib.deployChecks self.deploy) deploy-rs.lib;
 
       # Dev-Shell
-      devShells.${base-system}.default =
+      devShells.${baseSystem}.default =
         let
-          pkgs = nixpkgs.legacyPackages.${base-system};
+          pkgs = nixpkgs.legacyPackages.${baseSystem};
         in
         pkgs.mkShell {
           buildInputs = with pkgs; [
-            deploy-rs.packages.${base-system}.default
+            deploy-rs.packages.${baseSystem}.default
 
             pre-commit
             nixpkgs-fmt

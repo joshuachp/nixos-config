@@ -74,7 +74,10 @@
     , flake-utils
     , neovim-config
     , privateConf
-    , ...
+      # Packages
+    , jump
+    , tools
+    , note
     } @ inputs:
     let
       mkSystem = import ./lib/mkSystem.nix;

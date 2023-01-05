@@ -10,5 +10,7 @@
       EDITOR = "nvim";
       VISUAL = "nvim";
     };
+
+    users.users.root.passwordFile = config.sops.secrets.users_passwords_root.path;
   };
 }

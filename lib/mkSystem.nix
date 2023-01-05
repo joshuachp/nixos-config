@@ -18,6 +18,10 @@ nixpkgs.lib.nixosSystem {
       nixpkgs.overlays = overlays;
     }
 
+    # Secrets
+    inputs.privateConf.nixosModules.secrets
+
+    # Default modules
     ../modules
     ../users
     ../systems/${name}

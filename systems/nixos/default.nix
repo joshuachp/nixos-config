@@ -20,6 +20,7 @@
     ../../modules/network.nix
     ../../modules/nix
     ../../modules/services.nix
+    ../../modules/wireguard/client.nix
 
     # Hardware configuration
     nixos-hardware.nixosModules.common-cpu-amd

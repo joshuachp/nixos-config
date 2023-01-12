@@ -1,5 +1,6 @@
 { ... }: {
   config = {
+    # Grafana for visualization
     services.grafana = {
       enable = true;
       # Listening address and TCP port
@@ -10,6 +11,12 @@
           domain = "localhost";
         };
       };
+    };
+
+    # Prometheus for metrics
+    services.prometheus = {
+      enable = true;
+      port = 9090;
     };
   };
 }

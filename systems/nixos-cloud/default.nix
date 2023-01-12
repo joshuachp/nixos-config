@@ -6,6 +6,7 @@
     ../../modules/localization.nix
     ../../modules/localtime.nix
     ../../modules/nix
+    ../../modules/wireguard/server.nix
   ];
   config =
     let

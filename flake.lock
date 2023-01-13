@@ -282,9 +282,7 @@
       "inputs": {
         "flake-utils": "flake-utils_2",
         "neovim-nightly-overlay": "neovim-nightly-overlay",
-        "nixpkgs": [
-          "nixpkgs-unstable"
-        ]
+        "nixpkgs": "nixpkgs"
       },
       "locked": {
         "lastModified": 1673559041,
@@ -389,17 +387,17 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1673527292,
-        "narHash": "sha256-903EpRSDCfUvic7Hsiqwy+h7zlMTLAUbCXkEGGriCfM=",
+        "lastModified": 1671983799,
+        "narHash": "sha256-Z2Ro6hFPZHkBqkVXY5/aBUzxi5xizQGvuHQ9+T5B/ks=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "6a3f9996408c970b99b8b992b11bb249d1455b62",
+        "rev": "fad51abd42ca17a60fc1d4cb9382e2d79ae31836",
         "type": "github"
       },
       "original": {
         "owner": "nixos",
-        "ref": "nixos-22.11",
         "repo": "nixpkgs",
+        "rev": "fad51abd42ca17a60fc1d4cb9382e2d79ae31836",
         "type": "github"
       }
     },
@@ -431,6 +429,22 @@
       "original": {
         "owner": "nixos",
         "ref": "nixpkgs-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs_2": {
+      "locked": {
+        "lastModified": 1673527292,
+        "narHash": "sha256-903EpRSDCfUvic7Hsiqwy+h7zlMTLAUbCXkEGGriCfM=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "6a3f9996408c970b99b8b992b11bb249d1455b62",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "ref": "nixos-22.11",
         "repo": "nixpkgs",
         "type": "github"
       }
@@ -471,11 +485,11 @@
         "sops-nix": "sops-nix"
       },
       "locked": {
-        "lastModified": 1673543755,
-        "narHash": "sha256-tIcZAJ+fYgCPbMzyNKKR5uAZkwuh/N2HiceyYOhCrPY=",
+        "lastModified": 1673598776,
+        "narHash": "sha256-AFggbM2t83eFVYfOisjwUrLELUl1MWGmILbcihQuu2A=",
         "owner": "joshuachp",
         "repo": "nixos-private-config",
-        "rev": "245c95e03f7797b914f18031cd9683b4b4e6b725",
+        "rev": "53067c6494684112af43ca1c2a60e4937908ea68",
         "type": "github"
       },
       "original": {
@@ -493,7 +507,7 @@
         "neovim-config": "neovim-config",
         "nixos-hardware": "nixos-hardware",
         "nixos-wsl": "nixos-wsl",
-        "nixpkgs": "nixpkgs",
+        "nixpkgs": "nixpkgs_2",
         "nixpkgs-unstable": "nixpkgs-unstable",
         "note": "note",
         "privateConf": "privateConf",

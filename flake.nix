@@ -32,7 +32,9 @@
     # My modules
     neovim-config = {
       url = "github:joshuachp/neovim-config";
-      inputs.nixpkgs.follows = "nixpkgs-unstable";
+      # inputs.nixpkgs.follows = "nixpkgs-unstable";
+      # FIXME: this is a temporary fix for the build failing
+      inputs.nixpkgs.url = "github:nixos/nixpkgs?rev=fad51abd42ca17a60fc1d4cb9382e2d79ae31836";
     };
     #  My packages
     jump = {

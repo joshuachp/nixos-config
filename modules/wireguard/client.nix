@@ -4,6 +4,7 @@
 }: {
   config =
     let
+      wireguardHost = config.privateConfig.wireguard.serverIp;
       port = 51820;
       privateKeys = {
         nixos = config.sops.secrets.wireguard_nixos_private.path;
@@ -17,16 +18,11 @@
         listenPort = port;
         privateKeyFile = privateKeys."${hostname}";
         peers = [
-          # Nixos
-          {
-            publicKey = config.privateConfig.wireguard.nixosPublicKey;
-            allowedIPs = [ "10.0.0.1/32" "fdc9:281f:04d7:9ee9::2/128" ];
-            persistentKeepalive = 25;
-          }
           # Nixos Cloud
           {
-            publicKey = config.privateConfig.wireguard.nixosPublicKey;
-            allowedIPs = [ "10.0.0.2/32" "fdc9:281f:04d7:9ee9::2/128" ];
+            publicKey = config.privateConfig.wireguard.nixosCloudPublicKey;
+            allowedIPs = [ "10.0.0.2/24" "fdc9:281f:04d7:9ee9::2/64" ];
+            endpoint = "${wireguardHost}:${toString port}";
             persistentKeepalive = 25;
           }
         ];

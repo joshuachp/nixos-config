@@ -1,4 +1,5 @@
-{ ... }: {
+{ ...
+}: {
   config = {
     # Grafana for visualization
     services.grafana = {

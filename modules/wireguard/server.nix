@@ -14,6 +14,7 @@
       # Open the firewall port
       networking.firewall = {
         allowedUDPPorts = [ port ];
+        trustedInterfaces = [ "wg0" ];
       };
 
       # Enable NAT
@@ -26,20 +27,20 @@
       # Wireguard interface
       networking.wg-quick.interfaces.wg0 = {
         # Clients IP address subnet
-        address = [ "10.0.0.1/24" "fdc9:281f:04d7:9ee9::1/64" ];
+        address = [ "10.0.0.2/24" "fdc9:281f:04d7:9ee9::2/64" ];
         listenPort = port;
         privateKeyFile = privateKeys."${hostname}";
         peers = [
           # Nixos
           {
             publicKey = config.privateConfig.wireguard.nixosPublicKey;
-            allowedIPs = [ "10.0.0.1/32" "fdc9:281f:04d7:9ee9::2/128" ];
+            allowedIPs = [ "10.0.0.1/32" "fdc9:281f:04d7:9ee9::1/128" ];
           }
           # Nixos Cloud
-          {
-            publicKey = config.privateConfig.wireguard.nixosCloudPublicKey;
-            allowedIPs = [ "10.0.0.2/32" "fdc9:281f:04d7:9ee9::2/128" ];
-          }
+          # {
+          #   publicKey = config.privateConfig.wireguard.nixosCloudPublicKey;
+          #   allowedIPs = [ "10.0.0.2/32" "fdc9:281f:04d7:9ee9::2/128" ];
+          # }
         ];
       };
     };

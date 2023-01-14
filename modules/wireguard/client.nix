@@ -26,8 +26,8 @@
           # Nixos Cloud
           {
             publicKey = config.privateConfig.wireguard.nixosCloudPublicKey;
-            allowedIPs = [ "10.0.0.1/24" ];
             endpoint = "${wireguardHost}:${toString port}";
+            allowedIPs = [ "10.0.0.2/32" ];
             persistentKeepalive = 25;
           }
         ];

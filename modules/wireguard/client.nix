@@ -12,6 +12,7 @@
       };
     in
     {
+      networking.hosts."10.0.0.2" = [ config.privateConfig.nixos-cloud.address ];
       # Open the firewall port
       networking.firewall = {
         allowedUDPPorts = [ port ];

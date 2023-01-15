@@ -75,6 +75,7 @@
         enable = true;
         configuration = lib.importJSON ./config/promtail.json;
       };
+      systemd.services.promtail.serviceConfig.SupplementaryGroups = [ "nginx" ];
 
       # Prometheus for metrics
       services.prometheus =

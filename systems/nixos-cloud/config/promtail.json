@@ -34,9 +34,9 @@
             "pipeline_stages": null,
             "static_configs": [
                 {
+                    "targets": ["localhost"],
                     "labels": {
                         "job": "nginx",
-                        "host": "nixos-cloud",
                         "__path__": "/var/log/nginx/*.log"
                     }
                 }

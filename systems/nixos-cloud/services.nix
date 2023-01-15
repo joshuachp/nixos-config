@@ -1,4 +1,5 @@
 { config
+, lib
 , ...
 }: {
   config =
@@ -64,6 +65,17 @@
         };
       };
 
+      # Loki for logs and traces
+      services.loki = {
+        enable = true;
+        configFile = ./config/loki.yaml;
+      };
+      # The agent to gather the Loki logs
+      services.promtail = {
+        enable = true;
+        configuration = lib.importJSON ./config/promtail.json;
+      };
+
       # Prometheus for metrics
       services.prometheus =
         let
@@ -75,7 +87,6 @@
           exporters = {
             node = {
               enable = true;
-              enabledCollectors = [ "systemd" ];
               port = nodePort;
             };
           };

@@ -1,8 +1,7 @@
-# Edit this configuration file to define what should be installed on
-# your system.  Help is available in the configuration.nix(5) man page
-# and in the NixOS manual (accessible by running ‘nixos-help’).
-
-{ config, pkgs, ... }:
+{ config
+, pkgs
+, ...
+}:
 
 {
   imports =
@@ -55,18 +54,21 @@
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;
-  # programs.gnupg.agent = {
-  #   enable = true;
-  #   enableSSHSupport = true;
-  # };
+  networking.firewall.enable = false;
 
   # List services that you want to enable:
   services.pcscd.enable = true;
-
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
+  # Docker
+  virtualisation.docker.enable = true;
 
-  networking.firewall.enable = false;
+  # PhpStorm Remote development
+  environment.systemPackages = with pkgs; [
+    jetbrains.phpstorm
+  ];
+
+  programs.java.enable = true;
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions

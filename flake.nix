@@ -110,11 +110,22 @@
         };
         # Work
         nixos-work = mkSystem "nixos-work" {
-          inherit inputs overlays;
+          inherit inputs;
           system = baseSystem;
           modules = [
             neovim-config.nixosModules.default
           ];
+          overlays = [
+            (self: super: {
+              jetbrains = super.jetbrains // {
+                jetbrains.phpstorm = super.jetbrains.phpstorm.overrideAttrs (old: {
+                  patches = (old.patches or [ ]) ++ [
+                    ./patches/phpstorm.patch
+                  ];
+                });
+              };
+            })
+          ] ++ overlays;
         };
         # Raspberry PI 3B
         nixos-rpi = mkSystem "nixos-rpi" {

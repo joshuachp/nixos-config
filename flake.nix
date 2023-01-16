@@ -108,6 +108,14 @@
             neovim-config.nixosModules.default
           ];
         };
+        # Work
+        nixos-work = mkSystem "nixos-work" {
+          inherit inputs overlays;
+          system = baseSystem;
+          modules = [
+            neovim-config.nixosModules.default
+          ];
+        };
         # Raspberry PI 3B
         nixos-rpi = mkSystem "nixos-rpi" {
           inherit inputs overlays;

@@ -8,6 +8,7 @@
       privateKeys = {
         nixos = config.sops.secrets.wireguard_nixos_private.path;
         nixos-cloud = config.sops.secrets.wireguard_nixos_cloud_private.path;
+        nixos-work = config.sops.secrets.wireguard_nixos_work_private.path;
       };
     in
     {

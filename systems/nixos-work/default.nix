@@ -18,6 +18,7 @@
       ../../modules/localtime.nix
       ../../modules/nix
       ../../modules/services.nix
+      ../../modules/wireguard/client.nix
     ];
 
   nixpkgs.overlays = [

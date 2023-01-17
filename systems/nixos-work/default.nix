@@ -83,7 +83,7 @@
 
   # List services that you want to enable:
   security.polkit.enable = true;
-  services.pcscd.enable = true;
+  services.pcscd.enable = false;
   services.udev.packages = with pkgs; [
     yubikey-personalization
   ];

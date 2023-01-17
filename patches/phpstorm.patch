@@ -1,7 +1,7 @@
-diff --git a/phpstorm/plugins/remote-dev-server/bin/launcher.sh b/phpstorm/plugins/remote-dev-server/bin/launcher.sh
+diff --git a/plugins/remote-dev-server/bin/launcher.sh b/plugins/remote-dev-server/bin/launcher.sh
 index 280eb1d..d2ade97 100755
---- a/phpstorm/plugins/remote-dev-server/bin/launcher.sh
-+++ b/phpstorm/plugins/remote-dev-server/bin/launcher.sh
+--- a/plugins/remote-dev-server/bin/launcher.sh
++++ b/plugins/remote-dev-server/bin/launcher.sh
 @@ -64,10 +64,6 @@ clean_up_temp()
      rm -f "$TEMP_REMOTE_DEV_PROPERTIES_PATH"
    fi

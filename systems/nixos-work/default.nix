@@ -1,5 +1,6 @@
 { config
 , pkgs
+, lib
 , ...
 }:
 
@@ -18,6 +19,30 @@
       ../../modules/nix
       ../../modules/services.nix
     ];
+
+  nixpkgs.overlays = [
+    (self: super: {
+      phpStormRemote = super.jetbrains.phpstorm.overrideAttrs (old: {
+        patches = (old.patches or [ ]) ++ [
+          ../../patches/phpstorm.patch
+        ];
+        installPhase = (old.installPhase or "") + ''
+          makeWrapper "$out/$pname/bin/remote-dev-server.sh" "$out/bin/phpstorm-remote-dev-server" \
+            --prefix PATH : "$out/libexec/phpstorm:${lib.makeBinPath [ pkgs.jdk pkgs.coreutils pkgs.gnugrep pkgs.which pkgs.git ]}" \
+            --prefix LD_LIBRARY_PATH : "${lib.makeLibraryPath ([
+              # Some internals want libstdc++.so.6
+              pkgs.stdenv.cc.cc.lib pkgs.libsecret pkgs.e2fsprogs
+              pkgs.libnotify
+            ])}" \
+            --set-default JDK_HOME "$jdk" \
+            --set-default ANDROID_JAVA_HOME "$jdk" \
+            --set-default JAVA_HOME "$jdk" \
+            --set PHPSTORM_JDK "$jdk" \
+            --set PHPSTORM_VM_OPTIONS ${old.vmoptsFile}
+        '';
+      });
+    })
+  ];
 
   # Bootloader.
   boot.loader.grub.enable = true;
@@ -57,17 +82,36 @@
   networking.firewall.enable = false;
 
   # List services that you want to enable:
+  security.polkit.enable = true;
   services.pcscd.enable = true;
+  services.udev.packages = with pkgs; [
+    yubikey-personalization
+  ];
+
+  services.udev.extraRules = ''
+    SUBSYSTEMS=="usb", ATTRS{idVendor}=="1050", ATTRS{idProduct}=="0407", MODE="0660", TAG+="uaccess"
+  '';
+
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
   # Docker
   virtualisation.docker.enable = true;
 
-  # PhpStorm Remote development
+
+  # Virtualbox shared folders
+  users.groups = {
+    vboxusers = { };
+  };
+  users.users.joshuachp.extraGroups = [ "vboxsf" "vboxusers" "docker" ];
+
   environment.systemPackages = with pkgs; [
-    jetbrains.phpstorm
+    # Youbikey
+    yubikey-personalization
+    # Phpstorm
+    phpStormRemote
   ];
 
+  programs.java.package = pkgs.jetbrains.jdk;
   programs.java.enable = true;
 
   # This value determines the NixOS release from which the default

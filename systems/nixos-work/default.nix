@@ -30,11 +30,11 @@
         installPhase = (old.installPhase or "") + ''
           makeWrapper "$out/$pname/bin/remote-dev-server.sh" "$out/bin/phpstorm-remote-dev-server" \
             --prefix PATH : "$out/libexec/phpstorm:${lib.makeBinPath [ pkgs.jdk pkgs.coreutils pkgs.gnugrep pkgs.which pkgs.git ]}" \
-            --prefix LD_LIBRARY_PATH : "${lib.makeLibraryPath ([
+            --prefix LD_LIBRARY_PATH : "${lib.makeLibraryPath [
               # Some internals want libstdc++.so.6
               pkgs.stdenv.cc.cc.lib pkgs.libsecret pkgs.e2fsprogs
               pkgs.libnotify
-            ])}" \
+            ]}" \
             --set-default JDK_HOME "$jdk" \
             --set-default ANDROID_JAVA_HOME "$jdk" \
             --set-default JAVA_HOME "$jdk" \
@@ -102,8 +102,12 @@
   # Virtualbox shared folders
   users.groups = {
     vboxusers = { };
+    # Group to share access to the docker mounted binds
+    dockershare = {
+      gid = 1001;
+    };
   };
-  users.users.joshuachp.extraGroups = [ "vboxsf" "vboxusers" "docker" ];
+  users.users.joshuachp.extraGroups = [ "vboxsf" "vboxusers" "docker" "dockershare" ];
 
   environment.systemPackages = with pkgs; [
     # Youbikey

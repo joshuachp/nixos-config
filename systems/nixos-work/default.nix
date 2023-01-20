@@ -16,6 +16,7 @@
       ../../modules/gnupg.nix
       ../../modules/localization.nix
       ../../modules/localtime.nix
+      ../../modules/network.nix
       ../../modules/nix
       ../../modules/services.nix
       ../../modules/wireguard/client.nix

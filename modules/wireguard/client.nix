@@ -6,10 +6,19 @@
     let
       wireguardHost = config.privateConfig.wireguard.serverIp;
       port = 43978;
-      privateKeys = {
-        nixos = config.sops.secrets.wireguard_nixos_private.path;
-        nixos-cloud = config.sops.secrets.wireguard_nixos_cloud_private.path;
-        nixos-work = config.sops.secrets.wireguard_nixos_work_private.path;
+      hostConf = {
+        nixos = {
+          key = config.sops.secrets.wireguard_nixos_private.path;
+          address = "10.0.0.1/24";
+        };
+        nixos-cloud = {
+          key = config.sops.secrets.wireguard_nixos_cloud_private.path;
+          address = "10.0.0.2/24";
+        };
+        nixos-work = {
+          key = config.sops.secrets.wireguard_nixos_work_private.path;
+          address = "10.0.0.3/24";
+        };
       };
     in
     {
@@ -21,9 +30,9 @@
       # Wireguard interface
       networking.wg-quick.interfaces.wg0 = {
         # IP address subnet at the client end
-        address = [ "10.0.0.1/24" ];
+        address = [ hostConf."${hostname}".address ];
         listenPort = port;
-        privateKeyFile = privateKeys."${hostname}";
+        privateKeyFile = hostConf."${hostname}".key;
         peers = [
           # Nixos Cloud
           {

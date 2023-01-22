@@ -13,6 +13,7 @@
     ../../modules/desktop
     ../../modules/develop
     ../../modules/documentation.nix
+    ../../modules/embedded.nix
     ../../modules/gnupg.nix
     ../../modules/hacking.nix
     ../../modules/localization.nix

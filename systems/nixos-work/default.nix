@@ -90,8 +90,9 @@
     yubikey-personalization
   ];
 
+  # YubiKey attributes
   services.udev.extraRules = ''
-    SUBSYSTEMS=="usb", ATTRS{idVendor}=="1050", ATTRS{idProduct}=="0407", MODE="0660", TAG+="uaccess"
+    ATTRS{idVendor}=="1050", ATTRS{idProduct}=="0407", OWNER="joshuachp" TAG+="uaccess"
   '';
 
   # Enable the OpenSSH daemon.
@@ -108,7 +109,7 @@
       gid = 1001;
     };
   };
-  users.users.joshuachp.extraGroups = [ "vboxsf" "vboxusers" "docker" "dockershare" ];
+  users.users.joshuachp.extraGroups = [ "tty" "vboxsf" "vboxusers" "docker" "dockershare" ];
 
   environment.systemPackages = with pkgs; [
     # Youbikey
@@ -119,6 +120,8 @@
 
   programs.java.package = pkgs.jetbrains.jdk;
   programs.java.enable = true;
+
+  networking.hosts."127.0.0.1" = [ "database" ];
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions

@@ -121,7 +121,7 @@
   programs.java.package = pkgs.jetbrains.jdk;
   programs.java.enable = true;
 
-  networking.hosts."127.0.0.1" = [ "database" ];
+  networking.hosts."127.0.0.1" = [ "database" "memcached" ];
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions

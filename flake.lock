@@ -485,11 +485,11 @@
         "sops-nix": "sops-nix"
       },
       "locked": {
-        "lastModified": 1673975719,
-        "narHash": "sha256-XRuFVXAdFv94QooBeWmLlFPcDXxh4+/4H74BgvIvnqE=",
+        "lastModified": 1674738572,
+        "narHash": "sha256-dkWklUzP/auewN+ILUlwQEhLLmqashwgmEP3Nj56/cc=",
         "owner": "joshuachp",
         "repo": "nixos-private-config",
-        "rev": "271e5073d00495181fcece8ef5187d02d6ceb1cc",
+        "rev": "68098e52a0167fac1e9a40d90bf91ce26900d6b6",
         "type": "github"
       },
       "original": {

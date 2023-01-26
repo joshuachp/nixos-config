@@ -19,7 +19,7 @@
       };
 
       # DNS instead of /etc/hosts
-      dnsmasq = {
+      services.dnsmasq = {
         enable = true;
         extraConfig = ''
           interface=wg0

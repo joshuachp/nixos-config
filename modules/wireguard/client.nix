@@ -22,7 +22,6 @@
       };
     in
     {
-      networking.hosts."10.0.0.2" = [ config.privateConfig.nixos-cloud.address ];
       # Open the firewall port
       networking.firewall = {
         allowedUDPPorts = [ port ];
@@ -31,6 +30,7 @@
       networking.wg-quick.interfaces.wg0 = {
         # IP address subnet at the client end
         address = [ hostConf."${hostname}".address ];
+        dns = [ "10.0.0.2" "fdc9:281f:04d7:9ee9::2" ];
         listenPort = port;
         privateKeyFile = hostConf."${hostname}".key;
         peers = [

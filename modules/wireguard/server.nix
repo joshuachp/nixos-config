@@ -18,6 +18,15 @@
         trustedInterfaces = [ "wg0" ];
       };
 
+      # DNS instead of /etc/hosts
+      dnsmasq = {
+        enable = true;
+        extraConfig = ''
+          interface=wg0
+          address=/${config.privateConfig.nixos-cloud.address}/10.0.0.2
+        '';
+      };
+
       # Enable NAT
       networking.nat = {
         enable = true;

@@ -66,6 +66,11 @@
 
         autosuggestions.enable = true;
         syntaxHighlighting.enable = true;
+
+        interactiveShellInit = ''
+          source ${pkgs.fzf}/share/fzf/completion.zsh
+          source ${pkgs.fzf}/share/fzf/key-bindings.zsh
+        '';
       };
       less.enable = true;
       git.enable = true;

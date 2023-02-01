@@ -98,7 +98,10 @@
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
   # Docker
-  virtualisation.docker.enable = true;
+  virtualisation.docker = {
+    enable = true;
+    daemon.settings.hosts = [ "fd://" "tcp://0.0.0.0:2376" ];
+  };
 
 
   # Virtualbox shared folders

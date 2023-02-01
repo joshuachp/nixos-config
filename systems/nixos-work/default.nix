@@ -109,7 +109,7 @@
       gid = 1001;
     };
   };
-  users.users.joshuachp.extraGroups = [ "tty" "vboxsf" "vboxusers" "docker" "dockershare" ];
+  users.users.joshuachp.extraGroups = [ "vboxsf" "vboxusers" "docker" "dockershare" ];
 
   environment.systemPackages = with pkgs; [
     # Youbikey

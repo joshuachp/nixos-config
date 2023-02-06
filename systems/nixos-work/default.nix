@@ -10,6 +10,7 @@
       # Include the results of the hardware scan.
       ./hardware-configuration.nix
       # Modules
+      ../../modules/cache.nix
       ../../modules/cli.nix
       ../../modules/develop
       ../../modules/documentation.nix

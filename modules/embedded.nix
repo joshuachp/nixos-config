@@ -1,4 +1,4 @@
-{ ... }: {
+{ _, ... }: {
   config = {
     # Permission for the ESP32 device
     services.udev.extraRules = ''

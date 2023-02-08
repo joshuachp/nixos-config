@@ -4,13 +4,12 @@
   # Nixos cloud
   nodes.nixos-cloud =
     let
-      nixos-cloud = self.nixosConfigurations.nixos-cloud;
-      sshPort = nixos-cloud.config.deploy.port;
-      hostname = nixos-cloud.config.deploy.hostname;
+      inherit (self.nixosConfigurations) nixos-cloud;
+      inherit (nixos-cloud.config.deploy) hostname port;
     in
     {
       inherit hostname;
-      sshOpts = [ "-p" (toString sshPort) ];
+      sshOpts = [ "-p" (toString port) ];
       # Users
       sshUser = "root";
       user = "root";

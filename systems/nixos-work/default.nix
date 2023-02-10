@@ -120,7 +120,11 @@
     yubikey-personalization
     # Phpstorm
     phpStormRemote
+
+    # Crypt
+    cryptsetup
   ];
+
 
   programs.java.package = pkgs.jetbrains.jdk;
   programs.java.enable = true;

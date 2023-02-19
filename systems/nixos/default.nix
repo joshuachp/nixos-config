@@ -35,6 +35,9 @@
     boot.plymouth.enable = true;
     security.tpm2.enable = true;
 
+    # Enable desktop system
+    systemOption.desktopEnabled = true;
+
     networking = {
       # The global useDHCP flag is deprecated, therefore explicitly set to false here.
       # Per-interface useDHCP will be mandatory in the future, so this generated config

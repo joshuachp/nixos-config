@@ -1,4 +1,16 @@
-{ config, hostname, ... }: {
+{ config
+, hostname
+, lib
+, ...
+}: {
+  options = {
+    systemOption.desktopEnabled = lib.options.mkOption {
+      default = false;
+      defaultText = "Defaults to CLI system";
+      description = "Whether to enable the desktop environment";
+      type = lib.types.bool;
+    };
+  };
   config = {
     networking.hostName = hostname;
 

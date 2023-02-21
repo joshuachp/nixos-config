@@ -137,10 +137,10 @@
       # Dev-Shell
       devShells.${baseSystem}.default =
         let
-          pkgs = nixpkgs.legacyPackages.${baseSystem};
+          pkgs = import nixpkgs { system = baseSystem; };
         in
         pkgs.mkShell {
-          buildInputs = with pkgs; [
+          packages = with pkgs; [
             deploy-rs.packages.${baseSystem}.default
 
             pre-commit

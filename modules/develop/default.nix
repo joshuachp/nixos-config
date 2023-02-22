@@ -5,6 +5,7 @@
 }: {
   imports = [
     ./c_cpp.nix
+    ./elixir.nix
     ./go.nix
     ./haskell.nix
     ./javascript.nix

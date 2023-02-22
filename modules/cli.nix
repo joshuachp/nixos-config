@@ -11,6 +11,7 @@
     environment.systemPackages = with pkgs; [
       # System utils
       pciutils
+      inotify-tools
 
       # Configuration
       chezmoi

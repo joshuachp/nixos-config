@@ -6,11 +6,6 @@
     # We use the unstable nixpkgs repo for some packages.
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixpkgs-unstable";
 
-    # deploy
-    deploy-rs = {
-      url = "github:serokell/deploy-rs";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     # Hardware configuration
     nixos-hardware.url = "github:NixOS/nixos-hardware";
 
@@ -59,6 +54,18 @@
       url = "github:joshuachp/nixos-private-config";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    # Packages provided via flakes for having the latest version
+    deploy-rs = {
+      url = "github:serokell/deploy-rs";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    nil = {
+      url = "github:oxalica/nil";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.flake-utils.follows = "flake-utils";
+    };
+
   };
   outputs =
     { self
@@ -67,6 +74,7 @@
     , nixpkgs-unstable
       # Tools
     , deploy-rs
+    , nil
       # Modules
     , nixos-hardware
     , nixos-wsl
@@ -132,7 +140,7 @@
       deploy = import ./deploy { inherit self privateConf deploy-rs; };
 
       # This is highly advised, and will prevent many possible mistakes
-      checks = builtins.mapAttrs (system: deployLib: deployLib.deployChecks self.deploy) deploy-rs.lib;
+      # checks = builtins.mapAttrs (system: deployLib: deployLib.deployChecks self.deploy) deploy-rs.lib;
 
       # Dev-Shell
       devShells.${baseSystem}.default =

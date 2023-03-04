@@ -1,5 +1,6 @@
 { config
 , pkgs
+, nil
 , ...
 }: {
   config = {
@@ -13,6 +14,8 @@
       nil
       # Linters
       statix
+
+      nil.packages.${baseSystem}.default
     ];
   };
 }

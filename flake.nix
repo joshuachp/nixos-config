@@ -68,7 +68,7 @@
     };
     nil = {
       url = "github:oxalica/nil";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
       inputs.flake-utils.follows = "flake-utils";
     };
 

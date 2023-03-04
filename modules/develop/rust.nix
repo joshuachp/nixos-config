@@ -1,7 +1,4 @@
-{ config
-, pkgs
-, lib
-, fenix
+{ pkgs
 , ...
 }: {
   config = {
@@ -17,6 +14,7 @@
       rust-analyzer
       cargo-criterion
       cargo-edit
+      sccache
     ];
   };
 }

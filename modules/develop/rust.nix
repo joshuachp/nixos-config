@@ -11,10 +11,13 @@
         "rustfmt"
       ])
 
+      sccache
+
       rust-analyzer
+      bacon
+
       cargo-criterion
       cargo-edit
-      sccache
     ];
   };
 }

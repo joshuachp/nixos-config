@@ -18,6 +18,9 @@ nixpkgs.lib.nixosSystem {
       nixpkgs.overlays = overlays;
     }
 
+    # Options
+    ../options
+
     # Secrets
     inputs.privateConf.nixosModules.secrets
 

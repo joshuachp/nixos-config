@@ -25,7 +25,7 @@ nixpkgs.lib.nixosSystem {
     inputs.privateConf.nixosModules.secrets
 
     # Default modules
-    ../modules
+    ../modules/nixos.nix
     ../users
     ../systems/${name}
   ] ++ modules;

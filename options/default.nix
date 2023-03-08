@@ -3,6 +3,11 @@
 }:
 {
   options = {
+    systemConfig.version = lib.options.mkOption {
+      default = "22.11";
+      description = "The current version of the system";
+      type = lib.types.str;
+    };
     systemConfig.homeManager.enabled = lib.options.mkOption {
       default = false;
       defaultText = "Flag for home-manager integration";

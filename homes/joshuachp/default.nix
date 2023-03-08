@@ -26,6 +26,6 @@
     # Let Home Manager install and manage itself.
     programs.home-manager.enable = true;
 
-    home.packages = import ../pkgs/cli.nix { inherit pkgs system note jump tools; };
+    home.packages = import ../../pkgs/cli.nix { inherit pkgs system note jump tools; };
   };
 }

@@ -26,6 +26,13 @@
     # Let Home Manager install and manage itself.
     programs.home-manager.enable = true;
 
-    home.packages = import ../../pkgs/cli.nix { inherit pkgs system note jump tools; };
+    home.packages = with pkgs; [
+      neovim
+    ]
+    ++ import ../../pkgs/cli.nix { inherit pkgs system note jump tools; }
+    ++ import ../../pkgs/develop { inherit pkgs; }
+    ++ import ../../pkgs/develop/nix.nix { inherit pkgs; }
+    ++ import ../../pkgs/develop/rust.nix { inherit pkgs; }
+    ;
   };
 }

@@ -7,9 +7,6 @@
 , ...
 }:
 {
-  imports = [
-    ../../modules/nix
-  ];
   config = {
     # Home Manager needs a bit of information about you and the
     # paths it should manage.
@@ -37,6 +34,7 @@
     ++ import ../../pkgs/develop { inherit pkgs; }
     ++ import ../../pkgs/develop/nix.nix { inherit pkgs; }
     ++ import ../../pkgs/develop/rust.nix { inherit pkgs; }
+    ++ import ../../pkgs/nixpkgs.nix { inherit pkgs; }
     ;
   };
 }

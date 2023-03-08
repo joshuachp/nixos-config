@@ -1,23 +1,22 @@
 { config
 , pkgs
-, installPkgs
 , ...
 }: {
-  config = {
-    # Enable info and man pages, generating the cache at build time
-    documentation = {
+  # Enable info and man pages, generating the cache at build time
+  documentation = {
+    enable = true;
+    dev.enable = true;
+    info.enable = true;
+    nixos.enable = true;
+    man = {
       enable = true;
-      dev.enable = true;
-      info.enable = true;
-      nixos.enable = true;
-      man = {
-        enable = true;
-        generateCaches = true;
-      };
+      generateCaches = true;
     };
-  } // installPkgs (with pkgs;[
+  };
+
+  environment.systemPackages = with pkgs;[
     man-pages
     # POSIX man-pages for system calls and libraries
     man-pages-posix
-  ]);
+  ];
 }

@@ -1,12 +1,18 @@
 { config
 , pkgs
-, installPkgs
 , ...
 }: {
   imports = [ ./cachix.nix ];
   config = {
     # Allow unfree packages: nvidia drivers, ...
     nixpkgs.config.allowUnfree = true;
+
+    environment.systemPackages = with pkgs; [
+      cachix
+      # Nix shell evaluation on enter
+      direnv
+      nix-direnv
+    ];
 
     # Enable flakes system wide, this will no loner be necessary in some future release
     nix.settings.experimental-features = [ "nix-command" "flakes" ];
@@ -36,10 +42,5 @@
       automatic = true;
       dates = "weekly";
     };
-  } // installPkgs (with pkgs; [
-    cachix
-    # Nix shell evaluation on enter
-    direnv
-    nix-direnv
-  ]);
+  };
 }

@@ -1,10 +1,12 @@
 { config
 , pkgs
-, installPkgs
 , ...
 }: {
-  config = installPkgs (with pkgs; [
-    cutter
-    radare2
-  ]);
+  config = {
+    environment.systemPackages = with pkgs; [
+      cutter
+
+      radare2
+    ];
+  };
 }

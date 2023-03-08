@@ -1,12 +1,13 @@
 { config
 , pkgs
-, installPkgs
 , ...
 }: {
-  config = installPkgs (with pkgs; [
-    ghc
-    stack
-    cabal-install
-    haskell-language-server
-  ]);
+  config = {
+    environment.systemPackages = with pkgs; [
+      ghc
+      stack
+      cabal-install
+      haskell-language-server
+    ];
+  };
 }

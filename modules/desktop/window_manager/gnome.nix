@@ -1,6 +1,5 @@
 { config
 , pkgs
-, installPkgs
 , ...
 }: {
   config = {
@@ -21,11 +20,12 @@
 
     environment.gnome.excludePackages = with pkgs; [ epiphany ];
 
-  } // installPkgs (with pkgs; [
-    gnome-podcasts
-    gnome.dconf-editor
-    gnome.gnome-tweaks
-    gnomeExtensions.appindicator
-    papirus-icon-theme
-  ]);
+    environment.systemPackages = with pkgs; [
+      gnome-podcasts
+      gnome.dconf-editor
+      gnome.gnome-tweaks
+      gnomeExtensions.appindicator
+      papirus-icon-theme
+    ];
+  };
 }

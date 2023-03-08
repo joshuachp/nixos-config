@@ -1,10 +1,11 @@
 { config
 , pkgs
-, installPkgs
 , ...
 }: {
-  config = installPkgs (with pkgs; [
-    stylua
-    sumneko-lua-language-server
-  ]);
+  config = {
+    environment.systemPackages = with pkgs; [
+      stylua
+      sumneko-lua-language-server
+    ];
+  };
 }

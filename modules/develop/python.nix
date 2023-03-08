@@ -1,10 +1,11 @@
 { config
 , pkgs
-, installPkgs
 , ...
 }: {
-  config = installPkgs (with pkgs; [
-    python3Full
-    nodePackages.pyright
-  ]);
+  config = {
+    environment.systemPackages = with pkgs; [
+      python3Full
+      nodePackages.pyright
+    ];
+  };
 }

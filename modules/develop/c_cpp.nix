@@ -1,18 +1,19 @@
 { config
 , pkgs
-, installPkgs
 , ...
 }: {
-  config = installPkgs (with pkgs; [
-    gcc
-    bintools
+  config = {
+    environment.systemPackages = with pkgs; [
+      gcc
+      bintools
 
-    clang
-    clang-analyzer
-    clang-tools
-    lld
+      clang
+      clang-analyzer
+      clang-tools
+      lld
 
-    cmake
-    ninja
-  ]);
+      cmake
+      ninja
+    ];
+  };
 }

@@ -20,12 +20,16 @@ home-manager.lib.homeManagerConfiguration {
   };
 
   modules = [
-    {
-      # Home Manager needs a bit of information about you and the
-      # paths it should manage.
-      home.username = name;
-      home.homeDirectory = "/home/${name}";
-    }
+    ({ lib, ... }: {
+      config = {
+        systemConfig.homeManager.enabled = lib.mkForce true;
+
+        # Home Manager needs a bit of information about you and the
+        # paths it should manage.
+        home.username = name;
+        home.homeDirectory = "/home/${name}";
+      };
+    })
 
     # Options
     ../options

@@ -7,6 +7,9 @@
 , ...
 }:
 {
+  imports = [
+    ../../modules/nix
+  ];
   config = {
     # Home Manager needs a bit of information about you and the
     # paths it should manage.
@@ -28,6 +31,7 @@
 
     home.packages = with pkgs; [
       neovim
+      tmux
     ]
     ++ import ../../pkgs/cli.nix { inherit pkgs system note jump tools; }
     ++ import ../../pkgs/develop { inherit pkgs; }

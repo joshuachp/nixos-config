@@ -7,12 +7,7 @@
     # Allow unfree packages: nvidia drivers, ...
     nixpkgs.config.allowUnfree = true;
 
-    environment.systemPackages = with pkgs; [
-      cachix
-      # Nix shell evaluation on enter
-      direnv
-      nix-direnv
-    ];
+    environment.systemPackages = import ../../pkgs/nixpkgs.nix { inherit pkgs; };
 
     # Enable flakes system wide, this will no loner be necessary in some future release
     nix.settings.experimental-features = [ "nix-command" "flakes" ];

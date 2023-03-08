@@ -6,6 +6,12 @@
     # We use the unstable nixpkgs repo for some packages.
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixpkgs-unstable";
 
+    # Home manager
+    home-manager = {
+      url = "github:nix-community/home-manager/release-22.11";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # deploy
     deploy-rs = {
       url = "github:serokell/deploy-rs";
@@ -65,6 +71,7 @@
       # Nixpkgs
     , nixpkgs
     , nixpkgs-unstable
+    , home-manager
       # Tools
     , deploy-rs
       # Modules

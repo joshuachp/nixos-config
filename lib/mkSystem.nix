@@ -11,6 +11,7 @@ nixpkgs.lib.nixosSystem {
   specialArgs = inputs // {
     inherit system;
     hostname = name;
+    installPkgs = import ./installPkg.nix { };
   };
 
   modules = [

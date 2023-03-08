@@ -1,11 +1,10 @@
 { config
 , pkgs
+, installPkgs
 , ...
 }: {
-  config = {
-    environment.systemPackages = with pkgs; [
-      texlive.combined.scheme-small
-      texlab
-    ];
-  };
+  config = installPkgs (with pkgs; [
+    texlive.combined.scheme-small
+    texlab
+  ]);
 }

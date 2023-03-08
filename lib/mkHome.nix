@@ -17,6 +17,9 @@ home-manager.lib.homeManagerConfiguration {
   extraSpecialArgs = inputs // {
     inherit system;
     hostname = name;
+    installPkgs = import ./installPkg.nix {
+      home-manager = true;
+    };
   };
 
   modules = [

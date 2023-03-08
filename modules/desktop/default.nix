@@ -1,6 +1,7 @@
 { config
 , pkgs
 , lib
+, installPkgs
 , ...
 }: {
   imports = [
@@ -27,39 +28,37 @@
       displayManager.gdm.enable = true;
     };
 
+  } // installPkgs (with pkgs; [
+    # Terminal
+    alacritty
 
-    environment.systemPackages = with pkgs; [
-      # Terminal
-      alacritty
+    # Editor
+    vscode
+    godot
 
-      # Editor
-      vscode
-      godot
+    # Browser
+    firefox
+    chromium
+    brave
 
-      # Browser
-      firefox
-      chromium
-      brave
+    # Apps
+    element-desktop
+    libreoffice
+    signal-desktop
+    spotify
+    tdesktop
+    thunderbird
+    vlc
+    xournalpp
+    zathura
 
-      # Apps
-      element-desktop
-      libreoffice
-      signal-desktop
-      spotify
-      tdesktop
-      thunderbird
-      vlc
-      xournalpp
-      zathura
+    # Other
+    pinentry-gnome
+    yubikey-touch-detector
 
-      # Other
-      pinentry-gnome
-      yubikey-touch-detector
-
-      # Tools
-      gnuplot
-      xclip
-      wl-clipboard
-    ];
-  };
+    # Tools
+    gnuplot
+    xclip
+    wl-clipboard
+  ]);
 }

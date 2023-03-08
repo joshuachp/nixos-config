@@ -1,11 +1,10 @@
 { config
 , pkgs
+, installPkgs
 , ...
 }: {
-  config = {
-    environment.systemPackages = with pkgs; [
-      elixir
-      elixir_ls
-    ];
-  };
+  config = installPkgs (with pkgs; [
+    elixir
+    elixir_ls
+  ]);
 }

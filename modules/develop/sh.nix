@@ -1,12 +1,11 @@
 { config
 , pkgs
+, installPkgs
 , ...
 }: {
-  config = {
-    environment.systemPackages = with pkgs; [
-      nodePackages.bash-language-server
-      shfmt
-      shellcheck
-    ];
-  };
+  config = installPkgs (with pkgs; [
+    nodePackages.bash-language-server
+    shfmt
+    shellcheck
+  ]);
 }

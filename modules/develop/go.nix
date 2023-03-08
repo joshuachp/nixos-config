@@ -1,11 +1,10 @@
 { config
 , pkgs
+, installPkgs
 , ...
 }: {
-  config = {
-    environment.systemPackages = with pkgs; [
-      go
-      gopls
-    ];
-  };
+  config = installPkgs (with pkgs; [
+    go
+    gopls
+  ]);
 }

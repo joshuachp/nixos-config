@@ -34,10 +34,6 @@
       };
     };
 
-    environment.systemPackages = with pkgs; [
-      pinentry-curses
-    ];
-
     security.sudo.wheelNeedsPassword = false;
   };
 }

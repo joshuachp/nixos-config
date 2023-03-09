@@ -9,6 +9,10 @@ name: { inputs
 let
   pkgs = import nixpkgs {
     inherit system overlays;
+
+    config = {
+      allowUnfree = true;
+    };
   };
 in
 home-manager.lib.homeManagerConfiguration {

@@ -32,6 +32,8 @@
     home.packages = with pkgs; [
       neovim
       tmux
+
+      spotify
     ]
     ++ import ../../pkgs/cli.nix { inherit pkgs system note jump tools; }
     ++ import ../../pkgs/develop { inherit pkgs; }

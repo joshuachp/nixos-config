@@ -3,10 +3,10 @@
     ./hardware-configuration.nix
     ./services.nix
     # Modules
-    ../../modules/localization.nix
-    ../../modules/localtime.nix
-    ../../modules/nix
-    ../../modules/wireguard/server.nix
+    ../../modules/nixos/localization.nix
+    ../../modules/nixos/localtime.nix
+    ../../modules/nixos/nix
+    ../../modules/nixos/wireguard/server.nix
   ];
   config =
     let

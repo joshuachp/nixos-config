@@ -24,26 +24,5 @@
       nixpkgs.overlays = [
         (self: super: { nix-direnv = super.nix-direnv.override { enableFlakes = true; }; })
       ];
-    }
-
-    # FIXME: make this work
-    # (lib.mkIf (config.systemConfig.homeManager.enabled) {
-    #   # NixOs specific
-    #   environment = {
-    #     systemPackages = import ../../pkgs/nixpkgs.nix { inherit pkgs; };
-    #     pathsToLink = [
-    #       "/share/nix-direnv"
-    #     ];
-    #   };
-    #  nix.gc = {
-    #    automatic = true;
-    #    dates = "weekly";
-    #  };
-    #  # Periodically optimise the store
-    #  nix.optimise = {
-    #    automatic = true;
-    #    dates = [ "weekly" ];
-    #  };
-    # })
-  ;
+    };
 }

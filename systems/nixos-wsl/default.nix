@@ -7,14 +7,14 @@
   imports = [
     # ./hardware-configuration.nix
     # Modules
-    ../../modules/cli.nix
-    ../../modules/develop
-    ../../modules/documentation.nix
-    ../../modules/gnupg.nix
-    ../../modules/localization.nix
-    ../../modules/localtime.nix
-    ../../modules/nix
-    ../../modules/services.nix
+    ../../modules/nixos/cli.nix
+    ../../modules/nixos/develop
+    ../../modules/nixos/documentation.nix
+    ../../modules/nixos/gnupg.nix
+    ../../modules/nixos/localization.nix
+    ../../modules/nixos/localtime.nix
+    ../../modules/nixos/nix
+    ../../modules/nixos/services.nix
     # Wsl configuration
     nixos-wsl.nixosModules.wsl
   ];

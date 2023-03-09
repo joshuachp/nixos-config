@@ -17,6 +17,6 @@
     ./tex.nix
   ];
   config = {
-    environment.systemPackages = import ../../pkgs/develop { inherit pkgs; };
+    environment.systemPackages = import ../../../pkgs/develop { inherit pkgs; };
   };
 }

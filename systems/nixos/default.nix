@@ -9,19 +9,19 @@
     ./video-configuration.nix
 
     # Modules
-    ../../modules/cli.nix
-    ../../modules/desktop
-    ../../modules/develop
-    ../../modules/documentation.nix
-    ../../modules/embedded.nix
-    ../../modules/gnupg.nix
-    ../../modules/hacking.nix
-    ../../modules/localization.nix
-    ../../modules/localtime.nix
-    ../../modules/network.nix
-    ../../modules/nix
-    ../../modules/services.nix
-    ../../modules/wireguard/client.nix
+    ../../modules/nixos/cli.nix
+    ../../modules/nixos/desktop
+    ../../modules/nixos/develop
+    ../../modules/nixos/documentation.nix
+    ../../modules/nixos/embedded.nix
+    ../../modules/nixos/gnupg.nix
+    ../../modules/nixos/hacking.nix
+    ../../modules/nixos/localization.nix
+    ../../modules/nixos/localtime.nix
+    ../../modules/nixos/network.nix
+    ../../modules/nixos/nix
+    ../../modules/nixos/services.nix
+    ../../modules/nixos/wireguard/client.nix
 
     # Hardware configuration
     nixos-hardware.nixosModules.common-cpu-amd

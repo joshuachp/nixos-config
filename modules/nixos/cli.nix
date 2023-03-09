@@ -8,7 +8,7 @@
 }: {
   imports = [ ./gnupg.nix ];
   config = {
-    environment.systemPackages = import ../pkgs/cli.nix {
+    environment.systemPackages = import ../../pkgs/cli.nix {
       inherit pkgs jump note tools system;
     };
     # Programs
@@ -31,9 +31,5 @@
       git.enable = true;
       tmux.enable = true;
     };
-
-
-    # Lorri
-    # services.lorri.enable = true;
   };
 }

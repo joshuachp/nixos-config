@@ -39,7 +39,7 @@ home-manager.lib.homeManagerConfiguration {
     ../options
 
     # Default modules
-    ../modules/home-manager.nix
+    ../modules/home-manager
     #../users
     ../homes/${name}
   ] ++ modules;

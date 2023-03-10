@@ -33,6 +33,7 @@
       tmux
 
       polybarFull
+      xss-lock
 
       spotify
     ]

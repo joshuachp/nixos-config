@@ -22,7 +22,7 @@ nixpkgs.lib.nixosSystem {
     ../options
 
     # Secrets
-    inputs.privateConf.nixosModules.secrets
+    inputs.privateConf.nixosModules.nixosSecrets
 
     # Default modules
     ../modules/nixos

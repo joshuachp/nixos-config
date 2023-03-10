@@ -38,6 +38,9 @@ home-manager.lib.homeManagerConfiguration {
     # Options
     ../options
 
+    # Secrets
+    inputs.privateConf.nixosModules.homeManagerSecrets
+
     # Default modules
     ../modules/home-manager
     #../users

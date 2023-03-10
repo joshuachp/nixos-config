@@ -5,10 +5,9 @@
 , jump
 , tools
 , ...
-}:
-{
+}: {
   imports = [
-    #../../modules/nix
+    ../../modules/common/nix
   ];
   config = {
     # Home Manager needs a bit of information about you and the
@@ -32,6 +31,8 @@
     home.packages = with pkgs; [
       neovim
       tmux
+
+      polybarFull
 
       spotify
     ]

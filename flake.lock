@@ -107,22 +107,6 @@
         "type": "github"
       }
     },
-    "flake-compat_5": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1668681692,
-        "narHash": "sha256-Ht91NGdewz8IQLtWZ9LCeNXMSXHUss+9COoqu6JLmXU=",
-        "owner": "edolstra",
-        "repo": "flake-compat",
-        "rev": "009399224d5e398d03b22badca40a37ac85412a1",
-        "type": "github"
-      },
-      "original": {
-        "owner": "edolstra",
-        "repo": "flake-compat",
-        "type": "github"
-      }
-    },
     "flake-utils": {
       "locked": {
         "lastModified": 1676283394,
@@ -550,7 +534,6 @@
         "fenix": [
           "fenix"
         ],
-        "flake-compat": "flake-compat_5",
         "flake-utils": [
           "flake-utils"
         ],
@@ -560,11 +543,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1677601305,
-        "narHash": "sha256-kT3TOccssD82czuBvIxhhWNMWVOYk9R/Ultgzz43lUg=",
+        "lastModified": 1678464158,
+        "narHash": "sha256-mXgy/zHXJW5RzDaC2yx74Ae+8BH3adMsIyxtJrPHO4Q=",
         "owner": "joshuachp",
         "repo": "tools",
-        "rev": "b49231289943191e96f9e28c2dddef08f31f6c43",
+        "rev": "4367cffc203e04ba6f41aff4cc79e951b2048e32",
         "type": "github"
       },
       "original": {

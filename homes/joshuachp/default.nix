@@ -28,6 +28,10 @@
     # Let Home Manager install and manage itself.
     programs.home-manager.enable = true;
 
+    services.gpg-agent = {
+      enable = true;
+    };
+
     home.packages = with pkgs; [
       neovim
       tmux

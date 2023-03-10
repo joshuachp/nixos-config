@@ -1,5 +1,5 @@
 { pkgs }: with pkgs; [
-  (pkgs.fenix.complete.withComponents [
+  (pkgs.fenix.stable.withComponents [
     "cargo"
     "clippy"
     "rust-src"

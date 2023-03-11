@@ -3,6 +3,6 @@
 , ...
 }: {
   config = {
-    environment.systemPackages = import ../../../pkgs/develop/nix.nix;
+    environment.systemPackages = import ../../../pkgs/develop/nix.nix { inherit pkgs; };
   };
 }

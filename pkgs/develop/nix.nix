@@ -1,11 +1,12 @@
-{ pkgs }: with pkgs; [
+{ pkgs, nil }: with pkgs; [
   # Formatters
   nixfmt
   nixpkgs-fmt
   alejandra
   # Language servers
   rnix-lsp
-  nil
   # Linters
   statix
+
+  nil
 ]

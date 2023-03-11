@@ -4,6 +4,7 @@
 , note
 , jump
 , tools
+, nil
 , ...
 }: {
   imports = [
@@ -39,8 +40,12 @@
     ]
     ++ import ../../pkgs/cli.nix { inherit pkgs system note jump tools; }
     ++ import ../../pkgs/develop { inherit pkgs; }
-    ++ import ../../pkgs/develop/nix.nix { inherit pkgs; }
-    ++ import ../../pkgs/develop/rust.nix { inherit pkgs; }
+    ++ import ../../pkgs/develop/nix.nix {
+      inherit pkgs; nil = nil.packages.${system}.default;
+    }
+    ++ import ../../pkgs/develop/rust.nix {
+      inherit pkgs;
+    }
     ++ import ../../pkgs/develop/javascript.nix { inherit pkgs; }
     ++ import ../../pkgs/nixpkgs.nix { inherit pkgs; }
     ;

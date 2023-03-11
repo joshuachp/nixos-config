@@ -6,6 +6,12 @@
     # We use the unstable nixpkgs repo for some packages.
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixpkgs-unstable";
 
+    # Home manager
+    home-manager = {
+      url = "github:nix-community/home-manager/release-22.11";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # Hardware configuration
     nixos-hardware.url = "github:NixOS/nixos-hardware";
 
@@ -72,6 +78,7 @@
       # Nixpkgs
     , nixpkgs
     , nixpkgs-unstable
+    , home-manager
       # Tools
     , deploy-rs
     , nil
@@ -89,6 +96,7 @@
     } @ inputs:
     let
       mkSystem = import ./lib/mkSystem.nix;
+      mkHome = import ./lib/mkHome.nix;
       overlays = [
         fenix.overlays.default
         (import ./overlays)
@@ -133,6 +141,15 @@
           inherit inputs overlays;
           system = baseSystem;
           modules = [ privateConf.nixosModules.nixos-cloud ];
+        };
+      };
+
+      # Home manager configuration
+      homeConfigurations = {
+        joshuachp = mkHome "joshuachp" {
+          inherit inputs overlays;
+          system = baseSystem;
+          modules = [ ];
         };
       };
 

@@ -35,6 +35,8 @@
 
       polybarFull
       xss-lock
+      mpdris2
+      rofi
 
       spotify
     ]

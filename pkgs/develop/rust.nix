@@ -10,6 +10,7 @@
   rust-analyzer
   cargo-criterion
   cargo-edit
+  cargo-tarpaulin
 
   sccache
   bacon

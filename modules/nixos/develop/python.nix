@@ -1,11 +1,7 @@
-{ config
-, pkgs
+{ pkgs
 , ...
 }: {
   config = {
-    environment.systemPackages = with pkgs; [
-      python3Full
-      nodePackages.pyright
-    ];
+    environment.systemPackages = import ../../../pkgs/develop/python.nix { inherit pkgs; };
   };
 }

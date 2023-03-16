@@ -49,6 +49,7 @@
       inherit pkgs;
     }
     ++ import ../../pkgs/develop/javascript.nix { inherit pkgs; }
+    ++ import ../../pkgs/develop/python.nix { inherit pkgs; }
     ++ import ../../pkgs/nixpkgs.nix { inherit pkgs; }
     ;
   };

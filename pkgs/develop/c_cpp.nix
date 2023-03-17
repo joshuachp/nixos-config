@@ -3,7 +3,9 @@
   clang
   clang-analyzer
   clang-tools
+
   lld
+  mold
 
   cmake
   ninja

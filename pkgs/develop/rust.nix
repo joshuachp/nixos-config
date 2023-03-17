@@ -6,12 +6,14 @@
     "rustc"
     "rustfmt"
   ])
-
+  sccache
   rust-analyzer
+
   cargo-criterion
   cargo-edit
   cargo-tarpaulin
+  cargo-watch
+  cargo-nextest
 
-  sccache
   bacon
 ]

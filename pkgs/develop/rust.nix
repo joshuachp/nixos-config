@@ -14,6 +14,7 @@
   cargo-tarpaulin
   cargo-watch
   cargo-nextest
+  cargo-hack
 
   bacon
 ]

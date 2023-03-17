@@ -41,6 +41,8 @@
       spotify
     ]
     ++ import ../../pkgs/cli.nix { inherit pkgs system note jump tools; }
+    ++ import ../../pkgs/nixpkgs.nix { inherit pkgs; }
+    # Develop
     ++ import ../../pkgs/develop { inherit pkgs; }
     ++ import ../../pkgs/develop/nix.nix {
       inherit pkgs; nil = nil.packages.${system}.default;
@@ -50,7 +52,7 @@
     }
     ++ import ../../pkgs/develop/javascript.nix { inherit pkgs; }
     ++ import ../../pkgs/develop/python.nix { inherit pkgs; }
-    ++ import ../../pkgs/nixpkgs.nix { inherit pkgs; }
+    ++ import ../../pkgs/develop/haskell.nix { inherit pkgs; }
     ;
   };
 }

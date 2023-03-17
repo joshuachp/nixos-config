@@ -1,13 +1,7 @@
-{ config
-, pkgs
+{ pkgs
 , ...
 }: {
   config = {
-    environment.systemPackages = with pkgs; [
-      ghc
-      stack
-      cabal-install
-      haskell-language-server
-    ];
+    environment.systemPackages = import ../../../pkgs/develop/haskell.nix { inherit pkgs; };
   };
 }

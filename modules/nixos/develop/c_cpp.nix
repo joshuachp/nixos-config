@@ -1,19 +1,7 @@
-{ config
-, pkgs
+{ pkgs
 , ...
 }: {
   config = {
-    environment.systemPackages = with pkgs; [
-      gcc
-      bintools
-
-      clang
-      clang-analyzer
-      clang-tools
-      lld
-
-      cmake
-      ninja
-    ];
+    environment.systemPackages = import ../../../pkgs/develop/c_cpp.nix { inherit pkgs; };
   };
 }

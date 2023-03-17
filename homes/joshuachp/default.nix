@@ -53,6 +53,7 @@
     ++ import ../../pkgs/develop/javascript.nix { inherit pkgs; }
     ++ import ../../pkgs/develop/python.nix { inherit pkgs; }
     ++ import ../../pkgs/develop/haskell.nix { inherit pkgs; }
+    ++ import ../../pkgs/develop/c_cpp.nix { inherit pkgs; }
     ;
   };
 }

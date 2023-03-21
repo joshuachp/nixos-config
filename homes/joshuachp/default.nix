@@ -30,7 +30,6 @@
     programs.home-manager.enable = true;
 
     home.packages = with pkgs; [
-      neovim
       tmux
 
       polybarFull
@@ -40,6 +39,9 @@
       libnotify
 
       spotify
+
+      ccache
+      bmap-tools
     ]
     ++ import ../../pkgs/cli.nix { inherit pkgs system note jump tools; }
     ++ import ../../pkgs/nixpkgs.nix { inherit pkgs; }

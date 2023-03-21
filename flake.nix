@@ -149,7 +149,9 @@
         joshuachp = mkHome "joshuachp" {
           inherit inputs overlays;
           system = baseSystem;
-          modules = [ ];
+          modules = [
+            neovim-config.homeManagerModules.default
+          ];
         };
       };
 

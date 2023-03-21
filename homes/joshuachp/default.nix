@@ -37,6 +37,7 @@
       xss-lock
       mpdris2
       rofi
+      libnotify
 
       spotify
     ]

@@ -16,5 +16,8 @@
 
     # Let Home Manager install and manage itself.
     programs.home-manager.enable = true;
+
+    # Enable linux specific settings for home-manager
+    targets.genericLinux.enable = true;
   };
 }

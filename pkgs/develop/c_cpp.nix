@@ -9,4 +9,6 @@
 
   cmake
   ninja
+
+  ncurses
 ]

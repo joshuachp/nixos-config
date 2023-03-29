@@ -1,11 +1,7 @@
-{ config
-, pkgs
+{ pkgs
 , ...
 }: {
   config = {
-    environment.systemPackages = with pkgs; [
-      elixir
-      elixir_ls
-    ];
+    environment.systemPackages = import ../../../pkgs/develop/elixir.nix pkgs;
   };
 }

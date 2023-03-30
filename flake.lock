@@ -277,11 +277,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1679909139,
-        "narHash": "sha256-Ckz5p3rssHypi5yNlAowo3gGr5h8Ct8zYL2PjSM8w48=",
+        "lastModified": 1680076813,
+        "narHash": "sha256-Uh/4HUWnHMXd+e2S7QiPpF43eMu37yXBkc0AUa8p9Sg=",
         "owner": "joshuachp",
         "repo": "neovim-config",
-        "rev": "78c84f4d980f6910cf72c76846b2de02dc2e0530",
+        "rev": "f4d75d013f0308ccd195c86b2d08d6db662aca7b",
         "type": "github"
       },
       "original": {
@@ -349,11 +349,11 @@
         "rust-overlay": "rust-overlay"
       },
       "locked": {
-        "lastModified": 1680011083,
-        "narHash": "sha256-rGXIvujODiXdFQ3ls7DKGaOMOj67/XmRpd6YyniPiE0=",
+        "lastModified": 1680078255,
+        "narHash": "sha256-eNRVigfm3E2rooMqCaywuiWJGgGHIX2N2TbVgKptewE=",
         "owner": "oxalica",
         "repo": "nil",
-        "rev": "932803b1decfa4a1bab3362256bfe1508e2ea55e",
+        "rev": "f3eaa770022329ca16e6668d731ab00b9cc0bd87",
         "type": "github"
       },
       "original": {

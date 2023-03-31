@@ -50,4 +50,6 @@
   note.packages.${system}.default
   tools.packages.${system}.rust-tools
   tools.packages.${system}.shell-tools
+  taskwarrior
+  timewarrior
 ]

@@ -32,7 +32,7 @@
 
     # My modules
     neovim-config = {
-      url = "github:joshuachp/neovim-config";
+      url = "/home/joshuachp/share/repos/github/neovim-config";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
     #  My packages

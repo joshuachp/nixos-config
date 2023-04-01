@@ -30,11 +30,11 @@
         "rust-analyzer-src": "rust-analyzer-src"
       },
       "locked": {
-        "lastModified": 1680243768,
-        "narHash": "sha256-2laKIpOTDdcTs7UHpljMpzFA+sq2l6iOYKvIhDPxMq0=",
+        "lastModified": 1680330049,
+        "narHash": "sha256-hXwhRY3E26ZOXQKe9BJYHjnGXwv/qC9L56QGJJhzh3c=",
         "owner": "nix-community",
         "repo": "fenix",
-        "rev": "cbcb84751afdfd52d3dd3dc9caf328b59250052c",
+        "rev": "014c1e43bdc77936ed92bb63ddf151b6b69f0d88",
         "type": "github"
       },
       "original": {
@@ -277,11 +277,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1680277766,
-        "narHash": "sha256-wDvtWI12MPx0DJ0tSvJrAI+OORHm4l2wjg6jpzqxDuI=",
+        "lastModified": 1680331159,
+        "narHash": "sha256-2l7IPfYa1mY3nBNoR3v4tlBBwNX8Xe4cHpCR64OVNQ4=",
         "ref": "refs/heads/main",
-        "rev": "f6d26e04ca8c575d8399b88ef168428cad3e9a25",
-        "revCount": 87,
+        "rev": "364edeb34f9505fb88c61a9d71804b953efa082c",
+        "revCount": 88,
         "type": "git",
         "url": "file:///home/joshuachp/share/repos/github/neovim-config"
       },
@@ -435,11 +435,11 @@
     },
     "nixpkgs-unstable": {
       "locked": {
-        "lastModified": 1680242334,
-        "narHash": "sha256-HlCbTg1oj6cWLtdQ9Gi8p27t4bde9cSWgtmWrBXdh8w=",
+        "lastModified": 1680273054,
+        "narHash": "sha256-Bs6/5LpvYp379qVqGt9mXxxx9GSE789k3oFc+OAL07M=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "f30990fc98b8468eba13d75f6c4c2190a61073ea",
+        "rev": "3364b5b117f65fe1ce65a3cdd5612a078a3b31e3",
         "type": "github"
       },
       "original": {
@@ -518,11 +518,11 @@
     "rust-analyzer-src": {
       "flake": false,
       "locked": {
-        "lastModified": 1680191116,
-        "narHash": "sha256-MW4geXhG73SBKDMsEtY8qxKIyvaJ5bYeRmai2JGSYfE=",
+        "lastModified": 1680267680,
+        "narHash": "sha256-atC3zkM5nBXdBFE1+Xoxpm/Ye42j/Rq12IR0qi5+/ao=",
         "owner": "rust-lang",
         "repo": "rust-analyzer",
-        "rev": "42d671fcb7173f1bdb4e785d732e6fb31b5bea0b",
+        "rev": "853fb44a24b8d3341f52747caa949013121b24b4",
         "type": "github"
       },
       "original": {
@@ -593,11 +593,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1680011256,
-        "narHash": "sha256-aMHVXlT7rHfC80By3+dhCLfOyFS6CTuqECcaj6NSZzw=",
+        "lastModified": 1680278401,
+        "narHash": "sha256-l9I2aZK6gRjUyN94kA+BareylxpUQ+n0C4bKi8hwolg=",
         "owner": "joshuachp",
         "repo": "tools",
-        "rev": "23e64b2b66e829b170f6cecba08dfa9c1056aa9c",
+        "rev": "b3b5a3f6b9ce87bd4191691bfcfccf925fe63927",
         "type": "github"
       },
       "original": {

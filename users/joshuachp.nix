@@ -7,7 +7,7 @@
     users.users.joshuachp = {
       isNormalUser = true;
       description = "Joshua Chapman";
-      extraGroups = [ "wheel" "networkmanager" ];
+      extraGroups = [ "wheel" "networkmanager" "nix-keys" ];
       passwordFile = config.sops.secrets.users_passwords_joshuachp.path;
       shell = pkgs.zsh;
       openssh.authorizedKeys.keys = [

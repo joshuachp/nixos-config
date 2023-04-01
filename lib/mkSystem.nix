@@ -24,6 +24,8 @@ nixpkgs.lib.nixosSystem {
     # Secrets
     inputs.privateConf.nixosModules.nixosSecrets
 
+    # Home manager
+    inputs.home-manager.nixosModules.home-manager
     # Default modules
     ../modules/nixos
     ../users

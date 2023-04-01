@@ -19,5 +19,19 @@
     };
 
     users.users.root.passwordFile = config.sops.secrets.users_passwords_root.path;
+
+
+    # Home manager configuration
+    home-manager = {
+      useUserPackages = true;
+      useGlobalPkgs = true;
+      sharedModules = [
+        ../options
+        {
+          # Make sure the systemConfig is the same for home manager
+          config.systemConfig = config.systemConfig;
+        }
+      ];
+    };
   };
 }

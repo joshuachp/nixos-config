@@ -1,5 +1,4 @@
-{ config
-, pkgs
+{ pkgs
 , ...
 }: {
   config = {
@@ -25,6 +24,7 @@
       gnome.dconf-editor
       gnome.gnome-tweaks
       gnomeExtensions.appindicator
+      gnome.gnome-sound-recorder
       papirus-icon-theme
     ];
   };

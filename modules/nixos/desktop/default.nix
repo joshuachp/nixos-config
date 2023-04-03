@@ -1,9 +1,8 @@
-{ config
-, pkgs
-, lib
+{ pkgs
 , ...
 }: {
   imports = [
+    ./audio.nix
     ./fonts.nix
     ./services.nix
     ./window_manager/gnome.nix

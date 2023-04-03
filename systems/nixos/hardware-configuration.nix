@@ -23,6 +23,9 @@
     boot.initrd.kernelModules = [ "dm-snapshot" "amdgpu" ];
     boot.kernelModules = [ "kvm-amd" ];
     boot.extraModulePackages = [ ];
+    boot.extraModprobeConfig = ''
+      options snd-hda-intel model=alc285-hp-amp-init
+    '';
 
     boot.initrd.luks.devices.crypted = {
       device = "/dev/disk/by-uuid/e21bee4a-6c26-46c1-8233-362e198db016";

@@ -37,6 +37,7 @@
       mpdris2
       rofi
       libnotify
+      playerctl
 
       spotify
 

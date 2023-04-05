@@ -15,6 +15,7 @@
   cargo-watch
   cargo-nextest
   cargo-hack
+  cargo-semver-checks
 
   bacon
 ]

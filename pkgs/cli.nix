@@ -1,9 +1,4 @@
-{ pkgs
-, jump
-, note
-, tools
-, system
-}: with pkgs; [
+pkgs: with pkgs; [
   # System utils
   pciutils
   inotify-tools
@@ -46,10 +41,11 @@
   starship
 
   # Personal
-  jump.packages.${system}.default
-  note.packages.${system}.default
-  tools.packages.${system}.rust-tools
-  tools.packages.${system}.shell-tools
+  jumpOverlay
+  noteOverlay
+  rust-toolsOverlay
+  shell-toolsOverlay
+
   taskwarrior
   timewarrior
 ]

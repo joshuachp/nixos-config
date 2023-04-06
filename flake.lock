@@ -30,11 +30,11 @@
         "rust-analyzer-src": "rust-analyzer-src"
       },
       "locked": {
-        "lastModified": 1680589300,
-        "narHash": "sha256-eUc62ny06iL5krFv7py+AKkSCR9NKTd1Ttk08wYBbYY=",
+        "lastModified": 1680762089,
+        "narHash": "sha256-62lgi+xb+nn9H4O+ZIYNkHeQ8ryzstALKMJuoXiot0I=",
         "owner": "nix-community",
         "repo": "fenix",
-        "rev": "160b223aca43308e0d618494e1861267ffbab613",
+        "rev": "5794e58068fb6a8eccad9e4ff77ffe1c08ded13c",
         "type": "github"
       },
       "original": {
@@ -109,11 +109,11 @@
     },
     "flake-utils": {
       "locked": {
-        "lastModified": 1678901627,
-        "narHash": "sha256-U02riOqrKKzwjsxc/400XnElV+UtPUQWpANPlyazjH0=",
+        "lastModified": 1680776469,
+        "narHash": "sha256-3CXUDK/3q/kieWtdsYpDOBJw3Gw4Af6x+2EiSnIkNQw=",
         "owner": "numtide",
         "repo": "flake-utils",
-        "rev": "93a2b84fc4b70d9e089d029deacc3583435c2ed6",
+        "rev": "411e8764155aa9354dbcd6d5faaeb97e9e3dce24",
         "type": "github"
       },
       "original": {
@@ -249,6 +249,28 @@
     "naersk_3": {
       "inputs": {
         "nixpkgs": [
+          "pulseaudioMicState",
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1679567394,
+        "narHash": "sha256-ZvLuzPeARDLiQUt6zSZFGOs+HZmE+3g4QURc8mkBsfM=",
+        "owner": "nmattia",
+        "repo": "naersk",
+        "rev": "88cd22380154a2c36799fe8098888f0f59861a15",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nmattia",
+        "ref": "master",
+        "repo": "naersk",
+        "type": "github"
+      }
+    },
+    "naersk_4": {
+      "inputs": {
+        "nixpkgs": [
           "tools",
           "nixpkgs"
         ]
@@ -277,11 +299,8 @@
         ]
       },
       "locked": {
-        "lastModified": 1680277766,
-        "narHash": "sha256-wDvtWI12MPx0DJ0tSvJrAI+OORHm4l2wjg6jpzqxDuI=",
-        "ref": "refs/heads/main",
-        "rev": "f6d26e04ca8c575d8399b88ef168428cad3e9a25",
-        "revCount": 87,
+        "lastModified": 1680335263,
+        "narHash": "sha256-q9gxani811IxliKR/+3ydCcwOI7pz9xL5+5NgJKUZW0=",
         "type": "git",
         "url": "file:///home/joshuachp/share/repos/github/neovim-config"
       },
@@ -364,11 +383,11 @@
     },
     "nixos-hardware": {
       "locked": {
-        "lastModified": 1680070330,
-        "narHash": "sha256-aoT2YZCd9LEtiEULFLIF0ykKydgE72X8gw/k9/pRS5I=",
+        "lastModified": 1680780295,
+        "narHash": "sha256-lpPh5EXqnAFyioHfiDxnyIH/gETjjp29p/YJ17MHNUE=",
         "owner": "NixOS",
         "repo": "nixos-hardware",
-        "rev": "a6aa8174fa61e55bd7e62d35464d3092aefe0421",
+        "rev": "148fee317058fad8159619e9d6ccc8c0aa6d0fce",
         "type": "github"
       },
       "original": {
@@ -403,11 +422,11 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1680498889,
-        "narHash": "sha256-4nGFBm+oILOO6DPoKTPxVlfkZSxCOY4W25zSRHESK48=",
+        "lastModified": 1680665430,
+        "narHash": "sha256-MTVhTukwza1Jlq2gECITZPFnhROmylP2uv3O3cSqQCE=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "799d153e4f316143a9db0eb869ecf44d8d4c0356",
+        "rev": "5233fd2ba76a3accb5aaa999c00509a11fd0793c",
         "type": "github"
       },
       "original": {
@@ -435,11 +454,11 @@
     },
     "nixpkgs-unstable": {
       "locked": {
-        "lastModified": 1680577567,
-        "narHash": "sha256-Y4W57i0TzczqwMTjfVSbAZT5RJx7u+mpQIW/ofrkTQs=",
+        "lastModified": 1680668850,
+        "narHash": "sha256-mQMg13yRsS0LXVzaeoSPwqgPO6yhkGzGewPgMSqXSv8=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "b01f185e4866de7c5b5a82f833ca9ea3c3f72fc4",
+        "rev": "4a65e9f64e53fdca6eed31adba836717a11247d2",
         "type": "github"
       },
       "original": {
@@ -497,6 +516,33 @@
         "type": "github"
       }
     },
+    "pulseaudioMicState": {
+      "inputs": {
+        "fenix": [
+          "fenix"
+        ],
+        "flake-utils": [
+          "flake-utils"
+        ],
+        "naersk": "naersk_3",
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1680785742,
+        "narHash": "sha256-5bW7wXM2ouS2cOZaHrIGdBD9+HaQfQuknqEdv1H4FIw=",
+        "owner": "joshuachp",
+        "repo": "pulseaudio-mic-state",
+        "rev": "a13d2a691705b239dbe8e974c4272c5436d29489",
+        "type": "github"
+      },
+      "original": {
+        "owner": "joshuachp",
+        "repo": "pulseaudio-mic-state",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
         "deploy-rs": "deploy-rs",
@@ -512,17 +558,18 @@
         "nixpkgs-unstable": "nixpkgs-unstable",
         "note": "note",
         "privateConf": "privateConf",
+        "pulseaudioMicState": "pulseaudioMicState",
         "tools": "tools"
       }
     },
     "rust-analyzer-src": {
       "flake": false,
       "locked": {
-        "lastModified": 1680435407,
-        "narHash": "sha256-IPBtZCOh3BdrR+V77cL7r6WQnclWcZ/85BDYnmq/GnQ=",
+        "lastModified": 1680727375,
+        "narHash": "sha256-hb8AosuONAg0D9yoZ4VrBsjf5hINMYVLPEGekXF4qVE=",
         "owner": "rust-lang",
         "repo": "rust-analyzer",
-        "rev": "236576227a299fd19ba836b1834ab50c948af994",
+        "rev": "ea22d245b671f97b820cf761108251c6292c3152",
         "type": "github"
       },
       "original": {
@@ -587,7 +634,7 @@
         "flake-utils": [
           "flake-utils"
         ],
-        "naersk": "naersk_3",
+        "naersk": "naersk_4",
         "nixpkgs": [
           "nixpkgs"
         ]

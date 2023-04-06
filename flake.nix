@@ -54,6 +54,12 @@
       inputs.flake-utils.follows = "flake-utils";
       inputs.fenix.follows = "fenix";
     };
+    pulseaudioMicState = {
+      url = "github:joshuachp/pulseaudio-mic-state";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.flake-utils.follows = "flake-utils";
+      inputs.fenix.follows = "fenix";
+    };
 
     # Private configuration
     privateConf = {
@@ -93,14 +99,11 @@
     , jump
     , tools
     , note
+    , pulseaudioMicState
     } @ inputs:
     let
-      mkSystem = import ./lib/mkSystem.nix;
-      mkHome = import ./lib/mkHome.nix;
-      overlays = [
-        fenix.overlays.default
-        (import ./overlays)
-      ];
+      mkSystem = import ./lib/mkSystem.nix { inherit inputs baseSystem; };
+      mkHome = import ./lib/mkHome.nix { inherit inputs baseSystem; };
       baseSystem = flake-utils.lib.system.x86_64-linux;
       arm-system = flake-utils.lib.system.aarch64-linux;
     in
@@ -108,38 +111,29 @@
       nixosConfigurations = {
         # Nixos
         nixos = mkSystem "nixos" {
-          inherit inputs overlays;
-          system = baseSystem;
           modules = [
             neovim-config.nixosModules.default
           ];
         };
         # Wsl
         nixos-wsl = mkSystem "nixos-wsl" {
-          inherit inputs overlays;
-          system = baseSystem;
           modules = [
             neovim-config.nixosModules.default
           ];
         };
         # Work
         nixos-work = mkSystem "nixos-work" {
-          inherit inputs overlays;
-          system = baseSystem;
           modules = [
             neovim-config.nixosModules.default
           ];
         };
         # Raspberry PI 3B
         nixos-rpi = mkSystem "nixos-rpi" {
-          inherit inputs overlays;
           # System of the RPi 3B is ARM64
           system = arm-system;
         };
         # Cloud
         nixos-cloud = mkSystem "nixos-cloud" {
-          inherit inputs overlays;
-          system = baseSystem;
           modules = [ privateConf.nixosModules.nixos-cloud ];
         };
       };
@@ -147,8 +141,6 @@
       # Home manager configuration
       homeConfigurations = {
         joshuachp = mkHome "joshuachp" {
-          inherit inputs overlays;
-          system = baseSystem;
           modules = [
             neovim-config.homeManagerModules.default
           ];

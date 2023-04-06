@@ -1,16 +1,9 @@
-{ config
-, pkgs
-, system
-, jump
-, note
-, tools
+{ pkgs
 , ...
 }: {
   imports = [ ./gnupg.nix ];
   config = {
-    environment.systemPackages = import ../../pkgs/cli.nix {
-      inherit pkgs jump note tools system;
-    };
+    environment.systemPackages = import ../../pkgs/cli.nix pkgs;
     # Programs
     programs = {
       zsh = {

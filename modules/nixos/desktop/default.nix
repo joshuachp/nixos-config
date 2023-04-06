@@ -59,6 +59,6 @@
       gnuplot
       xclip
       wl-clipboard
-    ];
+    ] ++ import ../../../pkgs/desktop.nix pkgs;
   };
 }

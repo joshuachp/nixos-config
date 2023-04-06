@@ -1,34 +1,39 @@
 # Function to configure a nixosSystem
-name: { inputs
-      , system
-      , overlays ? [ ]
-      , modules ? [ ]
-      , nixpkgs ? inputs.nixpkgs
-      }:
-nixpkgs.lib.nixosSystem {
-  inherit system;
-
-  specialArgs = inputs // {
+{ inputs
+, baseSystem
+}: (
+  name: { system ? baseSystem
+        , overlays ? [ ]
+        , modules ? [ ]
+        , nixpkgs ? inputs.nixpkgs
+        }:
+  nixpkgs.lib.nixosSystem {
     inherit system;
-    hostname = name;
-  };
 
-  modules = [
-    {
-      nixpkgs.overlays = overlays;
-    }
+    specialArgs = inputs // {
+      inherit system;
+      hostname = name;
+    };
 
-    # Options
-    ../options
+    modules = [
+      # Overlays
+      ../overlays
+      {
+        nixpkgs.overlays = overlays;
+      }
 
-    # Secrets
-    inputs.privateConf.nixosModules.nixosSecrets
+      # Options
+      ../options
 
-    # Home manager
-    inputs.home-manager.nixosModules.home-manager
-    # Default modules
-    ../modules/nixos
-    ../users
-    ../systems/${name}
-  ] ++ modules;
-}
+      # Secrets
+      inputs.privateConf.nixosModules.nixosSecrets
+
+      # Home manager
+      inputs.home-manager.nixosModules.home-manager
+      # Default modules
+      ../modules/nixos
+      ../users
+      ../systems/${name}
+    ] ++ modules;
+  }
+)

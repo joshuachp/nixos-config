@@ -1,9 +1,5 @@
-{ config
-, pkgs
+{ pkgs
 , system
-, note
-, jump
-, tools
 , nil
 , ...
 }: {
@@ -36,15 +32,12 @@
       xss-lock
       mpdris2
       rofi
-      libnotify
-      playerctl
-
       spotify
 
       ccache
       bmap-tools
     ]
-    ++ import ../../pkgs/cli.nix { inherit pkgs system note jump tools; }
+    ++ import ../../pkgs/cli.nix pkgs
     ++ import ../../pkgs/nixpkgs.nix { inherit pkgs; }
     # Develop
     ++ import ../../pkgs/develop { inherit pkgs; }
@@ -60,6 +53,7 @@
     ++ import ../../pkgs/develop/c_cpp.nix { inherit pkgs; }
     ++ import ../../pkgs/develop/shell.nix pkgs
     ++ import ../../pkgs/develop/elixir.nix pkgs
+    ++ import ../../pkgs/desktop.nix pkgs
     ;
   };
 }

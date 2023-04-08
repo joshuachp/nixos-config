@@ -5,6 +5,9 @@
     # Default text editor
     programs.neovim.enable = true;
 
+    # Do not permit users to change
+    users.mutableUsers = false;
+
     users.groups = {
       # Group with access to the nix secrets
       nix-keys = {

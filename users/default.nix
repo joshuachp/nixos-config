@@ -10,6 +10,9 @@
       nix-keys = {
         gid = 3000;
       };
+      share-dir = {
+        gid = 3001;
+      };
     };
 
     # Environment variables, useful for the root user

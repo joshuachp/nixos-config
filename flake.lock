@@ -175,11 +175,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1681119176,
-        "narHash": "sha256-WulS29oXRkHRr6G18neOwS4r1ohguf+fdHCICNx9Nkc=",
+        "lastModified": 1681205828,
+        "narHash": "sha256-nOeaNu8JR8PUJGgWtA9I3UJjPhRxh+UiHPxawpbGsfQ=",
         "owner": "joshuachp",
         "repo": "jump",
-        "rev": "6f70caa1798ccabbc69e9840adb0b613b8cbb80c",
+        "rev": "df56010d32b5259288d57d585e507751057e2884",
         "type": "github"
       },
       "original": {

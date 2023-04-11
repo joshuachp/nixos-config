@@ -59,6 +59,8 @@
       gnuplot
       xclip
       wl-clipboard
+
+      mattermost-desktop
     ] ++ import ../../../pkgs/desktop.nix pkgs;
   };
 }

@@ -287,15 +287,15 @@
       "locked": {
         "lastModified": 1680928920,
         "narHash": "sha256-YAPGp5LihyIsdRrRxIKekvmT1dmxg/2zCo1aeyCmr5I=",
-        "ref": "refs/heads/main",
+        "owner": "joshuachp",
+        "repo": "neovim-config",
         "rev": "dfc12a92ea5d274eee6e80e312c341962cacaaf6",
-        "revCount": 92,
-        "type": "git",
-        "url": "file:///home/joshuachp/share/repos/github/neovim-config"
+        "type": "github"
       },
       "original": {
-        "type": "git",
-        "url": "file:///home/joshuachp/share/repos/github/neovim-config"
+        "owner": "joshuachp",
+        "repo": "neovim-config",
+        "type": "github"
       }
     },
     "neovim-flake": {

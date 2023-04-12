@@ -5,6 +5,7 @@
 }: {
   imports = [
     ../../modules/common/nix
+    ../../modules/home-manager/syncthing.nix
   ];
   config = {
     # Home Manager needs a bit of information about you and the

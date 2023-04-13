@@ -20,6 +20,10 @@
     home-manager.users.joshuachp = { config, pkgs, lib, ... }: {
       config = {
         home.stateVersion = config.systemConfig.version;
+        services.syncthing = lib.mkIf config.systemConfig.desktopEnabled {
+          enable = true;
+          tray.enable = true;
+        };
         dconf.settings = lib.mkIf config.systemConfig.desktopEnabled {
           # Terminal shortcut for Gnome
           "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0" = {

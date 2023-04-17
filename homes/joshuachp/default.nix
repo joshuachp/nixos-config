@@ -1,4 +1,5 @@
 { pkgs
+, lib
 , system
 , nil
 , ...
@@ -25,6 +26,9 @@
 
     # Let Home Manager install and manage itself.
     programs.home-manager.enable = true;
+
+    # Options
+    systemConfig.desktopEnabled = lib.mkForce true;
 
     home.packages = with pkgs; [
       tmux

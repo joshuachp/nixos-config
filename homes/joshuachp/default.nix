@@ -2,6 +2,7 @@
 , lib
 , system
 , nil
+, nixgl
 , ...
 }: {
   imports = [
@@ -30,6 +31,8 @@
     # Options
     systemConfig.desktopEnabled = lib.mkForce true;
 
+    nixpkgs.overlays = [ nixgl.overlay ];
+
     home.packages = with pkgs; [
       tmux
 
@@ -41,6 +44,9 @@
 
       ccache
       bmap-tools
+
+      pkgs.nixgl.nixGLIntel
+      pkgs.nixgl.nixVulkanIntel
     ]
     ++ import ../../pkgs/cli.nix pkgs
     ++ import ../../pkgs/nixpkgs.nix { inherit pkgs; }

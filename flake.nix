@@ -77,6 +77,11 @@
       inputs.nixpkgs.follows = "nixpkgs-unstable";
       inputs.flake-utils.follows = "flake-utils";
     };
+    nixgl = {
+      url = "github:guibou/nixGL";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.flake-utils.follows = "flake-utils";
+    };
 
   };
   outputs =
@@ -88,6 +93,7 @@
       # Tools
     , deploy-rs
     , nil
+    , nixgl
       # Modules
     , nixos-hardware
     , nixos-wsl

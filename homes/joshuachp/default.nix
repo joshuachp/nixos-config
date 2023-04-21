@@ -31,9 +31,20 @@
     # Options
     systemConfig.desktopEnabled = lib.mkForce true;
 
-    nixpkgs.overlays = [ nixgl.overlay ];
+    nixpkgs.overlays = [
+      nixgl.overlay
+
+      (self: super:
+        let
+          wrapIntel = import ../../lib/wrapGLIntel.nix super;
+        in
+        {
+          alacritty = wrapIntel "alacritty" "${super.alacritty}/bin/alacritty";
+        })
+    ];
 
     home.packages = with pkgs; [
+      alacritty
       tmux
 
       polybarFull

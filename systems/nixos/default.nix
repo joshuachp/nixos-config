@@ -66,6 +66,9 @@
     sound.enable = true;
     hardware.pulseaudio.enable = false;
 
+    # Enable btrfs scrubbing
+    services.btrfs.autoScrub.enable = true;
+
     # Yubikey
     services.udev.packages = [ pkgs.yubikey-personalization ];
 

@@ -28,7 +28,7 @@
     modules = [
       ({ lib, ... }: {
         config = {
-          systemConfig.homeManager.enabled = lib.mkForce true;
+          systemConfig.homeManager.enable = lib.mkForce true;
 
           # Home Manager needs a bit of information about you and the
           # paths it should manage.

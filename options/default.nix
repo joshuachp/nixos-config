@@ -9,13 +9,13 @@
         description = "The current version of the system";
         type = lib.types.str;
       };
-      homeManager.enabled = lib.options.mkOption {
+      homeManager.enable = lib.options.mkOption {
         default = false;
         defaultText = "Flag for home-manager integration";
         description = "Whether to signal wheter home-manager is enabled for the environment";
         type = lib.types.bool;
       };
-      desktopEnabled = lib.options.mkOption {
+      desktop.enable = lib.options.mkOption {
         default = false;
         defaultText = "Defaults to CLI system";
         description = "Whether to enable the desktop environment";

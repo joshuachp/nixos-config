@@ -9,7 +9,7 @@
         enable = true;
         enableSSHSupport = true;
         enableExtraSocket = true;
-        pinentryFlavor = if config.systemConfig.desktopEnabled then "gnome3" else "curses";
+        pinentryFlavor = if config.systemConfig.desktop.enabled then "gnome3" else "curses";
       };
       ssh.startAgent = false;
     };

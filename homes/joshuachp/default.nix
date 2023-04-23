@@ -29,7 +29,7 @@
     programs.home-manager.enable = true;
 
     # Options
-    systemConfig.desktopEnabled = lib.mkForce true;
+    systemConfig.desktop.enabled = lib.mkForce true;
 
     nixpkgs.overlays = [
       nixgl.overlay

@@ -4,6 +4,7 @@
   imports = [
     ./audio.nix
     ./fonts.nix
+    ./qt.nix
     ./services.nix
     ./window_manager/gnome.nix
     ./window_manager/i3.nix

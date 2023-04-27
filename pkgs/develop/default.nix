@@ -5,6 +5,7 @@
   pre-commit
 
   # Code
+  dprint
   delta
   difftastic
   jq

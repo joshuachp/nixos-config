@@ -31,8 +31,6 @@
     nixos-hardware.nixosModules.common-pc-laptop-acpi_call
   ];
   config = {
-    boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
-
     boot.plymouth.enable = true;
     security.tpm2.enable = true;
 

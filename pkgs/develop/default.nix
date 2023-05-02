@@ -22,6 +22,7 @@
   hyperfine
 
   # Debug
+  rr
   gdb
   lldb
 

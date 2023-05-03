@@ -15,6 +15,7 @@ pkgs: with pkgs; [
   fzf
   rclone
   file
+  imagemagick
 
   # Document
   pandoc

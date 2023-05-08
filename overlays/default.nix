@@ -21,7 +21,10 @@
 
           nerdfonts = super.nerdfonts.override {
             # Only the symbols are needed
-            fonts = [ "NerdFontsSymbolsOnly" ];
+            fonts = [
+              "JetBrainsMono"
+              "NerdFontsSymbolsOnly"
+            ];
           };
 
           jumpOverlay = jump.packages.${system}.default;

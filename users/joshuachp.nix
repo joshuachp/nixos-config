@@ -15,6 +15,9 @@
       ];
     };
 
+    # Since the user shell is zsh, we need to enable it
+    programs.zsh.enable = true;
+
     # Home manager configuration, this is for stuff that will be difficult to achieve with only
     # nixos modules
     home-manager.users.joshuachp = { config, pkgs, lib, ... }: {

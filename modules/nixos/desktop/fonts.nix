@@ -1,9 +1,4 @@
-{ config
-, pkgs
-, lib
-, flake-utils
-, nerd-font-symbols
-, system
+{ pkgs
 , ...
 }: {
   config = {

@@ -42,30 +42,9 @@
       };
     };
 
-    # Specialization for using the AMD as primary GPU
-    specialisation.singleMonitor.configuration = {
-      hardware.nvidia = lib.mkForce {
-        powerManagement = {
-          enable = true;
-          finegrained = true;
-        };
-
-        prime = {
-          offload.enable = true;
-          sync.enable = false;
-        };
-      };
-
-      services.xserver.screenSection = lib.mkForce "";
-
-      services.xserver.drivers = lib.mkForce [{
-        name = "amdgpu";
-        display = false;
-        modules = [ pkgs.xorg.xf86videoamdgpu ];
-        screenSection = ''
-          GPUDevice "Device-nvidia[0]"
-        '';
-      }];
+    # Render on the Nvidia GPU by default
+    environment.variables = {
+      DRI_PRIME = "1";
     };
   };
 }

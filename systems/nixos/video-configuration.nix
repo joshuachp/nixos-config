@@ -1,6 +1,4 @@
-{ config
-, pkgs
-, lib
+{ pkgs
 , ...
 }: {
   config = {
@@ -44,7 +42,12 @@
 
     # Render on the Nvidia GPU by default
     environment.variables = {
-      DRI_PRIME = "1";
+      # Enable this to render using the dedicated GPU
+      # https://wiki.archlinux.org/title/PRIME#Wayland-specific_configuration
+      DRI_PRIME = "pci-0000_01_00_0";
+      GBM_BACKEND = "nvidia-drm";
+      __GLX_VENDOR_LIBRARY_NAME = "nvidia";
+      # __VK_LAYER_NV_optimus = "NVIDIA_only";
     };
   };
 }

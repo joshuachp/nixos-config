@@ -14,7 +14,7 @@
       systemd-boot.enable = true;
       efi = {
         canTouchEfiVariables = true;
-        efiSysMountPoint = "/boot/efi";
+        efiSysMountPoint = "/efi";
       };
     };
 
@@ -36,7 +36,7 @@
       fsType = "btrfs";
     };
 
-    fileSystems."/boot/efi" = {
+    fileSystems."/efi" = {
       device = "/dev/disk/by-uuid/0F4B-952D";
       fsType = "vfat";
     };

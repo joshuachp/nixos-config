@@ -40,14 +40,20 @@
       };
     };
 
+    # Enable this to render using the dedicated GPU
+    # https://gitlab.gnome.org/GNOME/mutter/-/merge_requests/1562
+    # services.udev.extraRules = ''
+    #   ENV{DEVNAME}=="/dev/dri/card1", TAG+="mutter-device-preferred-primary"
+    # '';
+
     # Render on the Nvidia GPU by default
-    environment.variables = {
-      # Enable this to render using the dedicated GPU
-      # https://wiki.archlinux.org/title/PRIME#Wayland-specific_configuration
-      DRI_PRIME = "pci-0000_01_00_0";
-      GBM_BACKEND = "nvidia-drm";
-      __GLX_VENDOR_LIBRARY_NAME = "nvidia";
-      # __VK_LAYER_NV_optimus = "NVIDIA_only";
-    };
+    # NOTE: this is more for a single application
+    # environment.variables = {
+    #    Enable this to render using the dedicated GPU
+    #    https://wiki.archlinux.org/title/PRIME#Wayland-specific_configuration
+    #    DRI_PRIME = "1";
+    #    __GLX_VENDOR_LIBRARY_NAME = "nvidia";
+    #    __VK_LAYER_NV_optimus = "NVIDIA_only";
+    # };
   };
 }

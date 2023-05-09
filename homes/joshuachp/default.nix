@@ -8,6 +8,7 @@
   imports = [
     ../../modules/common/nix
     ../../modules/home-manager/gpg.nix
+    ../../modules/home-manager/qt.nix
     ../../modules/home-manager/syncthing.nix
   ];
   config = {

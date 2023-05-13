@@ -19,7 +19,7 @@
     };
 
     boot.kernelPackages = pkgs.linuxPackages;
-    boot.initrd.availableKernelModules = [ "xhci_pci" "nvme" "ahci" "usbhid" "sd_mod" ];
+    boot.initrd.availableKernelModules = [ "xhci_pci" "nvme" "ahci" "usbhid" "usb_storage" "sd_mod" ];
     boot.initrd.kernelModules = [ "dm-snapshot" "amdgpu" ];
     boot.kernelModules = [ "kvm-amd" ];
     boot.extraModulePackages = [ ];
@@ -34,6 +34,13 @@
     fileSystems."/" = {
       device = "/dev/Linux/root";
       fsType = "btrfs";
+      options = [ "subvol=root" "compress=zstd" ];
+    };
+
+    fileSystems."/nix" = {
+      device = "/dev/Linux/root";
+      fsType = "btrfs";
+      options = [ "subvol=nix" "compress=zstd" "noatime" ];
     };
 
     fileSystems."/efi" = {
@@ -44,17 +51,19 @@
     fileSystems."/home" = {
       device = "/dev/Linux/home";
       fsType = "btrfs";
+      options = [ "compress=zstd" ];
     };
 
     fileSystems."/home/joshuachp/share" = {
       device = "/dev/Linux/share";
       fsType = "btrfs";
-      options = [ "defaults" "user" "exec" ];
+      options = [ "compress=zstd" "defaults" "user" "exec" ];
     };
 
     fileSystems."/var" = {
       device = "/dev/Linux/var";
       fsType = "btrfs";
+      options = [ "compress=zstd" "noatime" ];
     };
 
     swapDevices = [{ device = "/dev/Linux/swap"; }];

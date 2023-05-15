@@ -19,9 +19,11 @@
     # XDG desktop portal compatibility with `wlroots`
     xdg.portal = {
       wlr.enable = true;
-      extraPortals = with pkgs; [
-        xdg-desktop-portal-gtk
-      ];
+      # NOTE: I believe this is needed if gnome is not present, but otherwise it will generate an
+      #       error for a collision
+      # extraPortals = with pkgs; [
+      #   xdg-desktop-portal-gtk
+      # ];
     };
   };
 }

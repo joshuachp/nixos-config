@@ -21,6 +21,12 @@
         description = "Whether to enable the desktop environment";
         type = lib.types.bool;
       };
+      desktop.wayland = lib.options.mkOption {
+        default = false;
+        defaultText = "Enable wayland backend";
+        description = "Whether to enable the wayland desktop environment and packages";
+        type = lib.types.bool;
+      };
     };
   };
 }

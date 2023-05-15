@@ -39,6 +39,7 @@
       enable = true;
       wayland = true;
     };
+    nixosConfig.desktop.sway.nvidia = true;
 
     networking = {
       # The global useDHCP flag is deprecated, therefore explicitly set to false here.

@@ -25,3 +25,18 @@ NixOS configuration
   machine specific configurations.
 - `users`: user configurations, options regarding specific users, like name
   default shells and so on.
+
+## Options
+
+The category of options are:
+
+- `systemConfig`: system wide options, for both nixos and home-manager
+- `nixosConfig`: nixos specific options
+- `homeConfig`: home-manager specific options
+
+The options can be set in the `options` directory, and at the top of each
+module, but there MUST not be respectively a `nixosConfig` or `homeConfig`
+options in the home-manager or nixos module directories.
+
+The `systemConfig` options will be shared to the home-manager on nixos config in
+the [`users/default.nix`] file.

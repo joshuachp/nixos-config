@@ -10,7 +10,7 @@
       programs.xwayland.enable = true;
       environment.variables = {
         # Enable Wayland support in Firefox
-        MOZ_ENABLE_WAYLAND = 1;
+        MOZ_ENABLE_WAYLAND = "1";
       };
     };
 }

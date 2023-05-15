@@ -13,14 +13,14 @@
       sshPort = config.deploy.port;
     in
     {
-      boot.cleanTmpDir = true;
+      boot.tmp.cleanOnBoot = true;
       zramSwap.enable = true;
 
       services.openssh = {
         enable = true;
         # Random port
         ports = [ sshPort ];
-        passwordAuthentication = false;
+        settings.PasswordAuthentication = false;
       };
 
       networking.firewall = {

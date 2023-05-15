@@ -21,10 +21,10 @@
       # DNS instead of /etc/hosts
       services.dnsmasq = {
         enable = true;
-        extraConfig = ''
-          interface=wg0
-          address=/${config.privateConfig.nixos-cloud.address}/10.0.0.2
-        '';
+        settings = {
+          interface = "wg0";
+          address = "/${config.privateConfig.nixos-cloud.address}/10.0.0.2";
+        };
       };
 
       # Enable NAT

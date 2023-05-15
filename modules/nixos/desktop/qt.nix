@@ -4,7 +4,7 @@
 , ...
 }:
 let
-  inherit (config.systemConfig) wayland;
+  inherit (config.systemConfig.desktop) wayland;
 in
 {
   imports = [

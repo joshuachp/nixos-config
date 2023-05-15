@@ -8,7 +8,7 @@
       xdg.portal.enable = true;
       # Enable xWayland by default if Wayland is enabled
       programs.xwayland.enable = true;
-      environment.variables = true {
+      environment.variables = {
         # Enable Wayland support in Firefox
         MOZ_ENABLE_WAYLAND = 1;
       };

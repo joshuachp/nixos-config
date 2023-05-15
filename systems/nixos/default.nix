@@ -35,7 +35,10 @@
     security.tpm2.enable = true;
 
     # Enable desktop system
-    systemConfig.desktop.enable = true;
+    systemConfig.desktop = {
+      enable = true;
+      wayland = true;
+    };
 
     networking = {
       # The global useDHCP flag is deprecated, therefore explicitly set to false here.

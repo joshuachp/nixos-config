@@ -28,6 +28,7 @@
         driversi686Linux.amdvlk
 
         vulkan-validation-layers
+        vulkan-extension-layer
       ];
     };
 

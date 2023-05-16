@@ -41,7 +41,7 @@
           "--unsupported-gpu"
         ];
         extraSessionCommands = ''
-          export WLR_DRM_NO_MODIFIERS=1
+          export WLR_NO_HARDWARE_CURSORS=1
           export XDG_CURRENT_DESKTOP=sway
           systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
         '';

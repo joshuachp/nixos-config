@@ -12,4 +12,6 @@ pkgs: with pkgs; [
   slurp
   # Notifications
   mako
+  # Application X settings
+  xsettingsd
 ]

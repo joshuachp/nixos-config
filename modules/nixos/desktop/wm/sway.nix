@@ -42,6 +42,7 @@
         ];
         extraSessionCommands = ''
           export WLR_DRM_NO_MODIFIERS=1
+          export XDG_CURRENT_DESKTOP=sway
         '';
       };
 

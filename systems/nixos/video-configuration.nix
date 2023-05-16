@@ -18,12 +18,16 @@
       extraPackages = with pkgs; [
         rocm-opencl-icd
         rocm-opencl-runtime
-        amdvlk
+
         vaapiVdpau
+
+        vulkan-validation-layers
       ];
 
       extraPackages32 = with pkgs; [
         driversi686Linux.amdvlk
+
+        vulkan-validation-layers
       ];
     };
 

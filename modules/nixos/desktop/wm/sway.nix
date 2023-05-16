@@ -40,6 +40,9 @@
         extraOptions = lib.mkIf nvidia [
           "--unsupported-gpu"
         ];
+        extraSessionCommands = ''
+          export WLR_DRM_NO_MODIFIERS=1
+        '';
       };
 
       # XDG desktop portal compatibility with `wlroots`

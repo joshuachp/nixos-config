@@ -19,16 +19,16 @@
         rocm-opencl-icd
         rocm-opencl-runtime
 
+        amdvlk
+
         vaapiVdpau
 
         vulkan-validation-layers
+        vulkan-extension-layer
       ];
 
       extraPackages32 = with pkgs; [
         driversi686Linux.amdvlk
-
-        vulkan-validation-layers
-        vulkan-extension-layer
       ];
     };
 

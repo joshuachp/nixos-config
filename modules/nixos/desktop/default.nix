@@ -3,6 +3,7 @@
 }: {
   imports = [
     ./audio.nix
+    ./bluetooth.nix
     ./fonts.nix
     ./qt.nix
     ./services.nix
@@ -12,7 +13,7 @@
     ./wm/sway.nix
   ];
   config = {
-    # Xorg
+    # Desktop service
     services.xserver = {
       enable = true;
       # Configure keymap in X11

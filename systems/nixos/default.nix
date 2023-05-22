@@ -39,9 +39,12 @@
       enable = true;
       wayland = true;
     };
-    nixosConfig.desktop.sway = {
-      enable = true;
-      nvidia = true;
+    nixosConfig.desktop = {
+      bluetooth.enable = true;
+      sway = {
+        enable = true;
+        nvidia = true;
+      };
     };
 
     networking = {

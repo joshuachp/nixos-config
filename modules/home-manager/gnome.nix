@@ -1,5 +1,9 @@
-_: {
-  config = {
+{ config
+, lib
+, ...
+}: {
+  # TODO: this should check for gnome also
+  config = lib.mkIf config.systemConfig.desktop.enable {
     dconf.settings = {
       # Terminal shortcut for Gnome
       "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0" = {

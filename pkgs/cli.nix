@@ -28,6 +28,7 @@ pkgs: with pkgs; [
   wget
   iproute2
   socat
+  dig
 
   # Rust CLI programs
   bat

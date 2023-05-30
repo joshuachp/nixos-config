@@ -10,6 +10,7 @@
     ./services.nix
     ./wayland.nix
     ./wm/gnome.nix
+    ./wm/hyprland.nix
     ./wm/i3.nix
     ./wm/sway.nix
   ];

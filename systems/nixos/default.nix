@@ -41,6 +41,7 @@
         wayland = true;
         gnome.enable = true;
       };
+      hyprland.enable = true;
     };
     nixosConfig = {
       boot.plymouth.enable = true;

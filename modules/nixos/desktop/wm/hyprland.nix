@@ -1,6 +1,7 @@
 # Hyprland dynamic tiling window manager
 { config
 , lib
+, pkgs
 , ...
 }: {
   options = {
@@ -20,5 +21,8 @@
         enable = true;
         nvidiaPatches = true;
       };
+      environment.systemPackages = with pkgs; [
+        waybar
+      ];
     };
 }

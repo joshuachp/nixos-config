@@ -724,17 +724,13 @@
     "nixpkgs_2": {
       "locked": {
         "lastModified": 1685655444,
-        "narHash": "sha256-6EujQNAeaUkWvpEZZcVF8qSfQrNVWFNNGbUJxv/A5a8=",
-        "owner": "nixos",
-        "repo": "nixpkgs",
-        "rev": "e635192892f5abbc2289eaac3a73cdb249abaefd",
-        "type": "github"
+        "narHash": "sha256-Nf0xiou3qKBhCI+nxxJLbqliYfxLVJ6ZRv4ybmjKnXI=",
+        "type": "git",
+        "url": "file:///home/joshuachp/share/repos/github/nixpkgs"
       },
       "original": {
-        "owner": "nixos",
-        "ref": "nixos-unstable",
-        "repo": "nixpkgs",
-        "type": "github"
+        "type": "git",
+        "url": "file:///home/joshuachp/share/repos/github/nixpkgs"
       }
     },
     "note": {

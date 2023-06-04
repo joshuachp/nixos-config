@@ -5,6 +5,7 @@
     services.xserver.exportConfiguration = true;
 
     services.xserver.videoDrivers = [
+      "amdgpu"
       "nvidia"
     ];
 
@@ -33,8 +34,8 @@
 
     hardware.nvidia = {
       nvidiaPersistenced = true;
+
       modesetting.enable = true;
-      forceFullCompositionPipeline = true;
 
       prime = {
         sync.enable = true;

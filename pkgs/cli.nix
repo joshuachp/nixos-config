@@ -29,6 +29,8 @@ pkgs: with pkgs; [
   iproute2
   socat
   dig
+  inetutils
+  nmap
 
   # Rust CLI programs
   bat

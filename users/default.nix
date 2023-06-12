@@ -1,4 +1,4 @@
-{ config, ... }: {
+{ config, neovim-config, ... }: {
   # Default user
   imports = [ ./joshuachp.nix ];
   config = {
@@ -33,6 +33,8 @@
       useGlobalPkgs = true;
       sharedModules = [
         ../options
+        # Flake input
+        neovim-config.homeManagerModules.default
         {
           # Make sure the systemConfig is the same for home manager
           config.systemConfig = config.systemConfig;

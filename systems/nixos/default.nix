@@ -38,6 +38,7 @@
     systemConfig.desktop = {
       enable = true;
       wayland = true;
+      gnome.enable = true;
     };
     nixosConfig.desktop = {
       bluetooth.enable = true;

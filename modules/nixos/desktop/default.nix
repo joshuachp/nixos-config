@@ -1,4 +1,6 @@
-{ pkgs
+{ config
+, pkgs
+, lib
 , ...
 }: {
   imports = [
@@ -30,39 +32,10 @@
     };
 
     environment.systemPackages = with pkgs; [
-      # Terminal
-      alacritty
-
-      # Editor
-      vscode
-      godot
-
       # Browser
       firefox
       chromium
-      brave
-
-      # Apps
-      element-desktop
-      libreoffice
-      signal-desktop
-      spotify
-      tdesktop
-      thunderbird
-      vlc
-      xournalpp
-      zathura
-
-      # Other
-      pinentry-gnome
-      yubikey-touch-detector
-
-      # Tools
-      gnuplot
-      xclip
-      wl-clipboard
-
-      mattermost-desktop
-    ] ++ import ../../../pkgs/desktop.nix pkgs;
+    ]
+    ++ import ../../../pkgs/desktop.nix { inherit pkgs lib config; };
   };
 }

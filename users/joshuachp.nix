@@ -24,6 +24,7 @@
       imports = [
         ../modules/home-manager/gnome.nix
         ../modules/home-manager/syncthing.nix
+        ../modules/home-manager/gpg.nix
       ];
       config = {
         home.stateVersion = config.systemConfig.version;

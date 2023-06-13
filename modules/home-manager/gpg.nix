@@ -19,7 +19,14 @@
       maxCacheTtl = 60480000;
       defaultCacheTtlSsh = 3600;
       maxCacheTtlSsh = 60480000;
-      pinentryFlavor = if config.systemConfig.desktop.enable then "qt" else "curses";
+      pinentryFlavor =
+        if config.systemConfig.desktop.enable then
+          if config.systemConfig.desktop.gnome.enable then
+            "gnome3"
+          else
+            "qt"
+        else
+          "curses";
     };
   };
 }

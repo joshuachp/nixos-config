@@ -1,4 +1,5 @@
-{ lib
+{ config
+, lib
 , ...
 }:
 {
@@ -27,6 +28,20 @@
         description = "Whether to enable the wayland desktop environment and packages";
         type = lib.types.bool;
       };
+      desktop.gnome.enable = lib.options.mkOption {
+        default = false;
+        defaultText = "Enable gnome desktop environment";
+        description = "Whether to enable the gnome desktop environment and its packages";
+        type = lib.types.bool;
+      };
     };
+  };
+  config = let cfg = config.systemConfig; in {
+    assertions = [
+      {
+        assertion = !(cfg.desktop.wayland && cfg.desktop.gnome.enable) || cfg.desktop.enable;
+        message = "Wayland and Gnome can only be enabled if the desktop environment is enabled";
+      }
+    ];
   };
 }

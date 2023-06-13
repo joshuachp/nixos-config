@@ -37,14 +37,12 @@
     ];
 
     home.packages = with pkgs; [
-      alacritty
       tmux
 
       polybarFull
       xss-lock
       mpdris2
       rofi
-      spotify
 
       ccache
       bmap-tools
@@ -68,7 +66,7 @@
     ++ import ../../pkgs/develop/c_cpp.nix { inherit pkgs; }
     ++ import ../../pkgs/develop/shell.nix pkgs
     ++ import ../../pkgs/develop/elixir.nix pkgs
-    ++ import ../../pkgs/desktop.nix pkgs
+    ++ import ../../pkgs/desktop.nix { inherit pkgs lib config; }
     ;
   };
 }

@@ -3,6 +3,7 @@
 , system
 , nil
 , nixgl
+, config
 , ...
 }: {
   imports = [

@@ -33,6 +33,9 @@
         in
         {
           alacritty = wrapIntel "alacritty" "${super.alacritty}/bin/alacritty";
+          vscode = wrapIntel "code" "${super.alacritty}/bin/code";
+          libreoffice = wrapIntel "libreoffice" "${super.libreoffice}/bin/libreoffice";
+          tdesktop = wrapIntel "telegram-desktop" "${super.tdesktop}/bin/telegram-desktop";
         })
     ];
 

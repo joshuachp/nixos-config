@@ -28,6 +28,10 @@
       ];
       config = {
         home.stateVersion = config.systemConfig.version;
+        programs.neovim = {
+          enable = true;
+          defaultEditor = true;
+        };
       };
     };
   };

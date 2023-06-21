@@ -23,15 +23,12 @@
     home-manager.users.joshuachp = { config, pkgs, lib, ... }: {
       imports = [
         ../modules/home-manager/gnome.nix
+        ../modules/home-manager/nvim.nix
         ../modules/home-manager/syncthing.nix
         ../modules/home-manager/gpg.nix
       ];
       config = {
         home.stateVersion = config.systemConfig.version;
-        programs.neovim = {
-          enable = true;
-          defaultEditor = true;
-        };
       };
     };
   };

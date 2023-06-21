@@ -8,6 +8,7 @@
 }: {
   imports = [
     ../../modules/common/nix
+    ../../modules/home-manager/nvim.nix
     ../../modules/home-manager/gpg.nix
     ../../modules/home-manager/qt.nix
     ../../modules/home-manager/syncthing.nix
@@ -33,7 +34,7 @@
         in
         {
           alacritty = wrapIntel "alacritty" "${super.alacritty}/bin/alacritty";
-          vscode = wrapIntel "code" "${super.alacritty}/bin/code";
+          vscode = wrapIntel "code" "${super.vscode}/bin/code";
           libreoffice = wrapIntel "libreoffice" "${super.libreoffice}/bin/libreoffice";
           tdesktop = wrapIntel "telegram-desktop" "${super.tdesktop}/bin/telegram-desktop";
         })

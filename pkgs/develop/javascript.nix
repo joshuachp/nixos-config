@@ -4,5 +4,6 @@
   nodePackages.prettier
   nodePackages.typescript
   nodePackages.typescript-language-server
-  nodePackages.vscode-langservers-extracted
+  # TODO: was broken, re-add when fixed
+  # nodePackages.vscode-langservers-extracted
 ]

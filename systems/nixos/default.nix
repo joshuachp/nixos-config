@@ -73,6 +73,11 @@
       # Or disable the firewall altogether.
       # firewall.enable = false;
 
+      # Syncthing local firewall
+      # https://docs.syncthing.net/users/firewall.html#local-firewall
+      firewall.allowedTCPPorts = [ 22000 ];
+      firewall.allowedUDPPorts = [ 22000 21027 ];
+
       # Configure network proxy if necessary
       # networking.proxy.default = "http://user:password@proxy:port/";
       # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";

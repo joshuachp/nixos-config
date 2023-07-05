@@ -3,6 +3,7 @@
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
 { pkgs
+, nixos-hardware
 , ...
 }: {
   imports =
@@ -24,6 +25,10 @@
       ../../modules/nixos/services.nix
       #../../modules/nixos/wireguard/client.nix
       ../../modules/nixos/virtualisation.nix
+
+      nixos-hardware.nixosModules.common-cpu-intel
+      nixos-hardware.nixosModules.common-pc
+      nixos-hardware.nixosModules.common-pc-ssd
     ];
   config = {
     boot.plymouth.enable = true;
@@ -37,6 +42,7 @@
     };
     nixosConfig.desktop = {
       bluetooth.enable = true;
+      sway.enable = true;
     };
 
     # Enable docker

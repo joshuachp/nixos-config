@@ -7,7 +7,7 @@ repos:
       - id: check-yaml
       - id: check-added-large-files
   - repo: https://github.com/joshuachp/pre-commit-hooks
-    rev: 0.1.24
+    rev: 0.1.25
     hooks:
       - id: nix-nixpkgs-fmt
       - id: nix-statix

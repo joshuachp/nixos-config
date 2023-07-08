@@ -23,11 +23,7 @@
         settings.PasswordAuthentication = false;
       };
 
-      networking.firewall = {
-        enable = true;
-        allowedUDPPorts = [ sshPort ];
-        allowedTCPPorts = [ sshPort ];
-      };
+      networking.firewall.enable = true;
 
       services.fail2ban.enable = true;
 

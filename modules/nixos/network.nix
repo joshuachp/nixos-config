@@ -6,6 +6,7 @@
       cfg = config.privateConfig.resolved;
     in
     {
+      networking.nameservers = cfg.dns;
       services.resolved = {
         enable = true;
         fallbackDns = cfg.dns;

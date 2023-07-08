@@ -30,10 +30,12 @@
         autostart = true;
         # IP address subnet at the client end
         address = [ hostConf."${hostname}".address ];
-        dns = cfg.dns ++ [
-          "10.0.0.2"
-          "fdc9:281f:04d7:9ee9::2"
-        ];
+        # Set a split DNS to route only the .wg domains through wireguard
+        postUp = ''
+          resolvconf -f -d wg0
+          resolvectl dns wg0 10.0.0.2 fdc9:281f:04d7:9ee9::2
+          resolvectl domain wg0 '~wg'
+        '';
         listenPort = cfg.port;
         privateKeyFile = hostConf."${hostname}".key;
         peers = [

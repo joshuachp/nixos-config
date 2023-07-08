@@ -24,7 +24,13 @@
         enable = true;
         settings = {
           interface = "wg0";
-          address = "/${privateConfig.nixos-cloud.address}/10.0.0.2";
+          address = [
+            "/${privateConfig.nixos-cloud.address}/10.0.0.2"
+            "/nixos.wg/10.0.0.1"
+            "/nixos-cloud.wg/10.0.0.2"
+            # "/nixos-work.wg/10.0.0.3"
+            "/nord.wg/10.0.0.4"
+          ];
         };
       };
 
@@ -57,7 +63,7 @@
             publicKey = privateConfig.wireguard.nixosWorkPublicKey;
             allowedIPs = [ "10.0.0.3/32" "fdc9:281f:04d7:9ee9::3/128" ];
           }
-          # Nixos Work
+          # Nord
           {
             publicKey = privateConfig.wireguard.androidPublicKey;
             allowedIPs = [ "10.0.0.4/32" "fdc9:281f:04d7:9ee9::4/128" ];

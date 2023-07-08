@@ -19,6 +19,8 @@
 
       services.openssh = {
         enable = true;
+        # Opened through wireguard
+        openFirewall = false;
         # Random port
         ports = [ sshPort ];
         settings.PasswordAuthentication = false;

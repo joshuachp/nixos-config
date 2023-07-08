@@ -34,7 +34,7 @@
     fileSystems."/" = {
       device = "/dev/Linux/root";
       fsType = "btrfs";
-      options = [ "subvol=root" "compress=zstd" ];
+      options = [ "subvol=root" "compress=zstd" "noatime" ];
     };
 
     fileSystems."/nix" = {
@@ -57,7 +57,7 @@
     fileSystems."/home/joshuachp/share" = {
       device = "/dev/Linux/share";
       fsType = "btrfs";
-      options = [ "compress=zstd" "defaults" "user" "exec" ];
+      options = [ "compress=zstd" "user" "exec" ];
     };
 
     fileSystems."/var" = {

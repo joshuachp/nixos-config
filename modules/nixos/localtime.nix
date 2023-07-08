@@ -1,4 +1,4 @@
-{ config, ... }: {
+_: {
   # Local timezone
   time.timeZone = "Europe/Rome";
 }

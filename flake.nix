@@ -130,7 +130,7 @@
           ];
         };
         # Work
-        nixos-work = mkSystem "nixos-work" {
+        burkstaller = mkSystem "burkstaller" {
           modules = [
             neovim-config.nixosModules.default
           ];

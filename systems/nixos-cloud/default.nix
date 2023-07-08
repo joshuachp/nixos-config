@@ -13,6 +13,7 @@
       sshPort = config.deploy.port;
     in
     {
+      boot.loader.grub.device = "/dev/sda";
       boot.tmp.cleanOnBoot = true;
       zramSwap.enable = true;
 

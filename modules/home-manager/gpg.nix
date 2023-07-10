@@ -1,5 +1,6 @@
 # Configure GPG and the GPG agent to use with home-manager
 { config
+, pkgs
 , ...
 }: {
   config = {
@@ -9,6 +10,17 @@
       settings = {
         keyserver = "hkps://keys.openpgp.org";
         use-agent = true;
+      };
+      scdaemonSettings = {
+        # Use the pcsc instead of the integrated ccid
+        # https://wiki.archlinux.org/title/GnuPG#GnuPG_with_pcscd_(PCSC_Lite)
+        disable-ccid = true;
+        pcsc-driver = "${pkgs.pcsclite.out}/lib/libpcsclite.so";
+        card-timeout = "5";
+        pcsc-shared = true;
+        # with pcsc-shared the pin is asked every time, this fixes it
+        # https://dev.gnupg.org/T5436
+        disable-application = "piv";
       };
     };
     services.gpg-agent = {

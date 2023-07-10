@@ -6,7 +6,7 @@
     # Gnome key-chain
     services.dbus.packages = [ pkgs.gcr ];
     # Enable udev rules
-    hardware.gpgSmartcards.enable = true;
+    # hardware.gpgSmartcards.enable = true;
     # Packages for the cli
     environment.systemPackages = with pkgs; [
       gnupg

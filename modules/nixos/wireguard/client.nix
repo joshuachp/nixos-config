@@ -4,8 +4,7 @@
 }: {
   config =
     let
-      wireguardHost = config.privateConfig.wireguard.serverIp;
-      port = 43978;
+      cfg = config.privateConfig.wireguard;
       hostConf = {
         nixos = {
           key = config.sops.secrets.wireguard_nixos_private.path;
@@ -24,21 +23,26 @@
     {
       # Open the firewall port
       networking.firewall = {
-        allowedUDPPorts = [ port ];
+        allowedUDPPorts = [ cfg.port ];
       };
       # Wireguard interface
       networking.wg-quick.interfaces.wg0 = {
-        autostart = false;
+        autostart = true;
         # IP address subnet at the client end
         address = [ hostConf."${hostname}".address ];
-        dns = [ "10.0.0.2" "fdc9:281f:04d7:9ee9::2" ];
-        listenPort = port;
+        # Set a split DNS to route only the .wg domains through wireguard
+        postUp = ''
+          resolvconf -f -d wg0
+          resolvectl dns wg0 10.0.0.2 fdc9:281f:04d7:9ee9::2
+          resolvectl domain wg0 '~wg'
+        '';
+        listenPort = cfg.port;
         privateKeyFile = hostConf."${hostname}".key;
         peers = [
           # Nixos Cloud
           {
             publicKey = config.privateConfig.wireguard.nixosCloudPublicKey;
-            endpoint = "${wireguardHost}:${toString port}";
+            endpoint = "${cfg.serverIp}:${toString cfg.port}";
             allowedIPs = [ "10.0.0.2/32" ];
             persistentKeepalive = 25;
           }

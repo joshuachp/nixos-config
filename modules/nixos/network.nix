@@ -1,22 +1,21 @@
 { config
 , ...
 }: {
-  config = {
-    services.resolved = {
-      enable = true;
-      fallbackDns = [
-        "45.90.28.0#John--Blackbox-4ee8d8.dns1.nextdns.io"
-        "2a07:a8c0::#John--Blackbox-4ee8d8.dns1.nextdns.io"
-        "45.90.30.0#John--Blackbox-4ee8d8.dns2.nextdns.io"
-        "2a07:a8c1::#John--Blackbox-4ee8d8.dns2.nextdns.io"
-        "2a07:a8c1::#John--Blackbox-4ee8d8.dns2.nextdns.io"
-      ];
-      dnssec = "false";
-      extraConfig = ''
-        DNSOverTLS=opportunistic
-      '';
-    };
+  config =
+    let
+      cfg = config.privateConfig.resolved;
+    in
+    {
+      networking.nameservers = cfg.dns;
+      services.resolved = {
+        enable = true;
+        fallbackDns = cfg.dns;
+        dnssec = "false";
+        extraConfig = ''
+          DNSOverTLS=opportunistic
+        '';
+      };
 
-    networking.networkmanager.dns = "systemd-resolved";
-  };
+      networking.networkmanager.dns = "systemd-resolved";
+    };
 }

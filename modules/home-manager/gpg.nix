@@ -12,15 +12,18 @@
         use-agent = true;
       };
       scdaemonSettings = {
-        # Use the pcsc instead of the integrated ccid
-        # https://wiki.archlinux.org/title/GnuPG#GnuPG_with_pcscd_(PCSC_Lite)
+        ## Use the pcsc instead of the integrated ccid
+        ## https://wiki.archlinux.org/title/GnuPG#GnuPG_with_pcscd_(PCSC_Lite)
         disable-ccid = true;
         pcsc-driver = "${pkgs.pcsclite.out}/lib/libpcsclite.so";
-        card-timeout = "5";
-        pcsc-shared = true;
-        # with pcsc-shared the pin is asked every time, this fixes it
-        # https://dev.gnupg.org/T5436
-        disable-application = "piv";
+        # pcsc-shared = true;
+        ## with pcsc-shared the pin is asked every time, this fixes it
+        ## https://dev.gnupg.org/T5436
+        # disable-application = "piv";
+        ## Fix connection errors
+        ## https://support.yubico.com/hc/en-us/articles/360013714479-Troubleshooting-Issues-with-GPG
+        reader-port = "Yubico.com Yubikey 4/5 OTP+U2F+CCID";
+        log-file = "/home/joshuachp/scdaemon.log";
       };
     };
     services.gpg-agent = {

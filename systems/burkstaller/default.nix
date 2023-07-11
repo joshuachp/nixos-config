@@ -24,7 +24,7 @@
       ../../modules/nixos/nix
       ../../modules/nixos/services.nix
       #../../modules/nixos/wireguard/client.nix
-      ../../modules/nixos/virtualisation.nix
+      #../../modules/nixos/virtualisation.nix
 
       nixos-hardware.nixosModules.common-cpu-intel
       nixos-hardware.nixosModules.common-pc

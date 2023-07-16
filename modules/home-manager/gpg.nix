@@ -23,7 +23,6 @@
         ## Fix connection errors
         ## https://support.yubico.com/hc/en-us/articles/360013714479-Troubleshooting-Issues-with-GPG
         reader-port = "Yubico.com Yubikey 4/5 OTP+U2F+CCID";
-        log-file = "/home/joshuachp/scdaemon.log";
       };
     };
     services.gpg-agent = {

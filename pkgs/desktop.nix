@@ -11,6 +11,10 @@ with pkgs; [
   # Editor
   vscode
 
+  # Browser
+  firefox
+  chromium
+
   # Applications
   libreoffice
   rnote # NOTE: Testing as a xournalpp alternative

@@ -31,20 +31,24 @@
     nixos-hardware.nixosModules.common-pc-laptop-acpi_call
   ];
   config = {
-    boot.plymouth.enable = true;
     security.tpm2.enable = true;
 
     # Enable desktop system
-    systemConfig.desktop = {
-      enable = true;
-      wayland = true;
-      gnome.enable = true;
-    };
-    nixosConfig.desktop = {
-      bluetooth.enable = true;
-      sway = {
+    systemConfig = {
+      desktop = {
         enable = true;
-        nvidia = true;
+        wayland = true;
+        gnome.enable = true;
+      };
+    };
+    nixosConfig = {
+      boot.plymouth.enable = true;
+      hardware.bluetooth.enable = true;
+      desktop = {
+        sway = {
+          enable = true;
+          nvidia = true;
+        };
       };
     };
 

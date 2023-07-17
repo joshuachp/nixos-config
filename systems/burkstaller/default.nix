@@ -31,7 +31,6 @@
       nixos-hardware.nixosModules.common-pc-ssd
     ];
   config = {
-    boot.plymouth.enable = true;
     security.tpm2.enable = true;
 
     # Enable desktop system
@@ -40,9 +39,10 @@
       wayland = true;
       gnome.enable = true;
     };
-    nixosConfig.desktop = {
-      bluetooth.enable = true;
-      sway.enable = true;
+    nixosConfig = {
+      boot.plymouth.enable = true;
+      hardware.bluetooth.enable = true;
+      desktop.sway.enable = true;
     };
 
     # Enable docker

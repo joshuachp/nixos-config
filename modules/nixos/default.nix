@@ -2,6 +2,10 @@
 , hostname
 , ...
 }: {
+  imports = [
+    ./plymouth.nix
+    ./bluetooth.nix
+  ];
   config = {
     networking.hostName = hostname;
 

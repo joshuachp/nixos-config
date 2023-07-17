@@ -5,7 +5,6 @@
 }: {
   imports = [
     ./audio.nix
-    ./bluetooth.nix
     ./fonts.nix
     ./qt.nix
     ./services.nix
@@ -31,11 +30,6 @@
       displayManager.gdm.enable = true;
     };
 
-    environment.systemPackages = with pkgs; [
-      # Browser
-      firefox
-      chromium
-    ]
-    ++ import ../../../pkgs/desktop.nix { inherit pkgs lib config; };
+    environment.systemPackages = import ../../../pkgs/desktop.nix { inherit pkgs lib config; };
   };
 }

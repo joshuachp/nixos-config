@@ -1,10 +1,11 @@
+# Enables the hardware configs for bluetooth and configures bluez service.
 { config
 , lib
 , pkgs
 , ...
 }: {
   options = {
-    nixosConfig.desktop.bluetooth.enable = lib.options.mkOption {
+    nixosConfig.hardware.bluetooth.enable = lib.options.mkOption {
       default = false;
       defaultText = "Enables bluetooth";
       description = "Enable bluetooth hardware support and config";
@@ -13,7 +14,7 @@
   };
   config =
     let
-      cfg = config.nixosConfig.desktop.bluetooth;
+      cfg = config.nixosConfig.hardware.bluetooth;
     in
     lib.mkIf cfg.enable {
       hardware.bluetooth.enable = true;
@@ -21,6 +22,7 @@
       # To enable bluetooth experimental features, like the battery level
       hardware.bluetooth.package = pkgs.bluez5-experimental;
 
+      # Enables the experimental features like battery status for the device.
       hardware.bluetooth.settings = {
         General = {
           Experimental = true;

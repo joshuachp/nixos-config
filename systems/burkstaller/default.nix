@@ -40,10 +40,12 @@
       gnome.enable = true;
     };
     nixosConfig = {
-      boot.plymouth.enable = true;
+      boot.plymouth.enable = false;
       hardware.bluetooth.enable = true;
       desktop.sway.enable = true;
     };
+
+    boot.plymouth.enable = true;
 
     # Enable docker
     virtualisation.docker = {

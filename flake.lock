@@ -301,11 +301,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1681205828,
-        "narHash": "sha256-nOeaNu8JR8PUJGgWtA9I3UJjPhRxh+UiHPxawpbGsfQ=",
+        "lastModified": 1689713236,
+        "narHash": "sha256-KI4DDYOBpd+Ckizwseeay/L8J6t8Jb6P9RxUAuNzPkk=",
         "owner": "joshuachp",
         "repo": "jump",
-        "rev": "df56010d32b5259288d57d585e507751057e2884",
+        "rev": "f053aa59700d00f5b4c40fd9b44bc23c4fea8338",
         "type": "github"
       },
       "original": {
@@ -322,11 +322,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1679567394,
-        "narHash": "sha256-ZvLuzPeARDLiQUt6zSZFGOs+HZmE+3g4QURc8mkBsfM=",
+        "lastModified": 1688534083,
+        "narHash": "sha256-/bI5vsioXscQTsx+Hk9X5HfweeNZz/6kVKsbdqfwW7g=",
         "owner": "nmattia",
         "repo": "naersk",
-        "rev": "88cd22380154a2c36799fe8098888f0f59861a15",
+        "rev": "abca1fb7a6cfdd355231fc220c3d0302dbb4369a",
         "type": "github"
       },
       "original": {

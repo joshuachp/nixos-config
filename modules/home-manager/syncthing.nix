@@ -11,9 +11,13 @@
       services.syncthing.tray.enable = true;
       # https://github.com/nix-community/home-manager/issues/2064
       systemd.user.targets.tray = {
+        Install = {
+          WantedBy = [ "graphical-session.target" ];
+        };
         Unit = {
           Description = "Home Manager System Tray";
-          Requires = [ "graphical-session-pre.target" ];
+          Before = "graphical-session.target";
+          PartOf = [ "graphical-session.target" ];
         };
       };
     })

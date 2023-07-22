@@ -32,6 +32,7 @@
   ];
   config = {
     security.tpm2.enable = true;
+    services.fwupd.enable = true;
 
     # Enable desktop system
     systemConfig = {

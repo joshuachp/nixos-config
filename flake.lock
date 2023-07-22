@@ -301,11 +301,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1689713236,
-        "narHash": "sha256-KI4DDYOBpd+Ckizwseeay/L8J6t8Jb6P9RxUAuNzPkk=",
+        "lastModified": 1689848844,
+        "narHash": "sha256-Rhkuq6D/BiGIFdIhWkpP8Wj/T/WYQioXqp8FeI0VXBU=",
         "owner": "joshuachp",
         "repo": "jump",
-        "rev": "f053aa59700d00f5b4c40fd9b44bc23c4fea8338",
+        "rev": "290c89a9f98e2d4190781641d20c76533cfa6c54",
         "type": "github"
       },
       "original": {

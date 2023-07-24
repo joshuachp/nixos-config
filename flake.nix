@@ -135,11 +135,6 @@
             neovim-config.nixosModules.default
           ];
         };
-        # Raspberry PI 3B
-        nixos-rpi = mkSystem "nixos-rpi" {
-          # System of the RPi 3B is ARM64
-          system = arm-system;
-        };
         # Cloud
         nixos-cloud = mkSystem "nixos-cloud" {
           modules = [ privateConf.nixosModules.nixos-cloud ];

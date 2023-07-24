@@ -1,5 +1,5 @@
-{ config
-, pkgs
+# Documentation configuration
+{ pkgs
 , ...
 }: {
   # Enable info and man pages, generating the cache at build time

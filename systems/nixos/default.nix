@@ -20,7 +20,7 @@
     ../../modules/nixos/nix
     ../../modules/nixos/services.nix
     ../../modules/nixos/wireguard/client.nix
-    # ../../modules/nixos/virtualisation.nix
+    ../../modules/nixos/virtualisation.nix
 
     # Hardware configuration
     nixos-hardware.nixosModules.common-cpu-amd

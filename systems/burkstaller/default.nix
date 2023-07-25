@@ -16,7 +16,7 @@
       ../../modules/nixos/desktop
       ../../modules/nixos/develop
       ../../modules/nixos/documentation.nix
-      #../../modules/nixos/embedded.nix
+      ../../modules/nixos/embedded.nix
       ../../modules/nixos/gnupg.nix
       ../../modules/nixos/localization.nix
       ../../modules/nixos/localtime.nix
@@ -24,7 +24,7 @@
       ../../modules/nixos/nix
       ../../modules/nixos/services.nix
       #../../modules/nixos/wireguard/client.nix
-      #../../modules/nixos/virtualisation.nix
+      ../../modules/nixos/virtualisation.nix
 
       nixos-hardware.nixosModules.common-cpu-intel
       nixos-hardware.nixosModules.common-pc

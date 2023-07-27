@@ -3,7 +3,7 @@
 }: {
   config = {
     fonts = {
-      fonts = with pkgs; [
+      packages = with pkgs; [
         noto-fonts
         noto-fonts-cjk
         noto-fonts-emoji
@@ -20,7 +20,7 @@
         nerdfonts
       ];
 
-      enableDefaultFonts = true;
+      enableDefaultPackages = true;
       fontDir.enable = true;
 
       fontconfig.defaultFonts = {

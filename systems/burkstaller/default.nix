@@ -34,6 +34,9 @@
     security.tpm2.enable = true;
     services.fwupd.enable = true;
 
+    users.users.joshuachp.extraGroups = [ "docker" ];
+    environment.systemPackages = [ pkgs.astartectl ];
+
     # Enable desktop system
     systemConfig.desktop = {
       enable = true;

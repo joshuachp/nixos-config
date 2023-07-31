@@ -1,4 +1,4 @@
-name: CI
+name: check
 on:
   push:
     branches:
@@ -17,7 +17,6 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
       - uses: DeterminateSystems/magic-nix-cache-action@main
         with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
           # Don't send the diagnostics automatically
           diagnostic-endpoint: ""
       - run: nix flake check

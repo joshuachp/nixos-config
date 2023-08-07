@@ -3,15 +3,27 @@
 , ...
 }: {
   config = {
-    # Define a user account. Don't forget to set a password with ‘passwd’.
+    users.groups. joshuachp = {
+      gid = 1000;
+    };
     users.users.joshuachp = {
+      uid = 1000;
       isNormalUser = true;
       description = "Joshua Chapman";
-      extraGroups = [ "wheel" "networkmanager" "nix-keys" "audio" "video" "share-dir" ];
+      extraGroups = [
+        "users"
+        "wheel"
+        "networkmanager"
+        "nix-keys"
+        "audio"
+        "video"
+        "share-dir"
+      ];
+      group = "joshuachp";
       passwordFile = config.sops.secrets.users_passwords_joshuachp.path;
       shell = pkgs.zsh;
       openssh.authorizedKeys.keys = [
-        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIH04ZDdmAFdHNO3kizLB383BeaZIYuqRnNwFx5uGNhIN openpgp:0x80D62E31"
+        config.privateConfig.ssh.publicKey
       ];
     };
 

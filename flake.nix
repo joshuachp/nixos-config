@@ -110,10 +110,9 @@
     , pulseaudioMicState
     } @ inputs:
     let
-      mkSystem = import ./lib/mkSystem.nix { inherit inputs baseSystem; };
-      mkHome = import ./lib/mkHome.nix { inherit inputs baseSystem; };
       baseSystem = flake-utils.lib.system.x86_64-linux;
-      arm-system = flake-utils.lib.system.aarch64-linux;
+      mkSystem = import ./lib/mkSystem.nix inputs baseSystem;
+      mkHome = import ./lib/mkHome.nix inputs baseSystem;
     in
     {
       nixosConfigurations = {
@@ -137,7 +136,7 @@
         };
         # Cloud
         nixos-cloud = mkSystem "nixos-cloud" {
-          modules = [ privateConf.nixosModules.nixos-cloud ];
+          modules = [ privateConf.nixosModules.nixosCloud ];
         };
       };
 
@@ -152,23 +151,20 @@
 
       # Deployment configuration
       deploy = import ./deploy { inherit self privateConf deploy-rs; };
-
+    } //
+    # System dependant
+    flake-utils.lib.eachDefaultSystem (system:
+    let
+      pkgs = import nixpkgs { inherit system; };
+      deploy = deploy-rs.packages.${system}.default;
+      inherit (pkgs) callPackage;
+    in
+    {
+      checks.check = callPackage ./checks/check.nix { };
       # This is highly advised, and will prevent many possible mistakes
       # checks = builtins.mapAttrs (system: deployLib: deployLib.deployChecks self.deploy) deploy-rs.lib;
 
       # Dev-Shell
-      devShells.${baseSystem}.default =
-        let
-          pkgs = import nixpkgs { system = baseSystem; };
-        in
-        pkgs.mkShell {
-          packages = with pkgs; [
-            deploy-rs.packages.${baseSystem}.default
-
-            pre-commit
-            nixpkgs-fmt
-            statix
-          ];
-        };
-    };
+      devShells.default = callPackage ./shells/default.nix { inherit deploy; };
+    });
 }

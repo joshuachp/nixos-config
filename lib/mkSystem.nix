@@ -26,7 +26,7 @@
       ../options
 
       # Secrets
-      inputs.privateConf.nixosModules.nixosSecrets
+      inputs.privateConf.nixosModules.nixos
 
       # Home manager
       inputs.home-manager.nixosModules.home-manager

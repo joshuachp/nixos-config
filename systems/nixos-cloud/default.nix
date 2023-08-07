@@ -31,7 +31,7 @@
       services.fail2ban.enable = true;
 
       users.users.root.openssh.authorizedKeys.keys = [
-        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIH04ZDdmAFdHNO3kizLB383BeaZIYuqRnNwFx5uGNhIN openpgp:0x80D62E31"
+        config.privateConfig.ssh.publicKey
       ];
     };
 }

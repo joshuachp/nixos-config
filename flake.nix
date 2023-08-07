@@ -137,7 +137,7 @@
         };
         # Cloud
         nixos-cloud = mkSystem "nixos-cloud" {
-          modules = [ privateConf.nixosModules.nixos-cloud ];
+          modules = [ privateConf.nixosModules.nixosCloud ];
         };
       };
 

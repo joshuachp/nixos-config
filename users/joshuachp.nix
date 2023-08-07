@@ -3,10 +3,15 @@
 , ...
 }: {
   config = {
+    users.groups. joshuachp = {
+      gid = 1000;
+    };
     users.users.joshuachp = {
+      uid = 1000;
       isNormalUser = true;
       description = "Joshua Chapman";
       extraGroups = [ "wheel" "networkmanager" "nix-keys" "audio" "video" "share-dir" ];
+      group = "joshuachp";
       passwordFile = config.sops.secrets.users_passwords_joshuachp.path;
       shell = pkgs.zsh;
       openssh.authorizedKeys.keys = [

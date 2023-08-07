@@ -14,7 +14,7 @@ jobs:
       - uses: actions/checkout@v3
       - uses: DeterminateSystems/nix-installer-action@main
         with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
+          github-token: ${{ secrets.NIX_REPO }}
       - uses: DeterminateSystems/magic-nix-cache-action@main
         with:
           # Don't send the diagnostics automatically

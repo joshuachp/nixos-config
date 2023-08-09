@@ -3,8 +3,9 @@
 , ...
 }: {
   imports = [
-    ./plymouth.nix
     ./bluetooth.nix
+    ./opengl.nix
+    ./plymouth.nix
   ];
   config = {
     networking.hostName = hostname;

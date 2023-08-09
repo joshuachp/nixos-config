@@ -45,7 +45,13 @@
     };
     nixosConfig = {
       boot.plymouth.enable = false;
-      hardware.bluetooth.enable = true;
+      hardware = {
+        bluetooth.enable = true;
+        opengl = {
+          enable = true;
+          intel = true;
+        };
+      };
       desktop.sway.enable = true;
     };
 

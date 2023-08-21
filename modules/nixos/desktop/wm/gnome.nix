@@ -25,7 +25,6 @@
       gnome.gnome-tweaks
       gnomeExtensions.appindicator
       gnome.gnome-sound-recorder
-      papirus-icon-theme
     ];
   };
 }

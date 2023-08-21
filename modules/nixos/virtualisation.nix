@@ -17,6 +17,6 @@
 
   environment.systemPackages = import ../../pkgs/virtualisation.nix pkgs
     ++ [
-    pkgs.win-qemu
+    pkgs.win-virtio
   ];
 }

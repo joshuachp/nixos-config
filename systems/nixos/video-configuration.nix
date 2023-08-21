@@ -32,7 +32,8 @@
     };
 
     hardware.nvidia = {
-      nvidiaPersistenced = true;
+      # Used for compute environments
+      nvidiaPersistenced = false;
       modesetting.enable = true;
       forceFullCompositionPipeline = true;
       prime = {

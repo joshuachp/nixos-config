@@ -1,5 +1,6 @@
-{ config
-, pkgs
+# Nix configuration
+{ pkgs
+, nixpkgs
 , ...
 }: {
   imports = [
@@ -21,5 +22,10 @@
         "/share/nix-direnv"
       ];
     };
+    # Nix flake registry
+    nix.registry.nixpkgs.flake = nixpkgs;
+    # Disable nix channels, but keep the system compatible
+    nix.channel.enable = false;
+    nix.settings.nix-path = "nixpkgs=${nixpkgs}";
   };
 }

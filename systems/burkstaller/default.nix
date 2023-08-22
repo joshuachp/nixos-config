@@ -4,6 +4,7 @@
 
 { pkgs
 , nixos-hardware
+, nixpkgs
 , ...
 }: {
   imports =
@@ -108,5 +109,9 @@
       control = "sufficient";
       cue = true;
     };
+
+    # Nix index
+    programs.nix-index.enable = true;
+    programs.command-not-found.enable = false;
   };
 }

@@ -8,6 +8,7 @@ pkgs: with pkgs; [
 
   # Shells
   fish
+  babelfish
   nushell
   direnv
 

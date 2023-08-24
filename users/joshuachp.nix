@@ -21,14 +21,13 @@
       ];
       group = "joshuachp";
       passwordFile = config.sops.secrets.users_passwords_joshuachp.path;
-      shell = pkgs.zsh;
+      shell = pkgs.fish;
       openssh.authorizedKeys.keys = [
         config.privateConfig.ssh.publicKey
       ];
     };
 
-    # Since the user shell is zsh, we need to enable it
-    programs.zsh.enable = true;
+    programs.fish.enable = true;
 
     # Home manager configuration, this is for stuff that will be difficult to achieve with only
     # nixos modules

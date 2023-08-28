@@ -12,7 +12,7 @@ with pkgs; [
   vscode
 
   # Browser
-  firefox
+  firefox-bin
   chromium
 
   # Applications

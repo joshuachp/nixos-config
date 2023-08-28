@@ -51,6 +51,7 @@
           nvidia = true;
         };
       };
+      nix.index.enable = true;
     };
 
     # Enable docker

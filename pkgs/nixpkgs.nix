@@ -1,4 +1,4 @@
-{ pkgs }: with pkgs; [
+pkgs: with pkgs; [
   cachix
   # Nix shell evaluation on enter
   direnv

@@ -54,6 +54,7 @@
         };
       };
       desktop.sway.enable = true;
+      nix.index.enable = true;
     };
 
     boot.plymouth.enable = true;
@@ -109,9 +110,5 @@
       control = "sufficient";
       cue = true;
     };
-
-    # Nix index
-    programs.nix-index.enable = true;
-    programs.command-not-found.enable = false;
   };
 }

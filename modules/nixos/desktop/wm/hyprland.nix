@@ -21,8 +21,23 @@ in
         enable = true;
         enableNvidiaPatches = cfg.nvidia;
       };
+      programs.light.enable = true;
+      # Sway-lock
+      security.pam.services.swaylock.text = ''
+        # PAM configuration file for the swaylock screen locker. By default, it includes
+        # the 'login' configuration file (see /etc/pam.d/login)
+        auth include login
+      '';
       environment.systemPackages = with pkgs; [
+        # Notification daemon
+        mako
+        # Bar
         waybar
+        # Application runner
+        wofi
+        # Background
+        swaybg
+        swaylock
       ];
     };
 }

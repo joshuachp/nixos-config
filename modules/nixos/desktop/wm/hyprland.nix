@@ -3,14 +3,14 @@
 , lib
 , pkgs
 , ...
-}: {
+}:
+let
+  inherit (lib.options) mkEnableOption;
+in
+{
   options = {
-    nixosConfig.desktop.hyprland.enable = lib.options.mkOption {
-      default = false;
-      defaultText = "Enable Hyprland as a window manager";
-      description = "Flag to enable Hyprland as a Wayland dynamic tiling window manager";
-      type = lib.types.bool;
-    };
+    nixosConfig.desktop.hyprland.enable = mkEnableOption "Hyperland window manager";
+    nixosConfig.desktop.hyprland.nvidia = mkEnableOption "Hyperland nvidia patched";
   };
   config =
     let
@@ -19,7 +19,7 @@
     lib.mkIf cfg.enable {
       programs.hyprland = {
         enable = true;
-        nvidiaPatches = true;
+        enableNvidiaPatches = cfg.nvidia;
       };
       environment.systemPackages = with pkgs; [
         waybar

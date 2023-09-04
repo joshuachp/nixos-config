@@ -41,13 +41,12 @@
         wayland = true;
         gnome.enable = true;
       };
-      hyprland.enable = true;
     };
     nixosConfig = {
       boot.plymouth.enable = true;
       hardware.bluetooth.enable = true;
       desktop = {
-        sway = {
+        hyprland = {
           enable = true;
           nvidia = true;
         };
@@ -95,7 +94,10 @@
     hardware.pulseaudio.enable = false;
 
     # Enable btrfs scrubbing
-    services.btrfs.autoScrub.enable = true;
+    services.btrfs.autoScrub = {
+      enable = true;
+      fileSystems = [ "/" "/nix" "/home" "/var" "/share" ];
+    };
 
     # Yubikey
     services.udev.packages = [ pkgs.yubikey-personalization ];

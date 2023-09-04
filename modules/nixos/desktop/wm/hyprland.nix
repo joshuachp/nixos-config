@@ -22,7 +22,15 @@ in
         enableNvidiaPatches = cfg.nvidia;
       };
       environment.systemPackages = with pkgs; [
+        # Notification daemon
+        mako
+        # Bar
         waybar
+        # Application runner
+        wofi
+        # Background
+        swaybg
+        swaylock
       ];
     };
 }

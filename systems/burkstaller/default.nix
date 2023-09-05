@@ -53,7 +53,10 @@
           intel = true;
         };
       };
-      desktop.sway.enable = true;
+      desktop = {
+        sway.enable = true;
+        hyprland.enable = true;
+      };
       nix.index.enable = true;
     };
 

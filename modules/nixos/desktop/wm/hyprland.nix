@@ -35,6 +35,8 @@ in
         waybar
         # Application runner
         wofi
+        # Music
+        mpdris2
         # Background
         swaybg
         swaylock

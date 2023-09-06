@@ -38,6 +38,7 @@ in
         # Background
         swaybg
         swaylock
+        swayidle
       ];
     };
 }

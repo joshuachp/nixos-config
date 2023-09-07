@@ -18,7 +18,7 @@
       };
     };
 
-    boot.kernelPackages = pkgs.linuxPackages_6_4;
+    boot.kernelPackages = pkgs.linuxPackages_6_5;
     boot.initrd.availableKernelModules = [ "xhci_pci" "nvme" "ahci" "usbhid" "usb_storage" "sd_mod" ];
     boot.initrd.kernelModules = [ "dm-snapshot" "amdgpu" ];
     boot.kernelModules = [ "kvm-amd" ];

@@ -35,7 +35,7 @@ pkgs: with pkgs; [
 
   # Rust CLI programs
   bat
-  exa
+  eza
   fd
   ripgrep
 

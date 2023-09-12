@@ -41,6 +41,9 @@ in
         swaybg
         swaylock
         swayidle
+        # Screenshot
+        grim
+        slurp
       ];
     };
 }

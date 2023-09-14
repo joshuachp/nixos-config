@@ -16,8 +16,10 @@
   config = {
     # Home Manager needs a bit of information about you and the
     # paths it should manage.
-    home.username = "joshuachp";
-    home.homeDirectory = "/home/joshuachp";
+    home = {
+      username = "joshuachp";
+      homeDirectory = "/home/joshuachp";
+    };
 
     # Let Home Manager install and manage itself.
     programs.home-manager.enable = true;

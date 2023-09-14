@@ -9,10 +9,14 @@
 }: {
   imports = [ ];
   config = {
-    boot.initrd.availableKernelModules = [ ];
-    boot.initrd.kernelModules = [ ];
-    boot.kernelModules = [ ];
-    boot.extraModulePackages = [ ];
+    boot = {
+      initrd = {
+        availableKernelModules = [ ];
+        kernelModules = [ ];
+      };
+      kernelModules = [ ];
+      extraModulePackages = [ ];
+    };
 
     fileSystems."/" = {
       device = "/dev/sdb";

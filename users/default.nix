@@ -5,17 +5,21 @@
     # Default text editor
     programs.neovim.enable = true;
 
-    # Do not permit users to change
-    users.mutableUsers = false;
+    users = {
+      # Do not permit users to change
+      mutableUsers = false;
 
-    users.groups = {
-      # Group with access to the nix secrets
-      nix-keys = {
-        gid = 3000;
+      groups = {
+        # Group with access to the nix secrets
+        nix-keys = {
+          gid = 3000;
+        };
+        share-dir = {
+          gid = 3001;
+        };
       };
-      share-dir = {
-        gid = 3001;
-      };
+
+      users.root.passwordFile = config.sops.secrets.users_passwords_root.path;
     };
 
     # Environment variables, useful for the root user
@@ -23,9 +27,6 @@
       EDITOR = "nvim";
       VISUAL = "nvim";
     };
-
-    users.users.root.passwordFile = config.sops.secrets.users_passwords_root.path;
-
 
     # Home manager configuration
     home-manager = {

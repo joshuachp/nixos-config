@@ -10,60 +10,64 @@
   imports = [ (modulesPath + "/installer/scan/not-detected.nix") ];
   config = {
     # Use the systemd-boot EFI boot loader.
-    boot.loader = {
-      systemd-boot.enable = true;
-      efi = {
-        canTouchEfiVariables = true;
-        efiSysMountPoint = "/efi";
+    boot = {
+      loader = {
+        systemd-boot.enable = true;
+        efi = {
+          canTouchEfiVariables = true;
+          efiSysMountPoint = "/efi";
+        };
       };
+      kernelPackages = pkgs.linuxPackages_6_5;
+      initrd = {
+        availableKernelModules = [ "xhci_pci" "nvme" "ahci" "usbhid" "usb_storage" "sd_mod" ];
+        kernelModules = [ "dm-snapshot" "amdgpu" ];
+        luks.devices.crypted = {
+          device = "/dev/disk/by-uuid/e21bee4a-6c26-46c1-8233-362e198db016";
+        };
+      };
+      kernelModules = [ "kvm-amd" ];
+      extraModulePackages = [ ];
+      # extraModprobeConfig = ''
+      #   options snd-hda-intel model=alc285-hp-amp-init
+      # '';
     };
 
-    boot.kernelPackages = pkgs.linuxPackages_6_5;
-    boot.initrd.availableKernelModules = [ "xhci_pci" "nvme" "ahci" "usbhid" "usb_storage" "sd_mod" ];
-    boot.initrd.kernelModules = [ "dm-snapshot" "amdgpu" ];
-    boot.kernelModules = [ "kvm-amd" ];
-    boot.extraModulePackages = [ ];
-    # boot.extraModprobeConfig = ''
-    #   options snd-hda-intel model=alc285-hp-amp-init
-    # '';
+    fileSystems = {
+      "/" = {
+        device = "/dev/Linux/root";
+        fsType = "btrfs";
+        options = [ "subvol=root" "compress=zstd" "noatime" ];
+      };
 
-    boot.initrd.luks.devices.crypted = {
-      device = "/dev/disk/by-uuid/e21bee4a-6c26-46c1-8233-362e198db016";
-    };
+      "/nix" = {
+        device = "/dev/Linux/root";
+        fsType = "btrfs";
+        options = [ "subvol=nix" "compress=zstd" "noatime" ];
+      };
 
-    fileSystems."/" = {
-      device = "/dev/Linux/root";
-      fsType = "btrfs";
-      options = [ "subvol=root" "compress=zstd" "noatime" ];
-    };
+      "/efi" = {
+        device = "/dev/disk/by-uuid/0F4B-952D";
+        fsType = "vfat";
+      };
 
-    fileSystems."/nix" = {
-      device = "/dev/Linux/root";
-      fsType = "btrfs";
-      options = [ "subvol=nix" "compress=zstd" "noatime" ];
-    };
+      "/home" = {
+        device = "/dev/Linux/home";
+        fsType = "btrfs";
+        options = [ "compress=zstd" ];
+      };
 
-    fileSystems."/efi" = {
-      device = "/dev/disk/by-uuid/0F4B-952D";
-      fsType = "vfat";
-    };
+      "/home/joshuachp/share" = {
+        device = "/dev/Linux/share";
+        fsType = "btrfs";
+        options = [ "compress=zstd" "user" "exec" ];
+      };
 
-    fileSystems."/home" = {
-      device = "/dev/Linux/home";
-      fsType = "btrfs";
-      options = [ "compress=zstd" ];
-    };
-
-    fileSystems."/home/joshuachp/share" = {
-      device = "/dev/Linux/share";
-      fsType = "btrfs";
-      options = [ "compress=zstd" "user" "exec" ];
-    };
-
-    fileSystems."/var" = {
-      device = "/dev/Linux/var";
-      fsType = "btrfs";
-      options = [ "compress=zstd" "noatime" ];
+      "/var" = {
+        device = "/dev/Linux/var";
+        fsType = "btrfs";
+        options = [ "compress=zstd" "noatime" ];
+      };
     };
 
     swapDevices = [{ device = "/dev/Linux/swap"; }];

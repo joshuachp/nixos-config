@@ -18,32 +18,37 @@
     in
     lib.mkMerge [
       {
-        nix.gc = {
-          automatic = true;
-          dates = "weekly";
+        nix = {
+          gc = {
+            automatic = true;
+            dates = "weekly";
+          };
+          # Periodically optimise the store
+          optimise = {
+            automatic = true;
+            dates = [ "weekly" ];
+          };
+          # Nix flake registry
+          registry.nixpkgs.flake = nixpkgs;
+          # Disable nix channels, but keep the system compatible
+          channel.enable = false;
+          settings.nix-path = "nixpkgs=${nixpkgs}";
         };
-        # Periodically optimise the store
-        nix.optimise = {
-          automatic = true;
-          dates = [ "weekly" ];
-        };
+
         environment = {
           systemPackages = import ../../../pkgs/nixpkgs.nix pkgs;
           pathsToLink = [
             "/share/nix-direnv"
           ];
         };
-        # Nix flake registry
-        nix.registry.nixpkgs.flake = nixpkgs;
-        # Disable nix channels, but keep the system compatible
-        nix.channel.enable = false;
-        nix.settings.nix-path = "nixpkgs=${nixpkgs}";
 
       }
       (lib.mkIf cfg.index.enable {
         # Nix index for command-not-found
-        programs.nix-index.enable = true;
-        programs.command-not-found.enable = false;
+        programs = {
+          nix-index.enable = true;
+          command-not-found.enable = false;
+        };
       })
     ];
 }

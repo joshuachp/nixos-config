@@ -17,15 +17,17 @@
       cfg = config.nixosConfig.hardware.bluetooth;
     in
     lib.mkIf cfg.enable {
-      hardware.bluetooth.enable = true;
+      hardware.bluetooth = {
+        enable = true;
 
-      # To enable bluetooth experimental features, like the battery level
-      hardware.bluetooth.package = pkgs.bluez5-experimental;
+        # To enable bluetooth experimental features, like the battery level
+        package = pkgs.bluez5-experimental;
 
-      # Enables the experimental features like battery status for the device.
-      hardware.bluetooth.settings = {
-        General = {
-          Experimental = true;
+        # Enables the experimental features like battery status for the device.
+        settings = {
+          General = {
+            Experimental = true;
+          };
         };
       };
     };

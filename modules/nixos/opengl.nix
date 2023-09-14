@@ -55,12 +55,11 @@
           amdvlk
         ];
 
-        extraPackages32 = with pkgs; [
-        ] ++ lib.lists.optionals cfg.amd [
-          driversi686Linux.amdvlk
-        ] ++ lib.lists.optionals cfg.intel [
-          pkgsi686Linux.vaapiIntel
-        ];
+        extraPackages32 = (lib.lists.optionals cfg.amd [
+          pkgs.driversi686Linux.amdvlk
+        ]) ++ (lib.lists.optionals cfg.intel [
+          pkgs.pkgsi686Linux.vaapiIntel
+        ]);
       };
 
     };

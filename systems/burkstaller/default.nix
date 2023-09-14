@@ -4,7 +4,6 @@
 
 { pkgs
 , nixos-hardware
-, nixpkgs
 , ...
 }: {
   imports =
@@ -33,7 +32,6 @@
     ];
   config = {
     security.tpm2.enable = true;
-    services.fwupd.enable = true;
 
     users.users.joshuachp.extraGroups = [ "docker" ];
     environment.systemPackages = [ pkgs.astartectl ];
@@ -101,11 +99,13 @@
     sound.enable = true;
     hardware.pulseaudio.enable = false;
 
-    # Enable btrfs scrubbing
-    services.btrfs.autoScrub.enable = true;
-
-    # Yubikey
-    services.udev.packages = [ pkgs.yubikey-personalization ];
+    services = {
+      fwupd.enable = true;
+      # Enable btrfs scrubbing
+      btrfs.autoScrub.enable = true;
+      # Yubikey
+      udev.packages = [ pkgs.yubikey-personalization ];
+    };
 
     # Sudo U2F
     security.pam.u2f = {

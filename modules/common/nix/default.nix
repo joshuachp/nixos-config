@@ -1,27 +1,23 @@
-{ config
-, pkgs
-, lib
-, ...
-}: {
+_: {
   imports = [ ./cachix.nix ];
   config =
     {
       # Allow unfree packages: nvidia drivers, ...
       nixpkgs.config.allowUnfree = true;
 
-      # Enable flakes system wide, this will no loner be necessary in some future release
-      nix.settings.experimental-features = [ "nix-command" "flakes" ];
+      nix = {
+        settings = {
+          auto-optimise-store = true;
+          # Enable flakes system wide, this will no loner be necessary in some future release
+          experimental-features = [ "nix-command" "flakes" ];
+          # nix options for derivations to persist garbage collection
+          keep-outputs = true;
+          keep-derivations = true;
+        };
 
-      nix.settings.auto-optimise-store = true;
-
-      nix.extraOptions = ''
-        !include access-tokens.conf
-      '';
-
-      # nix options for derivations to persist garbage collection
-      nix.settings = {
-        keep-outputs = true;
-        keep-derivations = true;
+        extraOptions = ''
+          !include access-tokens.conf
+        '';
       };
 
       # Support flakes in nix direnv

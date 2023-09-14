@@ -10,58 +10,61 @@
     ];
 
   # Use the systemd-boot EFI boot loader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-  boot.loader.efi.efiSysMountPoint = "/efi";
+  boot = {
+    loader = {
+      systemd-boot.enable = true;
+      efi.canTouchEfiVariables = true;
+      efi.efiSysMountPoint = "/efi";
+    };
 
-  boot.kernelPackages = pkgs.linuxPackages_6_5;
-  boot.initrd.availableKernelModules = [
-    "vmd"
-    "xhci_pci"
-    "ahci"
-    "nvme"
-    "usbhid"
-    "usb_storage"
-    "sd_mod"
-    "rtsx_pci_sdmmc"
-  ];
-  boot.initrd.kernelModules = [ "dm-snapshot" ];
-  boot.kernelModules = [ "kvm-intel" ];
-  boot.extraModulePackages = [ ];
+    kernelPackages = pkgs.linuxPackages_6_5;
+    initrd = {
+      availableKernelModules = [
+        "vmd"
+        "xhci_pci"
+        "ahci"
+        "nvme"
+        "usbhid"
+        "usb_storage"
+        "sd_mod"
+        "rtsx_pci_sdmmc"
+      ];
+      kernelModules = [ "dm-snapshot" ];
+    };
+    kernelModules = [ "kvm-intel" ];
+    extraModulePackages = [ ];
+  };
 
-  fileSystems."/efi" =
-    {
+  fileSystems = {
+    "/efi" = {
       device = "/dev/disk/by-uuid/F33C-09F7";
       fsType = "vfat";
     };
 
-  fileSystems."/" =
-    {
+    "/" = {
       device = "/dev/Linux/root";
       fsType = "btrfs";
       options = [ "subvol=root" "compress=zstd" "noatime" ];
     };
 
-  fileSystems."/home" =
-    {
+    "/home" = {
       device = "/dev/Linux/root";
       fsType = "btrfs";
       options = [ "subvol=home" "compress=zstd" "noatime" ];
     };
 
-  fileSystems."/nix" =
-    {
+    "/nix" = {
       device = "/dev/Linux/root";
       fsType = "btrfs";
       options = [ "subvol=nix" "compress=zstd" "noatime" ];
     };
 
-  fileSystems."/var" =
-    {
+    "/var" = {
       device = "/dev/Linux/root";
       fsType = "btrfs";
       options = [ "subvol=var" "compress=zstd" "noatime" ];
     };
+  };
 
   swapDevices =
     [{ device = "/dev/Linux/swap"; }];

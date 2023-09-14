@@ -32,7 +32,6 @@
   ];
   config = {
     security.tpm2.enable = true;
-    services.fwupd.enable = true;
 
     # Enable desktop system
     systemConfig = {
@@ -93,14 +92,16 @@
     sound.enable = true;
     hardware.pulseaudio.enable = false;
 
-    # Enable btrfs scrubbing
-    services.btrfs.autoScrub = {
-      enable = true;
-      fileSystems = [ "/" "/nix" "/home" "/var" "/share" ];
+    services = {
+      fwupd.enable = true;
+      # Enable btrfs scrubbing
+      btrfs.autoScrub = {
+        enable = true;
+        fileSystems = [ "/" "/nix" "/home" "/var" "/share" ];
+      };
+      # Yubikey
+      udev.packages = [ pkgs.yubikey-personalization ];
     };
-
-    # Yubikey
-    services.udev.packages = [ pkgs.yubikey-personalization ];
 
     # Sudo U2F
     security.pam.u2f = {

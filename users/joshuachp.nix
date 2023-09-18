@@ -20,7 +20,7 @@
         "share-dir"
       ];
       group = "joshuachp";
-      passwordFile = config.sops.secrets.users_passwords_joshuachp.path;
+      hashedPasswordFile = config.sops.secrets.users_passwords_joshuachp.path;
       shell = pkgs.fish;
       openssh.authorizedKeys.keys = [
         config.privateConfig.ssh.publicKey

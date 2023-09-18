@@ -19,7 +19,7 @@
         };
       };
 
-      users.root.passwordFile = config.sops.secrets.users_passwords_root.path;
+      users.root.hashedPasswordFile = config.sops.secrets.users_passwords_root.path;
     };
 
     # Environment variables, useful for the root user

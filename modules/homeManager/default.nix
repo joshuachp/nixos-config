@@ -1,7 +1,14 @@
+# Home-Manager config
 { config
 , pkgs
 , ...
 }: {
+  imports = [
+    ./desktop
+    ./gpg.nix
+    ./nvim.nix
+    ./syncthing.nix
+  ];
   config = {
     nix.package = pkgs.nix;
     # This value determines the Home Manager release that your

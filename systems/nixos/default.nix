@@ -6,22 +6,6 @@
     ./hardware-configuration.nix
     ./video-configuration.nix
 
-    # Modules
-    ../../modules/nixos/cli.nix
-    ../../modules/nixos/desktop
-    ../../modules/nixos/develop
-    ../../modules/nixos/documentation.nix
-    ../../modules/nixos/embedded.nix
-    ../../modules/nixos/gnupg.nix
-    ../../modules/nixos/hacking.nix
-    ../../modules/nixos/localization.nix
-    ../../modules/nixos/localtime.nix
-    ../../modules/nixos/network.nix
-    ../../modules/nixos/nix
-    ../../modules/nixos/services.nix
-    ../../modules/nixos/wireguard/client.nix
-    ../../modules/nixos/virtualisation.nix
-
     # Hardware configuration
     nixos-hardware.nixosModules.common-cpu-amd
     nixos-hardware.nixosModules.common-gpu-amd
@@ -50,6 +34,7 @@
           nvidia = true;
         };
       };
+      wireguard.client = true;
       nix.index.enable = true;
     };
 

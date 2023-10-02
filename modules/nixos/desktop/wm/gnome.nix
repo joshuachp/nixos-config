@@ -1,7 +1,15 @@
-{ pkgs
+# Gnome config for NixOS
+{ config
+, pkgs
+, lib
 , ...
-}: {
-  config = {
+}:
+let
+  cfg = config.systemConfig.desktop.gnome;
+  enable = config.systemConfig.desktop.enable && cfg.enable;
+in
+{
+  config = lib.mkIf enable {
     services.xserver.desktopManager.gnome.enable = true;
 
     # List services that you want to enable:

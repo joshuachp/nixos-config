@@ -1,22 +1,17 @@
+# Development config
 { config
 , pkgs
 , lib
 , ...
-}: {
-  imports = [
-    ./c_cpp.nix
-    ./elixir.nix
-    ./go.nix
-    ./haskell.nix
-    ./javascript.nix
-    ./lua.nix
-    ./nix.nix
-    ./python.nix
-    ./rust.nix
-    ./sh.nix
-    ./tex.nix
-  ];
-  config = {
+}:
+let
+  cfg = config.nixosConfig.develop;
+in
+{
+  options = {
+    nixosConfig.develop.enable = lib.mkEnableOption "develop environment";
+  };
+  config = lib.mkIf cfg.enable {
     environment.systemPackages = import ../../../pkgs/develop { inherit pkgs; };
 
     # Enable direnv

@@ -1,7 +1,14 @@
-{ pkgs
+# Font configuration
+{ config
+, pkgs
+, lib
 , ...
-}: {
-  config = {
+}:
+let
+  cfg = config.systemConfig.desktop;
+in
+{
+  config = lib.mkIf cfg.enable {
     fonts = {
       packages = with pkgs; [
         noto-fonts

@@ -1,3 +1,4 @@
+# Nix config
 _: {
   imports = [ ./cachix.nix ];
   config =

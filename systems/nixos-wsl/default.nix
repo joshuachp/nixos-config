@@ -1,24 +1,14 @@
-{ config
-, pkgs
+{ pkgs
 , nixos-wsl
 , lib
 , ...
 }: {
   imports = [
-    # ./hardware-configuration.nix
-    # Modules
-    ../../modules/nixos/cli.nix
-    ../../modules/nixos/develop
-    ../../modules/nixos/documentation.nix
-    ../../modules/nixos/gnupg.nix
-    ../../modules/nixos/localization.nix
-    ../../modules/nixos/localtime.nix
-    ../../modules/nixos/nix
-    ../../modules/nixos/services.nix
     # Wsl configuration
     nixos-wsl.nixosModules.wsl
   ];
   config = {
+    nixosConfig.networking.enable = false;
     wsl = {
       enable = true;
       defaultUser = "joshuachp";

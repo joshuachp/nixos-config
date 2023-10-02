@@ -33,10 +33,10 @@
     # nixos modules
     home-manager.users.joshuachp = { config, pkgs, lib, ... }: {
       imports = [
-        ../modules/home-manager/gnome.nix
-        ../modules/home-manager/nvim.nix
-        ../modules/home-manager/syncthing.nix
-        ../modules/home-manager/gpg.nix
+        ../modules/homeManager/desktop/gnome.nix
+        ../modules/homeManager/nvim.nix
+        ../modules/homeManager/syncthing.nix
+        ../modules/homeManager/gpg.nix
       ];
       config = {
         home.stateVersion = config.systemConfig.version;

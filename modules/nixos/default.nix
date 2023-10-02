@@ -4,8 +4,21 @@
 }: {
   imports = [
     ./bluetooth.nix
+    ./cli.nix
+    ./desktop
+    ./develop
+    ./documentation.nix
+    ./embedded.nix
+    ./gnupg.nix
+    ./localization.nix
+    ./localtime.nix
+    ./network.nix
+    ./nix
     ./opengl.nix
     ./plymouth.nix
+    ./services.nix
+    ./virtualisation.nix
+    ./wireguard
   ];
   config = {
     networking.hostName = hostname;

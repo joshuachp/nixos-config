@@ -31,6 +31,7 @@ nixpkgs.lib.nixosSystem {
     # Home manager
     inputs.home-manager.nixosModules.home-manager
     # Default modules
+    ../modules/common
     ../modules/nixos
     ../users
     ../systems/${name}

@@ -1,7 +1,6 @@
 { pkgs
 , ...
 }: {
-  imports = [ ./gnupg.nix ];
   config = {
     environment.systemPackages = import ../../pkgs/cli.nix pkgs;
     # Programs

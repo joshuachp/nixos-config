@@ -34,14 +34,12 @@
           channel.enable = false;
           settings.nix-path = "nixpkgs=${nixpkgs}";
         };
-
         environment = {
           systemPackages = import ../../../pkgs/nixpkgs.nix pkgs;
           pathsToLink = [
             "/share/nix-direnv"
           ];
         };
-
       }
       (lib.mkIf cfg.index.enable {
         # Nix index for command-not-found

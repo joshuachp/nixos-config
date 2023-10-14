@@ -18,5 +18,11 @@
   ];
   config = {
     environment.systemPackages = import ../../../pkgs/develop { inherit pkgs; };
+
+    # Enable direnv
+    programs.direnv = {
+      enable = true;
+      nix-direnv.enable = true;
+    };
   };
 }

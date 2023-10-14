@@ -49,8 +49,8 @@
           # Intel vaapi drivers
           vaapiIntel
         ] ++ lib.lists.optionals cfg.amd [
-          rocm-opencl-icd
-          rocm-opencl-runtime
+          rocmPackages.clr.icd
+          rocmPackages.clr
           # Vulkan
           amdvlk
         ];

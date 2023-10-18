@@ -1,18 +1,9 @@
 { pkgs
-, nixos-hardware
 , ...
 }: {
   imports = [
     ./hardware-configuration.nix
     ./video-configuration.nix
-
-    # Hardware configuration
-    nixos-hardware.nixosModules.common-cpu-amd
-    nixos-hardware.nixosModules.common-gpu-amd
-    nixos-hardware.nixosModules.common-gpu-nvidia-nonprime
-    nixos-hardware.nixosModules.common-pc-laptop
-    nixos-hardware.nixosModules.common-pc-laptop-hdd
-    nixos-hardware.nixosModules.common-pc-laptop-acpi_call
   ];
   config = {
     security.tpm2.enable = true;

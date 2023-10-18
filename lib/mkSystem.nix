@@ -1,17 +1,21 @@
 # Function to configure a nixosSystem
-inputs:
+# Inputs from the flake
+flakeInputs:
+# Default system (x86_64-linux)
 baseSystem:
+# Name for the current system
 name:
+# Other option to pass to nixosSystem function
 { system ? baseSystem
 , overlays ? [ ]
 , modules ? [ ]
-, nixpkgs ? inputs.nixpkgs
+, nixpkgs ? flakeInputs.nixpkgs
 }:
 nixpkgs.lib.nixosSystem {
   inherit system;
 
-  specialArgs = inputs // {
-    inherit system;
+  specialArgs = {
+    inherit system flakeInputs;
     hostname = name;
   };
 
@@ -26,14 +30,16 @@ nixpkgs.lib.nixosSystem {
     ../options
 
     # Secrets
-    inputs.privateConf.nixosModules.nixos
+    flakeInputs.privateConf.nixosModules.nixos
 
     # Home manager
-    inputs.home-manager.nixosModules.home-manager
+    flakeInputs.home-manager.nixosModules.home-manager
     # Default modules
     ../modules/common
     ../modules/nixos
     ../users
-    ../systems/${name}
+
+    # Config
+    ../nixos/${name}
   ] ++ modules;
 }

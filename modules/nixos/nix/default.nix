@@ -1,6 +1,6 @@
 # Nix configuration
 { pkgs
-, nixpkgs
+, flakeInputs
 , lib
 , config
 , ...
@@ -15,6 +15,7 @@
   config =
     let
       cfg = config.nixosConfig.nix;
+      inherit (flakeInputs) nixpkgs;
     in
     lib.mkMerge [
       {

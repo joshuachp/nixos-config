@@ -1,12 +1,8 @@
+# Nixos in WSL
 { pkgs
-, nixos-wsl
-, lib
 , ...
 }: {
-  imports = [
-    # Wsl configuration
-    nixos-wsl.nixosModules.wsl
-  ];
+  imports = [ ];
   config = {
     nixosConfig.networking.enable = false;
     wsl = {

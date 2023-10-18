@@ -5,7 +5,7 @@
 , shfmt
 , shellcheck
 }: stdenvNoCC.mkDerivation {
-  name = "check";
+  name = "main-check";
   src = ./..;
   nativeBuildInputs = [
     nixpkgs-fmt

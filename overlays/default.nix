@@ -1,15 +1,11 @@
 # Default overlays for all systems
 { system
-, jump
-, tools
-, note
-, pulseaudioMicState
-, fenix
-, nixpkgs-unstable
+, flakeInputs
 , ...
 }: {
   config =
     let
+      inherit (flakeInputs) jump tools note pulseaudioMicState fenix nixpkgs-unstable;
       pkgsUnstable = import nixpkgs-unstable { inherit system; };
     in
     {

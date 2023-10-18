@@ -2,11 +2,6 @@
   imports = [
     ./hardware-configuration.nix
     ./services.nix
-    # Modules
-    ../../modules/nixos/localization.nix
-    ../../modules/nixos/localtime.nix
-    ../../modules/nixos/nix
-    ../../modules/nixos/wireguard/server.nix
   ];
   config =
     let
@@ -16,6 +11,8 @@
       boot.loader.grub.device = "/dev/sda";
       boot.tmp.cleanOnBoot = true;
       zramSwap.enable = true;
+
+      nixosConfig.wireguard.server = true;
 
       services.openssh = {
         enable = true;

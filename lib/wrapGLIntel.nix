@@ -4,7 +4,6 @@ pkgs: (
 
      set -euo pipefail
 
-
     ${pkgs.nixgl.nixGLIntel}/bin/nixGLIntel ${binary} $@
   '')
 )

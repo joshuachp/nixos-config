@@ -3,17 +3,12 @@
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
 { pkgs
-, nixos-hardware
 , ...
 }: {
   imports =
     [
       # Include the results of the hardware scan.
       ./hardware-configuration.nix
-
-      nixos-hardware.nixosModules.common-cpu-intel
-      nixos-hardware.nixosModules.common-pc
-      nixos-hardware.nixosModules.common-pc-ssd
     ];
   config = {
     security.tpm2.enable = true;

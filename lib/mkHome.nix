@@ -1,12 +1,12 @@
 # Function to configure home-manager
-inputs:
+flakeInputs:
 baseSystem:
 name:
 { system ? baseSystem
 , overlays ? [ ]
 , modules ? [ ]
-, nixpkgs ? inputs.nixpkgs
-, home-manager ? inputs.home-manager
+, nixpkgs ? flakeInputs.nixpkgs
+, home-manager ? flakeInputs.home-manager
 }:
 let
   pkgs = import nixpkgs {
@@ -20,8 +20,8 @@ in
 home-manager.lib.homeManagerConfiguration {
   inherit pkgs;
 
-  extraSpecialArgs = inputs // {
-    inherit system;
+  extraSpecialArgs = {
+    inherit system flakeInputs;
     hostname = name;
   };
 
@@ -55,7 +55,7 @@ home-manager.lib.homeManagerConfiguration {
     ../options
 
     # Secrets
-    inputs.privateConf.nixosModules.homeManagerSecrets
+    flakeInputs.privateConf.nixosModules.homeManagerSecrets
 
     # Default modules
     ../modules/common

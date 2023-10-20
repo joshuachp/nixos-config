@@ -12,7 +12,10 @@
       boot.tmp.cleanOnBoot = true;
       zramSwap.enable = true;
 
-      nixosConfig.wireguard.server = true;
+      nixosConfig = {
+        networking.enable = false;
+        wireguard.server = true;
+      };
 
       services.openssh = {
         enable = true;

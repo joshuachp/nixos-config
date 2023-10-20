@@ -8,10 +8,10 @@
 }: {
   imports = [
     ../../modules/common/nix
-    ../../modules/home-manager/nvim.nix
-    ../../modules/home-manager/gpg.nix
-    ../../modules/home-manager/qt.nix
-    ../../modules/home-manager/syncthing.nix
+    ../../modules/homeManager/nvim.nix
+    ../../modules/homeManager/gpg.nix
+    ../../modules/homeManager/qt.nix
+    ../../modules/homeManager/syncthing.nix
   ];
   config = {
     # Home Manager needs a bit of information about you and the

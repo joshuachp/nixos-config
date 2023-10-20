@@ -1,6 +1,6 @@
 # Nix configuration
 { pkgs
-, nixpkgs
+, flakeInputs
 , lib
 , config
 , ...
@@ -15,6 +15,7 @@
   config =
     let
       cfg = config.nixosConfig.nix;
+      inherit (flakeInputs) nixpkgs;
     in
     lib.mkMerge [
       {
@@ -34,14 +35,12 @@
           channel.enable = false;
           settings.nix-path = "nixpkgs=${nixpkgs}";
         };
-
         environment = {
           systemPackages = import ../../../pkgs/nixpkgs.nix pkgs;
           pathsToLink = [
             "/share/nix-direnv"
           ];
         };
-
       }
       (lib.mkIf cfg.index.enable {
         # Nix index for command-not-found

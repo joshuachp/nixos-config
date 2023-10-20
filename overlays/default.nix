@@ -1,15 +1,11 @@
 # Default overlays for all systems
 { system
-, jump
-, tools
-, note
-, pulseaudioMicState
-, fenix
-, nixpkgs-unstable
+, flakeInputs
 , ...
 }: {
   config =
     let
+      inherit (flakeInputs) jump tools note pulseaudioMicState fenix nixpkgs-unstable nil;
       pkgsUnstable = import nixpkgs-unstable { inherit system; };
     in
     {
@@ -32,6 +28,8 @@
           shell-toolsOverlay = tools.packages.${system}.shell-tools;
           noteOverlay = note.packages.${system}.default;
           pulseaudioMicStateOverlay = pulseaudioMicState.packages.${system}.default;
+
+          nil = nil.packages.${system}.default;
 
           astartectl =
             let

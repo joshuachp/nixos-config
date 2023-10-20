@@ -1,7 +1,6 @@
 {
   description = "NixOS configuration with flakes";
   inputs = {
-    # x86_64-linux and aarch64-linux support
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     # We use the unstable nixpkgs repo for some packages.
     # We use nixpkgs-unstable instead of nixos-unstable since we usually want to use the packages as
@@ -120,37 +119,13 @@
     , tools
     , note
     , pulseaudioMicState
-    } @ inputs:
+    }@flakeInputs:
     let
-      baseSystem = flake-utils.lib.system.x86_64-linux;
-      mkSystem = import ./lib/mkSystem.nix inputs baseSystem;
-      mkHome = import ./lib/mkHome.nix inputs baseSystem;
+      inherit (self.lib) mkHome;
     in
     {
-      nixosConfigurations = {
-        # Nixos
-        nixos = mkSystem "nixos" {
-          modules = [
-            neovim-config.nixosModules.default
-          ];
-        };
-        # Wsl
-        nixos-wsl = mkSystem "nixos-wsl" {
-          modules = [
-            neovim-config.nixosModules.default
-          ];
-        };
-        # Work
-        burkstaller = mkSystem "burkstaller" {
-          modules = [
-            neovim-config.nixosModules.default
-          ];
-        };
-        # Cloud
-        nixos-cloud = mkSystem "nixos-cloud" {
-          modules = [ privateConf.nixosModules.nixosCloud ];
-        };
-      };
+      lib = import ./lib flakeInputs;
+      nixosConfigurations = import ./nixos flakeInputs;
 
       # Home manager configuration
       homeConfigurations = {
@@ -164,7 +139,7 @@
       # Deployment configuration
       deploy = import ./deploy { inherit self privateConf deploy-rs; };
     } //
-    # System dependant
+    # System dependant configurations
     flake-utils.lib.eachDefaultSystem (system:
     let
       pkgs = import nixpkgs { inherit system; };
@@ -172,7 +147,7 @@
       inherit (pkgs) callPackage;
     in
     {
-      checks.check = callPackage ./checks/check.nix { };
+      checks = import ./checks pkgs;
       # This is highly advised, and will prevent many possible mistakes
       # checks = builtins.mapAttrs (system: deployLib: deployLib.deployChecks self.deploy) deploy-rs.lib;
 

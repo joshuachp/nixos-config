@@ -1,52 +1,44 @@
 { config
+, lib
 , hostname
 , ...
 }: {
   config =
     let
-      cfg = config.privateConfig.wireguard;
-      hostConf = {
-        nixos = {
-          key = config.sops.secrets.wireguard_nixos_private.path;
-          address = "10.0.0.1/24";
-        };
-        nixos-cloud = {
-          key = config.sops.secrets.wireguard_nixos_cloud_private.path;
-          address = "10.0.0.2/24";
-        };
-        nixos-work = {
-          key = config.sops.secrets.wireguard_nixos_work_private.path;
-          address = "10.0.0.3/24";
-        };
-      };
+      privateCfg = config.privateConfig.wireguard;
+      cfg = config.nixosConfig.wireguard;
     in
-    {
+    lib.mkIf cfg.client {
       # Open the firewall port
       networking.firewall = {
-        allowedUDPPorts = [ cfg.port ];
+        allowedUDPPorts = [ privateCfg.port ];
       };
       # Wireguard interface
-      networking.wg-quick.interfaces.wg0 = {
-        autostart = true;
-        # IP address subnet at the client end
-        address = [ hostConf."${hostname}".address ];
-        # Set a split DNS to route only the .wg domains through wireguard
-        postUp = ''
-          resolvconf -f -d wg0
-          resolvectl dns wg0 10.0.0.2 fdc9:281f:04d7:9ee9::2
-          resolvectl domain wg0 '~wg'
-        '';
-        listenPort = cfg.port;
-        privateKeyFile = hostConf."${hostname}".key;
-        peers = [
-          # Nixos Cloud
-          {
-            publicKey = config.privateConfig.wireguard.nixosCloudPublicKey;
-            endpoint = "${cfg.serverIp}:${toString cfg.port}";
-            allowedIPs = [ "10.0.0.2/32" ];
-            persistentKeepalive = 25;
-          }
-        ];
-      };
+      networking.wg-quick.interfaces.wg0 =
+        let
+          inherit (cfg.hostConfig.${hostname}) privateKey addressIpv4;
+        in
+        {
+          autostart = true;
+          # IP address subnet at the client end
+          address = [ "${addressIpv4}/24" ];
+          # Set a split DNS to route only the .wg domains through wireguard
+          postUp = ''
+            resolvconf -f -d wg0
+            resolvectl dns wg0 10.0.0.2 fdc9:281f:04d7:9ee9::2
+            resolvectl domain wg0 '~wg'
+          '';
+          listenPort = privateCfg.port;
+          privateKeyFile = privateKey;
+          peers = [
+            # Nixos Cloud
+            {
+              publicKey = config.privateConfig.wireguard.nixosCloudPublicKey;
+              endpoint = "${privateCfg.serverIp}:${toString privateCfg.port}";
+              allowedIPs = [ "10.0.0.2/32" ];
+              persistentKeepalive = 25;
+            }
+          ];
+        };
     };
 }

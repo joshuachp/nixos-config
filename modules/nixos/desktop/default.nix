@@ -2,7 +2,11 @@
 , pkgs
 , lib
 , ...
-}: {
+}:
+let
+  cfg = config.systemConfig.desktop;
+in
+{
   imports = [
     ./audio.nix
     ./fonts.nix
@@ -14,7 +18,7 @@
     ./wm/i3.nix
     ./wm/sway.nix
   ];
-  config = {
+  config = lib.mkIf cfg.enable {
     # Desktop service
     services.xserver = {
       enable = true;

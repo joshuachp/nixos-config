@@ -25,8 +25,13 @@
           nvidia = true;
         };
       };
-      wireguard.client = true;
       nix.index.enable = true;
+      documentation.enable = true;
+      develop.enable = true;
+      embedded.enable = true;
+      networking.privateDns = true;
+      wireguard.client = true;
+      virtualisation.enable = true;
     };
 
     # Enable docker

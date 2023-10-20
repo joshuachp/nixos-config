@@ -911,11 +911,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1694700923,
-        "narHash": "sha256-iHP+AbVHMvY5QgGaKoPADGquwxnb/FSnpCZQKuzcV6E=",
+        "lastModified": 1697625883,
+        "narHash": "sha256-l2STha5qJiwVCrpXS+dowNxNkqrmjJwyflQOjmLRZD0=",
         "owner": "joshuachp",
         "repo": "tools",
-        "rev": "8a2112a0173983d99b0773f336be502129ed500e",
+        "rev": "228b0c7ee523d3dd2b4f5979ee5df1422fefacf7",
         "type": "github"
       },
       "original": {

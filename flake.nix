@@ -25,11 +25,12 @@
     # Package utilities
     flake-utils.url = "github:numtide/flake-utils";
 
-    # Overlays
+    # External tools
     fenix = {
       url = "github:nix-community/fenix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    naersk.url = "github:nix-community/naersk";
 
     # My modules
     neovim-config = {
@@ -43,6 +44,7 @@
         nixpkgs.follows = "nixpkgs";
         flake-utils.follows = "flake-utils";
         fenix.follows = "fenix";
+        naersk.follows = "naersk";
       };
     };
     tools = {
@@ -51,6 +53,7 @@
         nixpkgs.follows = "nixpkgs";
         flake-utils.follows = "flake-utils";
         fenix.follows = "fenix";
+        naersk.follows = "naersk";
       };
     };
     note = {
@@ -59,6 +62,7 @@
         nixpkgs.follows = "nixpkgs";
         flake-utils.follows = "flake-utils";
         fenix.follows = "fenix";
+        naersk.follows = "naersk";
       };
     };
     pulseaudioMicState = {
@@ -67,6 +71,7 @@
         nixpkgs.follows = "nixpkgs";
         flake-utils.follows = "flake-utils";
         fenix.follows = "fenix";
+        naersk.follows = "naersk";
       };
     };
 
@@ -74,6 +79,7 @@
     privateConf = {
       url = "github:joshuachp/nixos-private-config";
       inputs.nixpkgs.follows = "nixpkgs";
+      inputs.flake-utils.follows = "flake-utils";
     };
 
     # Packages provided via flakes for having the latest version
@@ -101,24 +107,11 @@
     { self
       # Nixpkgs
     , nixpkgs
-    , nixpkgs-unstable
-    , home-manager
-      # Tools
+    , privateConf
     , deploy-rs
-    , nil
-    , nixgl
-      # Modules
-    , nixos-hardware
-    , nixos-wsl
-    , fenix
     , flake-utils
     , neovim-config
-    , privateConf
-      # Packages
-    , jump
-    , tools
-    , note
-    , pulseaudioMicState
+    , ...
     }@flakeInputs:
     let
       inherit (self.lib) mkHome;

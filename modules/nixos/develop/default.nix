@@ -8,6 +8,19 @@ let
   cfg = config.nixosConfig.develop;
 in
 {
+  imports = [
+    ./languages/c_cpp.nix
+    ./languages/elixir.nix
+    ./languages/go.nix
+    ./languages/haskell.nix
+    ./languages/javascript.nix
+    ./languages/lua.nix
+    ./languages/nix.nix
+    ./languages/python.nix
+    ./languages/rust.nix
+    ./languages/sh.nix
+    ./languages/tex.nix
+  ];
   options = {
     nixosConfig.develop.enable = lib.mkEnableOption "develop environment";
   };

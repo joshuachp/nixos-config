@@ -2,8 +2,6 @@
 { config
 , lib
 , pkgs
-, nil
-, system
 , ...
 }:
 let
@@ -11,9 +9,6 @@ let
 in
 {
   config = lib.mkIf cfg.enable {
-    environment.systemPackages = import ../../../../pkgs/develop/nix.nix {
-      inherit pkgs;
-      nil = nil.packages.${system}.default;
-    };
+    environment.systemPackages = import ../../../../pkgs/develop/nix.nix pkgs;
   };
 }

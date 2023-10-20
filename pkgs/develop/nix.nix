@@ -1,4 +1,4 @@
-{ pkgs, nil }: with pkgs; [
+pkgs: with pkgs; [
   # Formatters
   nixfmt
   nixpkgs-fmt

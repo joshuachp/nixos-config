@@ -9,8 +9,6 @@ let
 in
 {
   config = lib.mkIf cfg.enable {
-    config = {
-      environment.systemPackages = import ../../../../pkgs/develop/haskell.nix { inherit pkgs; };
-    };
+    environment.systemPackages = import ../../../../pkgs/develop/haskell.nix { inherit pkgs; };
   };
 }

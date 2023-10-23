@@ -5,7 +5,8 @@
 }: {
   config =
     let
-      inherit (flakeInputs) jump tools note pulseaudioMicState fenix nixpkgs-unstable nil;
+      inherit (flakeInputs) jump tools note pulseaudioMicState fenix nixpkgs-unstable nil
+        nixosAnywhere;
       pkgsUnstable = import nixpkgs-unstable { inherit system; };
     in
     {
@@ -30,6 +31,7 @@
           pulseaudioMicStateOverlay = pulseaudioMicState.packages.${system}.default;
 
           nil = nil.packages.${system}.default;
+          nixos-anywhere = nixosAnywhere.packages.${system}.default;
 
           astartectl =
             let

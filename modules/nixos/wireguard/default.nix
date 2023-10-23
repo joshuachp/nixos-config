@@ -66,6 +66,12 @@ in
           addressIpv4 = "10.0.0.4";
           addressIpv6 = "fdc9:281f:04d7:9ee9::4";
         };
+        nixos-cloud-2 = {
+          privateKey = sopsSecrets.wireguard_nixos_cloud_2_private.path;
+          publicKey = privateCfg.nixosCloud2PublicKey;
+          addressIpv4 = "10.0.0.5";
+          addressIpv6 = "fdc9:281f:04d7:9ee9::5";
+        };
       };
     };
   };

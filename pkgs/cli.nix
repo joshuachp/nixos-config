@@ -42,9 +42,6 @@ pkgs: with pkgs; [
   # Checkers
   shellcheck
 
-  # Terminal
-  starship
-
   # Personal
   jumpOverlay
   noteOverlay

@@ -3,7 +3,7 @@
 , ...
 }: {
   config = {
-    users.groups. joshuachp = {
+    users.groups.joshuachp = {
       gid = 1000;
     };
     users.users.joshuachp = {
@@ -31,16 +31,6 @@
 
     # Home manager configuration, this is for stuff that will be difficult to achieve with only
     # nixos modules
-    home-manager.users.joshuachp = { config, pkgs, lib, ... }: {
-      imports = [
-        ../modules/homeManager/desktop/gnome.nix
-        ../modules/homeManager/nvim.nix
-        ../modules/homeManager/syncthing.nix
-        ../modules/homeManager/gpg.nix
-      ];
-      config = {
-        home.stateVersion = config.systemConfig.version;
-      };
-    };
+    home-manager.users.joshuachp = { config, pkgs, lib, ... }: { };
   };
 }

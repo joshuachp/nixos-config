@@ -37,6 +37,7 @@
       useGlobalPkgs = true;
       sharedModules = [
         ../options
+        ../modules/homeManager
         flakeInputs.neovim-config.homeManagerModules.default
         {
           # Make sure the systemConfig is the same for home manager

@@ -12,7 +12,9 @@
       # Open the firewall port
       networking.firewall = {
         allowedUDPPorts = [ privateCfg.port ];
+        trustedInterfaces = [ "wg0" ];
       };
+
       # Wireguard interface
       networking.wg-quick.interfaces.wg0 =
         let
@@ -35,7 +37,7 @@
             {
               publicKey = config.privateConfig.wireguard.nixosCloudPublicKey;
               endpoint = "${privateCfg.serverIp}:${toString privateCfg.port}";
-              allowedIPs = [ "10.0.0.2/32" ];
+              allowedIPs = [ "10.0.0.2/24" ];
               persistentKeepalive = 25;
             }
           ];

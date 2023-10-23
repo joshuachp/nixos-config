@@ -6,6 +6,8 @@
     ./video-configuration.nix
   ];
   config = {
+    boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
+
     security.tpm2.enable = true;
 
     # Enable desktop system

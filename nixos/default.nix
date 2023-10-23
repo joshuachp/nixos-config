@@ -34,6 +34,14 @@ in
       flakeInputs.privateConf.nixosModules.nixosCloud
     ];
   };
+  # Cloud 2
+  nixos-cloud-2 = mkSystem "nixos-cloud-2" {
+    system = "aarch64-linux";
+    modules = [
+      flakeInputs.privateConf.nixosModules.nixosCloud2
+      flakeInputs.disko.nixosModules.disko
+    ];
+  };
   # Wsl
   nixos-wsl = mkSystem "nixos-wsl" {
     modules = [

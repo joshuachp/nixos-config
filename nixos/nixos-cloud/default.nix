@@ -12,6 +12,7 @@
       boot.tmp.cleanOnBoot = true;
       zramSwap.enable = true;
 
+      systemConfig.minimal = true;
       nixosConfig = {
         networking.enable = false;
         wireguard.server = true;

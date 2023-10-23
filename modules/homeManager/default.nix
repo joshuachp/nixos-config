@@ -1,6 +1,5 @@
 # Home-Manager config
 { config
-, pkgs
 , ...
 }: {
   imports = [

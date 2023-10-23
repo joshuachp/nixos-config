@@ -30,7 +30,7 @@ in
 
     nixos-cloud-2 =
       let
-        inherit (nixos-cloud.config.deploy) hostname port;
+        inherit (nixos-cloud-2.config.deploy) hostname port;
       in
       {
         inherit hostname;

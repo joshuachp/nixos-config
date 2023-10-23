@@ -57,6 +57,7 @@
       pkgs.nixgl.nixVulkanIntel
     ]
     ++ import ../../pkgs/cli.nix pkgs
+    ++ import ../../pkgs/cli-minimal.nix pkgs
     ++ import ../../pkgs/nixpkgs.nix pkgs
     # Develop
     ++ import ../../pkgs/develop { inherit pkgs; }

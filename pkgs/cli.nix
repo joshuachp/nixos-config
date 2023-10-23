@@ -1,13 +1,8 @@
 pkgs: with pkgs; [
-  # System utils
-  pciutils
-  inotify-tools
-
   # Configuration
   chezmoi
 
   # Shells
-  fish
   babelfish
   nushell
   direnv
@@ -15,8 +10,7 @@ pkgs: with pkgs; [
   # Files
   fzf
   rclone
-  file
-  imagemagick
+  inotify-tools
 
   # Document
   pandoc
@@ -25,19 +19,9 @@ pkgs: with pkgs; [
   gopass
 
   # Network utils
-  curl
   wget
-  iproute2
   socat
-  dig
-  inetutils
   nmap
-
-  # Rust CLI programs
-  bat
-  eza
-  fd
-  ripgrep
 
   # Checkers
   shellcheck

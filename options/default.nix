@@ -10,6 +10,7 @@
         description = "The current version of the system";
         type = lib.types.str;
       };
+      minimal = lib.mkEnableOption "minimal system for cloud deployment";
       homeManager.enable = lib.options.mkOption {
         default = false;
         defaultText = "Flag for home-manager integration";

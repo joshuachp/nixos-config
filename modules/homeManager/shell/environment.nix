@@ -1,5 +1,9 @@
 # Environment variables
-_:
+{ config, ... }:
+let
+  inherit (config.xdg) cacheHome configHome dataHome stateHome;
+  syncPath = "$HOME/share/sync";
+in
 {
   home = {
     # Additional paths
@@ -11,14 +15,14 @@ _:
       # Rust
       "$HOME/.cargo/bin"
       # PHP
-      "$COMPOSER_VENDOR_DIR/bin"
+      "${config.home.sessionVariables.COMPOSER_VENDOR_DIR}/bin"
     ];
 
     sessionVariables = {
-      # XDG configuration
-      XDG_CONFIG_HOME = "$HOME/.config";
-      XDG_CACHE_HOME = "$HOME/.cache";
-      XDG_DATA_HOME = "$HOME/.local/share";
+      # XDG configuration,
+      # XDG_CONFIG_HOME = "$HOME/.config";
+      # XDG_CACHE_HOME = "$HOME/.cache";
+      # XDG_DATA_HOME = "$HOME/.local/share";
 
       # Shell variables
       CDPATH = "$CDPATH:$HOME/share/repos";
@@ -27,38 +31,38 @@ _:
       ##
       # History files
       #
-      HISTFILE = "$XDG_CACHE_HOME/shell_history";
-      SQLITE_HISTORY = "$XDG_CACHE_HOME/sqlite_history";
-      LESSHISTFILE = "$XDG_CACHE_HOME/less_history";
-      NODE_REPL_HISTORY = "$XDG_CACHE_HOME/node_repl_history";
+      HISTFILE = "${cacheHome}/shell_history";
+      SQLITE_HISTORY = "${cacheHome}/sqlite_history";
+      LESSHISTFILE = "${cacheHome}/less_history";
+      NODE_REPL_HISTORY = "${cacheHome}/node_repl_history";
 
       ##
       # Config files
       #
       # PostgreSQL
-      PSQLRC = "$XDG_CONFIG_HOME/postgres/psqlrc";
+      PSQLRC = "${configHome}/postgres/psqlrc";
       # Notmuch
-      NOTMUCH_CONFIG = "$XDG_CONFIG_HOME/notmuch/config.conf";
+      NOTMUCH_CONFIG = "${configHome}/notmuch/config.conf";
 
       # Rust
-      CARGO_TARGET_DIR = "$XDG_CACHE_HOME/cargo/target";
+      CARGO_TARGET_DIR = "${configHome}/cargo/target";
 
       # Golang
       GOBIN = "$HOME/go/bin";
       GOPATH = "$HOME/go";
 
       # NodeJS
-      npm_config_userconfig = "$XDG_CONFIG_HOME/npm/config.ini";
+      npm_config_userconfig = "${configHome}/npm/config.ini";
 
       # Python
       PYLINTHOME = "/tmp/pylint.d";
       # Jupyter
-      JUPYTER_CONFIG_DIR = "$XDG_CONFIG_HOME/jupyter";
+      JUPYTER_CONFIG_DIR = "${configHome}/jupyter";
 
       # PHP
-      COMPOSER_HOME = "$XDG_CONFIG_HOME/composer";
-      COMPOSER_CACHE_DIR = "$XDG_CACHE_HOME/composer";
-      COMPOSER_VENDOR_DIR = "$XDG_DATA_HOME/composer/vendor";
+      COMPOSER_HOME = "${configHome}/composer";
+      COMPOSER_CACHE_DIR = "${cacheHome}/composer";
+      COMPOSER_VENDOR_DIR = "${dataHome}/composer/vendor";
 
 
       # Browsers
@@ -96,9 +100,9 @@ _:
       SOPS_AGE_KEY_FILE = "/var/lib/age/keys.txt";
 
       # Sync
-      SYNC_PATH = "$HOME/share/sync";
+      SYNC_PATH = syncPath;
       # Notes
-      NOTE_PATH = "$SYNC_PATH/notes";
+      NOTE_PATH = "${syncPath}/notes";
       NOTE_SYNC = "sync-files";
 
       # hledger

@@ -25,5 +25,6 @@
 
     # Enable linux specific settings for home-manager
     targets.genericLinux.enable = true;
+    xdg.enable = true;
   };
 }

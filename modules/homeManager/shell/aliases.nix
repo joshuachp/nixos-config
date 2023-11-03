@@ -67,6 +67,9 @@ in
       # Bluetooth
       btconnect = "rfkill unblock bluetooth && bluetoothctl power on && bluetoothctl connect 00:D3:00:00:04:17";
       btoff = "bluetoothctl power off";
+
+      # Task warrior
+      taskw = "task project:work";
     };
 
     programs = {

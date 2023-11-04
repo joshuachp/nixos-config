@@ -5,12 +5,7 @@
 , ...
 }: {
   options = {
-    nixosConfig.hardware.bluetooth.enable = lib.options.mkOption {
-      default = false;
-      defaultText = "Enables bluetooth";
-      description = "Enable bluetooth hardware support and config";
-      type = lib.types.bool;
-    };
+    nixosConfig.hardware.bluetooth.enable = lib.mkEnableOption "Bluetooth";
   };
   config =
     let

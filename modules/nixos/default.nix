@@ -18,6 +18,7 @@
     ./plymouth.nix
     ./services.nix
     ./virtualisation.nix
+    ./wifi.nix
     ./wireguard
   ];
   config = {

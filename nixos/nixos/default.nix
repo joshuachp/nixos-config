@@ -20,7 +20,10 @@
     };
     nixosConfig = {
       boot.plymouth.enable = true;
-      hardware.bluetooth.enable = true;
+      hardware = {
+        bluetooth.enable = true;
+        wifi.enable = true;
+      };
       desktop = {
         hyprland = {
           enable = true;
@@ -50,10 +53,6 @@
       useDHCP = false;
       #interfaces.eno1.useDHCP = true;
       #interfaces.wlo1.useDHCP = true;
-
-      # Use NetworkManager
-      networkmanager.enable = true;
-      wireless.enable = false; # Enables wireless support via wpa_supplicant.
 
       # Open ports in the firewall.
       # firewall.allowedTCPPorts = [ ... ];

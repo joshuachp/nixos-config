@@ -8,7 +8,19 @@
   config = {
     boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
 
-    security.tpm2.enable = true;
+    security = {
+      tpm2.enable = true;
+      # Sudo impl
+      sudo.enable = false;
+      sudo-rs.enable = true;
+
+      # Sudo U2F
+      pam.u2f = {
+        enable = true;
+        control = "sufficient";
+        cue = true;
+      };
+    };
 
     # Enable desktop system
     systemConfig = {
@@ -83,13 +95,6 @@
       };
       # Yubikey
       udev.packages = [ pkgs.yubikey-personalization ];
-    };
-
-    # Sudo U2F
-    security.pam.u2f = {
-      enable = true;
-      control = "sufficient";
-      cue = true;
     };
   };
 }

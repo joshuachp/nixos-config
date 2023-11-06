@@ -22,10 +22,7 @@ in
     # Desktop service
     services.xserver = {
       enable = true;
-      # Configure keymap in X11
-      layout = "it";
-      xkbOptions = "eurosign:e";
-      xkbVariant = "basic";
+      layout = "us";
       # Enable touchpad support (enabled default in most desktopManager).
       libinput = {
         enable = true;

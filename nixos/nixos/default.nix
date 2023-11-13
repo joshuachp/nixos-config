@@ -35,6 +35,10 @@
       hardware = {
         bluetooth.enable = true;
         wifi.enable = true;
+        opengl = {
+          enable = true;
+          amd = true;
+        };
       };
       desktop = {
         hyprland = {

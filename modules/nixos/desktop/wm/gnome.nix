@@ -31,8 +31,9 @@ in
       gnome-podcasts
       gnome.dconf-editor
       gnome.gnome-tweaks
-      gnomeExtensions.appindicator
       gnome.gnome-sound-recorder
+      gnomeExtensions.appindicator
+      gnomeExtensions.pop-shell
     ];
   };
 }

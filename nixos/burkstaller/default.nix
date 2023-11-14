@@ -11,7 +11,12 @@
       ./hardware-configuration.nix
     ];
   config = {
-    security.tpm2.enable = true;
+    security = {
+      tpm2.enable = true;
+      # Sudo impl
+      sudo.enable = false;
+      sudo-rs.enable = true;
+    };
 
     users.users.joshuachp.extraGroups = [ "docker" ];
     environment.systemPackages = [ pkgs.astartectl ];
@@ -26,6 +31,7 @@
       boot.plymouth.enable = false;
       hardware = {
         bluetooth.enable = true;
+        wifi.enable = true;
         opengl = {
           enable = true;
           intel = true;
@@ -44,14 +50,14 @@
       virtualisation.enable = true;
     };
 
-    boot.plymouth.enable = true;
-
     # Enable docker
     virtualisation.docker = {
       enable = true;
       # Only for dev
       enableOnBoot = false;
     };
+
+    boot.plymouth.enable = true;
 
     networking = {
       # The global useDHCP flag is deprecated, therefore explicitly set to false here.
@@ -60,10 +66,6 @@
       useDHCP = false;
       #interfaces.eno1.useDHCP = true;
       #interfaces.wlo1.useDHCP = true;
-
-      # Use NetworkManager
-      networkmanager.enable = true;
-      wireless.enable = false; # Enables wireless support via wpa_supplicant.
 
       # Open ports in the firewall.
       # firewall.allowedTCPPorts = [ ... ];

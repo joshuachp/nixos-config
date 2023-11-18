@@ -55,6 +55,11 @@
       virtualisation.enable = true;
     };
 
+    # User homeManager configurations
+    home-manager.users.joshuachp = _: {
+      homeConfig.syncthing.enable = true;
+    };
+
     # Enable docker
     virtualisation.docker = {
       enable = true;

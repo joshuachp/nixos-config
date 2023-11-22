@@ -61,6 +61,7 @@
     };
 
     # Enable docker
+    users.users.joshuachp.extraGroups = [ "docker" ];
     virtualisation.docker = {
       enable = true;
       # Only for dev

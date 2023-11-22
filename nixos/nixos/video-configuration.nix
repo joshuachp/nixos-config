@@ -1,5 +1,7 @@
 # NixOS video configuration
-_: {
+{ lib
+, ...
+}: {
   config = {
     services.xserver.exportConfiguration = true;
 
@@ -16,6 +18,22 @@ _: {
         sync.enable = true;
         amdgpuBusId = "PCI:5:0:0";
         nvidiaBusId = "PCI:1:0:0";
+      };
+    };
+
+    specialisation = {
+      singleMonitor.configuration = {
+        system.nixos.tags = [ "singleMonitor" ];
+
+        hardware.nvidia = {
+          prime = {
+            offload = {
+              enable = lib.mkForce true;
+              enableOffloadCmd = lib.mkForce true;
+            };
+            sync.enable = lib.mkForce false;
+          };
+        };
       };
     };
   };

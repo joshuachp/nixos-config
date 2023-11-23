@@ -41,8 +41,9 @@
           libvdpau
           vaapiVdpau
           # Vulkan
-          vulkan-validation-layers
-          vulkan-extension-layer
+          # TODO: broken in unstable
+          # vulkan-extension-layer
+          # vulkan-validation-layers
         ] ++ lib.lists.optionals cfg.intel [
           intel-media-driver
           intel-compute-runtime

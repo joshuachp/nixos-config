@@ -1,6 +1,7 @@
 # Default overlays for all systems
 { system
 , flakeInputs
+, lib
 , ...
 }: {
   config =
@@ -46,7 +47,7 @@
                 rev = "v${version}";
                 sha256 = "sha256-24KzPxbewf/abzqQ7yf6HwFQ/ovJeMCrMNYDfVn5HA8=";
               };
-              vendorSha256 = "sha256-RVWnkbLOXtNraSoY12KMNwT5H6KdiQoeLfRCLSqVwKQ=";
+              vendorHash = "sha256-RVWnkbLOXtNraSoY12KMNwT5H6KdiQoeLfRCLSqVwKQ=";
               # Completion
               nativeBuildInputs = with pkgsUnstable; [
                 installShellFiles

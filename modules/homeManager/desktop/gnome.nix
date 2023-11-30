@@ -3,7 +3,6 @@
 , lib
 , ...
 }: {
-  # TODO: this should check for gnome also
   config =
     let
       cfg = config.systemConfig.desktop;

@@ -29,7 +29,7 @@
         "sd_mod"
         "rtsx_pci_sdmmc"
       ];
-      kernelModules = [ "dm-snapshot" ];
+      kernelModules = [ "dm-snapshot" "i915" ];
     };
     kernelModules = [ "kvm-intel" ];
     extraModulePackages = [ ];

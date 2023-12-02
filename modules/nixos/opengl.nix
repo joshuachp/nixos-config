@@ -31,6 +31,7 @@
       cfg = config.nixosConfig.hardware.opengl;
     in
     lib.mkIf cfg.enable {
+      services.xserver.videoDrivers = [ "modesetting" ];
       hardware.opengl = {
         enable = true;
 
@@ -38,8 +39,6 @@
         driSupport32Bit = true;
 
         extraPackages = with pkgs; [
-          libvdpau
-          vaapiVdpau
           # Vulkan
           vulkan-extension-layer
           vulkan-validation-layers
@@ -48,11 +47,13 @@
           intel-compute-runtime
           # Intel vaapi drivers
           vaapiIntel
+          libvdpau-va-gl
         ] ++ lib.lists.optionals cfg.amd [
-          rocmPackages.clr.icd
-          rocmPackages.clr
           # Vulkan
           amdvlk
+          # Opencl
+          rocmPackages.clr.icd
+          rocmPackages.clr
         ];
 
         extraPackages32 = (lib.lists.optionals cfg.amd [

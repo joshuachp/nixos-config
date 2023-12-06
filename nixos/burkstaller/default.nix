@@ -11,6 +11,8 @@
       ./hardware-configuration.nix
     ];
   config = {
+    boot.tmp.cleanOnBoot = true;
+
     security = {
       tpm2.enable = true;
       # Sudo impl

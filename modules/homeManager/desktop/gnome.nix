@@ -29,6 +29,12 @@
             "pop-shell@system76.com"
           ];
         };
+        "org/gnome/shell/extensions/pop-shell" = {
+          gap-inner = 1;
+          gap-outer = 1;
+          tile-by-default = 1;
+          tile-enter = [ "<Super>r" ];
+        };
       };
     };
 }

@@ -45,7 +45,7 @@ in
       NOTMUCH_CONFIG = "${configHome}/notmuch/config.conf";
 
       # Rust
-      CARGO_TARGET_DIR = "${configHome}/cargo/target";
+      CARGO_TARGET_DIR = "${cacheHome}/cargo/target";
 
       # Golang
       GOBIN = "$HOME/go/bin";

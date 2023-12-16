@@ -10,6 +10,7 @@
 
     powerManagement.cpuFreqGovernor = "performance";
 
+    boot.tmp.cleanOnBoot = true;
 
     security = {
       tpm2.enable = true;

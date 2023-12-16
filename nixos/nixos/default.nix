@@ -8,6 +8,10 @@
   config = {
     boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
 
+    powerManagement.cpuFreqGovernor = "performance";
+
+    boot.tmp.cleanOnBoot = true;
+
     security = {
       tpm2.enable = true;
       # Sudo impl

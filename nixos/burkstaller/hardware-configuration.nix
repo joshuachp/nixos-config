@@ -17,7 +17,7 @@
       efi.efiSysMountPoint = "/efi";
     };
 
-    kernelPackages = pkgs.linuxPackages_6_5;
+    kernelPackages = pkgs.linuxPackages_6_6;
     initrd = {
       availableKernelModules = [
         "vmd"

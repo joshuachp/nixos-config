@@ -30,7 +30,10 @@
     };
     nixosAnywhere = {
       url = "github:numtide/nixos-anywhere";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        disko.follows = "disko";
+      };
     };
 
     # External tools
@@ -38,12 +41,29 @@
       url = "github:nix-community/fenix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    naersk.url = "github:nix-community/naersk";
+    naersk = {
+      url = "github:nix-community/naersk";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    rust-overlay = {
+      url = "github:oxalica/rust-overlay";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        flake-utils.follows = "flake-utils";
+      };
+    };
+    crane = {
+      url = "github:ipetkov/crane";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     # My modules
     neovim-config = {
       url = "github:joshuachp/neovim-config";
-      inputs.nixpkgs.follows = "nixpkgs-unstable";
+      inputs = {
+        nixpkgs.follows = "nixpkgs-unstable";
+        flake-utils.follows = "flake-utils";
+      };
     };
     #  My packages
     jump = {
@@ -69,8 +89,8 @@
       inputs = {
         nixpkgs.follows = "nixpkgs";
         flake-utils.follows = "flake-utils";
-        fenix.follows = "fenix";
-        naersk.follows = "naersk";
+        crane.follows = "crane";
+        rust-overlay.follows = "rust-overlay";
       };
     };
     pulseaudioMicState = {
@@ -93,13 +113,17 @@
     # Packages provided via flakes for having the latest version
     deploy-rs = {
       url = "github:serokell/deploy-rs";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        utils.follows = "flake-utils";
+      };
     };
     nil = {
       url = "github:oxalica/nil";
       inputs = {
         nixpkgs.follows = "nixpkgs";
         flake-utils.follows = "flake-utils";
+        rust-overlay.follows = "rust-overlay";
       };
     };
     nixgl = {

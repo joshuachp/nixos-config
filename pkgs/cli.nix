@@ -25,6 +25,7 @@ pkgs: with pkgs; [
 
   # Checkers
   shellcheck
+  typos
 
   # Personal
   jumpOverlay

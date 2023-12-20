@@ -27,7 +27,7 @@ let
     gwa = "git worktree add";
     gwc = "git worktree add --checkout";
     gwr = "git worktree remove";
-
+    glo = "git log --oneline";
   };
 in
 {

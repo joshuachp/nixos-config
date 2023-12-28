@@ -45,10 +45,7 @@
         };
       };
       desktop = {
-        hyprland = {
-          enable = true;
-          nvidia = true;
-        };
+        hyprland.enable = true;
       };
       nix.index.enable = true;
       documentation.enable = true;

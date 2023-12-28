@@ -35,7 +35,8 @@
       };
     };
     nixosConfig = {
-      boot.plymouth.enable = true;
+      # TODO: Failed to boot after update, check in a while
+      boot.plymouth.enable = false;
       hardware = {
         bluetooth.enable = true;
         wifi.enable = true;

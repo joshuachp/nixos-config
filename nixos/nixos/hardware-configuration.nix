@@ -20,7 +20,7 @@
       };
       kernelPackages = pkgs.linuxPackages_6_6;
       initrd = {
-        availableKernelModules = [ "xhci_pci" "nvme" "ahci" "usbhid" "usb_storage" "sd_mod" ];
+        availableKernelModules = [ "xhci_pci" "nvme" "ahci" "usbhid" "sd_mod" ];
         kernelModules = [ "dm-snapshot" "amdgpu" ];
         luks.devices.crypted = {
           device = "/dev/disk/by-uuid/e21bee4a-6c26-46c1-8233-362e198db016";

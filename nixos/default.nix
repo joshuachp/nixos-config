@@ -11,7 +11,6 @@ in
       neovimConfig
       # Hardware configuration
       nixosHardware.common-cpu-amd
-      nixosHardware.common-cpu-amd-pstate
       nixosHardware.common-gpu-amd
       nixosHardware.common-gpu-nvidia-nonprime
       nixosHardware.common-pc-laptop

@@ -12,12 +12,10 @@ in
 {
   options = {
     nixosConfig.desktop.hyprland.enable = mkEnableOption "Hyperland window manager";
-    nixosConfig.desktop.hyprland.nvidia = mkEnableOption "Hyperland nvidia patched";
   };
   config = lib.mkIf enable {
     programs.hyprland = {
       enable = true;
-      enableNvidiaPatches = cfg.nvidia;
     };
     programs.light.enable = true;
     # Sway-lock

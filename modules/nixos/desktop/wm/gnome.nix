@@ -33,7 +33,6 @@ in
       gnome.gnome-tweaks
       gnome.gnome-sound-recorder
       gnomeExtensions.appindicator
-      gnomeExtensions.pop-shell
     ];
   };
 }

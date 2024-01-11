@@ -16,7 +16,7 @@
         ## https://wiki.archlinux.org/title/GnuPG#GnuPG_with_pcscd_(PCSC_Lite)
         disable-ccid = true;
         pcsc-driver = "${pkgs.pcsclite.out}/lib/libpcsclite.so";
-        # pcsc-shared = true;
+        pcsc-shared = true;
         ## with pcsc-shared the pin is asked every time, this fixes it
         ## https://dev.gnupg.org/T5436
         # disable-application = "piv";

@@ -1,0 +1,36 @@
+redis-cluster:
+  enabled: false
+postgresql:
+  enabled: true
+postgresql-ha:
+  enabled: false
+
+persistence:
+  enabled: true
+
+signing:
+  enabled: false
+
+gitea:
+  admin:
+    existingSecret: gitea-admin
+  config:
+    server:
+      DOMAIN: git.k.joshuachp.dev
+      ROOT_URL: https://git.k.joshuachp.dev
+      SSH_DOMAIN: git.k.joshuachp.dev
+      SSH_PORT: 8022
+    service:
+      DISABLE_REGISTRATION: true
+      REQUIRE_SIGNIN_VIEW: true
+    database:
+      DB_TYPE: postgres
+    session:
+      PROVIDER: db
+    cache:
+      ADAPTER: memory
+    queue:
+      TYPE: level
+    indexer:
+      ISSUE_INDEXER_TYPE: bleve
+      REPO_INDEXER_ENABLED: true

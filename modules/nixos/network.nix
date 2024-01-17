@@ -40,5 +40,14 @@ in
 
       networking.networkmanager.dns = "systemd-resolved";
     })
+    # Disable mDNS if Avahi is enable
+    (lib.mkIf config.services.avahi.enable {
+      services.resolved = {
+        llmnr = "false";
+        extraConfig = ''
+          MulticastDNS=false
+        '';
+      };
+    })
   ];
 }

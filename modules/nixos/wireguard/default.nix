@@ -72,6 +72,12 @@ in
           addressIpv4 = "10.0.0.5";
           addressIpv6 = "fdc9:281f:04d7:9ee9::5";
         };
+        nord = {
+          privateKey = sopsSecrets.wireguard_android_private.path;
+          publicKey = privateCfg.androidPublicKey;
+          addressIpv4 = "10.0.0.5";
+          addressIpv6 = "fdc9:281f:04d7:9ee9::5";
+        };
       };
     };
   };

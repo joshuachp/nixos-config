@@ -9,6 +9,7 @@
       cfg = config.nixosConfig.wireguard;
       routerIpv4 = cfg.hostConfig.nixos-cloud.addressIpv4;
       routerIpv6 = cfg.hostConfig.nixos-cloud.addressIpv6;
+      clusterDomain = config.privateConfig.k3s.domain;
     in
     lib.mkIf cfg.client {
       # Open the firewall port
@@ -30,7 +31,7 @@
           postUp = ''
             resolvconf -f -d wg0
             resolvectl dns wg0 ${routerIpv4} ${routerIpv6}
-            resolvectl domain wg0 '~wg' '~k.joshuachp.dev'
+            resolvectl domain wg0 '~wg' '~${clusterDomain}'
           '';
           listenPort = privateCfg.port;
           privateKeyFile = privateKey;

@@ -30,18 +30,12 @@
         };
 
         fail2ban.enable = true;
-
-        k3s = {
-          enable = true;
-          extraFlags = builtins.concatStringsSep " " [
-            "--secrets-encryption"
-            "--disable=traefik"
-          ];
-        };
       };
 
       users.users.root.openssh.authorizedKeys.keys = [
         config.privateConfig.ssh.publicKey
       ];
+
+      nixosConfig.server.k3s.enable = true;
     };
 }

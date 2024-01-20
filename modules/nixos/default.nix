@@ -16,6 +16,7 @@
     ./nix
     ./opengl.nix
     ./plymouth.nix
+    ./server
     ./services.nix
     ./virtualisation.nix
     ./wifi.nix

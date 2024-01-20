@@ -17,21 +17,25 @@
         wireguard.client = true;
       };
 
-      services.openssh = {
-        enable = true;
-        # Opened through wireguard
-        openFirewall = false;
-        # Random port
-        ports = [ sshPort ];
-        settings.PasswordAuthentication = false;
-      };
-
       networking.firewall.enable = true;
 
-      services.fail2ban.enable = true;
+      services = {
+        openssh = {
+          enable = true;
+          # Opened through wireguard
+          openFirewall = false;
+          # Random port
+          ports = [ sshPort ];
+          settings.PasswordAuthentication = false;
+        };
+
+        fail2ban.enable = true;
+      };
 
       users.users.root.openssh.authorizedKeys.keys = [
         config.privateConfig.ssh.publicKey
       ];
+
+      nixosConfig.server.k3s.enable = true;
     };
 }

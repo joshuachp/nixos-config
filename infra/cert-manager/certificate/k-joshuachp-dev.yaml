@@ -1,0 +1,14 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: k-joshuachp-dev
+  namespace: traefik
+spec:
+  secretName: cert-k-joshuachp-dev
+  commonName: "k.joshuachp.dev"
+  dnsNames:
+    - "k.joshuachp.dev"
+    - "*.k.joshuachp.dev"
+  issuerRef:
+    name: letsencrypt
+    kind: ClusterIssuer

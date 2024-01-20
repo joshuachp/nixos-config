@@ -1,0 +1,27 @@
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  name: traefik-external
+  namespace: traefik
+  annotations:
+    kubernetes.io/ingress.class: traefik
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - match: "Host(`traefik.k.joshuachp.dev`)"
+      kind: Rule
+      middlewares:
+        # - name: default-headers
+        #   namespace: default
+        - name: traefik-dashboard-basicauth
+          namespace: traefik
+      services:
+        - name: api@internal
+          kind: TraefikService
+  tls:
+    secretName: cert-k-joshuachp-dev
+    domains:
+      - main: k.joshuachp.dev
+        sans:
+          - "*.k.joshuachp.dev"

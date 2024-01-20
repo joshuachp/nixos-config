@@ -1,0 +1,48 @@
+globalArguments:
+  - "--global.checknewversion=false"
+  - "--global.sendanonymoususage=false"
+
+additionalArguments:
+  - "--serversTransport.insecureSkipVerify=true"
+
+ports:
+  web:
+    redirectTo:
+      port: websecure
+  websecure:
+    tls:
+      enabled: true
+  ssh:
+    port: 8022
+    expose: true
+    exposedPort: 8022
+    protocol: TCP
+    exposeInternal: false
+
+providers:
+  kubernetesCRD:
+    enabled: true
+    allowExternalNameServices: true
+    allowCrossNamespace: true
+  kubernetesIngress:
+    enabled: true
+    allowExternalNameServices: true
+
+rbac:
+  enabled: true
+
+logs:
+  general:
+    level: DEBUG
+    format: json
+  access:
+    enabled: true
+    format: json
+    fields:
+      headers:
+        defaultmode: keep
+
+service:
+  loadBalancerSourceRanges:
+    - 127.0.0.1/32
+    - 10.0.0.1/24

@@ -7,6 +7,9 @@
     let
       privateCfg = config.privateConfig.wireguard;
       cfg = config.nixosConfig.wireguard;
+      routerIpv4 = cfg.hostConfig.nixos-cloud.addressIpv4;
+      routerIpv6 = cfg.hostConfig.nixos-cloud.addressIpv6;
+      clusterDomain = config.privateConfig.k3s.domain;
     in
     lib.mkIf cfg.client {
       # Open the firewall port
@@ -27,8 +30,8 @@
           # Set a split DNS to route only the .wg domains through wireguard
           postUp = ''
             resolvconf -f -d wg0
-            resolvectl dns wg0 10.0.0.2 fdc9:281f:04d7:9ee9::2
-            resolvectl domain wg0 '~wg'
+            resolvectl dns wg0 ${routerIpv4} ${routerIpv6}
+            resolvectl domain wg0 '~wg' '~${clusterDomain}'
           '';
           listenPort = privateCfg.port;
           privateKeyFile = privateKey;
@@ -37,7 +40,7 @@
             {
               publicKey = config.privateConfig.wireguard.nixosCloudPublicKey;
               endpoint = "${privateCfg.serverIp}:${toString privateCfg.port}";
-              allowedIPs = [ "10.0.0.2/24" ];
+              allowedIPs = [ "${routerIpv4}/24" "${routerIpv6}/64" ];
               persistentKeepalive = 25;
             }
           ];

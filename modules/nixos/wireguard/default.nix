@@ -60,6 +60,12 @@ in
           addressIpv4 = "10.0.0.2";
           addressIpv6 = "fdc9:281f:04d7:9ee9::2";
         };
+        nord = {
+          privateKey = sopsSecrets.wireguard_android_private.path;
+          publicKey = privateCfg.androidPublicKey;
+          addressIpv4 = "10.0.0.3";
+          addressIpv6 = "fdc9:281f:04d7:9ee9::3";
+        };
         burkstaller = {
           privateKey = sopsSecrets.wireguard_nixos_work_private.path;
           publicKey = privateCfg.nixosWorkPublicKey;

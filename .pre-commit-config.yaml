@@ -12,3 +12,4 @@ repos:
       - id: nix-nixpkgs-fmt
       - id: nix-statix
       - id: nix-flake-check
+      - id: yaml-fmt-prettier

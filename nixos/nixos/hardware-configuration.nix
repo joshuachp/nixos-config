@@ -20,10 +20,10 @@
       };
       kernelPackages = pkgs.linuxPackages_6_6;
       initrd = {
-        availableKernelModules = [ "xhci_pci" "nvme" "ahci" "usbhid" "sd_mod" ];
+        availableKernelModules = [ "xhci_pci" "nvme" "ahci" "usbhid" "sd_mod" "usb_storage" ];
         kernelModules = [ "dm-snapshot" "amdgpu" ];
         luks.devices.crypted = {
-          device = "/dev/disk/by-uuid/e21bee4a-6c26-46c1-8233-362e198db016";
+          device = "/dev/disk/by-uuid/1fedcdd5-c220-4017-a773-a902b9f3fdcd";
         };
       };
       kernelModules = [ "kvm-amd" ];
@@ -37,7 +37,7 @@
       "/" = {
         device = "/dev/Linux/root";
         fsType = "btrfs";
-        options = [ "subvol=root" "noatime" ];
+        options = [ "subvol=root" ];
       };
 
       "/nix" = {
@@ -47,13 +47,19 @@
       };
 
       "/efi" = {
-        device = "/dev/disk/by-uuid/0F4B-952D";
+        device = "/dev/disk/by-uuid/A582-67FE";
         fsType = "vfat";
       };
 
+      "/boot" = {
+        device = "/dev/disk/by-uuid/a6dce445-4eb0-469e-898a-f2366e5d6605";
+        fsType = "ext4";
+      };
+
       "/home" = {
-        device = "/dev/Linux/home";
+        device = "/dev/Linux/root";
         fsType = "btrfs";
+        options = [ "subvol=home" ];
       };
 
       "/home/joshuachp/share" = {
@@ -63,9 +69,9 @@
       };
 
       "/var" = {
-        device = "/dev/Linux/var";
+        device = "/dev/Linux/root";
         fsType = "btrfs";
-        options = [ "noatime" ];
+        options = [ "subvol=var" ];
       };
     };
 

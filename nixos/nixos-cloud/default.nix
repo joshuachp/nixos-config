@@ -5,7 +5,7 @@
   ];
   config =
     let
-      sshPort = config.deploy.port;
+      sshPort = config.privateConfig.deploy.nixos-cloud.port;
     in
     {
       boot.loader.grub.device = "/dev/sda";

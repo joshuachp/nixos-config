@@ -48,9 +48,12 @@
       desktop = {
         hyprland.enable = true;
       };
+      develop = {
+        enable = true;
+        k8s = true;
+      };
       nix.index.enable = true;
       documentation.enable = true;
-      develop.enable = true;
       embedded.enable = true;
       networking.privateDns = true;
       wireguard.client = true;
@@ -58,7 +61,8 @@
     };
 
     # User homeManager configurations
-    home-manager.users.joshuachp = _: {
+    home-manager.users.joshuachp = {
+      privateConfig.kubeConfig = true;
       homeConfig.syncthing.enable = true;
     };
 

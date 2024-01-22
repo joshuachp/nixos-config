@@ -39,6 +39,7 @@
         ../options
         ../modules/homeManager
         flakeInputs.neovim-config.homeManagerModules.default
+        flakeInputs.privateConf.homeManagerModules.default
         {
           # Make sure the systemConfig is the same for home manager
           config.systemConfig = config.systemConfig;

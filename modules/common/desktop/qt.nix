@@ -8,9 +8,6 @@
       cfg = config.systemConfig.desktop;
     in
     lib.mkIf cfg.enable {
-      qt = {
-        enable = true;
-        platformTheme = "gnome";
-      };
+      qt.enable = true;
     };
 }

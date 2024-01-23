@@ -1,7 +1,7 @@
 # Qt configuration
 _: {
   config = {
-    qt.style.name = "adwaita-dark";
+    qt.platformTheme = "qtct";
     home.sessionVariables.QT_QPA_PLATFORM = "wayland;xcb";
   };
 }

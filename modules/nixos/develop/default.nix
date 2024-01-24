@@ -9,6 +9,7 @@ let
 in
 {
   imports = [
+    ./kubernetes.nix
     ./languages/c_cpp.nix
     ./languages/elixir.nix
     ./languages/go.nix

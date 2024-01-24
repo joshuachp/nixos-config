@@ -1,31 +1,32 @@
 # Environment variables
 { config, ... }:
 let
+  home = config.home.homeDirectory;
   inherit (config.xdg) cacheHome configHome dataHome stateHome;
-  syncPath = "$HOME/share/sync";
+  syncPath = "${home}/share/sync";
 in
 {
   home = {
     # Additional paths
     sessionPath = [
       # Golang
-      "$HOME/go/bin"
+      "${home}/go/bin"
       # Local
-      "$HOME/.local/bin"
+      "${home}/.local/bin"
       # Rust
-      "$HOME/.cargo/bin"
+      "${home}/.cargo/bin"
       # PHP
       "${config.home.sessionVariables.COMPOSER_VENDOR_DIR}/bin"
     ];
 
     sessionVariables = {
       # XDG configuration,
-      # XDG_CONFIG_HOME = "$HOME/.config";
-      # XDG_CACHE_HOME = "$HOME/.cache";
-      # XDG_DATA_HOME = "$HOME/.local/share";
+      # XDG_CONFIG_HOME = "${home}/.config";
+      # XDG_CACHE_HOME = "${home}/.cache";
+      # XDG_DATA_HOME = "${home}/.local/share";
 
       # Shell variables
-      CDPATH = "$CDPATH:$HOME/share/repos";
+      CDPATH = "$CDPATH:${home}/share/repos";
 
 
       ##
@@ -48,8 +49,8 @@ in
       CARGO_TARGET_DIR = "${cacheHome}/cargo/target";
 
       # Golang
-      GOBIN = "$HOME/go/bin";
-      GOPATH = "$HOME/go";
+      GOBIN = "${home}/go/bin";
+      GOPATH = "${home}/go";
 
       # NodeJS
       npm_config_userconfig = "${configHome}/npm/config.ini";
@@ -82,7 +83,7 @@ in
       TERMINAL = "alacritty";
 
       # Tmux
-      TMUX_PLUGIN_MANAGER_PATH = "$HOME/.tmux/plugins/tpm";
+      TMUX_PLUGIN_MANAGER_PATH = "${home}/.tmux/plugins/tpm";
 
       # sxhkd
       SXHKD_SHELL = "/bin/sh";
@@ -106,7 +107,7 @@ in
       NOTE_SYNC = "sync-files";
 
       # hledger
-      LEDGER_FILE = "$HOME/share/sync/ledger/$(date +%Y).journal";
+      LEDGER_FILE = "${home}/share/sync/ledger/$(date +%Y).journal";
 
       # Java
       # export JDK_HOME '/usr/lib/jvm/default'

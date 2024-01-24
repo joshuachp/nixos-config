@@ -5,7 +5,7 @@
   ];
   config =
     let
-      sshPort = config.deploy.port;
+      sshPort = config.privateConfig.deploy.nixos-cloud-2.port;
     in
     {
       boot.tmp.cleanOnBoot = true;

@@ -19,7 +19,7 @@
         pcsc-shared = true;
         ## with pcsc-shared the pin is asked every time, this fixes it
         ## https://dev.gnupg.org/T5436
-        # disable-application = "piv";
+        disable-application = "piv";
         ## Fix connection errors
         ## https://support.yubico.com/hc/en-us/articles/360013714479-Troubleshooting-Issues-with-GPG
         reader-port = "Yubico.com Yubikey 4/5 OTP+U2F+CCID";

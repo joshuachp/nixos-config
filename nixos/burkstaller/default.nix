@@ -53,8 +53,9 @@
     };
 
     # User homeManager configurations
-    home-manager.users.joshuachp = _: {
+    home-manager.users.joshuachp = {
       homeConfig.syncthing.enable = true;
+      privateConfig.kubeConfig = true;
     };
 
     # Enable docker

@@ -136,7 +136,7 @@
     "flake-parts": {
       "inputs": {
         "nixpkgs-lib": [
-          "neovim-config",
+          "neovimConfig",
           "neovim-nightly-overlay",
           "nixpkgs"
         ]
@@ -158,7 +158,7 @@
     "flake-parts_2": {
       "inputs": {
         "nixpkgs-lib": [
-          "neovim-config",
+          "neovimConfig",
           "neovim-nightly-overlay",
           "hercules-ci-effects",
           "nixpkgs"
@@ -238,7 +238,7 @@
       "inputs": {
         "flake-parts": "flake-parts_2",
         "nixpkgs": [
-          "neovim-config",
+          "neovimConfig",
           "neovim-nightly-overlay",
           "nixpkgs"
         ]
@@ -326,36 +326,11 @@
         "type": "github"
       }
     },
-    "neovim-config": {
-      "inputs": {
-        "flake-utils": [
-          "flake-utils"
-        ],
-        "neovim-nightly-overlay": "neovim-nightly-overlay",
-        "nixpkgs": [
-          "nixpkgs-unstable"
-        ],
-        "nvimTreesitter": "nvimTreesitter"
-      },
-      "locked": {
-        "lastModified": 1706519949,
-        "narHash": "sha256-eincMDHy2VyNIYre3xfHh/Fu0JvLKgM10Syxy4TRnPg=",
-        "owner": "joshuachp",
-        "repo": "neovim-config",
-        "rev": "5cad5d8a7facf0ba8ef991a0392282c1efe50254",
-        "type": "github"
-      },
-      "original": {
-        "owner": "joshuachp",
-        "repo": "neovim-config",
-        "type": "github"
-      }
-    },
     "neovim-flake": {
       "inputs": {
         "flake-utils": "flake-utils_2",
         "nixpkgs": [
-          "neovim-config",
+          "neovimConfig",
           "neovim-nightly-overlay",
           "nixpkgs"
         ]
@@ -383,7 +358,7 @@
         "hercules-ci-effects": "hercules-ci-effects",
         "neovim-flake": "neovim-flake",
         "nixpkgs": [
-          "neovim-config",
+          "neovimConfig",
           "nixpkgs"
         ]
       },
@@ -398,6 +373,31 @@
       "original": {
         "owner": "nix-community",
         "repo": "neovim-nightly-overlay",
+        "type": "github"
+      }
+    },
+    "neovimConfig": {
+      "inputs": {
+        "flake-utils": [
+          "flake-utils"
+        ],
+        "neovim-nightly-overlay": "neovim-nightly-overlay",
+        "nixpkgs": [
+          "nixpkgs-unstable"
+        ],
+        "nvimTreesitter": "nvimTreesitter"
+      },
+      "locked": {
+        "lastModified": 1706519949,
+        "narHash": "sha256-eincMDHy2VyNIYre3xfHh/Fu0JvLKgM10Syxy4TRnPg=",
+        "owner": "joshuachp",
+        "repo": "neovim-config",
+        "rev": "5cad5d8a7facf0ba8ef991a0392282c1efe50254",
+        "type": "github"
+      },
+      "original": {
+        "owner": "joshuachp",
+        "repo": "neovim-config",
         "type": "github"
       }
     },
@@ -713,7 +713,7 @@
         "home-manager": "home-manager",
         "jump": "jump",
         "naersk": "naersk",
-        "neovim-config": "neovim-config",
+        "neovimConfig": "neovimConfig",
         "nil": "nil",
         "nixgl": "nixgl",
         "nixos-hardware": "nixos-hardware",

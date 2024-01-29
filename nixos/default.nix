@@ -1,6 +1,6 @@
 flakeInputs:
 let
-  neovimConfig = flakeInputs.neovim-config.nixosModules.default;
+  neovimConfig = flakeInputs.neovimConfig.nixosModules.default;
   nixosHardware = flakeInputs.nixos-hardware.nixosModules;
   inherit (flakeInputs.self.lib) mkSystem;
 in

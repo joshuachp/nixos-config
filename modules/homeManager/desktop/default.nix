@@ -3,5 +3,6 @@ _: {
   imports = [
     ./gnome.nix
     ./qt.nix
+    ./alacritty.nix
   ];
 }

@@ -24,6 +24,7 @@
           description = "Whether to enable the desktop environment";
           type = lib.types.bool;
         };
+        hidpi = lib.mkEnableOption "HIDPI desktop configuration";
         wayland = lib.options.mkOption {
           default = false;
           defaultText = "Enable wayland backend";

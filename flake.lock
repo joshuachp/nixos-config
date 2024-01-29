@@ -20,6 +20,27 @@
         "type": "github"
       }
     },
+    "crane_2": {
+      "inputs": {
+        "nixpkgs": [
+          "tools",
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1706473964,
+        "narHash": "sha256-Fq6xleee/TsX6NbtoRuI96bBuDHMU57PrcK9z1QEKbk=",
+        "owner": "ipetkov",
+        "repo": "crane",
+        "rev": "c798790eabec3e3da48190ae3698ac227aab770c",
+        "type": "github"
+      },
+      "original": {
+        "owner": "ipetkov",
+        "repo": "crane",
+        "type": "github"
+      }
+    },
     "deploy-rs": {
       "inputs": {
         "flake-compat": "flake-compat",
@@ -768,6 +789,31 @@
         "type": "github"
       }
     },
+    "rust-overlay_2": {
+      "inputs": {
+        "flake-utils": [
+          "tools",
+          "flake-utils"
+        ],
+        "nixpkgs": [
+          "tools",
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1706494265,
+        "narHash": "sha256-4ilEUJEwNaY9r/8BpL3VmZiaGber0j09lvvx0e/bosA=",
+        "owner": "oxalica",
+        "repo": "rust-overlay",
+        "rev": "246ba7102553851af60e0382f558f6bc5f63fa13",
+        "type": "github"
+      },
+      "original": {
+        "owner": "oxalica",
+        "repo": "rust-overlay",
+        "type": "github"
+      }
+    },
     "sops-nix": {
       "inputs": {
         "nixpkgs": [
@@ -822,25 +868,21 @@
     },
     "tools": {
       "inputs": {
-        "fenix": [
-          "fenix"
-        ],
+        "crane": "crane_2",
         "flake-utils": [
           "flake-utils"
         ],
-        "naersk": [
-          "naersk"
-        ],
         "nixpkgs": [
           "nixpkgs"
-        ]
+        ],
+        "rust-overlay": "rust-overlay_2"
       },
       "locked": {
-        "lastModified": 1697819102,
-        "narHash": "sha256-gps8wBZKp0kxPGJYC7dnmmO2EBfuqQleH7jwL43ZUBw=",
+        "lastModified": 1706525658,
+        "narHash": "sha256-gCOq088oy4V+8seejVAsaGOuy2U2H3rOSFGaqlSHtds=",
         "owner": "joshuachp",
         "repo": "tools",
-        "rev": "72337f0d07a5eb8eb1d7b931437c96fd485c5843",
+        "rev": "7fe123b858f5fc3f2c84e90ba16f956fa08cce1d",
         "type": "github"
       },
       "original": {

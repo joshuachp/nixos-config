@@ -26,6 +26,7 @@
     # Enable desktop system
     systemConfig.desktop = {
       enable = true;
+      hidpi = true;
       wayland = true;
       gnome.enable = true;
     };

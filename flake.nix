@@ -58,7 +58,7 @@
     };
 
     # My modules
-    neovim-config = {
+    neovimConfig = {
       url = "github:joshuachp/neovim-config";
       inputs = {
         nixpkgs.follows = "nixpkgs-unstable";
@@ -80,8 +80,8 @@
       inputs = {
         nixpkgs.follows = "nixpkgs";
         flake-utils.follows = "flake-utils";
-        fenix.follows = "fenix";
-        naersk.follows = "naersk";
+        crane.follows = "crane";
+        rust-overlay.follows = "rust-overlay";
       };
     };
     note = {
@@ -142,7 +142,7 @@
     , privateConf
     , deploy-rs
     , flake-utils
-    , neovim-config
+    , neovimConfig
     , ...
     }@flakeInputs:
     let
@@ -156,7 +156,7 @@
       homeConfigurations = {
         joshuachp = mkHome "joshuachp" {
           modules = [
-            neovim-config.homeManagerModules.default
+            neovimConfig.homeManagerModules.default
           ];
         };
       };

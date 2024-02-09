@@ -2,7 +2,8 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ pkgs
+{ config
+, pkgs
 , ...
 }: {
   imports =
@@ -56,7 +57,10 @@
     # User homeManager configurations
     home-manager.users.joshuachp = {
       homeConfig.syncthing.enable = true;
-      privateConfig.kubeConfig = true;
+      privateConfig = {
+        syncthing.enable = true;
+        kubeConfig = true;
+      };
     };
 
     # Enable docker

@@ -13,7 +13,7 @@ in
   };
   config = lib.mkMerge [
     (lib.mkIf cfg.enable {
-      services.syncthing. enable = true;
+      services.syncthing.enable = true;
     })
     # Enable the tray icon only on desktops setups
     (lib.mkIf desktop {

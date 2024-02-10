@@ -1,0 +1,71 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: syncthing
+  namespace: syncthing
+  labels:
+    app.kubernetes.io/name: syncthing
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: syncthing
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      namespace: syncthing
+      labels:
+        app.kubernetes.io/name: syncthing
+    spec:
+      containers:
+        - name: syncthing
+          image: syncthing/syncthing:1.27
+          env:
+            - name: PUID
+              value: "1001"
+            - name: PGID
+              value: "1001"
+          resources:
+            limits:
+              memory: "256Mi"
+              cpu: "500m"
+            requests:
+              cpu: "50m"
+              memory: "100Mi"
+          ports:
+            - containerPort: 8384
+              name: web-ui
+              protocol: TCP
+            - containerPort: 22000
+              protocol: TCP
+              name: file-transfer
+            - containerPort: 22000
+              protocol: UDP
+              name: quic-transfer
+            - containerPort: 21027
+              protocol: UDP
+              name: local-discovery
+          volumeMounts:
+            - name: syncthing-persistent-storage
+              mountPath: /var/syncthing
+            - name: syncthing-cert-key
+              readOnly: true
+              mountPath: /var/syncthing/config/cert.pem
+              subPath: tls.crt
+            - name: syncthing-cert-key
+              readOnly: true
+              mountPath: /var/syncthing/config/key.pem
+              subPath: tls.key
+          securityContext:
+            readOnlyRootFilesystem: true
+      volumes:
+        - name: syncthing-persistent-storage
+          persistentVolumeClaim:
+            claimName: syncthing-pv-claim
+        - name: syncthing-cert-key
+          secret:
+            secretName: syncthing-remote
+      securityContext:
+        runAsUser: 1001
+        runAsGroup: 1001

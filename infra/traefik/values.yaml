@@ -18,6 +18,24 @@ ports:
     exposedPort: 8022
     protocol: TCP
     exposeInternal: false
+  syncthing-tcp:
+    port: 22000
+    expose: true
+    exposedPort: 22000
+    protocol: TCP
+    exposeInternal: false
+  syncthing-quic:
+    port: 22000
+    expose: true
+    exposedPort: 22000
+    protocol: UDP
+    exposeInternal: false
+  syncthing-disc:
+    port: 21027
+    expose: true
+    exposedPort: 21027
+    protocol: UDP
+    exposeInternal: false
 
 providers:
   kubernetesCRD:

@@ -4,8 +4,8 @@ pkgs: with pkgs; [
 
   # Shells
   babelfish
-  nushell
   direnv
+  zellij
 
   # Files
   fzf

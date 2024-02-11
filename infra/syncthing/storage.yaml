@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: syncthing-pv-claim
+  namespace: syncthing
+  labels:
+    app: syncthing
+spec:
+  storageClassName: smb
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 10Gi

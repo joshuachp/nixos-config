@@ -1,0 +1,68 @@
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  name: syncthing-web
+  namespace: syncthing
+  annotations:
+    kubernetes.io/ingress.class: traefik
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - match: "Host(`syncthing.k.joshuachp.dev`)"
+      kind: Rule
+      services:
+        - name: syncthing-service
+          port: web-ui
+  tls:
+    secretName: cert-k-joshuachp-dev
+    domains:
+      - main: k.joshuachp.dev
+        sans:
+          - "*.k.joshuachp.dev"
+---
+apiVersion: traefik.io/v1alpha1
+kind: IngressRouteTCP
+metadata:
+  name: syncthing-tcp
+  namespace: syncthing
+  annotations:
+    kubernetes.io/ingress.class: traefik
+spec:
+  entryPoints:
+    - syncthing-tcp
+  routes:
+    - match: "HostSNI(`*`)"
+      services:
+        - name: syncthing-service
+          port: file-transfer
+---
+apiVersion: traefik.io/v1alpha1
+kind: IngressRouteUDP
+metadata:
+  name: syncthing-quic
+  namespace: syncthing
+  annotations:
+    kubernetes.io/ingress.class: traefik
+spec:
+  entryPoints:
+    - syncthing-quic
+  routes:
+    - services:
+        - name: syncthing-service
+          port: quic-transfer
+---
+apiVersion: traefik.io/v1alpha1
+kind: IngressRouteUDP
+metadata:
+  name: syncthing-discovery
+  namespace: syncthing
+  annotations:
+    kubernetes.io/ingress.class: traefik
+spec:
+  entryPoints:
+    - syncthing-disc
+  routes:
+    - services:
+        - name: syncthing-service
+          port: local-discovery

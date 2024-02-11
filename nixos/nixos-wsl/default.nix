@@ -4,7 +4,7 @@
 }: {
   imports = [ ];
   config = {
-    nixosConfig.networking.enable = false;
+    nixosConfig.networking.resolved = false;
     wsl = {
       enable = true;
       defaultUser = "joshuachp";

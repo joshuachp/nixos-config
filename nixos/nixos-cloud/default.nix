@@ -1,5 +1,4 @@
 { config
-, lib
 , ...
 }:
 {
@@ -17,15 +16,6 @@
       zramSwap.enable = true;
 
       systemConfig.minimal = true;
-      nixosConfig = {
-        networking = {
-          resolved = false;
-          dnsmasq = true;
-          # Used for wireguard VPN DNS
-          privateDns = true;
-        };
-        wireguard.server = true;
-      };
 
       networking.firewall.enable = true;
 
@@ -39,21 +29,6 @@
           settings.PasswordAuthentication = false;
         };
         fail2ban.enable = true;
-
-        dnsmasq.settings = {
-          address =
-            let
-              clusterIp = config.nixosConfig.wireguard.hostConfig.nixos-cloud-2.addressIpv4;
-            in
-            [
-              "/git.k.joshuachp.dev/${clusterIp}"
-              "/home.k.joshuachp.dev/${clusterIp}"
-              "/kubernetes-dashboard.k.joshuachp.dev/${clusterIp}"
-              "/ntfy.k.joshuachp.dev/${clusterIp}"
-              "/syncthing.k.joshuachp.dev/${clusterIp}"
-              "/traefik.k.joshuachp.dev/${clusterIp}"
-            ];
-        };
       };
 
       users.users.root.openssh.authorizedKeys.keys = [

@@ -12,10 +12,6 @@
       zramSwap.enable = true;
 
       systemConfig.minimal = true;
-      nixosConfig = {
-        networking.resolved = true;
-        wireguard.client = true;
-      };
 
       networking.firewall.enable = true;
 

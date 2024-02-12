@@ -50,7 +50,6 @@
       develop.enable = true;
       embedded.enable = true;
       networking.privateDns = true;
-      wireguard.client = true;
       virtualisation.enable = true;
     };
 

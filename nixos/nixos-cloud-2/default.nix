@@ -13,7 +13,7 @@
 
       systemConfig.minimal = true;
       nixosConfig = {
-        networking.enable = true;
+        networking.resolved = true;
         wireguard.client = true;
       };
 

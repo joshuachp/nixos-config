@@ -4,7 +4,6 @@
 {
   imports = [
     ./hardware-configuration.nix
-    ./services.nix
   ];
   config =
     let
@@ -34,5 +33,8 @@
       users.users.root.openssh.authorizedKeys.keys = [
         config.privateConfig.ssh.publicKey
       ];
+
+      nixosConfig.server.k3s.enable = true;
+      services.k3s.serverAddr = "https://10.0.1.1:6443";
     };
 }

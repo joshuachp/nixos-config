@@ -11,8 +11,10 @@
       cfg = config.nixosConfig.server.k3s;
     in
     lib.mkIf cfg.enable {
-      services. k3s = {
+      privateConfig.k3s.secret = true;
+      services.k3s = {
         enable = true;
+        tokenFile = config.sops.secrets.k3s_token.path;
         extraFlags = builtins.concatStringsSep " " [
           "--secrets-encryption"
           "--disable=traefik"

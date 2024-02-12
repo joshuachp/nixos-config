@@ -33,5 +33,6 @@
       ];
 
       nixosConfig.server.k3s.enable = true;
+      services.k3s.clusterInit = true;
     };
 }

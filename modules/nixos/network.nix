@@ -50,20 +50,26 @@ in
         networking.networkmanager.dns = "systemd-resolved";
       }
     ))
-    (lib.mkIf cfg.dnsmasq {
-      services.dnsmasq = {
-        enable = true;
-        settings = lib.mkMerge [
-          (lib.mkIf (!cfg.privateDns) {
-            server = fallbackDns;
-          })
-          (lib.mkIf cfg.privateDns {
-            inherit (privateCfg.dnsmasq) server add-cpe-id;
-          })
-        ];
-      };
-      networking.networkmanager.dns = "dnsmasq";
-    })
+    (lib.mkIf cfg.dnsmasq (
+      let
+        dns =
+          if cfg.privateDns then
+            privateCfg.dnsmasq.server
+          else
+            fallbackDns;
+      in
+      {
+        services.dnsmasq = {
+          enable = true;
+          settings = {
+            server = dns;
+            add-cpe-id = lib.mkIf cfg.privateDns privateCfg.dnsmasq.add-cpe-id;
+          };
+        };
+        networking.nameservers = dns;
+        networking.networkmanager.dns = "dnsmasq";
+      }
+    ))
     # Disable mDNS if Avahi is enable
     (lib.mkIf config.services.avahi.enable {
       services.resolved = {

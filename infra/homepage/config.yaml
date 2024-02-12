@@ -30,6 +30,10 @@ data:
             href: http://syncthing.k.joshuachp.dev/
             icon: syncthing.png
             description: Syncthing web UI
+        - Ntfy:
+            href: http://ntfy.k.joshuachp.dev/
+            icon: ntfy.png
+            description: Ntfy web UI
         - Traefik:
             href: http://traefik.k.joshuachp.dev/
             icon: traefik.png

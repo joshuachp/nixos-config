@@ -34,7 +34,10 @@
         config.privateConfig.ssh.publicKey
       ];
 
-      nixosConfig.server.k3s.enable = true;
-      services.k3s.serverAddr = "https://10.0.1.1:6443";
+      nixosConfig.server.k3s = {
+        enable = true;
+        interface = "enp7s0";
+      };
+
     };
 }

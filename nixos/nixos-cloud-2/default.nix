@@ -32,7 +32,10 @@
         config.privateConfig.ssh.publicKey
       ];
 
-      nixosConfig.server.k3s.enable = true;
-      services.k3s.clusterInit = true;
+      nixosConfig.server.k3s = {
+        enable = true;
+        main = true;
+        interface = "enp7s0";
+      };
     };
 }

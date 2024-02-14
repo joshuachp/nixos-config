@@ -26,6 +26,13 @@
     lib.mkIf cfg.enable {
       privateConfig.k3s.secret = true;
 
+      users.users.keepalived_script = {
+        isSystemUser = true;
+        description = "keepalived script runner";
+        group = "keepalived_script";
+      };
+      users.groups.keepalived_script = { };
+
       services =
         let
           loadBalacerIp = "10.10.10.100";
@@ -36,6 +43,14 @@
           haproxy = {
             enable = true;
             config = ''
+              defaults
+                  retries 3
+                  option  redispatch
+                  timeout client 30s
+                  timeout connect 4s
+                  timeout server 30s
+
+
               frontend k3s-frontend
                   bind *:${toString apiPort}
                   mode tcp
@@ -52,7 +67,6 @@
             '';
           };
 
-
           # VIP for the cluster
           keepalived =
             let
@@ -60,8 +74,10 @@
             in
             {
               enable = true;
+              enableScriptSecurity = true;
               vrrpScripts.${script} = {
-                script = "${pkgs.killall}/bin/killall -0 haproxy";
+                user = "keepalived_script";
+                script = "${pkgs.procps}/bin/pidof haproxy";
                 interval = 2;
               };
               vrrpInstances.haproxy-vip = {

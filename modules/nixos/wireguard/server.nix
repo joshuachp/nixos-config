@@ -36,6 +36,7 @@
               "/ntfy.k.joshuachp.dev/${clusterIp}"
               "/syncthing.k.joshuachp.dev/${clusterIp}"
               "/traefik.k.joshuachp.dev/${clusterIp}"
+              "/kubeapi.k.joshuachp.dev/${clusterIp}"
             ];
           };
         };

@@ -5,6 +5,9 @@ globalArguments:
 additionalArguments:
   - "--serversTransport.insecureSkipVerify=true"
 
+deployment:
+  kind: "DaemonSet"
+
 ports:
   web:
     redirectTo:

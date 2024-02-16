@@ -1,7 +1,6 @@
 { config
 , lib
 , pkgs
-, hostname
 , ...
 }:
 {
@@ -13,6 +12,10 @@
       nixosConfig.server.k3s = {
         enable = mkEnableOption "Enables k3s service";
         main = mkEnableOption "Make the node as main";
+        ip = mkOption {
+          description = "Node ip";
+          type = types.str;
+        };
         interface = mkOption {
           description = "Interface to connect keepalived";
           type = types.str;
@@ -33,6 +36,34 @@
       };
       users.groups.keepalived_script = { };
 
+      networking.firewall.interfaces.${cfg.interface} = {
+        allowedTCPPorts = [
+          # Etcd
+          2379
+          2380
+          # Api
+          6443
+          # Metrics
+          10250
+          # Embedded registry
+          5001
+
+          # Metallb
+          7472
+          7946
+        ];
+        allowedUDPPorts = [
+          # Wireguard
+          51820
+          51821
+          # Flannel VXLAN
+          8472
+          # Metallb
+          7472
+          7946
+        ];
+      };
+
       services =
         let
           loadBalacerIp = "10.10.10.100";
@@ -43,12 +74,19 @@
           haproxy = {
             enable = true;
             config = ''
+                log /dev/log  local0
+                log /dev/log  local1 notice
+
               defaults
-                  retries 3
-                  option  redispatch
-                  timeout client 30s
-                  timeout connect 4s
-                  timeout server 30s
+                retries 3
+                option  redispatch
+                timeout http-request 10s
+                timeout queue 20s
+                timeout connect 10s
+                timeout client 1h
+                timeout server 1h
+                timeout http-keep-alive 10s
+                timeout check 10s
 
 
               frontend k3s-frontend
@@ -58,12 +96,14 @@
                   default_backend k3s-backend
 
               backend k3s-backend
+                  option httpchk GET /healthz
+                  http-check expect status 200
                   mode tcp
-                  option tcp-check
+                  option ssl-hello-chk
                   balance roundrobin
-                  default-server inter 10s downinter 5s
-                  server server-1 10.0.1.1:6443 check
-                  server server-2 10.0.0.2:6443 check
+                    default-server inter 10s downinter 5s
+                    server server-1 10.1.0.2:6443 check
+                    server server-2 10.1.0.3:6443 check
             '';
           };
 
@@ -74,6 +114,7 @@
             in
             {
               enable = true;
+              openFirewall = true;
               enableScriptSecurity = true;
               vrrpScripts.${script} = {
                 user = "keepalived_script";
@@ -95,24 +136,19 @@
               };
             };
 
-
-          k3s =
-            let
-              ip = config.privateConfig.machines.${hostname}.wireguard.addressIpv4;
-            in
-            {
-              enable = true;
-              clusterInit = cfg.main;
-              serverAddr = lib.mkIf (!cfg.main) "https://${loadBalacerIp}:${toString apiPort}";
-              tokenFile = config.sops.secrets.k3s_token.path;
-              extraFlags = builtins.toString [
-                "--node-ip=${ip}"
-                "--secrets-encryption"
-                "--disable=traefik"
-                "--flannel-backend=host-gw"
-                "--tls-san=${loadBalacerIp}"
-              ];
-            };
+          k3s = {
+            enable = true;
+            clusterInit = cfg.main;
+            serverAddr = lib.mkIf (!cfg.main) "https://${loadBalacerIp}:${toString apiPort}";
+            tokenFile = config.sops.secrets.k3s_token.path;
+            extraFlags = builtins.toString [
+              "--node-ip=${cfg.ip}"
+              "--secrets-encryption"
+              "--disable=traefik"
+              "--disable=servicelb"
+              "--tls-san=${loadBalacerIp}"
+            ];
+          };
         };
     };
 }

@@ -36,6 +36,7 @@
         enable = true;
         main = true;
         interface = "enp7s0";
+        ip = "10.1.0.2";
       };
     };
 }

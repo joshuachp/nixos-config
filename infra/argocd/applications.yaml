@@ -1,6 +1,34 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
+  name: argocd
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/joshuachp/nixos-config
+    targetRevision: feature/argocd
+    path: infra/argocd
+  destination:
+    server: https://kubernetes.default.svc
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: cert-manager
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/joshuachp/nixos-config
+    targetRevision: feature/argocd
+    path: infra/cert-manager
+  destination:
+    server: https://kubernetes.default.svc
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
   name: homepage
   namespace: argocd
 spec:
@@ -15,13 +43,48 @@ spec:
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: argocd
+  name: ntfy
   namespace: argocd
 spec:
   project: default
   source:
     repoURL: https://github.com/joshuachp/nixos-config
     targetRevision: feature/argocd
-    path: infra/argocd
+    path: infra/ntfy
+  destination:
+    server: https://kubernetes.default.svc
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: syncthing
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/joshuachp/nixos-config
+    targetRevision: feature/argocd
+    path: infra/syncthing
+  destination:
+    server: https://kubernetes.default.svc
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: traefik
+  namespace: argocd
+spec:
+  project: default
+  sources:
+    - repoURL: https://github.com/joshuachp/nixos-config
+      targetRevision: feature/argocd
+      path: infra/traefik
+      ref: repo
+    - chart: traefik
+      repoURL: https://traefik.github.io/charts
+      targetRevision: 26.0.0
+      helm:
+        valueFiles:
+          - $repo/infra/traefik/values.yaml
   destination:
     server: https://kubernetes.default.svc

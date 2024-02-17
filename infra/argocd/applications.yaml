@@ -19,12 +19,20 @@ metadata:
   namespace: argocd
 spec:
   project: default
-  source:
-    repoURL: https://github.com/joshuachp/nixos-config
-    targetRevision: feature/argocd
-    path: infra/cert-manager
+  sources:
+    - repoURL: https://github.com/joshuachp/nixos-config
+      targetRevision: feature/argocd
+      path: infra/cert-manager
+      ref: repo
+    - chart: cert-manager
+      repoURL: https://charts.jetstack.io
+      targetRevision: 1.14.2
+      helm:
+        valueFiles:
+          - $repo/infra/cert-manager/values.yaml
   destination:
     server: https://kubernetes.default.svc
+    namespace: cert-manager
 ---
 apiVersion: argoproj.io/v1alpha1
 kind: Application

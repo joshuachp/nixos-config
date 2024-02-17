@@ -59,6 +59,28 @@ spec:
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
+  name: metallb
+  namespace: argocd
+spec:
+  project: default
+  sources:
+    - repoURL: https://github.com/joshuachp/nixos-config
+      targetRevision: feature/argocd
+      path: infra/metallb
+      ref: repo
+    - chart: metallb
+      repoURL: https://metallb.github.io/metallb
+      targetRevision: 0.14.3
+      helm:
+        valueFiles:
+          - $repo/infra/metallb/values.yaml
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: metallb
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
   name: ntfy
   namespace: argocd
 spec:

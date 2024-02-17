@@ -147,6 +147,7 @@
               "--disable=traefik"
               "--disable=servicelb"
               "--tls-san=${loadBalacerIp}"
+              "--flannel-iface=${cfg.interface}"
             ];
           };
         };

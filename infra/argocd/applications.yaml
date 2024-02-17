@@ -88,3 +88,4 @@ spec:
           - $repo/infra/traefik/values.yaml
   destination:
     server: https://kubernetes.default.svc
+    namespace: traefik

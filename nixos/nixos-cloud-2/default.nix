@@ -32,6 +32,11 @@
         config.privateConfig.ssh.publicKey
       ];
 
-      nixosConfig.server.k3s.enable = true;
+      nixosConfig.server.k3s = {
+        enable = true;
+        main = true;
+        interface = "enp7s0";
+        ip = "10.1.0.2";
+      };
     };
 }

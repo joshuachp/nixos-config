@@ -4,7 +4,6 @@
 {
   imports = [
     ./hardware-configuration.nix
-    ./services.nix
   ];
   config =
     let
@@ -34,5 +33,12 @@
       users.users.root.openssh.authorizedKeys.keys = [
         config.privateConfig.ssh.publicKey
       ];
+
+      nixosConfig.server.k3s = {
+        enable = true;
+        interface = "enp7s0";
+        ip = "10.1.0.3";
+      };
+
     };
 }

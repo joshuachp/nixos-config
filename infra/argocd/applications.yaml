@@ -96,13 +96,13 @@ spec:
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: postgresql
+  name: postgres
   namespace: argocd
 spec:
   project: default
   source:
     repoURL: https://github.com/joshuachp/nixos-config
-    path: infra/postgresql
+    path: infra/postgres
   destination:
     server: https://kubernetes.default.svc
 ---

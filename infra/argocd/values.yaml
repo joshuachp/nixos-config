@@ -6,6 +6,8 @@ configs:
     server.insecure: true
 
 notifications:
+  secret:
+    create: false
   subscriptions:
     - recipients:
         - ntfy

@@ -1,0 +1,82 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: postgres-backup-pvc
+  namespace: postgres
+  labels:
+    app: syncthing
+spec:
+  storageClassName: smb
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 10Gi
+---
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: backup
+  namespace: postgres
+spec:
+  # 12h jobs should is probably stuck
+  concurrencyPolicy: Replace
+  failedJobsHistoryLimit: 1
+  schedule: "* */12 * * *"
+  jobTemplate:
+    metadata:
+      name: backup
+      namespace: postgres
+    spec:
+      template:
+        metadata:
+          namespace: postgres
+        spec:
+          containers:
+            - name: backup
+              image: joshuachp/pg-backup-container:0.1.0
+              env:
+                - name: NTFY_URL
+                  value: "http://http.tcp.ntfy.ntfy.svc.cluster.local"
+                - name: NTFY_TOPIC
+                  value: backup
+                - name: HOST
+                  value: "db.tcp.postgres.postgres.svc.cluster.local"
+                - name: PGPASSWORD
+                  valueFrom:
+                    secretKeyRef:
+                      name: postgres-secret
+                      key: password
+                - name: BACKUP_DIR
+                  value: /backup
+                - name: BACKUP_COUNT
+                  value: "15"
+                - name: OUTDIR
+                  value: /out
+              volumeMounts:
+                - name: postgres-backup-storage
+                  mountPath: /backup
+                - name: scratch-volume
+                  mountPath: /out
+              securityContext:
+                readOnlyRootFilesystem: true
+          restartPolicy: OnFailure
+          volumes:
+            - name: postgres-backup-storage
+              persistentVolumeClaim:
+                claimName: postgres-backup-pvc
+            - name: scratch-volume
+              ephemeral:
+                volumeClaimTemplate:
+                  metadata:
+                    labels:
+                      type: postgres-backup-tmp-volume
+                  spec:
+                    accessModes: ["ReadWriteOnce"]
+                    storageClassName: "local-path"
+                    resources:
+                      requests:
+                        storage: 1Gi
+          securityContext:
+            runAsUser: 1001
+            runAsGroup: 1001

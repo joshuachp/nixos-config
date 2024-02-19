@@ -30,13 +30,14 @@
           settings = {
             interface = "wg0";
             address = dnsAddresses ++ [
+              "/argocd.k.joshuachp.dev/${clusterIp}"
               "/git.k.joshuachp.dev/${clusterIp}"
               "/home.k.joshuachp.dev/${clusterIp}"
+              "/kubeapi.k.joshuachp.dev/${clusterIp}"
               "/kubernetes-dashboard.k.joshuachp.dev/${clusterIp}"
               "/ntfy.k.joshuachp.dev/${clusterIp}"
               "/syncthing.k.joshuachp.dev/${clusterIp}"
               "/traefik.k.joshuachp.dev/${clusterIp}"
-              "/kubeapi.k.joshuachp.dev/${clusterIp}"
             ];
           };
         };

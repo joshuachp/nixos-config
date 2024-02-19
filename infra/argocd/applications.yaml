@@ -7,7 +7,6 @@ spec:
   project: default
   sources:
     - repoURL: https://github.com/joshuachp/nixos-config
-      targetRevision: feature/argocd
       path: infra/argocd
       ref: repo
     - chart: argo-cd
@@ -29,7 +28,6 @@ spec:
   project: default
   sources:
     - repoURL: https://github.com/joshuachp/nixos-config
-      targetRevision: feature/argocd
       path: infra/cert-manager
       ref: repo
     - chart: cert-manager
@@ -51,7 +49,6 @@ spec:
   project: default
   source:
     repoURL: https://github.com/joshuachp/nixos-config
-    targetRevision: feature/argocd
     path: infra/homepage
   destination:
     server: https://kubernetes.default.svc
@@ -65,7 +62,6 @@ spec:
   project: default
   sources:
     - repoURL: https://github.com/joshuachp/nixos-config
-      targetRevision: feature/argocd
       path: infra/metallb
       ref: repo
     - chart: metallb
@@ -93,7 +89,6 @@ spec:
   project: default
   source:
     repoURL: https://github.com/joshuachp/nixos-config
-    targetRevision: feature/argocd
     path: infra/ntfy
   destination:
     server: https://kubernetes.default.svc
@@ -107,7 +102,6 @@ spec:
   project: default
   source:
     repoURL: https://github.com/joshuachp/nixos-config
-    targetRevision: feature/argocd
     path: infra/syncthing
   destination:
     server: https://kubernetes.default.svc
@@ -121,7 +115,6 @@ spec:
   project: default
   sources:
     - repoURL: https://github.com/joshuachp/nixos-config
-      targetRevision: feature/argocd
       path: infra/traefik
       ref: repo
     - chart: traefik

@@ -77,6 +77,12 @@ spec:
   destination:
     server: https://kubernetes.default.svc
     namespace: metallb
+  ignoreDifferences:
+    - group: "apiextensions.k8s.io"
+      kind: CustomResourceDefinition
+      name: bgppeers.metallb.io
+      jsonPointers:
+        - /spec/conversion/webhook/clientConfig/caBundle
 ---
 apiVersion: argoproj.io/v1alpha1
 kind: Application

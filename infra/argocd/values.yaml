@@ -13,7 +13,7 @@ notifications:
         - sync-status
   notifiers:
     service.webhook.ntfy: |
-      url: http://ntfy.ntfy.svc.cluster.local
+      url: http://http.tcp.ntfy.ntfy.svc.cluster.local
       insecureSkipVerify: true
   triggers:
     trigger.sync-status: |
@@ -25,17 +25,17 @@ notifications:
       webhook:
         ntfy:
           method: POST
-          path: /
+          path: '/'
           body: |
             {
               "topic": "status",
               "tags": [
-                "argocd"
-                "{{.app.metadata.name}}"
+                "argocd",
+                "{{- .app.metadata.name -}}"
                 {{if eq .app.status.operationState.phase "Running"}} ,"pending"{{end}}
                 {{if eq .app.status.operationState.phase "Succeeded"}} ,"success"{{end}}
                 {{if eq .app.status.operationState.phase "Error"}} ,"error"{{end}}
-                {{if eq .app.status.operationState.phase "Failed"}} ,"error"{{end}},
+                {{if eq .app.status.operationState.phase "Failed"}} ,"error"{{end}}
               ],
               "title": "ArgoCD sync {{.app.metadata.name}}",
               "message": "Sync of project {{.app.metadata.name}} is {{.app.status.operationState.phase}}"
@@ -46,7 +46,7 @@ notifications:
               {{else if eq .app.status.operationState.phase "Failed" -}}
               "priority": 5,
               {{- end -}},
-              "click": "{{.context.argocdUrl}}/applications/{{.app.metadata.name}}",
+              "click": "{{.context.argocdUrl}}/applications/{{.app.metadata.name}}"
             }
 
 server:

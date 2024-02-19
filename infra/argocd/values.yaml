@@ -5,6 +5,50 @@ configs:
   params:
     server.insecure: true
 
+notifications:
+  subscriptions:
+    - recipients:
+        - ntfy
+      triggers:
+        - sync-status
+  notifiers:
+    service.webhook.ntfy: |
+      url: http://ntfy.ntfy.svc.cluster.local
+      insecureSkipVerify: true
+  triggers:
+    trigger.sync-status: |
+      - description: Send sync status notification
+        when: app.status.operationState.phase in ['Succeeded', 'Running', 'Error', 'Failed']
+        send: [sync-status]
+  templates:
+    template.sync-status: |
+      webhook:
+        ntfy:
+          method: POST
+          path: /
+          body: |
+            {
+              "topic": "status",
+              "tags": [
+                "argocd"
+                "{{.app.metadata.name}}"
+                {{if eq .app.status.operationState.phase "Running"}} ,"pending"{{end}}
+                {{if eq .app.status.operationState.phase "Succeeded"}} ,"success"{{end}}
+                {{if eq .app.status.operationState.phase "Error"}} ,"error"{{end}}
+                {{if eq .app.status.operationState.phase "Failed"}} ,"error"{{end}},
+              ],
+              "title": "ArgoCD sync {{.app.metadata.name}}",
+              "message": "Sync of project {{.app.metadata.name}} is {{.app.status.operationState.phase}}"
+              {{ if eq .app.status.operationState.phase "Running" -}}
+              "priority": 1,
+              {{else if eq .app.status.operationState.phase "Error" -}}
+              "priority": 5,
+              {{else if eq .app.status.operationState.phase "Failed" -}}
+              "priority": 5,
+              {{- end -}},
+              "click": "{{.context.argocdUrl}}/applications/{{.app.metadata.name}}",
+            }
+
 server:
   ingress:
     enabled: false

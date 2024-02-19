@@ -38,7 +38,7 @@ notifications:
                 {{if eq .app.status.operationState.phase "Failed"}} ,"error"{{end}}
               ],
               "title": "ArgoCD sync {{.app.metadata.name}}",
-              "message": "Sync of project {{.app.metadata.name}} is {{.app.status.operationState.phase}}"
+              "message": "Sync of project {{.app.metadata.name}} with state {{.app.status.operationState.phase}}"
               {{ if eq .app.status.operationState.phase "Running" -}}
               "priority": 1,
               {{else if eq .app.status.operationState.phase "Error" -}}

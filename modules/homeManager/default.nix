@@ -4,6 +4,7 @@
 }: {
   imports = [
     ./desktop
+    ./develop.nix
     ./gpg.nix
     ./nvim.nix
     ./shell

@@ -34,6 +34,10 @@ data:
             href: http://ntfy.k.joshuachp.dev/
             icon: ntfy.png
             description: Ntfy web UI
+        - ArgoCD:
+            href: http://argocd.k.joshuachp.dev/
+            icon: argocd.png
+            description: ArgoCD
         - Traefik:
             href: http://traefik.k.joshuachp.dev/
             icon: traefik.png

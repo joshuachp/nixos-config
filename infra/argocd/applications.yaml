@@ -1,0 +1,128 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: argocd
+  namespace: argocd
+spec:
+  project: default
+  sources:
+    - repoURL: https://github.com/joshuachp/nixos-config
+      path: infra/argocd
+      ref: repo
+    - chart: argo-cd
+      repoURL: https://argoproj.github.io/argo-helm
+      targetRevision: 6.1.0
+      helm:
+        valueFiles:
+          - $repo/infra/argocd/values.yaml
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: argocd
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: cert-manager
+  namespace: argocd
+spec:
+  project: default
+  sources:
+    - repoURL: https://github.com/joshuachp/nixos-config
+      path: infra/cert-manager
+      ref: repo
+    - chart: cert-manager
+      repoURL: https://charts.jetstack.io
+      targetRevision: 1.14.2
+      helm:
+        valueFiles:
+          - $repo/infra/cert-manager/values.yaml
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: cert-manager
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: homepage
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/joshuachp/nixos-config
+    path: infra/homepage
+  destination:
+    server: https://kubernetes.default.svc
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: metallb
+  namespace: argocd
+spec:
+  project: default
+  sources:
+    - repoURL: https://github.com/joshuachp/nixos-config
+      path: infra/metallb
+      ref: repo
+    - chart: metallb
+      repoURL: https://metallb.github.io/metallb
+      targetRevision: 0.14.3
+      helm:
+        valueFiles:
+          - $repo/infra/metallb/values.yaml
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: metallb
+  ignoreDifferences:
+    - group: "apiextensions.k8s.io"
+      kind: CustomResourceDefinition
+      name: bgppeers.metallb.io
+      jsonPointers:
+        - /spec/conversion/webhook/clientConfig/caBundle
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: ntfy
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/joshuachp/nixos-config
+    path: infra/ntfy
+  destination:
+    server: https://kubernetes.default.svc
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: syncthing
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/joshuachp/nixos-config
+    path: infra/syncthing
+  destination:
+    server: https://kubernetes.default.svc
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: traefik
+  namespace: argocd
+spec:
+  project: default
+  sources:
+    - repoURL: https://github.com/joshuachp/nixos-config
+      path: infra/traefik
+      ref: repo
+    - chart: traefik
+      repoURL: https://traefik.github.io/charts
+      targetRevision: 26.0.0
+      helm:
+        valueFiles:
+          - $repo/infra/traefik/values.yaml
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: traefik

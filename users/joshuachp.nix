@@ -31,7 +31,9 @@
 
     # Home manager configuration, this is for stuff that will be difficult to achieve with only
     # nixos modules
-    home-manager.users.joshuachp = { config, pkgs, lib, ... }: {
+    home-manager.users.joshuachp = { config, pkgs, lib, osConfig, ... }: {
+      homeConfig.docker.config = config.systemConfig.desktop.enable && osConfig.virtualisation.docker.enable;
+
       home.username = "joshuachp";
       home.homeDirectory = "/home/joshuachp";
     };

@@ -19,6 +19,9 @@ in
       resolved = lib.mkEnableOption "Systemd resolve" // { default = true; };
       dnsmasq = lib.mkEnableOption "Dns masq";
       privateDns = lib.mkEnableOption "private DNS resolver";
+      mDNS = lib.mkEnableOption "enable mDNS resolver" // {
+        default = config.systemConfig.desktop.enable;
+      };
     };
   };
   config = lib.mkMerge [
@@ -70,6 +73,12 @@ in
         networking.networkmanager.dns = "dnsmasq";
       }
     ))
+    (lib.mkIf cfg.mDNS {
+      services.avahi = {
+        enable = true;
+        nssmdns4 = true;
+      };
+    })
     # Disable mDNS if Avahi is enable
     (lib.mkIf config.services.avahi.enable {
       services.resolved = {

@@ -15,7 +15,7 @@
         ## Use the pcsc instead of the integrated ccid
         ## https://wiki.archlinux.org/title/GnuPG#GnuPG_with_pcscd_(PCSC_Lite)
         disable-ccid = true;
-        pcsc-driver = "${pkgs.pcsclite.out}/lib/libpcsclite.so";
+        pcsc-driver = "${pkgs.pcsclite.lib}/lib/libpcsclite.so";
         pcsc-shared = true;
         ## with pcsc-shared the pin is asked every time, this fixes it
         ## https://dev.gnupg.org/T5436

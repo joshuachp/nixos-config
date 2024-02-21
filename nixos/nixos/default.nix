@@ -28,11 +28,8 @@
 
     # Enable desktop system
     systemConfig = {
-      desktop = {
-        enable = true;
-        wayland = true;
-        gnome.enable = true;
-      };
+      desktop.enable = true;
+      develop.enable = true;
     };
     nixosConfig = {
       # TODO: Failed to boot after update, check in a while
@@ -40,18 +37,12 @@
       hardware = {
         bluetooth.enable = true;
         wifi.enable = true;
-        opengl = {
-          enable = true;
-          amd = true;
-        };
+        opengl.gpu = [ "amd" ];
       };
       desktop = {
         hyprland.enable = true;
       };
-      develop = {
-        enable = true;
-        k8s = true;
-      };
+      develop.k8s = true;
       nix.index.enable = true;
       documentation.enable = true;
       embedded.enable = true;

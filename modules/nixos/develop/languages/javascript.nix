@@ -5,7 +5,7 @@
 , ...
 }:
 let
-  cfg = config.nixosConfig.develop;
+  cfg = config.systemConfig.develop;
 in
 {
   config = lib.mkIf cfg.enable {

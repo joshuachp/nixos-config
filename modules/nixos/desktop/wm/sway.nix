@@ -17,7 +17,7 @@ in
     assertions = [
       {
         assertion = config.systemConfig.desktop.enable;
-        message = "Enable the destkop environment with systemConfig.desktop.enable = true`";
+        message = "Enable the desktop environment with systemConfig.desktop.enable = true`";
       }
       {
         assertion = config.systemConfig.desktop.wayland;

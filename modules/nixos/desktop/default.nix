@@ -10,6 +10,7 @@ in
   imports = [
     ./audio.nix
     ./fonts.nix
+    ./keyboard.nix
     ./qt.nix
     ./services.nix
     ./wayland.nix

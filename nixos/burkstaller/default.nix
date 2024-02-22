@@ -13,7 +13,7 @@
     boot.tmp.cleanOnBoot = true;
 
     users.users.joshuachp.extraGroups = [ "docker" ];
-    environment.systemPackages = [ pkgs.astartectl ];
+    environment.systemPackages = [ pkgs.astartectl pkgs.committedWithDefault ];
 
     # Enable desktop system
     systemConfig = {

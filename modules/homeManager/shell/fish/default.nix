@@ -4,7 +4,7 @@
 , ...
 }:
 let
-  inherit (config.systemConfig) minimal;
+  cfg = config.systemConfig;
 in
 {
   config = {
@@ -14,7 +14,7 @@ in
       interactiveShellInit = builtins.readFile ./config/config.fish;
 
       functions = lib.mkMerge [
-        (lib.mkIf (!minimal) {
+        (lib.mkIf (!cfg.minimal) {
           # Function callback for when the current directory changes
           __cwd_callback_hook = {
             description = "Function callback for CWD change";

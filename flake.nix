@@ -133,7 +133,6 @@
         flake-utils.follows = "flake-utils";
       };
     };
-
   };
   outputs =
     { self
@@ -172,6 +171,7 @@
       inherit (pkgs) callPackage;
     in
     {
+      packages = import ./packages pkgs;
       checks = import ./checks pkgs;
       # This is highly advised, and will prevent many possible mistakes
       # checks = builtins.mapAttrs (system: deployLib: deployLib.deployChecks self.deploy) deploy-rs.lib;

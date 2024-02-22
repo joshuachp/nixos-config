@@ -1,9 +1,9 @@
 # Default overlays for all systems
 { system
 , flakeInputs
-, lib
 , ...
 }: {
+  imports = [ ./pkgs.nix ];
   config =
     let
       inherit (flakeInputs) jump tools note pulseaudioMicState fenix nixpkgs-unstable nil
@@ -33,31 +33,6 @@
 
           nil = nil.packages.${system}.default;
           nixos-anywhere = nixosAnywhere.packages.${system}.default;
-
-          astartectl =
-            let
-              version = "22.11.02";
-            in
-            pkgsUnstable.buildGoModule {
-              inherit version;
-              pname = "astartectl";
-              src = pkgsUnstable.fetchFromGitHub {
-                owner = "astarte-platform";
-                repo = "astartectl";
-                rev = "v${version}";
-                sha256 = "sha256-24KzPxbewf/abzqQ7yf6HwFQ/ovJeMCrMNYDfVn5HA8=";
-              };
-              vendorHash = "sha256-RVWnkbLOXtNraSoY12KMNwT5H6KdiQoeLfRCLSqVwKQ=";
-              # Completion
-              nativeBuildInputs = with pkgsUnstable; [
-                installShellFiles
-              ];
-              postInstall = ''
-                installShellCompletion --cmd astartectl \
-                  --bash <($out/bin/astartectl completion bash) \
-                  --zsh <($out/bin/astartectl completion zsh)
-              '';
-            };
         })
       ];
     };

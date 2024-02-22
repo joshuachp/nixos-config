@@ -1,9 +1,7 @@
 # Edit this configuration file to define what should be installed on
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
-
-{ config
-, pkgs
+{ pkgs
 , ...
 }: {
   imports =
@@ -14,40 +12,30 @@
   config = {
     boot.tmp.cleanOnBoot = true;
 
-    security = {
-      tpm2.enable = true;
-      # Sudo impl
-      sudo.enable = false;
-      sudo-rs.enable = true;
-    };
-
     users.users.joshuachp.extraGroups = [ "docker" ];
-    environment.systemPackages = [ pkgs.astartectl ];
+    environment.systemPackages = [ pkgs.astartectl pkgs.committedWithDefault ];
 
     # Enable desktop system
-    systemConfig.desktop = {
-      enable = true;
-      hidpi = true;
-      wayland = true;
-      gnome.enable = true;
+    systemConfig = {
+      desktop = {
+        enable = true;
+        hidpi = true;
+      };
+      develop.enable = true;
     };
     nixosConfig = {
-      boot.plymouth.enable = false;
+      boot.plymouth.enable = true;
       hardware = {
         bluetooth.enable = true;
         wifi.enable = true;
-        opengl = {
-          enable = true;
-          intel = true;
-        };
+        opengl.gpu = [ "intel" ];
       };
       desktop = {
         sway.enable = true;
         hyprland.enable = true;
       };
+      develop.k8s = true;
       nix.index.enable = true;
-      documentation.enable = true;
-      develop.enable = true;
       embedded.enable = true;
       networking.privateDns = true;
       virtualisation.enable = true;
@@ -68,8 +56,6 @@
       # Only for dev
       enableOnBoot = false;
     };
-
-    boot.plymouth.enable = true;
 
     networking = {
       # The global useDHCP flag is deprecated, therefore explicitly set to false here.
@@ -105,13 +91,6 @@
       btrfs.autoScrub.enable = true;
       # Yubikey
       udev.packages = [ pkgs.yubikey-personalization ];
-    };
-
-    # Sudo U2F
-    security.pam.u2f = {
-      enable = true;
-      control = "sufficient";
-      cue = true;
     };
   };
 }

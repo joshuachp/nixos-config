@@ -9,7 +9,9 @@ let
 in
 {
   options = {
-    nixosConfig.documentation.enable = lib.mkEnableOption "documentation";
+    nixosConfig.documentation.enable = lib.mkEnableOption "documentation" // {
+      default = config.systemConfig.desktop.enable;
+    };
   };
   config = lib.mkIf cfg.enable {
     # Enable info and man pages, generating the cache at build time

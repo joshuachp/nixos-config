@@ -4,9 +4,6 @@
 , lib
 , ...
 }:
-let
-  cfg = config.nixosConfig.develop;
-in
 {
   imports = [
     ./kubernetes.nix
@@ -22,10 +19,7 @@ in
     ./languages/sh.nix
     ./languages/tex.nix
   ];
-  options = {
-    nixosConfig.develop.enable = lib.mkEnableOption "develop environment";
-  };
-  config = lib.mkIf cfg.enable {
+  config = lib.mkIf config.systemConfig.develop.enable {
     environment.systemPackages = import ../../../pkgs/develop { inherit pkgs; };
 
     # Enable direnv

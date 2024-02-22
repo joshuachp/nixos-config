@@ -28,7 +28,10 @@ in
 
       # NOTE: This could be buggy and some of the initrd.systemd options are unstable and subject to
       #       change, but it's needed to start plymouth in stage 1
-      initrd.systemd.enable = true;
+      initrd = {
+        systemd.enable = true;
+        services.lvm.enable = true;
+      };
     };
   };
 }

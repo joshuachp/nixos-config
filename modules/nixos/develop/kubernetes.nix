@@ -11,8 +11,9 @@
   config =
     let
       cfg = config.nixosConfig.develop;
+      sysCfg = config.systemConfig.develop;
     in
-    lib.mkIf (cfg.enable && cfg.k8s) {
+    lib.mkIf (sysCfg.enable && cfg.k8s) {
       environment.systemPackages = import ../../../pkgs/develop/kubernetes.nix pkgs;
     };
 }

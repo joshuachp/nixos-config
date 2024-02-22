@@ -50,7 +50,7 @@
     "/home" = {
       device = "/dev/Linux/root";
       fsType = "btrfs";
-      options = [ "subvol=home" "compress=zstd" "noatime" ];
+      options = [ "subvol=home" "compress=zstd" ];
     };
 
     "/nix" = {
@@ -62,7 +62,7 @@
     "/var" = {
       device = "/dev/Linux/root";
       fsType = "btrfs";
-      options = [ "subvol=var" "compress=zstd" "noatime" ];
+      options = [ "subvol=var" "compress=zstd" ];
     };
   };
 

@@ -4,6 +4,9 @@
 , ...
 }:
 {
+  imports = [
+    ./git.nix
+  ];
   options = {
     homeConfig = {
       docker.config = lib.mkEnableOption "docker config";
@@ -11,7 +14,6 @@
   };
   config =
     let
-      cfg = config.homeConfig.develop;
       cfgDocker = config.homeConfig.docker;
       enableDocker = config.systemConfig.desktop.enable && cfgDocker.config;
     in

@@ -39,25 +39,59 @@
           format.signOff = true;
           rerere.enabled = true;
 
-# Diff config
+          help.autocorrect = "prompt";
+
+          status.submoduleSummary = true;
+
+          # Diff config
           diff = {
             tool = "difftastic";
             algorithm = "histogram";
+            # show diff in sub-modules
+            submodule = "log";
           };
-          difftool.pormpt = false;
-          "difftool \"difftastric\"".cmd = ''
-            difft "$LOCAL" "$REMOTE"
-          '';
+
+          difftool = {
+            prompt = false;
+            difftastric.cmd = "difft \"$LOCAL\" \"$REMOTE\"";
+          };
           # Use a pager for large output, just like other git commands
           pager.difftool = true;
 
+          # recurse in sub-modules for example while switching branches
+          submodule.recurse = true;
+
           pull.rebase = "interactive";
           push.autoSetupRemote = true;
+
+          fetch = {
+            prune = true;
+            prunetags = true;
+          };
 
           merge = {
             tool = "nvimdiff";
             conflictStyle = "zdiff3";
           };
+
+          rebase = {
+            # easier fix-up
+            autosquash = true;
+            autostash = true;
+            # prevent deleting commits during rebase, you have to drop them instead
+            missingCommitsCheck = "error";
+            # easier rebase with stacked branches
+            updateRefs = true;
+          };
+
+          branch.sort = "-committerdate";
+
+          commit.verbose = true;
+
+          log.date = "iso";
+
+          url."git@github.com:".insteadOf = "https://github.com/";
+
         };
 
         includes = [{

@@ -23,12 +23,12 @@
       nix = {
         gc = {
           automatic = true;
-          dates = "weekly";
+          dates = "Mon *-*-* 12:45";
         };
         # Periodically optimise the store
         optimise = {
           automatic = true;
-          dates = [ "weekly" ];
+          dates = [ "Mon *-*-* 12:45" ];
         };
         # Nix flake registry
         registry.nixpkgs.flake = nixpkgs;
@@ -48,5 +48,16 @@
         nix-index.enable = cfg.index.enable;
         command-not-found.enable = lib.mkIf cfg.index.enable (lib.mkDefault false);
       };
+
+      # https://github.com/nix-community/srvos/blob/8d159ac5bb67368509861cf1a94717402d8d216e/nixos/common/nix.nix#L20
+      nix.daemonCPUSchedPolicy = lib.mkDefault (
+        # improve desktop responsiveness when updating the system
+        if desktop then
+          "idle"
+        else
+          "batch"
+      );
+      nix.daemonIOSchedClass = lib.mkDefault "idle";
+      nix.daemonIOSchedPriority = lib.mkDefault 7;
     };
 }

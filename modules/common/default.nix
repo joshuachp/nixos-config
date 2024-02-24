@@ -2,6 +2,6 @@
 _: {
   imports = [
     ./desktop/qt.nix
-    ./nix/default.nix
+    ./nix
   ];
 }

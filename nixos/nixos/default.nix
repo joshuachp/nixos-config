@@ -1,6 +1,5 @@
-{ pkgs
-, ...
-}: {
+_:
+{
   imports = [
     ./hardware-configuration.nix
     ./video-configuration.nix
@@ -11,20 +10,6 @@
     powerManagement.cpuFreqGovernor = "performance";
 
     boot.tmp.cleanOnBoot = true;
-
-    security = {
-      tpm2.enable = true;
-      # Sudo impl
-      sudo.enable = false;
-      sudo-rs.enable = true;
-
-      # Sudo U2F
-      pam.u2f = {
-        enable = true;
-        control = "sufficient";
-        cue = true;
-      };
-    };
 
     # Enable desktop system
     systemConfig = {
@@ -101,8 +86,6 @@
         enable = true;
         fileSystems = [ "/" "/nix" "/home" "/var" "/share" ];
       };
-      # Yubikey
-      udev.packages = [ pkgs.yubikey-personalization ];
     };
   };
 }

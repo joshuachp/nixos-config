@@ -4,6 +4,7 @@
 }: {
   imports = [
     ./bluetooth.nix
+    ./boot.nix
     ./cli.nix
     ./desktop
     ./develop

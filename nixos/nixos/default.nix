@@ -9,8 +9,6 @@ _:
 
     powerManagement.cpuFreqGovernor = "performance";
 
-    boot.tmp.cleanOnBoot = true;
-
     # Enable desktop system
     systemConfig = {
       desktop.enable = true;

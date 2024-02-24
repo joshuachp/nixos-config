@@ -90,7 +90,7 @@
 
           log.date = "iso";
 
-          url."git@github.com:".insteadOf = "https://github.com/";
+          url."git@github.com:".pushInsteadOf = "https://github.com/";
 
         };
 

@@ -133,6 +133,10 @@
         flake-utils.follows = "flake-utils";
       };
     };
+    nix-index-database = {
+      url = "github:Mic92/nix-index-database";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
   outputs =
     { self

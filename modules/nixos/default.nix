@@ -13,7 +13,7 @@
     ./gnupg.nix
     ./localization.nix
     ./localtime.nix
-    ./network.nix
+    ./networking
     ./nix
     ./opengl.nix
     ./plymouth.nix

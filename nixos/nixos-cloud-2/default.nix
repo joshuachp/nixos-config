@@ -8,7 +8,6 @@
       sshPort = config.privateConfig.deploy.nixos-cloud-2.port;
     in
     {
-      boot.tmp.cleanOnBoot = true;
       zramSwap.enable = true;
 
       systemConfig.minimal = true;

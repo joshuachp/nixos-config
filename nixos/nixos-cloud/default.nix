@@ -11,7 +11,6 @@
     in
     {
       boot.loader.grub.device = "/dev/sda";
-      boot.tmp.cleanOnBoot = true;
       zramSwap.enable = true;
 
       systemConfig.minimal = true;

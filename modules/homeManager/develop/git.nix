@@ -53,7 +53,7 @@
 
           difftool = {
             prompt = false;
-            difftastric.cmd = "difft \"$LOCAL\" \"$REMOTE\"";
+            difftastic.cmd = "difft \"$LOCAL\" \"$REMOTE\"";
           };
           # Use a pager for large output, just like other git commands
           pager.difftool = true;
@@ -90,7 +90,7 @@
 
           log.date = "iso";
 
-          url."git@github.com:".insteadOf = "https://github.com/";
+          url."git@github.com:".pushInsteadOf = "https://github.com/";
 
         };
 

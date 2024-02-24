@@ -1,5 +1,6 @@
 { config
 , pkgs
+, hostname
 , ...
 }: {
   config = {
@@ -38,7 +39,7 @@
       {
         homeConfig.docker.config = desktop && osConfig.virtualisation.docker.enable;
 
-        privateConfig.u2f.enable = desktop;
+        privateConfig.u2f.enable = lib.mkIf desktop hostname;
 
         home.username = "joshuachp";
         home.homeDirectory = "/home/joshuachp";

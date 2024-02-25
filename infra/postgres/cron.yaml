@@ -34,7 +34,7 @@ spec:
         spec:
           containers:
             - name: backup
-              image: joshuachp/pg-backup-container:0.1.1
+              image: joshuachp/pg-backup-container:0.1.2
               env:
                 - name: NTFY_URL
                   value: "http://http.tcp.ntfy.ntfy.svc.cluster.local"
@@ -53,6 +53,11 @@ spec:
                   value: "15"
                 - name: OUTDIR
                   value: /out
+                - name: PUB_KEY
+                  valueFrom:
+                    secretKeyRef:
+                      name: db-backup
+                      key: pubKey
               volumeMounts:
                 - name: postgres-backup-storage
                   mountPath: /backup

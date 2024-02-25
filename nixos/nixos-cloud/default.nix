@@ -10,12 +10,9 @@
       sshPort = config.privateConfig.deploy.nixos-cloud.port;
     in
     {
-      boot.loader.grub.device = "/dev/sda";
       zramSwap.enable = true;
 
       systemConfig.minimal = true;
-
-      networking.firewall.enable = true;
 
       services = {
         openssh = {
@@ -33,11 +30,22 @@
         config.privateConfig.ssh.publicKey
       ];
 
+      systemd.network.networks = {
+        "11-enp1s0" = {
+          matchConfig.Name = "enp1s0";
+          networkConfig.DHCP = "yes";
+        };
+        "17-enp7s0" = {
+          matchConfig.Name = "enp7s0";
+          networkConfig.DHCP = "yes";
+          linkConfig.RequiredForOnline = "no";
+        };
+      };
+
       nixosConfig.server.k3s = {
         enable = true;
         interface = "enp7s0";
         ip = "10.1.0.3";
       };
-
     };
 }

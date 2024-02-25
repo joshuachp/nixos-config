@@ -36,6 +36,7 @@
               "/kubeapi.k.joshuachp.dev/${clusterIp}"
               "/kubernetes-dashboard.k.joshuachp.dev/${clusterIp}"
               "/ntfy.k.joshuachp.dev/${clusterIp}"
+              "/pg.k.joshuachp.dev/${clusterIp}"
               "/syncthing.k.joshuachp.dev/${clusterIp}"
               "/traefik.k.joshuachp.dev/${clusterIp}"
             ];

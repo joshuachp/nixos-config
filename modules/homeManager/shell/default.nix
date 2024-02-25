@@ -24,7 +24,7 @@ in
         enableZshIntegration = true;
         settings = lib.importTOML ./config/starship.toml;
       };
-      atuin = {
+      atuin = lib.mkIf (!minimal) {
         enable = true;
         flags = [
           "--disable-up-arrow"

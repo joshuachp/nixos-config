@@ -12,8 +12,6 @@
 
       systemConfig.minimal = true;
 
-      networking.firewall.enable = true;
-
       services = {
         openssh = {
           enable = true;
@@ -23,13 +21,24 @@
           ports = [ sshPort ];
           settings.PasswordAuthentication = false;
         };
-
         fail2ban.enable = true;
       };
 
       users.users.root.openssh.authorizedKeys.keys = [
         config.privateConfig.ssh.publicKey
       ];
+
+      systemd.network.networks = {
+        "11-enp1s0" = {
+          matchConfig.Name = "enp1s0";
+          networkConfig.DHCP = "yes";
+        };
+        "17-enp7s0" = {
+          matchConfig.Name = "enp7s0";
+          networkConfig.DHCP = "yes";
+          linkConfig.RequiredForOnline = "no";
+        };
+      };
 
       nixosConfig.server.k3s = {
         enable = true;

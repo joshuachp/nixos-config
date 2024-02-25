@@ -1,4 +1,7 @@
-_:
+{ pkgs
+, lib
+, ...
+}:
 {
   imports = [
     ./hardware-configuration.nix
@@ -8,6 +11,13 @@ _:
     boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
 
     powerManagement.cpuFreqGovernor = "performance";
+
+    specialisation = {
+      zenKernel.configuration = {
+        system.nixos.tags = [ "zenKernel" ];
+        boot.kernelPackages = lib.mkForce pkgs.linuxPackages_zen;
+      };
+    };
 
     # Enable desktop system
     systemConfig = {

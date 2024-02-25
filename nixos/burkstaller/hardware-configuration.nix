@@ -44,25 +44,25 @@
     "/" = {
       device = "/dev/Linux/root";
       fsType = "btrfs";
-      options = [ "subvol=root" "compress=zstd" "noatime" ];
+      options = [ "defaults" "subvol=root" "compress=zstd" "noatime" ];
     };
 
     "/home" = {
       device = "/dev/Linux/root";
       fsType = "btrfs";
-      options = [ "subvol=home" "compress=zstd" ];
+      options = [ "defaults" "subvol=home" "compress=zstd" ];
     };
 
     "/nix" = {
       device = "/dev/Linux/root";
       fsType = "btrfs";
-      options = [ "subvol=nix" "compress=zstd" "noatime" ];
+      options = [ "defaults" "subvol=nix" "compress=zstd" "noatime" ];
     };
 
     "/var" = {
       device = "/dev/Linux/root";
       fsType = "btrfs";
-      options = [ "subvol=var" "compress=zstd" ];
+      options = [ "defaults" "subvol=var" "compress=zstd" ];
     };
   };
 

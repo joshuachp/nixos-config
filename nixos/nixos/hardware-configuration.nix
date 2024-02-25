@@ -37,13 +37,13 @@
       "/" = {
         device = "/dev/Linux/root";
         fsType = "btrfs";
-        options = [ "subvol=root" ];
+        options = [ "defaults" "subvol=root" "noatime" ];
       };
 
       "/nix" = {
         device = "/dev/Linux/root";
         fsType = "btrfs";
-        options = [ "subvol=nix" "noatime" ];
+        options = [ "defaults" "subvol=nix" "noatime" ];
       };
 
       "/efi" = {
@@ -59,19 +59,19 @@
       "/home" = {
         device = "/dev/Linux/root";
         fsType = "btrfs";
-        options = [ "subvol=home" ];
+        options = [ "defaults" "subvol=home" "noatime" ];
       };
 
       "/home/joshuachp/share" = {
         device = "/dev/Linux/share";
         fsType = "btrfs";
-        options = [ "user" "exec" ];
+        options = [ "defaults" "user" "exec" "noatime" ];
       };
 
       "/var" = {
         device = "/dev/Linux/root";
         fsType = "btrfs";
-        options = [ "subvol=var" ];
+        options = [ "defaults" "subvol=var" "noatime" ];
       };
     };
 

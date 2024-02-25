@@ -10,8 +10,6 @@
       ./hardware-configuration.nix
     ];
   config = {
-    boot.tmp.cleanOnBoot = true;
-
     users.users.joshuachp.extraGroups = [ "docker" ];
     environment.systemPackages = [ pkgs.astartectl pkgs.committedWithDefault ];
 
@@ -57,28 +55,11 @@
       enableOnBoot = false;
     };
 
-    networking = {
-      # The global useDHCP flag is deprecated, therefore explicitly set to false here.
-      # Per-interface useDHCP will be mandatory in the future, so this generated config
-      # replicates the default behaviour.
-      useDHCP = false;
-      #interfaces.eno1.useDHCP = true;
-      #interfaces.wlo1.useDHCP = true;
-
-      # Open ports in the firewall.
-      # firewall.allowedTCPPorts = [ ... ];
-      # firewall.allowedUDPPorts = [ ... ];
-      # Or disable the firewall altogether.
-      # firewall.enable = false;
-
-      # Syncthing local firewall
-      # https://docs.syncthing.net/users/firewall.html#local-firewall
-      firewall.allowedTCPPorts = [ 22000 ];
-      firewall.allowedUDPPorts = [ 22000 21027 ];
-
-      # Configure network proxy if necessary
-      # networking.proxy.default = "http://user:password@proxy:port/";
-      # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
+    # Syncthing local firewall
+    # https://docs.syncthing.net/users/firewall.html#local-firewall
+    networking.firewall = {
+      allowedTCPPorts = [ 22000 ];
+      allowedUDPPorts = [ 22000 21027 ];
     };
 
     # Enable sound.

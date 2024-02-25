@@ -28,7 +28,7 @@
         };
 
         # Yubikey
-        udev.packages = [ pkgs.yubikey-personalization ];
+        services.udev.packages = [ pkgs.yubikey-personalization ];
       })
     ];
 }

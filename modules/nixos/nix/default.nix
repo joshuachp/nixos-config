@@ -6,7 +6,8 @@
 , ...
 }: {
   imports = [
-    ../../common/nix
+    # Pre-generated nix index database
+    flakeInputs.nix-index-database.nixosModules.nix-index
   ];
   options = {
     # Enable nix-index and command not found
@@ -14,40 +15,49 @@
   };
   config =
     let
+      desktop = config.systemConfig.desktop.enable;
       cfg = config.nixosConfig.nix;
       inherit (flakeInputs) nixpkgs;
     in
-    lib.mkMerge [
-      {
-        nix = {
-          gc = {
-            automatic = true;
-            dates = "weekly";
-          };
-          # Periodically optimise the store
-          optimise = {
-            automatic = true;
-            dates = [ "weekly" ];
-          };
-          # Nix flake registry
-          registry.nixpkgs.flake = nixpkgs;
-          # Disable nix channels, but keep the system compatible
-          channel.enable = false;
-          settings.nix-path = "nixpkgs=${nixpkgs}";
+    {
+      nix = {
+        gc = {
+          automatic = true;
+          dates = "Mon *-*-* 12:45";
         };
-        environment = {
-          systemPackages = import ../../../pkgs/nixpkgs.nix pkgs;
-          pathsToLink = [
-            "/share/nix-direnv"
-          ];
+        # Periodically optimise the store
+        optimise = {
+          automatic = true;
+          dates = [ "Mon *-*-* 12:45" ];
         };
-      }
-      (lib.mkIf cfg.index.enable {
-        # Nix index for command-not-found
-        programs = {
-          nix-index.enable = true;
-          command-not-found.enable = false;
-        };
-      })
-    ];
+        # Nix flake registry
+        registry.nixpkgs.flake = nixpkgs;
+        # Disable nix channels, but keep the system compatible
+        channel.enable = false;
+        settings.nix-path = "nixpkgs=${nixpkgs}";
+      };
+      environment = {
+        systemPackages = import ../../../pkgs/nixpkgs.nix pkgs;
+        pathsToLink = [
+          "/share/nix-direnv"
+        ];
+      };
+
+      # Nix index
+      programs = {
+        nix-index.enable = cfg.index.enable;
+        command-not-found.enable = lib.mkIf cfg.index.enable (lib.mkDefault false);
+      };
+
+      # https://github.com/nix-community/srvos/blob/8d159ac5bb67368509861cf1a94717402d8d216e/nixos/common/nix.nix#L20
+      nix.daemonCPUSchedPolicy = lib.mkDefault (
+        # improve desktop responsiveness when updating the system
+        if desktop then
+          "idle"
+        else
+          "batch"
+      );
+      nix.daemonIOSchedClass = lib.mkDefault "idle";
+      nix.daemonIOSchedPriority = lib.mkDefault 7;
+    };
 }

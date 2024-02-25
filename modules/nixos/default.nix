@@ -4,6 +4,7 @@
 }: {
   imports = [
     ./bluetooth.nix
+    ./boot.nix
     ./cli.nix
     ./desktop
     ./develop
@@ -12,10 +13,11 @@
     ./gnupg.nix
     ./localization.nix
     ./localtime.nix
-    ./network.nix
+    ./networking
     ./nix
     ./opengl.nix
     ./plymouth.nix
+    ./security.nix
     ./server
     ./services.nix
     ./virtualisation.nix

@@ -22,6 +22,20 @@ spec:
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
+  name: atuin
+  namespace: argocd
+spec:
+  project: default
+  sources:
+    - repoURL: https://github.com/joshuachp/nixos-config
+      path: infra/atuin
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: atuin
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
   name: cert-manager
   namespace: argocd
 spec:

@@ -1,6 +1,8 @@
 { pkgs
+, lib
 , ...
-}: {
+}:
+{
   imports = [
     ./hardware-configuration.nix
     ./video-configuration.nix
@@ -10,19 +12,10 @@
 
     powerManagement.cpuFreqGovernor = "performance";
 
-    boot.tmp.cleanOnBoot = true;
-
-    security = {
-      tpm2.enable = true;
-      # Sudo impl
-      sudo.enable = false;
-      sudo-rs.enable = true;
-
-      # Sudo U2F
-      pam.u2f = {
-        enable = true;
-        control = "sufficient";
-        cue = true;
+    specialisation = {
+      zenKernel.configuration = {
+        system.nixos.tags = [ "zenKernel" ];
+        boot.kernelPackages = lib.mkForce pkgs.linuxPackages_zen;
       };
     };
 
@@ -66,28 +59,11 @@
       enableOnBoot = false;
     };
 
-    networking = {
-      # The global useDHCP flag is deprecated, therefore explicitly set to false here.
-      # Per-interface useDHCP will be mandatory in the future, so this generated config
-      # replicates the default behaviour.
-      useDHCP = false;
-      #interfaces.eno1.useDHCP = true;
-      #interfaces.wlo1.useDHCP = true;
-
-      # Open ports in the firewall.
-      # firewall.allowedTCPPorts = [ ... ];
-      # firewall.allowedUDPPorts = [ ... ];
-      # Or disable the firewall altogether.
-      # firewall.enable = false;
-
-      # Syncthing local firewall
-      # https://docs.syncthing.net/users/firewall.html#local-firewall
-      firewall.allowedTCPPorts = [ 22000 ];
-      firewall.allowedUDPPorts = [ 22000 21027 ];
-
-      # Configure network proxy if necessary
-      # networking.proxy.default = "http://user:password@proxy:port/";
-      # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
+    # Syncthing local firewall
+    # https://docs.syncthing.net/users/firewall.html#local-firewall
+    networking.firewall = {
+      allowedTCPPorts = [ 22000 ];
+      allowedUDPPorts = [ 22000 21027 ];
     };
 
     # Enable sound.
@@ -101,8 +77,6 @@
         enable = true;
         fileSystems = [ "/" "/nix" "/home" "/var" "/share" ];
       };
-      # Yubikey
-      udev.packages = [ pkgs.yubikey-personalization ];
     };
   };
 }

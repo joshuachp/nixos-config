@@ -6,7 +6,10 @@
 {
   options = {
     nixosConfig.networking = {
-      resolved = lib.mkEnableOption "Systemd resolve" // { default = true; };
+      resolved = lib.mkEnableOption "Systemd resolve" // {
+        # Enable on desktop
+        default = config.systemConfig.desktop.enable;
+      };
       dnsmasq = lib.mkEnableOption "Dns masq";
       privateDns = lib.mkEnableOption "private DNS resolver";
       mDNS = lib.mkEnableOption "enable mDNS resolver" // {

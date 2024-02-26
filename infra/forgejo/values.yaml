@@ -47,7 +47,7 @@ gitea:
       valueFrom:
         secretKeyRef:
           name: forgejo-env-secret
-          key: mailPassword
+          key: mailerPassword
   config:
     server:
       DOMAIN: git.k.joshuachp.dev

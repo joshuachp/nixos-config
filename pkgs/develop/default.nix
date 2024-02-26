@@ -29,4 +29,6 @@
   # Various
   nodePackages.vim-language-server
   tree-sitter
+  committedWithDefault
+  astartectl
 ]

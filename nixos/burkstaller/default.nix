@@ -11,7 +11,6 @@
     ];
   config = {
     users.users.joshuachp.extraGroups = [ "docker" ];
-    environment.systemPackages = [ pkgs.astartectl pkgs.committedWithDefault ];
 
     # Enable desktop system
     systemConfig = {

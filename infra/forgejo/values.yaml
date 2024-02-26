@@ -73,3 +73,8 @@ gitea:
     indexer:
       ISSUE_INDEXER_TYPE: bleve
       REPO_INDEXER_ENABLED: true
+
+containerSecurityContext:
+  runAsGroup: 1001
+  runAsNonRoot: true
+  runAsUser: 1001

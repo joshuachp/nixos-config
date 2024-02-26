@@ -8,7 +8,7 @@ metadata:
 spec:
   storageClassName: smb
   accessModes:
-    - ReadWriteOnce
+    - ReadWriteMany
   resources:
     requests:
       storage: 10Gi
@@ -77,8 +77,9 @@ spec:
                     labels:
                       type: postgres-backup-tmp-volume
                   spec:
-                    accessModes: ["ReadWriteOnce"]
-                    storageClassName: "local-path"
+                    accessModes:
+                      - ReadWriteOnce
+                    storageClassName: local-path
                     resources:
                       requests:
                         storage: 1Gi

@@ -66,7 +66,7 @@ spec:
       path: infra/forgejo
       ref: repo
     - chart: forgejo
-      repoURL: oci://codeberg.org/forgejo-contrib/forgejo
+      repoURL: https://codeberg.org/api/packages/forgejo-contrib/helm
       targetRevision: 4.0.1
       helm:
         valueFiles:

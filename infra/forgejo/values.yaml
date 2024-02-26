@@ -37,7 +37,7 @@ gitea:
       valueFrom:
         secretKeyRef:
           name: forgejo-env-secret
-          key: mailereSmtpAddr
+          key: mailerSmtpAddr
     - name: FORGEJO__MAILER__USER
       valueFrom:
         secretKeyRef:

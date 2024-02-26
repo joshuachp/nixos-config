@@ -57,6 +57,27 @@ spec:
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
+  name: forgejo
+  namespace: argocd
+spec:
+  project: default
+  sources:
+    - repoURL: https://github.com/joshuachp/nixos-config
+      path: infra/forgejo
+      ref: repo
+    - chart: forgejo
+      repoURL: oci://codeberg.org/forgejo-contrib/forgejo
+      targetRevision: 4.0.1
+      helm:
+        valueFiles:
+          - $repo/infra/forgejo/values.yaml
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: forgejo
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
   name: homepage
   namespace: argocd
 spec:

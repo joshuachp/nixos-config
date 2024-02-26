@@ -24,7 +24,7 @@ data:
     - Kube services:
         - Git:
             href: http://git.k.joshuachp.dev/
-            icon: gitea.png
+            icon: forgejo.png
             description: Gitea instance
         - Syncthing:
             href: http://syncthing.k.joshuachp.dev/

@@ -1,0 +1,74 @@
+redis-cluster:
+  enabled: false
+postgresql:
+  enabled: false
+postgresql-ha:
+  enabled: false
+
+persistence:
+  enabled: true
+  claimName: forgejo-pvc
+
+signing:
+  existingSecret: forgejo-gpg-key
+
+service:
+  http:
+    port: 3000
+  ssh:
+    port: 22
+
+gitea:
+  admin:
+    existingSecret: forgejo-admin-secret
+  additionalConfigFromEnvs:
+    - name: FORGEJO__DATABASE__PASSWD
+      valueFrom:
+        secretKeyRef:
+          name: forgejo-env-secret
+          key: dbPassword
+    - name: FORGEJO__MAILER__FROM
+      valueFrom:
+        secretKeyRef:
+          name: forgejo-env-secret
+          key: mailerFrom
+    - name: FORGEJO__MAILER__SMTP_ADDR
+      valueFrom:
+        secretKeyRef:
+          name: forgejo-env-secret
+          key: mailereSmtpAddr
+    - name: FORGEJO__MAILER__USER
+      valueFrom:
+        secretKeyRef:
+          name: forgejo-env-secret
+          key: mailerFrom
+    - name: FORGEJO__MAILER__PASSWD
+      valueFrom:
+        secretKeyRef:
+          name: forgejo-env-secret
+          key: mailPassword
+  config:
+    server:
+      DOMAIN: git.k.joshuachp.dev
+      ROOT_URL: https://git.k.joshuachp.dev
+      SSH_DOMAIN: git.k.joshuachp.dev
+      SSH_PORT: 8022
+    service:
+      DISABLE_REGISTRATION: true
+      REQUIRE_SIGNIN_VIEW: true
+    database:
+      DB_TYPE: postgres
+      HOST: db.tcp.postgres.postgres.svc.cluster.local:5432
+      NAME: forgejo
+      USER: forgejo
+    session:
+      PROVIDER: db
+    cache:
+      ADAPTER: memory
+    queue:
+      TYPE: level
+    mailer:
+      ENABLED: true
+    indexer:
+      ISSUE_INDEXER_TYPE: bleve
+      REPO_INDEXER_ENABLED: true

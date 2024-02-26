@@ -1,8 +1,8 @@
 apiVersion: traefik.io/v1alpha1
 kind: IngressRoute
 metadata:
-  name: gitea-http
-  namespace: gitea
+  name: forgejo-http
+  namespace: forgejo
   annotations:
     kubernetes.io/ingress.class: traefik
 spec:
@@ -12,7 +12,7 @@ spec:
     - kind: Rule
       match: "Host(`git.k.joshuachp.dev`)"
       services:
-        - name: gitea-http
+        - name: forgejo-http
           scheme: http
           port: 3000
   tls:
@@ -25,8 +25,8 @@ spec:
 apiVersion: traefik.io/v1alpha1
 kind: IngressRouteTCP
 metadata:
-  name: gitea-ssh
-  namespace: gitea
+  name: forgejo-ssh
+  namespace: forgejo
   annotations:
     kubernetes.io/ingress.class: traefik
 spec:
@@ -35,5 +35,5 @@ spec:
   routes:
     - match: "HostSNI(`*`)"
       services:
-        - name: gitea-ssh
+        - name: forgejo-ssh
           port: 22

@@ -1,0 +1,85 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: atuin-config
+  namespace: atuin
+spec:
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 10Mi
+  storageClassName: smb
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: atuin
+  namespace: atuin
+  labels:
+    app.kubernetes.io/name: atuin
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: atuin
+  template:
+    metadata:
+      namespace: atuin
+      labels:
+        app.kubernetes.io/name: atuin
+    spec:
+      containers:
+        - args:
+            - server
+            - start
+          env:
+            - name: ATUIN_DB_URI
+              valueFrom:
+                secretKeyRef:
+                  name: atuin-secrets
+                  key: dbUri
+                  optional: false
+            - name: ATUIN_HOST
+              value: 0.0.0.0
+            - name: ATUIN_PORT
+              value: "80"
+            - name: ATUIN_OPEN_REGISTRATION
+              value: "true"
+          image: ghcr.io/atuinsh/atuin:v18.0.1
+          name: atuin
+          ports:
+            - containerPort: 80
+          resources:
+            limits:
+              memory: "256Mi"
+              cpu: "500m"
+            requests:
+              cpu: "50m"
+              memory: "100Mi"
+          volumeMounts:
+            - mountPath: /config
+              name: atuin-config
+          securityContext:
+            readOnlyRootFilesystem: true
+      volumes:
+        - name: atuin-config
+          persistentVolumeClaim:
+            claimName: atuin-config
+      securityContext:
+        runAsUser: 1001
+        runAsGroup: 1001
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app.kubernetes.io/name: atuin
+  name: atuin
+  namespace: atuin
+spec:
+  selector:
+    app.kubernetes.io/name: atuin
+  ports:
+    - name: http
+      port: 80

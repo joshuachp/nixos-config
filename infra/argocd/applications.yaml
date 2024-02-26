@@ -66,11 +66,12 @@ spec:
       path: infra/forgejo
       ref: repo
     - chart: forgejo
-      repoURL: https://codeberg.org/api/packages/forgejo-contrib/helm
+      repoURL: ci://codeberg.org/forgejo-contrib/forgejo
       targetRevision: 4.0.1
       helm:
         valueFiles:
           - $repo/infra/forgejo/values.yaml
+        version: v3
   destination:
     server: https://kubernetes.default.svc
     namespace: forgejo

@@ -7,6 +7,7 @@ postgresql-ha:
 
 persistence:
   enabled: true
+  create: false
   claimName: forgejo-pvc
 
 signing:

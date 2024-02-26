@@ -29,6 +29,9 @@ in
         flags = [
           "--disable-up-arrow"
         ];
+        settings = {
+          sync_address = "https://atuin.k.joshuachp.dev";
+        };
         enableBashIntegration = true;
         enableFishIntegration = true;
         enableZshIntegration = true;

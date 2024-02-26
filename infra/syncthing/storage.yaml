@@ -8,7 +8,7 @@ metadata:
 spec:
   storageClassName: smb
   accessModes:
-    - ReadWriteOnce
+    - ReadWriteMany
   resources:
     requests:
       storage: 10Gi

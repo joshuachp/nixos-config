@@ -681,11 +681,11 @@
         "sops-nix": "sops-nix"
       },
       "locked": {
-        "lastModified": 1708773301,
-        "narHash": "sha256-MBbFIA/dr/L/yaWUI4jehjWUINaQFSwFeXtiBjLOR6A=",
+        "lastModified": 1708948283,
+        "narHash": "sha256-VZ6e3G9nnJ7EvZlqLC6UrHbVY3nPhs/eAvQ/fZ8DUyU=",
         "owner": "joshuachp",
         "repo": "nixos-private-config",
-        "rev": "29bd7aea8f21b4e844c0e1002c9740bae953a78d",
+        "rev": "49d5ab732d9f91106bb320f69154ad12545ebd95",
         "type": "github"
       },
       "original": {

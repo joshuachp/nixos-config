@@ -9,8 +9,9 @@ in
 {
   imports = [
     ./aliases.nix
-    ./fish
+    ./atuin.nix
     ./environment.nix
+    ./fish
   ];
   config = {
     programs = {
@@ -23,15 +24,6 @@ in
         enableFishIntegration = true;
         enableZshIntegration = true;
         settings = lib.importTOML ./config/starship.toml;
-      };
-      atuin = lib.mkIf (!minimal) {
-        enable = true;
-        flags = [
-          "--disable-up-arrow"
-        ];
-        enableBashIntegration = true;
-        enableFishIntegration = true;
-        enableZshIntegration = true;
       };
     };
   };

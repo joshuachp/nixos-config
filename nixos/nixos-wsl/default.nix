@@ -5,6 +5,8 @@
   imports = [ ];
   config = {
     nixosConfig.networking.resolved = false;
+    services.resolved.enable = false;
+
     wsl = {
       enable = true;
       defaultUser = "joshuachp";

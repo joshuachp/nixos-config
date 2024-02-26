@@ -78,6 +78,8 @@
           };
           networking.nameservers = dns;
           networking.networkmanager.dns = "dnsmasq";
+          # This has higher priority than mkDefault but not of a option
+          services.resolved.enable = lib.mkOverride 900 false;
         }
       ))
       # MDNS

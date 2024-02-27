@@ -10,22 +10,3 @@ spec:
     requests:
       storage: 10Gi
   storageClassName: smb-alt
-  dataSource:
-    kind: PersistentVolumeClaim
-    name: forgejo-pvc-clone
----
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: forgejo-pvc-clone
-  namespace: forgejo
-spec:
-  accessModes:
-    - ReadWriteMany
-  resources:
-    requests:
-      storage: 10Gi
-  storageClassName: smb-alt
-  dataSource:
-    kind: PersistentVolumeClaim
-    name: forgejo-pvc

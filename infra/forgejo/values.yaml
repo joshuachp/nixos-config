@@ -42,7 +42,7 @@ gitea:
       valueFrom:
         secretKeyRef:
           name: forgejo-env-secret
-          key: mailerFrom
+          key: mailerUser
     - name: FORGEJO__MAILER__PASSWD
       valueFrom:
         secretKeyRef:

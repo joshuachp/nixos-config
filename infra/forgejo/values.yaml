@@ -75,8 +75,8 @@ gitea:
       REPO_INDEXER_ENABLED: true
 
 containerSecurityContext:
-  runAsUser: 1001
+  runAsUser: 1000
   runAsGroup: 1001
-  allowPrivilegeEscalation: true
+
 podSecurityContext:
   fsGroup: 1001

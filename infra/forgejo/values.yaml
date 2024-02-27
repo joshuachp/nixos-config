@@ -76,9 +76,9 @@ gitea:
 
 image:
   rootless: false
-containerSecurityContext:
-  runAsUser: 1000
-  runAsGroup: 1001
+#containerSecurityContext:
+#  runAsUser: 1000
+#  runAsGroup: 1001
 
 podSecurityContext:
   fsGroup: 1001

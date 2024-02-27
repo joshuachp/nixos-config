@@ -74,5 +74,8 @@ gitea:
       ISSUE_INDEXER_TYPE: bleve
       REPO_INDEXER_ENABLED: true
 
+containerSecurityContext:
+  runAsUser: 1001
+  runAsGroup: 1001
 podSecurityContext:
   fsGroup: 1001

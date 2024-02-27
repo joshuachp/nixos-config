@@ -11,6 +11,7 @@ persistence:
   claimName: forgejo-pvc
 
 signing:
+  enabled: true
   existingSecret: forgejo-gpg-key
 
 service:

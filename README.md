@@ -1,6 +1,6 @@
 # nixos-config
 
-NixOS configuration
+This repository contains the configuration files for managing NixOS systems.
 
 ## Architecture
 

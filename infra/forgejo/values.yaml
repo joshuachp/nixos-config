@@ -75,6 +75,4 @@ gitea:
       REPO_INDEXER_ENABLED: true
 
 containerSecurityContext:
-  runAsGroup: 1001
-  runAsNonRoot: true
-  runAsUser: 1001
+  fsGroup: 1001

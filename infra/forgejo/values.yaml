@@ -74,7 +74,8 @@ gitea:
       ISSUE_INDEXER_TYPE: bleve
       REPO_INDEXER_ENABLED: true
 
-image.rootless: false
+image:
+  rootless: false
 containerSecurityContext:
   runAsUser: 1000
   runAsGroup: 1001

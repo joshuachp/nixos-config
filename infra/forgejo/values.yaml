@@ -1,5 +1,7 @@
 redis-cluster:
-  enabled: false
+  enabled: true
+  cluster:
+    nodes: 1
 postgresql:
   enabled: false
 postgresql-ha:
@@ -40,9 +42,9 @@ gitea:
     session:
       PROVIDER: db
     cache:
-      ADAPTER: memory
+      ADAPTER: redis-cluster
     queue:
-      TYPE: level
+      TYPE: redis
     indexer:
       ISSUE_INDEXER_TYPE: bleve
       REPO_INDEXER_ENABLED: true

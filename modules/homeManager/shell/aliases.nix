@@ -28,6 +28,7 @@ let
     gwc = "git worktree add --checkout";
     gwr = "git worktree remove";
     glo = "git log --oneline";
+    grc = "git rebase --continue";
   };
 in
 {

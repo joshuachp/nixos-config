@@ -45,6 +45,7 @@ gitea:
       ADAPTER: redis-cluster
     queue:
       TYPE: redis
+      CONN_STR: redis+cluster://127.0.0.1:6379/0
     indexer:
       ISSUE_INDEXER_TYPE: bleve
       REPO_INDEXER_ENABLED: true

@@ -14,6 +14,18 @@ stringData:
 apiVersion: v1
 kind: Secret
 metadata:
+  name: bitnami
+  namespace: argocd
+  labels:
+    argocd.argoproj.io/secret-type: repository
+stringData:
+  name: bitnami
+  type: helm
+  url: https://charts.bitnami.com/bitnami
+---
+apiVersion: v1
+kind: Secret
+metadata:
   name: nixos-config
   namespace: argocd
   labels:

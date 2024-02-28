@@ -1,0 +1,15 @@
+architecture: standalone
+
+global:
+  storageClass: smb
+
+auth:
+  enabled: false
+
+master:
+  resourcesPreset: nano
+  persistence:
+    existingClaim: redis-pvc
+
+networkPolicy:
+  enabled: true

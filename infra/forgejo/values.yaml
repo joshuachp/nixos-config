@@ -74,3 +74,30 @@ gitea:
     indexer:
       ISSUE_INDEXER_TYPE: bleve
       REPO_INDEXER_ENABLED: true
+
+extraVolumes:
+  - name: gpg-volume
+    ephemeral:
+      volumeClaimTemplate:
+        metadata:
+          labels:
+            type: forgejo-gpg-volume
+        spec:
+          accessModes:
+            - ReadWriteOnce
+          storageClassName: local-path
+          resources:
+            requests:
+              storage: 100Mi
+
+extraVolumeMounts:
+  - name: gpg-volume
+    mountPath: /data/git/.gnupg
+
+extraContainerVolumeMounts:
+  - name: gpg-volume
+    mountPath: /data/git/.gnupg
+
+extraInitVolumeMounts:
+  - name: gpg-volume
+    mountPath: /data/git/.gnupg

@@ -29,6 +29,8 @@ gitea:
         secretKeyRef:
           name: forgejo-env-secret
           key: dbPassword
+    - name: FORGEJO__MAILER__ENABLED
+      value: "true"
     - name: FORGEJO__MAILER__FROM
       valueFrom:
         secretKeyRef:

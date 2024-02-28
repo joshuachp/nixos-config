@@ -54,6 +54,19 @@ gitea:
         secretName: forgejo-app-ini-secret
 
 extraVolumes:
+  - name: indexers-volume
+    ephemeral:
+      volumeClaimTemplate:
+        metadata:
+          labels:
+            type: forgejo-indexers-volume
+        spec:
+          accessModes:
+            - ReadWriteOnce
+          storageClassName: local-path
+          resources:
+            requests:
+              storage: 500Mi
   - name: gpg-volume
     ephemeral:
       volumeClaimTemplate:
@@ -69,13 +82,19 @@ extraVolumes:
               storage: 100Mi
 
 extraVolumeMounts:
+  - name: indexers-volume
+    mountPath: /data/indexers
   - name: gpg-volume
     mountPath: /data/git/.gnupg
 
 extraContainerVolumeMounts:
+  - name: indexers-volume
+    mountPath: /data/indexers
   - name: gpg-volume
     mountPath: /data/git/.gnupg
 
 extraInitVolumeMounts:
+  - name: indexers-volume
+    mountPath: /data/indexers
   - name: gpg-volume
     mountPath: /data/git/.gnupg

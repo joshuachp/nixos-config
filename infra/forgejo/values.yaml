@@ -76,8 +76,7 @@ gitea:
       TYPE: level
     mailer:
       ENABLED: true
-    repository:
-      signing:
+    repository.signing:
         SIGNING_KEY: 35544751CA132260A8A08918789B7DF0B5CFE8ED
         SIGNING_NAME: git.k.joshuachp.dev
     indexer:

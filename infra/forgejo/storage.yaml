@@ -10,3 +10,16 @@ spec:
     requests:
       storage: 10Gi
   storageClassName: smb-alt
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: redis-pvc
+  namespace: forgejo
+spec:
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 1Gi
+  storageClassName: smb

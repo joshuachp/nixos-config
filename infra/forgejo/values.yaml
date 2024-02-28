@@ -32,6 +32,7 @@ gitea:
     service:
       DISABLE_REGISTRATION: true
       REQUIRE_SIGNIN_VIEW: true
+      ENABLE_NOTIFY_MAIL: true
     database:
       DB_TYPE: postgres
       HOST: db.tcp.postgres.postgres.svc.cluster.local:5432

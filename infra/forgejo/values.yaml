@@ -23,37 +23,6 @@ service:
 gitea:
   admin:
     existingSecret: forgejo-admin-secret
-  additionalConfigFromEnvs:
-    - name: FORGEJO__DATABASE__PASSWD
-      valueFrom:
-        secretKeyRef:
-          name: forgejo-env-secret
-          key: dbPassword
-    - name: FORGEJO__MAILER__FROM
-      valueFrom:
-        secretKeyRef:
-          name: forgejo-env-secret
-          key: mailerFrom
-    - name: FORGEJO__MAILER__SMTP_ADDR
-      valueFrom:
-        secretKeyRef:
-          name: forgejo-env-secret
-          key: mailerSmtpAddr
-    - name: FORGEJO__MAILER__USER
-      valueFrom:
-        secretKeyRef:
-          name: forgejo-env-secret
-          key: mailerUser
-    - name: FORGEJO__MAILER__PASSWD
-      valueFrom:
-        secretKeyRef:
-          name: forgejo-env-secret
-          key: mailerPassword
-    - name: FORGEJO__REPOSITORY_0X2E_SIGNING__SIGNING_EMAIL
-      valueFrom:
-        secretKeyRef:
-          name: forgejo-env-secret
-          key: mailerFrom
   config:
     server:
       DOMAIN: git.k.joshuachp.dev
@@ -74,14 +43,12 @@ gitea:
       ADAPTER: memory
     queue:
       TYPE: level
-    mailer:
-      ENABLED: true
-    repository.signing:
-        SIGNING_KEY: 35544751CA132260A8A08918789B7DF0B5CFE8ED
-        SIGNING_NAME: git.k.joshuachp.dev
     indexer:
       ISSUE_INDEXER_TYPE: bleve
       REPO_INDEXER_ENABLED: true
+  additionalConfigSources:
+    - secret:
+        secretName: forgejo-app-ini-secret
 
 extraVolumes:
   - name: gpg-volume

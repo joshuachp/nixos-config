@@ -42,10 +42,14 @@ data:
             href: http://traefik.k.joshuachp.dev/
             icon: traefik.png
             description: Traefik dashboard
-        - Kubernetes Dashboard:
-            href: http://kubernetes-dashboard.k.joshuachp.dev/
-            icon: kubernetes-dashboard.png
-            description: Kubernetes dashboard
+        - Prometheus:
+            href: http://prometheus.k.joshuachp.dev/
+            icon: prometheus.png
+            description: Prometheus
+        - Grafana:
+            href: http://grafana.k.joshuachp.dev/
+            icon: grafana.png
+            description: Grafana
   widgets.yaml: |
     - kubernetes:
         cluster:

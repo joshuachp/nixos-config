@@ -84,6 +84,27 @@ spec:
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
+  name: grafana
+  namespace: argocd
+spec:
+  project: default
+  sources:
+    - repoURL: https://github.com/joshuachp/nixos-config
+      path: infra/grafana
+      ref: repo
+    - chart: grafana
+      repoURL: https://grafana.github.io/helm-charts
+      targetRevision: 7.3.3
+      helm:
+        valueFiles:
+          - $repo/infra/grafana/values.yaml
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: grafana
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
   name: homepage
   namespace: argocd
 spec:

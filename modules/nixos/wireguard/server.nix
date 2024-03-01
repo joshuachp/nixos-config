@@ -30,6 +30,7 @@
           settings = {
             interface = "wg0";
             address = dnsAddresses ++ [
+              "/alertmanager.k.joshuachp.dev/${clusterIp}"
               "/argocd.k.joshuachp.dev/${clusterIp}"
               "/atuin.k.joshuachp.dev/${clusterIp}"
               "/git.k.joshuachp.dev/${clusterIp}"
@@ -38,6 +39,7 @@
               "/kubernetes-dashboard.k.joshuachp.dev/${clusterIp}"
               "/ntfy.k.joshuachp.dev/${clusterIp}"
               "/pg.k.joshuachp.dev/${clusterIp}"
+              "/prometheus.k.joshuachp.dev/${clusterIp}"
               "/syncthing.k.joshuachp.dev/${clusterIp}"
               "/traefik.k.joshuachp.dev/${clusterIp}"
             ];

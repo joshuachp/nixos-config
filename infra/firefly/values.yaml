@@ -29,6 +29,8 @@ firefly-iii:
       DEFAULT_LOCALE: "equal"
       TZ: "Europe/ROME"
       TRUSTED_PROXIES: "**"
+      APACHE_RUN_USER: 1001
+      APACHE_RUN_GROUP: 1001
     existingSecret: "firefly-env"
   resources:
     limits:

@@ -32,6 +32,23 @@ firefly-iii:
       APACHE_RUN_USER: 1001
       APACHE_RUN_GROUP: 1001
     existingSecret: "firefly-env"
+  extraVolumeMounts:
+    - name: storage-volume
+      mountPath: /var/www/html/storage
+  extraVolumes:
+    - name: storage-volume
+      ephemeral:
+        volumeClaimTemplate:
+          metadata:
+            labels:
+              type: storage-volume
+          spec:
+            accessModes:
+              - ReadWriteOnce
+            storageClassName: local-path
+            resources:
+              requests:
+                storage: 1Gi
   resources:
     limits:
       cpu: 100m

@@ -16,8 +16,8 @@ persistence:
 cronjob:
   enabled: true
   auth:
-    existingSecret: "firefly-cron"
-    secretKey: "token"
+    existingSecret: "firefly-env"
+    secretKey: "STATIC_CRON_TOKEN"
 resources:
   limits:
     cpu: 100m

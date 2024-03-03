@@ -33,10 +33,10 @@ firefly-iii:
       APACHE_RUN_GROUP: 1001
     existingSecret: "firefly-env"
   extraVolumeMounts:
-    - name: storage-volume
+    - name: storage
       mountPath: /var/www/html/storage
   extraVolumes:
-    - name: storage-volume
+    - name: storage
       ephemeral:
         volumeClaimTemplate:
           metadata:

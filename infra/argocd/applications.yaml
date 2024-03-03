@@ -57,6 +57,27 @@ spec:
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
+  name: firefly
+  namespace: argocd
+spec:
+  project: default
+  sources:
+    - repoURL: https://github.com/joshuachp/nixos-config
+      path: infra/firefly
+      ref: repo
+    - chart: firefly-iii-stack
+      repoURL: https://firefly-iii.github.io/kubernetes
+      targetRevision: 0.7.2
+      helm:
+        valueFiles:
+          - $repo/infra/firefly/values.yaml
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: firefly
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
   name: forgejo
   namespace: argocd
 spec:

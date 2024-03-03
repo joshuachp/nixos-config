@@ -14,8 +14,10 @@ persistence:
   enabled: true
   existingClaim: "firefly-pvc"
 cronjob:
-  # TODO: enable
-  enabled: false
+  enabled: true
+  auth:
+    existingSecret: "firefly-cron"
+    secretKey: "token"
 resources:
   limits:
     cpu: 100m

@@ -1,0 +1,7 @@
+config:
+  env:
+    TZ: "Europe/Rome"
+fireflyiii:
+  url: "http://firefly-firefly-iii:80"
+  vanityUrl: "https://firefly.k.joshuachp.dev"
+  existingSecret: "firefly-importer"

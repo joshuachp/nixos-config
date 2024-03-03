@@ -37,6 +37,7 @@
               "/git.k.joshuachp.dev/${clusterIp}"
               "/grafana.k.joshuachp.dev/${clusterIp}"
               "/home.k.joshuachp.dev/${clusterIp}"
+              "/importer.k.joshuachp.dev/${clusterIp}"
               "/kubeapi.k.joshuachp.dev/${clusterIp}"
               "/kubernetes-dashboard.k.joshuachp.dev/${clusterIp}"
               "/ntfy.k.joshuachp.dev/${clusterIp}"

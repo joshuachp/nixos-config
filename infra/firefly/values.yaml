@@ -9,39 +9,13 @@ config:
     DEFAULT_LOCALE: "equal"
     TZ: "Europe/ROME"
     TRUSTED_PROXIES: "**"
-    APACHE_RUN_USER: 1001
-    APACHE_RUN_GROUP: 1001
   existingSecret: "firefly-env"
-extraVolumeMounts:
-  - name: storage
-    mountPath: /var/www/html/storage
-extraVolumes:
-  - name: storage
-    ephemeral:
-      volumeClaimTemplate:
-        metadata:
-          labels:
-            type: storage-volume
-        spec:
-          accessModes:
-            - ReadWriteOnce
-          storageClassName: local-path
-          resources:
-            requests:
-              storage: 1Gi
 persistence:
   enabled: true
   existingClaim: "firefly-pvc"
-podSecurityContext:
-  runAsUser: 1001
-  runAsGroup: 1001
-  fsGroup: 1001
 cronjob:
   # TODO: enable
   enabled: false
-  podSecurityContext:
-    runAsUser: 1001
-    runAsGroup: 1001
 resources:
   limits:
     cpu: 100m

@@ -20,27 +20,6 @@
         "type": "github"
       }
     },
-    "crane_2": {
-      "inputs": {
-        "nixpkgs": [
-          "jump",
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1708560786,
-        "narHash": "sha256-gcTA/iq9mfrwGPQsoxVryWhCAgBwL2GJLGO/s06/0wY=",
-        "owner": "ipetkov",
-        "repo": "crane",
-        "rev": "9a5972e2e8d0b1716cc4e42af8b75eca6914fbff",
-        "type": "github"
-      },
-      "original": {
-        "owner": "ipetkov",
-        "repo": "crane",
-        "type": "github"
-      }
-    },
     "deploy-rs": {
       "inputs": {
         "flake-compat": "flake-compat",
@@ -300,14 +279,18 @@
     },
     "jump": {
       "inputs": {
-        "crane": "crane_2",
+        "crane": [
+          "crane"
+        ],
         "flake-utils": [
           "flake-utils"
         ],
         "nixpkgs": [
           "nixpkgs"
         ],
-        "rust-overlay": "rust-overlay"
+        "rust-overlay": [
+          "rust-overlay"
+        ]
       },
       "locked": {
         "lastModified": 1708935027,
@@ -762,7 +745,7 @@
         "note": "note",
         "privateConf": "privateConf",
         "pulseaudioMicState": "pulseaudioMicState",
-        "rust-overlay": "rust-overlay_2",
+        "rust-overlay": "rust-overlay",
         "tools": "tools"
       }
     },
@@ -784,31 +767,6 @@
       }
     },
     "rust-overlay": {
-      "inputs": {
-        "flake-utils": [
-          "jump",
-          "flake-utils"
-        ],
-        "nixpkgs": [
-          "jump",
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1708740535,
-        "narHash": "sha256-NCTw235XwSDbeTAtAwg/hOeNOgwYhVq7JjDdbkOgBeA=",
-        "owner": "oxalica",
-        "repo": "rust-overlay",
-        "rev": "9b24383d77f598716fa0cbb8b48c97249f5ee1af",
-        "type": "github"
-      },
-      "original": {
-        "owner": "oxalica",
-        "repo": "rust-overlay",
-        "type": "github"
-      }
-    },
-    "rust-overlay_2": {
       "inputs": {
         "flake-utils": [
           "flake-utils"

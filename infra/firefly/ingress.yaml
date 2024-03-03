@@ -14,6 +14,11 @@ spec:
       services:
         - name: firefly-firefly-iii
           port: http
+    - match: "Host(`importer.k.joshuachp.dev`)"
+      kind: Rule
+      services:
+        - name: firefly-importer
+          port: http
   tls:
     secretName: cert-k-joshuachp-dev
     domains:

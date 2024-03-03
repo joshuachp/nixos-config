@@ -65,9 +65,9 @@ spec:
     - repoURL: https://github.com/joshuachp/nixos-config
       path: infra/firefly
       ref: repo
-    - chart: firefly-iii-stack
+    - chart: firefly-iii
       repoURL: https://firefly-iii.github.io/kubernetes
-      targetRevision: 0.7.2
+      targetRevision: 1.8.0
       helm:
         valueFiles:
           - $repo/infra/firefly/values.yaml

@@ -4,4 +4,5 @@ config:
 fireflyiii:
   url: "http://http.tcp.firefly-firefly-iii.firefly.svc.cluster.local"
   vanityUrl: "https://firefly.k.joshuachp.dev"
-  existingSecret: "firefly-importer"
+  auth:
+    existingSecret: "firefly-imp"

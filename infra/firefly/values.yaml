@@ -1,58 +1,50 @@
-firefly-db:
-  enabled: false
-
-importer:
-  enabled: false
-
-firefly-iii:
+config:
+  env:
+    DB_HOST: "db.tcp.postgres.postgres.svc.cluster.local"
+    DB_CONNECTION: pgsql
+    DB_PORT: "5432"
+    DB_DATABASE: firefly
+    DB_USERNAME: firefly
+    DEFAULT_LANGUAGE: "en_US"
+    DEFAULT_LOCALE: "equal"
+    TZ: "Europe/ROME"
+    TRUSTED_PROXIES: "**"
+    APACHE_RUN_USER: 1001
+    APACHE_RUN_GROUP: 1001
+  existingSecret: "firefly-env"
+extraVolumeMounts:
+  - name: storage
+    mountPath: /var/www/html/storage
+extraVolumes:
+  - name: storage
+    ephemeral:
+      volumeClaimTemplate:
+        metadata:
+          labels:
+            type: storage-volume
+        spec:
+          accessModes:
+            - ReadWriteOnce
+          storageClassName: local-path
+          resources:
+            requests:
+              storage: 1Gi
+persistence:
   enabled: true
-  persistence:
-    enabled: true
-    existingClaim: "firefly-pvc"
+  existingClaim: "firefly-pvc"
+podSecurityContext:
+  runAsUser: 1001
+  runAsGroup: 1001
+cronjob:
+  # TODO: enable
+  enabled: false
   podSecurityContext:
     runAsUser: 1001
     runAsGroup: 1001
-  cronjob:
-    # TODO: enable
-    enabled: false
-    podSecurityContext:
-      runAsUser: 1001
-      runAsGroup: 1001
-  config:
-    env:
-      DB_HOST: "db.tcp.postgres.postgres.svc.cluster.local"
-      DB_CONNECTION: pgsql
-      DB_PORT: "5432"
-      DB_DATABASE: firefly
-      DB_USERNAME: firefly
-      DEFAULT_LANGUAGE: "en_US"
-      DEFAULT_LOCALE: "equal"
-      TZ: "Europe/ROME"
-      TRUSTED_PROXIES: "**"
-      APACHE_RUN_USER: 1001
-      APACHE_RUN_GROUP: 1001
-    existingSecret: "firefly-env"
-  extraVolumeMounts:
-    - name: storage
-      mountPath: /var/www/html/storage
-  extraVolumes:
-    - name: storage
-      ephemeral:
-        volumeClaimTemplate:
-          metadata:
-            labels:
-              type: storage-volume
-          spec:
-            accessModes:
-              - ReadWriteOnce
-            storageClassName: local-path
-            resources:
-              requests:
-                storage: 1Gi
-  resources:
-    limits:
-      cpu: 100m
-      memory: 128Mi
-    requests:
-      cpu: 100m
-      memory: 128Mi
+resources:
+  limits:
+    cpu: 100m
+    memory: 128Mi
+  requests:
+    cpu: 100m
+    memory: 128Mi

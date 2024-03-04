@@ -37,13 +37,13 @@
       "/" = {
         device = "/dev/Linux/root";
         fsType = "btrfs";
-        options = [ "defaults" "subvol=root" "noatime" ];
+        options = [ "defaults" "subvol=root" "compress=zstd" "noatime" ];
       };
 
       "/nix" = {
         device = "/dev/Linux/root";
         fsType = "btrfs";
-        options = [ "defaults" "subvol=nix" "noatime" ];
+        options = [ "defaults" "subvol=nix" "compress=zstd" "noatime" ];
       };
 
       "/efi" = {
@@ -59,19 +59,19 @@
       "/home" = {
         device = "/dev/Linux/root";
         fsType = "btrfs";
-        options = [ "defaults" "subvol=home" "noatime" ];
+        options = [ "defaults" "subvol=home" "compress=zstd" "noatime" ];
       };
 
       "/home/joshuachp/share" = {
         device = "/dev/Linux/share";
         fsType = "btrfs";
-        options = [ "defaults" "user" "exec" "noatime" ];
+        options = [ "defaults" "user" "exec" "compress=zstd" "noatime" ];
       };
 
       "/var" = {
         device = "/dev/Linux/root";
         fsType = "btrfs";
-        options = [ "defaults" "subvol=var" "noatime" ];
+        options = [ "defaults" "subvol=var" "compress=zstd" "noatime" ];
       };
     };
 

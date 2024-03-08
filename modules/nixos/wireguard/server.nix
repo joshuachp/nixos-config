@@ -13,7 +13,6 @@
     lib.mkIf enable (
       let
         hostCfg = machineCfg.${hostname}.wireguard;
-        clusterIp = machineCfg.nixos-cloud-2.wireguard.addressIpv4;
         inherit (hostCfg) port addressIpv4 privateKeyPath range;
         mkPeer = import ./mkPeer.nix lib;
         # Extract only other peers
@@ -22,6 +21,7 @@
           (n: v: "/${n}.wg/${v.wireguard.addressIpv4}")
           machineCfg;
         peers = lib.mapAttrsToList (n: mkPeer) peersCfg;
+        ingressIp = "10.2.0.1";
       in
       {
         # DNS instead of /etc/hosts
@@ -30,21 +30,22 @@
           settings = {
             interface = "wg0";
             address = dnsAddresses ++ [
-              "/alertmanager.k.joshuachp.dev/${clusterIp}"
-              "/argocd.k.joshuachp.dev/${clusterIp}"
-              "/atuin.k.joshuachp.dev/${clusterIp}"
-              "/firefly.k.joshuachp.dev/${clusterIp}"
-              "/git.k.joshuachp.dev/${clusterIp}"
-              "/grafana.k.joshuachp.dev/${clusterIp}"
-              "/home.k.joshuachp.dev/${clusterIp}"
-              "/importer.k.joshuachp.dev/${clusterIp}"
-              "/kubeapi.k.joshuachp.dev/${clusterIp}"
-              "/kubernetes-dashboard.k.joshuachp.dev/${clusterIp}"
-              "/ntfy.k.joshuachp.dev/${clusterIp}"
-              "/pg.k.joshuachp.dev/${clusterIp}"
-              "/prometheus.k.joshuachp.dev/${clusterIp}"
-              "/syncthing.k.joshuachp.dev/${clusterIp}"
-              "/traefik.k.joshuachp.dev/${clusterIp}"
+              "/alertmanager.k.joshuachp.dev/${ingressIp}"
+              "/argocd.k.joshuachp.dev/${ingressIp}"
+              "/atuin.k.joshuachp.dev/${ingressIp}"
+              "/firefly.k.joshuachp.dev/${ingressIp}"
+              "/git.k.joshuachp.dev/${ingressIp}"
+              "/grafana.k.joshuachp.dev/${ingressIp}"
+              "/home.k.joshuachp.dev/${ingressIp}"
+              "/importer.k.joshuachp.dev/${ingressIp}"
+              "/kubernetes-dashboard.k.joshuachp.dev/${ingressIp}"
+              "/ntfy.k.joshuachp.dev/${ingressIp}"
+              "/pg.k.joshuachp.dev/${ingressIp}"
+              "/prometheus.k.joshuachp.dev/${ingressIp}"
+              "/syncthing.k.joshuachp.dev/${ingressIp}"
+              "/traefik.k.joshuachp.dev/${ingressIp}"
+              # HA proxy IP
+              "/kubeapi.k.joshuachp.dev/10.10.10.100"
             ];
           };
         };
@@ -74,7 +75,7 @@
           # Wireguard interface
           wg-quick.interfaces.wg0 = {
             # Clients IP address subnet
-            address = [ "${addressIpv4}/${toString range}" ];
+            address = [ "${addressIpv4}/${toString range}" ] ++ hostCfg.peers;
             listenPort = port;
             privateKeyFile = privateKeyPath;
             inherit peers;

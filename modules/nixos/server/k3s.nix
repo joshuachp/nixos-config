@@ -148,6 +148,7 @@
               "--disable=traefik"
               "--disable=servicelb"
               "--tls-san=${loadBalacerIp}"
+              "--tls-san=kubeapi.k.joshuachp.dev"
               "--flannel-iface=${cfg.interface}"
             ];
           };

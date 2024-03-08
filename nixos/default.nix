@@ -40,6 +40,13 @@ in
       flakeInputs.disko.nixosModules.disko
     ];
   };
+  # Kuma
+  kuma = mkSystem "kuma" {
+    system = "aarch64-linux";
+    modules = [
+      flakeInputs.disko.nixosModules.disko
+    ];
+  };
   # Wsl
   nixos-wsl = mkSystem "nixos-wsl" {
     modules = [

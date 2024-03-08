@@ -104,6 +104,7 @@
                     default-server inter 10s downinter 5s
                     server server-1 10.1.0.2:6443 check
                     server server-2 10.1.0.3:6443 check
+                    server server-3 10.1.0.4:6443 check
             '';
           };
 

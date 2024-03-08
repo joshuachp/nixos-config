@@ -4,7 +4,7 @@
 , deploy-rs
 }:
 let
-  inherit (self.nixosConfigurations) nixos-cloud nixos-cloud-2;
+  inherit (self.nixosConfigurations) nixos-cloud nixos-cloud-2 kuma;
 in
 {
 
@@ -45,5 +45,19 @@ in
           path = deploy-rs.lib.aarch64-linux.activate.nixos nixos-cloud-2;
         };
       };
+
+    # Kuma
+    kuma = {
+      hostname = "kuma.wg";
+      # Users
+      sshUser = "root";
+      user = "root";
+      # So we do not have to upload all the constructs
+      remoteBuild = true;
+
+      profiles.cloud = {
+        path = deploy-rs.lib.aarch64-linux.activate.nixos kuma;
+      };
+    };
   };
 }

@@ -10,6 +10,8 @@
       ./hardware-configuration.nix
     ];
   config = {
+    boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
+
     users.users.joshuachp.extraGroups = [ "docker" ];
 
     # Enable desktop system

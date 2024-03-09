@@ -29,7 +29,7 @@
                   return
               fi
 
-              committed --config ${committedConfig}
+              committed --config ${committedConfig} "$@"
             '';
           };
         in

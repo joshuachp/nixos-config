@@ -33,6 +33,7 @@
               "/alertmanager.k.joshuachp.dev/${ingressIp}"
               "/argocd.k.joshuachp.dev/${ingressIp}"
               "/atuin.k.joshuachp.dev/${ingressIp}"
+              "/ci.k.joshuachp.dev/${ingressIp}"
               "/firefly.k.joshuachp.dev/${ingressIp}"
               "/git.k.joshuachp.dev/${ingressIp}"
               "/grafana.k.joshuachp.dev/${ingressIp}"

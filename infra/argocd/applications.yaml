@@ -249,3 +249,24 @@ spec:
   destination:
     server: https://kubernetes.default.svc
     namespace: traefik
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: woodpecker
+  namespace: argocd
+spec:
+  project: default
+  sources:
+    - repoURL: https://github.com/joshuachp/nixos-config
+      path: infra/woodpecker
+      ref: repo
+    - chart: woodpecker
+      repoURL: https://woodpecker-ci.org/
+      targetRevision: 1.2.0
+      helm:
+        valueFiles:
+          - $repo/infra/woodpecker/values.yaml
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: woodpecker

@@ -6,8 +6,8 @@ agent:
 server:
   env:
     WOODPECKER_GITEA: true
+    WOODPECKER_GITEA_URL: https://git.k.joshuachp.dev
     WOODPECKER_HOST: https://ci.k.joshuachp.dev
-    WOODPECKER_GITEA_URL: http://http.tcp.forgejo-http.forgejo.svc.cluster.local
   extraSecretNamesForEnvFrom:
     - woodpecker-env
   persistentVolume:

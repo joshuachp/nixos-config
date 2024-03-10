@@ -22,9 +22,6 @@
       initrd = {
         availableKernelModules = [ "xhci_pci" "nvme" "ahci" "usbhid" "sd_mod" "usb_storage" ];
         kernelModules = [ "dm-snapshot" "amdgpu" ];
-        luks.devices.crypted = {
-          device = "/dev/disk/by-uuid/1fedcdd5-c220-4017-a773-a902b9f3fdcd";
-        };
       };
       kernelModules = [ "kvm-amd" ];
       extraModulePackages = [ ];
@@ -47,12 +44,12 @@
       };
 
       "/efi" = {
-        device = "/dev/disk/by-uuid/A582-67FE";
+        device = "/dev/disk/by-uuid/7D9B-B214";
         fsType = "vfat";
       };
 
       "/boot" = {
-        device = "/dev/disk/by-uuid/a6dce445-4eb0-469e-898a-f2366e5d6605";
+        device = "/dev/disk/by-uuid/0f114536-503f-45ea-bf38-c866320bda2c";
         fsType = "ext4";
       };
 

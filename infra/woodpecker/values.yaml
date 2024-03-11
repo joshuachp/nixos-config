@@ -3,6 +3,8 @@ agent:
     WOODPECKER_BACKEND_K8S_STORAGE_CLASS: "local-path"
   extraSecretNamesForEnvFrom:
     - woodpecker-env
+  persistentVolume:
+    storageClass: smb
 server:
   env:
     WOODPECKER_GITEA: true
@@ -10,5 +12,6 @@ server:
     WOODPECKER_HOST: https://ci.k.joshuachp.dev
   extraSecretNamesForEnvFrom:
     - woodpecker-env
+    - woodpecker-server-env
   persistentVolume:
     storageClass: smb

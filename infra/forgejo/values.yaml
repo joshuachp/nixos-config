@@ -49,6 +49,8 @@ gitea:
     indexer:
       ISSUE_INDEXER_TYPE: bleve
       REPO_INDEXER_ENABLED: true
+    webhook:
+      ALLOWED_HOST_LIST: private,external
   additionalConfigSources:
     - secret:
         secretName: forgejo-app-ini-secret

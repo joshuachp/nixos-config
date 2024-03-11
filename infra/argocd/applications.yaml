@@ -57,6 +57,20 @@ spec:
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
+  name: coredns
+  namespace: argocd
+spec:
+  project: default
+  sources:
+    - repoURL: https://github.com/joshuachp/nixos-config
+      path: infra/coredns
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: kube-system
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
   name: firefly
   namespace: argocd
 spec:

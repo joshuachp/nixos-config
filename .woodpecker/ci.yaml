@@ -7,4 +7,5 @@ steps:
   - name: flake check
     image: joshuachp/nixos:0.1.0
     commands:
+      - git config --global --replace-all safe.directory /woodpecker/src/git.k.joshuachp.dev/joshuachp/nixos-config
       - nix flake check

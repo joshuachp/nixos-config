@@ -7,6 +7,7 @@ agent:
     storageClass: smb
 server:
   env:
+    WOODPECKER_ADMIN: woodpecker,admin,joshuachp
     WOODPECKER_GITEA: true
     WOODPECKER_GITEA_URL: https://git.k.joshuachp.dev
     WOODPECKER_HOST: https://ci.k.joshuachp.dev

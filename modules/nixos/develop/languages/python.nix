@@ -1,5 +1,6 @@
 # Python develop config
-{ config
+{ self
+, config
 , pkgs
 , lib
 , ...
@@ -9,6 +10,6 @@ let
 in
 {
   config = lib.mkIf cfg.enable {
-    environment.systemPackages = import ../../../../pkgs/develop/python.nix { inherit pkgs; };
+    environment.systemPackages = import "${self}/pkgs/develop/python.nix" { inherit pkgs; };
   };
 }

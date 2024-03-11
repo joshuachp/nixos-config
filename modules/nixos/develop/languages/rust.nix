@@ -1,5 +1,6 @@
 # Rust develop config
-{ config
+{ self
+, config
 , pkgs
 , lib
 , ...
@@ -9,6 +10,6 @@ let
 in
 {
   config = lib.mkIf cfg.enable {
-    environment.systemPackages = import ../../../../pkgs/develop/rust.nix { inherit pkgs; };
+    environment.systemPackages = import "${self}/pkgs/develop/rust.nix" { inherit pkgs; };
   };
 }

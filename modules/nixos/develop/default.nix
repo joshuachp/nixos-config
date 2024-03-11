@@ -1,5 +1,6 @@
 # Development config
-{ config
+{ self
+, config
 , pkgs
 , lib
 , ...
@@ -20,7 +21,7 @@
     ./languages/tex.nix
   ];
   config = lib.mkIf config.systemConfig.develop.enable {
-    environment.systemPackages = import ../../../pkgs/develop { inherit pkgs; };
+    environment.systemPackages = import "${self}/pkgs/develop" { inherit pkgs; };
 
     # Enable direnv
     programs.direnv = {

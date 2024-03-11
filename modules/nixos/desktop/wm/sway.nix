@@ -1,4 +1,5 @@
-{ config
+{ self
+, config
 , pkgs
 , lib
 , ...
@@ -28,7 +29,7 @@ in
       enable = true;
       # Required environment variables for GTK applications
       wrapperFeatures.gtk = true;
-      extraPackages = import ../../../../pkgs/wm/sway.nix pkgs;
+      extraPackages = import "${self}/pkgs/wm/sway.nix" pkgs;
       extraOptions = lib.mkIf cfg.nvidia [
         "--unsupported-gpu"
       ];

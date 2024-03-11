@@ -1,5 +1,6 @@
 # Enables k8s tools
-{ config
+{ self
+, config
 , lib
 , pkgs
 , ...
@@ -14,6 +15,6 @@
       sysCfg = config.systemConfig.develop;
     in
     lib.mkIf (sysCfg.enable && cfg.k8s) {
-      environment.systemPackages = import ../../../pkgs/develop/kubernetes.nix pkgs;
+      environment.systemPackages = import "${self}/pkgs/develop/kubernetes.nix" pkgs;
     };
 }

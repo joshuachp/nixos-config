@@ -16,6 +16,7 @@ nixpkgs.lib.nixosSystem {
 
   specialArgs = {
     inherit system flakeInputs;
+    inherit (flakeInputs) self;
     hostname = name;
   };
 

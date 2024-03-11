@@ -1,4 +1,5 @@
-{ config
+{ self
+, config
 , pkgs
 , lib
 , ...
@@ -33,6 +34,6 @@ in
       displayManager.gdm.enable = true;
     };
 
-    environment.systemPackages = import ../../../pkgs/desktop.nix { inherit pkgs lib config; };
+    environment.systemPackages = import "${self}/pkgs/desktop.nix" { inherit pkgs lib config; };
   };
 }

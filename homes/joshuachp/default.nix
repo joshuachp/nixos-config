@@ -1,4 +1,5 @@
-{ pkgs
+{ self
+, pkgs
 , lib
 , system
 , nil
@@ -7,11 +8,11 @@
 , ...
 }: {
   imports = [
-    ../../modules/common/nix
-    ../../modules/homeManager/nvim.nix
-    ../../modules/homeManager/gpg.nix
-    ../../modules/homeManager/qt.nix
-    ../../modules/homeManager/syncthing.nix
+    "${self}/modules/common/nix"
+    "${self}/modules/homeManager/nvim.nix"
+    "${self}/modules/homeManager/gpg.nix"
+    "${self}/modules/homeManager/qt.nix"
+    "${self}/modules/homeManager/syncthing.nix"
   ];
   config = {
     # Home Manager needs a bit of information about you and the
@@ -32,7 +33,7 @@
 
       (self: super:
         let
-          wrapIntel = import ../../lib/wrapGLIntel.nix super;
+          wrapIntel = import "${self}/lib/wrapGLIntel.nix" super;
         in
         {
           alacritty = wrapIntel "alacritty" "${super.alacritty}/bin/alacritty";
@@ -56,24 +57,24 @@
       pkgs.nixgl.nixGLIntel
       pkgs.nixgl.nixVulkanIntel
     ]
-    ++ import ../../pkgs/cli.nix pkgs
-    ++ import ../../pkgs/cli-minimal.nix pkgs
-    ++ import ../../pkgs/nixpkgs.nix pkgs
+    ++ import "${self}/pkgs/cli.nix" pkgs
+    ++ import "${self}/pkgs/cli-minimal.nix" pkgs
+    ++ import "${self}/pkgs/nixpkgs.nix" pkgs
     # Develop
-    ++ import ../../pkgs/develop { inherit pkgs; }
-    ++ import ../../pkgs/develop/nix.nix {
+    ++ import "${self}/pkgs/develop" { inherit pkgs; }
+    ++ import "${self}/pkgs/develop/nix.nix" {
       inherit pkgs; nil = nil.packages.${system}.default;
     }
-    ++ import ../../pkgs/develop/rust.nix {
+    ++ import "${self}/pkgs/develop/rust.nix" {
       inherit pkgs;
     }
-    ++ import ../../pkgs/develop/javascript.nix { inherit pkgs; }
-    ++ import ../../pkgs/develop/python.nix { inherit pkgs; }
-    ++ import ../../pkgs/develop/haskell.nix { inherit pkgs; }
-    ++ import ../../pkgs/develop/c_cpp.nix { inherit pkgs; }
-    ++ import ../../pkgs/develop/shell.nix pkgs
-    ++ import ../../pkgs/develop/elixir.nix pkgs
-    ++ import ../../pkgs/desktop.nix { inherit pkgs lib config; }
+    ++ import "${self}/pkgs/develop/javascript.nix" { inherit pkgs; }
+    ++ import "${self}/pkgs/develop/python.nix" { inherit pkgs; }
+    ++ import "${self}/pkgs/develop/haskell.nix" { inherit pkgs; }
+    ++ import "${self}/pkgs/develop/c_cpp.nix" { inherit pkgs; }
+    ++ import "${self}/pkgs/develop/shell.nix" pkgs
+    ++ import "${self}/pkgs/develop/elixir.nix" pkgs
+    ++ import "${self}/pkgs/desktop.nix" { inherit pkgs lib config; }
     ;
   };
 }

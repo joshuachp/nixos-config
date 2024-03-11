@@ -21,6 +21,7 @@ home-manager.lib.homeManagerConfiguration {
   inherit pkgs;
 
   extraSpecialArgs = {
+    inherit (flakeInputs) self;
     inherit system flakeInputs;
     hostname = name;
   };

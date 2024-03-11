@@ -1,5 +1,6 @@
 # Configure virtualisation
-{ config
+{ self
+, config
 , pkgs
 , lib
 , ...
@@ -25,7 +26,7 @@ in
       };
     };
 
-    environment.systemPackages = import ../../pkgs/virtualisation.nix pkgs
+    environment.systemPackages = import "${self}/pkgs/virtualisation.nix" pkgs
       ++ [
       pkgs.win-virtio
     ];

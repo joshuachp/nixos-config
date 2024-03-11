@@ -1,5 +1,6 @@
 # Cli packages
-{ config
+{ self
+, config
 , lib
 , pkgs
 , ...
@@ -10,8 +11,8 @@ in
 {
   config = {
     environment. systemPackages =
-      (import ../../pkgs/cli-minimal.nix pkgs)
-      ++ (lib.optionals (!minimal) (import ../../pkgs/cli.nix pkgs))
+      (import "${self}/pkgs/cli-minimal.nix" pkgs)
+      ++ (lib.optionals (!minimal) (import "${self}/pkgs/cli.nix" pkgs))
     ;
     # Programs
     programs = {

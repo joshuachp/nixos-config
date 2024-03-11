@@ -1,5 +1,6 @@
 # Nix configuration
-{ pkgs
+{ self
+, pkgs
 , flakeInputs
 , lib
 , config
@@ -37,7 +38,7 @@
         settings.nix-path = "nixpkgs=${nixpkgs}";
       };
       environment = {
-        systemPackages = import ../../../pkgs/nixpkgs.nix pkgs;
+        systemPackages = import "${self}/pkgs/nixpkgs.nix" pkgs;
         pathsToLink = [
           "/share/nix-direnv"
         ];

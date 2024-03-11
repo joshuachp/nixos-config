@@ -1,5 +1,6 @@
 # Javascript config
-{ config
+{ self
+, config
 , lib
 , pkgs
 , ...
@@ -9,6 +10,6 @@ let
 in
 {
   config = lib.mkIf cfg.enable {
-    environment.systemPackages = import ../../../../pkgs/develop/javascript.nix { inherit pkgs; };
+    environment.systemPackages = import "${self}/pkgs/develop/javascript.nix" { inherit pkgs; };
   };
 }

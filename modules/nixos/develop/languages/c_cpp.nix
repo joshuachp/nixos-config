@@ -1,5 +1,6 @@
 # C and Cpp config
-{ config
+{ self
+, config
 , lib
 , pkgs
 , ...
@@ -9,6 +10,6 @@ let
 in
 {
   config = lib.mkIf cfg.enable {
-    environment.systemPackages = import ../../../../pkgs/develop/c_cpp.nix { inherit pkgs; };
+    environment.systemPackages = import "${self}/pkgs/develop/c_cpp.nix" { inherit pkgs; };
   };
 }

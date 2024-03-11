@@ -1,5 +1,6 @@
 # Elixir
-{ config
+{ self
+, config
 , lib
 , pkgs
 , ...
@@ -9,6 +10,6 @@ let
 in
 {
   config = lib.mkIf cfg.enable {
-    environment.systemPackages = import ../../../../pkgs/develop/elixir.nix pkgs;
+    environment.systemPackages = import "${self}/pkgs/develop/elixir.nix" pkgs;
   };
 }

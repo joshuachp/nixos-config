@@ -6,8 +6,5 @@ when:
 steps:
   - name: flake check
     image: nixos/nix:2.20.5
-    when:
-      - path:
-          include: [".woodpecker/*.yaml", "*.nix", "flake.lock"]
     commands:
       - nix flake check

@@ -5,6 +5,6 @@ when:
     - pull_request
 steps:
   - name: flake check
-    image: nixos/nix:2.20.5
+    image: joshuachp/nixos:0.1.0
     commands:
       - nix flake check

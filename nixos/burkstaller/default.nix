@@ -2,6 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 { pkgs
+, lib
 , ...
 }: {
   imports =
@@ -46,6 +47,16 @@
       privateConfig = {
         syncthing.enable = true;
         kubeConfig = true;
+      };
+      wayland.windowManager.hyprland.settings = {
+        monitor = lib.mkForce [
+          "DP-3,preferred,0x0,1"
+          "DP-1,preferred,auto,1"
+        ];
+        xwayland = {
+          force_zero_scaling = true;
+        };
+        exec-once = [ "mattermost-desktop" "thunderbird" ];
       };
     };
 

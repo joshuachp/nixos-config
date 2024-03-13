@@ -28,16 +28,9 @@
         config.privateConfig.ssh.publicKey
       ];
 
-      systemd.network.networks = {
-        "11-enp1s0" = {
-          matchConfig.Name = "enp1s0";
-          networkConfig.DHCP = "yes";
-        };
-        "17-enp7s0" = {
-          matchConfig.Name = "enp7s0";
-          networkConfig.DHCP = "yes";
-          linkConfig.RequiredForOnline = "no";
-        };
+      systemd.network.networks = config.lib.config.mkNetworkCfg {
+        "enp1s0" = { };
+        "enp7s0" = { linkConfig.RequiredForOnline = "no"; };
       };
 
       nixosConfig.server.k3s = {

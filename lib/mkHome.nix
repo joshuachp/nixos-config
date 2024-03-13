@@ -50,6 +50,8 @@ home-manager.lib.homeManagerConfiguration {
       };
     })
 
+    # Lib
+    ./modules/common
     # Overlays
     ../overlays
     # Options

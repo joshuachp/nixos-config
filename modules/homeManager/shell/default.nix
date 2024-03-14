@@ -12,6 +12,7 @@ in
     ./atuin.nix
     ./environment.nix
     ./fish
+    ./zellij
   ];
   config = {
     programs = {

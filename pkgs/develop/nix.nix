@@ -3,10 +3,9 @@ pkgs: with pkgs; [
   nixfmt
   nixpkgs-fmt
   alejandra
-  # Language servers
-  rnix-lsp
   # Linters
   statix
 
+  # Language servers
   nil
 ]

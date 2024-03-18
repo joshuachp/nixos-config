@@ -10,6 +10,7 @@ in
 {
   imports = [
     ./audio.nix
+    ./browser.nix
     ./fonts.nix
     ./keyboard.nix
     ./qt.nix

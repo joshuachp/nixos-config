@@ -42,6 +42,12 @@ spec:
                   key: password
             - name: PGDATA
               value: /var/lib/postgresql/data/pgdata
+          lifecycle:
+            preStop:
+              exec:
+                # https://www.postgresql.org/docs/current/server-shutdown.html
+                command:
+                  - "pg_ctl stop -D /var/lib/postgresql/data -w -t 20 -m fast"
           ports:
             - containerPort: 5432
               name: postgres

@@ -88,14 +88,20 @@ spec:
               exec:
                 # https://www.postgresql.org/docs/current/server-shutdown.html
                 command:
+                  - "/bin/sh"
+                  - "-c"
                   - "pg_ctl stop -D /var/lib/postgresql/data -w -t 20 -m fast"
           livenessProbe:
             exec:
               command:
+                - "/bin/sh"
+                - "-c"
                 - "pg_isready -h localhost -p 5432 -U postgres"
           redinessProbe:
             exec:
               command:
+                - "/bin/sh"
+                - "-c"
                 - "pg_isready -h localhost -p 5432 -U postgres"
           ports:
             - containerPort: 5432

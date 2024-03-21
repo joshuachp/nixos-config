@@ -29,6 +29,7 @@ spec:
       name: backup
       namespace: postgres
     spec:
+      ttlSecondsAfterFinished: 259200
       template:
         metadata:
           namespace: postgres

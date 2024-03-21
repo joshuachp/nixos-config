@@ -22,6 +22,7 @@ spec:
   # 12h jobs should is probably stuck
   concurrencyPolicy: Replace
   failedJobsHistoryLimit: 1
+  successfulJobsHistoryLimit: 1
   schedule: "0 */12 * * *"
   jobTemplate:
     metadata:

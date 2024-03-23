@@ -14,7 +14,7 @@ in
       nixosHardware.common-gpu-amd
       nixosHardware.common-gpu-nvidia-nonprime
       nixosHardware.common-pc-laptop
-      nixosHardware.common-pc-laptop-hdd
+      nixosHardware.common-pc-laptop-ssd
       nixosHardware.common-pc-laptop-acpi_call
     ];
   };

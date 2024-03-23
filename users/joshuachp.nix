@@ -1,6 +1,7 @@
 { config
 , pkgs
 , hostname
+, flakeInputs
 , ...
 }: {
   config = {

@@ -14,7 +14,7 @@ in
       nixosHardware.common-gpu-amd
       nixosHardware.common-gpu-nvidia-nonprime
       nixosHardware.common-pc-laptop
-      nixosHardware.common-pc-laptop-hdd
+      nixosHardware.common-pc-laptop-ssd
       nixosHardware.common-pc-laptop-acpi_call
     ];
   };
@@ -31,7 +31,9 @@ in
   };
   # Cloud
   nixos-cloud = mkSystem "nixos-cloud" {
-    modules = [ ];
+    modules = [
+      flakeInputs.disko.nixosModules.disko
+    ];
   };
   # Cloud 2
   nixos-cloud-2 = mkSystem "nixos-cloud-2" {

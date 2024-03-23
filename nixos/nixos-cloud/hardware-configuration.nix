@@ -10,20 +10,17 @@
   ];
 
   boot = {
-    loader.grub.device = "/dev/sda";
     initrd = {
       availableKernelModules = [ "ahci" "xhci_pci" "virtio_pci" "virtio_scsi" "sd_mod" "sr_mod" ];
       kernelModules = [ ];
     };
     kernelModules = [ ];
     extraModulePackages = [ ];
-  };
-
-  fileSystems."/" =
-    {
-      device = "/dev/disk/by-uuid/54ea4aea-9469-465d-aa32-a0c4157fd119";
-      fsType = "ext4";
+    loader.grub = {
+      efiSupport = true;
+      efiInstallAsRemovable = true;
     };
+  };
 
   swapDevices = [{
     device = "/var/lib/swapfile";

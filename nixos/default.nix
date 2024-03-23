@@ -31,7 +31,9 @@ in
   };
   # Cloud
   nixos-cloud = mkSystem "nixos-cloud" {
-    modules = [ ];
+    modules = [
+      flakeInputs.disko.nixosModules.disko
+    ];
   };
   # Cloud 2
   nixos-cloud-2 = mkSystem "nixos-cloud-2" {

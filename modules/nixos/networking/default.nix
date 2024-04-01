@@ -9,7 +9,8 @@
   ];
   config =
     let
-      inherit (config.networking) networkmanager;
+      isDesktop = config.systemConfig.desktop.enable;
+      isServer = !isDesktop;
     in
     lib.mkMerge [
       {
@@ -19,9 +20,20 @@
           firewall.allowPing = true;
 
           # Use networkd by default, except on desktops
-          useNetworkd = lib.mkDefault (!networkmanager.enable);
           useDHCP = lib.mkDefault false;
         };
       }
+      (lib.mkIf isDesktop {
+        networking.networkmanager.enable = true;
+      })
+      (lib.mkIf isServer {
+        assertions = [{
+          assertion = config.systemd.network.networks != { };
+          message = "networkd networks are not configured";
+        }];
+
+        networking.useNetworkd = true;
+        systemd.network.enable = true;
+      })
     ];
 }

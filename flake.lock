@@ -64,27 +64,6 @@
         "type": "github"
       }
     },
-    "fenix": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ],
-        "rust-analyzer-src": "rust-analyzer-src"
-      },
-      "locked": {
-        "lastModified": 1711088506,
-        "narHash": "sha256-USdlY7Tx2oJWqFBpp10+03+h7eVhpkQ4s9t1ERjeIJE=",
-        "owner": "nix-community",
-        "repo": "fenix",
-        "rev": "85f4139f3c092cf4afd9f9906d7ed218ef262c97",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nix-community",
-        "repo": "fenix",
-        "type": "github"
-      }
-    },
     "flake-compat": {
       "flake": false,
       "locked": {
@@ -102,22 +81,6 @@
       }
     },
     "flake-compat_2": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1696426674,
-        "narHash": "sha256-kvjfFW7WAETZlt09AgDn1MrtKzP7t90Vf7vypd3OL1U=",
-        "owner": "edolstra",
-        "repo": "flake-compat",
-        "rev": "0f9255e01c2351cc7d116c072cb317785dd33b33",
-        "type": "github"
-      },
-      "original": {
-        "owner": "edolstra",
-        "repo": "flake-compat",
-        "type": "github"
-      }
-    },
-    "flake-compat_3": {
       "flake": false,
       "locked": {
         "lastModified": 1696426674,
@@ -303,26 +266,6 @@
       "original": {
         "owner": "joshuachp",
         "repo": "jump",
-        "type": "github"
-      }
-    },
-    "naersk": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1698420672,
-        "narHash": "sha256-/TdeHMPRjjdJub7p7+w55vyABrsJlt5QkznPYy55vKA=",
-        "owner": "nix-community",
-        "repo": "naersk",
-        "rev": "aeb58d5e8faead8980a807c840232697982d47b9",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nix-community",
-        "repo": "naersk",
         "type": "github"
       }
     },
@@ -526,30 +469,6 @@
         "type": "github"
       }
     },
-    "nixos-wsl": {
-      "inputs": {
-        "flake-compat": "flake-compat_3",
-        "flake-utils": [
-          "flake-utils"
-        ],
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1710519878,
-        "narHash": "sha256-0dbc10OBFUVYyXC+C+N6vRUd8xyBSRxkcZ4Egipbx0M=",
-        "owner": "nix-community",
-        "repo": "NixOS-WSL",
-        "rev": "aef95bdb6800a3a2af7aa7083d6df03067da6592",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nix-community",
-        "repo": "NixOS-WSL",
-        "type": "github"
-      }
-    },
     "nixosAnywhere": {
       "inputs": {
         "disko": [
@@ -694,76 +613,26 @@
         "type": "github"
       }
     },
-    "pulseaudioMicState": {
-      "inputs": {
-        "fenix": [
-          "fenix"
-        ],
-        "flake-utils": [
-          "flake-utils"
-        ],
-        "naersk": [
-          "naersk"
-        ],
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1680785742,
-        "narHash": "sha256-5bW7wXM2ouS2cOZaHrIGdBD9+HaQfQuknqEdv1H4FIw=",
-        "owner": "joshuachp",
-        "repo": "pulseaudio-mic-state",
-        "rev": "a13d2a691705b239dbe8e974c4272c5436d29489",
-        "type": "github"
-      },
-      "original": {
-        "owner": "joshuachp",
-        "repo": "pulseaudio-mic-state",
-        "type": "github"
-      }
-    },
     "root": {
       "inputs": {
         "crane": "crane",
         "deploy-rs": "deploy-rs",
         "disko": "disko",
-        "fenix": "fenix",
         "flake-utils": "flake-utils",
         "home-manager": "home-manager",
         "jump": "jump",
-        "naersk": "naersk",
         "neovimConfig": "neovimConfig",
         "nil": "nil",
         "nix-index-database": "nix-index-database",
         "nixgl": "nixgl",
         "nixos-hardware": "nixos-hardware",
-        "nixos-wsl": "nixos-wsl",
         "nixosAnywhere": "nixosAnywhere",
         "nixpkgs": "nixpkgs",
         "nixpkgs-unstable": "nixpkgs-unstable",
         "note": "note",
         "privateConf": "privateConf",
-        "pulseaudioMicState": "pulseaudioMicState",
         "rust-overlay": "rust-overlay",
         "tools": "tools"
-      }
-    },
-    "rust-analyzer-src": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1711052942,
-        "narHash": "sha256-lLsAhLgm/Nbin41wdfGKU7Rgd6ONBxYCUAMv53NXPjo=",
-        "owner": "rust-lang",
-        "repo": "rust-analyzer",
-        "rev": "7ef7f442fc34b5eadb1c6ad6433bd6d0c51b056b",
-        "type": "github"
-      },
-      "original": {
-        "owner": "rust-lang",
-        "ref": "nightly",
-        "repo": "rust-analyzer",
-        "type": "github"
       }
     },
     "rust-overlay": {

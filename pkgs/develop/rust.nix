@@ -1,13 +1,7 @@
-{ pkgs }: with pkgs; [
-  (pkgs.fenix.stable.withComponents [
-    "cargo"
-    "clippy"
-    "rust-src"
-    "rustc"
-    "rustfmt"
-  ])
+{ pkgs, toolchain }: with pkgs; [
+  toolchain
+
   sccache
-  rust-analyzer
 
   cargo-criterion
   cargo-edit

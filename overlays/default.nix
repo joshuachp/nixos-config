@@ -6,17 +6,20 @@
   imports = [ ./pkgs.nix ];
   config =
     let
-      inherit (flakeInputs) jump tools note pulseaudioMicState fenix nixpkgs-unstable nil
-        nixosAnywhere;
-      pkgsUnstable = import nixpkgs-unstable { inherit system; };
+      inherit (flakeInputs)
+        jump
+        nil
+        nixosAnywhere
+        note
+        rust-overlay
+        tools
+        ;
     in
     {
       nixpkgs.overlays = [
-        fenix.overlays.default
+        rust-overlay.overlays.default
 
         (self: super: {
-          inherit (pkgsUnstable) qemu OVMFFull;
-
           nerdfonts = super.nerdfonts.override {
             # Only the symbols are needed
             fonts = [
@@ -26,10 +29,9 @@
           };
 
           jumpOverlay = jump.packages.${system}.default;
+          noteOverlay = note.packages.${system}.default;
           rust-toolsOverlay = tools.packages.${system}.rust-tools;
           shell-toolsOverlay = tools.packages.${system}.shell-tools;
-          noteOverlay = note.packages.${system}.default;
-          pulseaudioMicStateOverlay = pulseaudioMicState.packages.${system}.default;
 
           nil = nil.packages.${system}.default;
           nixos-anywhere = nixosAnywhere.packages.${system}.default;

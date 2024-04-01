@@ -33,13 +33,13 @@
 
       (self: super:
         let
-          wrapIntel = import "${self}/lib/wrapGLIntel.nix" super;
+          inherit (config.lib.config) wrapGLIntel;
         in
         {
-          alacritty = wrapIntel "alacritty" "${super.alacritty}/bin/alacritty";
-          vscode = wrapIntel "code" "${super.vscode}/bin/code";
-          libreoffice = wrapIntel "libreoffice" "${super.libreoffice}/bin/libreoffice";
-          tdesktop = wrapIntel "telegram-desktop" "${super.tdesktop}/bin/telegram-desktop";
+          alacritty = wrapGLIntel "alacritty" "${super.alacritty}/bin/alacritty";
+          vscode = wrapGLIntel "code" "${super.vscode}/bin/code";
+          libreoffice = wrapGLIntel "libreoffice" "${super.libreoffice}/bin/libreoffice";
+          tdesktop = wrapGLIntel "telegram-desktop" "${super.tdesktop}/bin/telegram-desktop";
         })
     ];
 
@@ -67,6 +67,7 @@
     }
     ++ import "${self}/pkgs/develop/rust.nix" {
       inherit pkgs;
+      toolchain = pkgs.rust-bin.stable.latest.default;
     }
     ++ import "${self}/pkgs/develop/javascript.nix" { inherit pkgs; }
     ++ import "${self}/pkgs/develop/python.nix" { inherit pkgs; }

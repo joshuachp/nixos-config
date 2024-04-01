@@ -21,6 +21,9 @@ nixpkgs.lib.nixosSystem {
   };
 
   modules = [
+    # Lib
+    ./modules/common
+    ./modules/nixos
     # Overlays
     ../overlays
     {

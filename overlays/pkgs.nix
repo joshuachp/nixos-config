@@ -10,6 +10,7 @@
           committedConfig = pkgs.writeText "committed.toml" ''
             subject_capitalized = false
             style = "conventional"
+            no_fixup = false
           '';
           committedWithDefault = pkgs.writeShellApplication {
             name = "committed";

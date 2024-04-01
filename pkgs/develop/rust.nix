@@ -3,13 +3,14 @@
 
   sccache
 
+  cargo-audit
   cargo-criterion
   cargo-edit
+  cargo-hack
+  cargo-nextest
+  cargo-semver-checks
   cargo-tarpaulin
   cargo-watch
-  cargo-nextest
-  cargo-hack
-  cargo-semver-checks
 
   bacon
 ]

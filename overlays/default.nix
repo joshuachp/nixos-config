@@ -7,17 +7,17 @@
   config =
     let
       inherit (flakeInputs)
-        fenix
         jump
         nil
         nixosAnywhere
         note
+        rust-overlay
         tools
         ;
     in
     {
       nixpkgs.overlays = [
-        fenix.overlays.default
+        rust-overlay.overlays.default
 
         (self: super: {
           nerdfonts = super.nerdfonts.override {

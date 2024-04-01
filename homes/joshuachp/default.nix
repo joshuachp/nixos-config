@@ -67,6 +67,7 @@
     }
     ++ import "${self}/pkgs/develop/rust.nix" {
       inherit pkgs;
+      toolchain = pkgs.rust-bin.stable.latest.default;
     }
     ++ import "${self}/pkgs/develop/javascript.nix" { inherit pkgs; }
     ++ import "${self}/pkgs/develop/python.nix" { inherit pkgs; }

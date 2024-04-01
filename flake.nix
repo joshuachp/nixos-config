@@ -30,15 +30,7 @@
       };
     };
 
-    # External tools
-    fenix = {
-      url = "github:nix-community/fenix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    naersk = {
-      url = "github:nix-community/naersk";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # Rust tools
     rust-overlay = {
       url = "github:oxalica/rust-overlay";
       inputs = {

@@ -49,12 +49,4 @@ in
       flakeInputs.disko.nixosModules.disko
     ];
   };
-  # Wsl
-  nixos-wsl = mkSystem "nixos-wsl" {
-    modules = [
-      neovimConfig
-      # Wsl configuration
-      flakeInputs.nixos-wsl.nixosModules.wsl
-    ];
-  };
 }

@@ -34,7 +34,6 @@ with pkgs; [
   gnuplot
   libnotify
   playerctl
-  pulseaudioMicStateOverlay
   xclip
 
 ] ++ lib.optionals cfg.wayland (with pkgs;[

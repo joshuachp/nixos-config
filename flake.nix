@@ -16,12 +16,6 @@
     # Hardware configuration
     nixos-hardware.url = "github:NixOS/nixos-hardware";
 
-    nixos-wsl = {
-      url = "github:nix-community/NixOS-WSL";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.flake-utils.follows = "flake-utils";
-    };
-
     # Package utilities
     flake-utils.url = "github:numtide/flake-utils";
     disko = {
@@ -91,15 +85,6 @@
         flake-utils.follows = "flake-utils";
         crane.follows = "crane";
         rust-overlay.follows = "rust-overlay";
-      };
-    };
-    pulseaudioMicState = {
-      url = "github:joshuachp/pulseaudio-mic-state";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-        flake-utils.follows = "flake-utils";
-        fenix.follows = "fenix";
-        naersk.follows = "naersk";
       };
     };
 

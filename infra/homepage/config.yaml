@@ -50,6 +50,10 @@ data:
             href: http://grafana.k.joshuachp.dev/
             icon: grafana.png
             description: Grafana
+        - Kubernetes Dashboard:
+            href: http://kubernetes-dashboard.k.joshuachp.dev/
+            icon: kubernetes-dashboard.png
+            description: Kubernetes Dashboard
   widgets.yaml: |
     - kubernetes:
         cluster:

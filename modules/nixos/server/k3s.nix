@@ -100,9 +100,7 @@
 
               backend k3s-backend
                   mode tcp
-                  option ssl-hello-chk
-                  option httpchk GET /healthz
-                  http-check expect status 200
+                  option tcp-check
                   balance roundrobin
                   default-server inter 10s downinter 5s rise 2 fall 2 slowstart 60s maxconn 250 maxqueue 256 weight 100
                     server server-1 10.1.0.2:6443 check

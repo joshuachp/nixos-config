@@ -159,6 +159,27 @@ spec:
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
+  name: kubernetes-dashboard
+  namespace: argocd
+spec:
+  project: default
+  sources:
+    - repoURL: https://github.com/joshuachp/nixos-config
+      path: infra/kube-dashboard
+      ref: repo
+    - chart: kubernetes-dashboard
+      repoURL: https://kubernetes.github.io/dashboard
+      targetRevision: 7.2.0
+      helm:
+        valueFiles:
+          - $repo/infra/kube-dashboard/values.yaml
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: kubernetes-dashboard
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
   name: metallb
   namespace: argocd
 spec:

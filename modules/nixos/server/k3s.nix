@@ -78,8 +78,11 @@
                 log /dev/log  local1 notice
 
               defaults
-                retries 3
+                log global
+                option  httplog
+                option  dontlognull
                 option  redispatch
+                retries 3
                 timeout http-request 10s
                 timeout queue 20s
                 timeout connect 10s
@@ -96,12 +99,12 @@
                   default_backend k3s-backend
 
               backend k3s-backend
-                  option httpchk GET /healthz
-                  http-check expect status 200
                   mode tcp
                   option ssl-hello-chk
+                  option httpchk GET /healthz
+                  http-check expect status 200
                   balance roundrobin
-                    default-server inter 10s downinter 5s
+                  default-server inter 10s downinter 5s rise 2 fall 2 slowstart 60s maxconn 250 maxqueue 256 weight 100
                     server server-1 10.1.0.2:6443 check
                     server server-2 10.1.0.3:6443 check
                     server server-3 10.1.0.4:6443 check

@@ -18,7 +18,7 @@
           efiSysMountPoint = "/efi";
         };
       };
-      kernelPackages = pkgs.linuxPackages_6_7;
+      kernelPackages = pkgs.linuxPackages_6_8;
       initrd = {
         availableKernelModules = [ "xhci_pci" "nvme" "ahci" "usbhid" "sd_mod" "usb_storage" ];
         kernelModules = [ "dm-snapshot" "amdgpu" ];

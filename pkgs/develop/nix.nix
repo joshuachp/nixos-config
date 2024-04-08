@@ -1,6 +1,6 @@
 pkgs: with pkgs; [
   # Formatters
-  nixfmt
+  nixfmt-rfc-style
   nixpkgs-fmt
   alejandra
   # Linters

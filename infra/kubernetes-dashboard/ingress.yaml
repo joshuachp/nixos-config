@@ -12,9 +12,8 @@ spec:
     - kind: Rule
       match: "Host(`kubernetes-dashboard.k.joshuachp.dev`)"
       services:
-        - name: kubernetes-dashboard
-          scheme: https
-          port: 443
+        - name: kubernetes-dashboard-web
+          port: web
   tls:
     secretName: cert-k-joshuachp-dev
     domains:

@@ -1,0 +1,56 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: renovate-config
+  namespace: renovate
+data:
+  config.json: |-
+    {
+      "extends": ["config:recommended"]
+      "dryRun" : "true"
+    }
+---
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: renovate
+  namespace: renovate
+spec:
+  schedule: "@hourly"
+  concurrencyPolicy: Forbid
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+            - name: renovate
+              # Update this to the latest available and then enable Renovate on
+              # the manifest
+              image: renovate/renovate:35.14.4
+              args:
+                - user/repo
+              # Environment Variables
+              env:
+                - name: RENOVATE_BASE_DIR
+                  value: "/tmp/renovate/"
+                - name: RENOVATE_CONFIG_FILE
+                  value: "/opt/renovate/config.json"
+                - name: LOG_LEVEL
+                  value: debug
+              volumeMounts:
+                - name: config-volume
+                  mountPath: /opt/renovate/
+                - name: work-volume
+                  mountPath: /tmp/renovate/
+              envFrom:
+                - secretRef:
+                    name: renovate-env
+                - secretRef:
+                    name: renovate-env-keys
+          restartPolicy: Never
+          volumes:
+            - name: config-volume
+              configMap:
+                name: renovate-config
+            - name: work-volume
+              emptyDir: {}

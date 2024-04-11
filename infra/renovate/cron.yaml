@@ -6,7 +6,6 @@ metadata:
 data:
   config.json: |-
     {
-      "extends": ["config:recommended"],
       "dryRun" : "true"
     }
 ---

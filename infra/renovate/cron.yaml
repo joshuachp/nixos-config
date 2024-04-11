@@ -6,6 +6,7 @@ metadata:
 data:
   config.json: |-
     {
+      "onboardingConfig": "{\"$schema\":\"https://docs.renovatebot.com/renovate-schema.json\",\"onboardingConfig\":{\"extends\":[\"config:recommended\"]}}"
     }
 ---
 apiVersion: batch/v1

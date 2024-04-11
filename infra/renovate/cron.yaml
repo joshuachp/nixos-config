@@ -6,7 +6,6 @@ metadata:
 data:
   config.json: |-
     {
-      "globalExtends": ["config:recommended"]
     }
 ---
 apiVersion: batch/v1

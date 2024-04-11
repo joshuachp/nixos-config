@@ -169,7 +169,7 @@ spec:
       ref: repo
     - chart: kubernetes-dashboard
       repoURL: https://kubernetes.github.io/dashboard
-      targetRevision: 7.2.0
+      targetRevision: 7.3.1
       helm:
         valueFiles:
           - $repo/infra/kubernetes-dashboard/values.yaml

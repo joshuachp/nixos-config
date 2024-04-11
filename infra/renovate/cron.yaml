@@ -26,8 +26,6 @@ spec:
               # Update this to the latest available and then enable Renovate on
               # the manifest
               image: renovate/renovate:35.14.4
-              args:
-                - user/repo
               # Environment Variables
               env:
                 - name: RENOVATE_BASE_DIR

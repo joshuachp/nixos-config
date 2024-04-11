@@ -312,7 +312,7 @@ spec:
       ref: repo
     - chart: woodpecker
       repoURL: https://woodpecker-ci.org/
-      targetRevision: 1.2.0
+      targetRevision: 1.2.3
       helm:
         valueFiles:
           - $repo/infra/woodpecker/values.yaml

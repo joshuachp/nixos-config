@@ -254,6 +254,20 @@ spec:
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
+  name: renovate
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/joshuachp/nixos-config
+    path: infra/renovate
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: renovate
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
   name: syncthing
   namespace: argocd
 spec:

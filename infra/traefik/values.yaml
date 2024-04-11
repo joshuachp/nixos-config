@@ -14,34 +14,39 @@ ports:
       enabled: true
   ssh:
     port: 8022
-    expose: true
     exposedPort: 8022
     protocol: TCP
-    exposeInternal: false
+    expose:
+      default: true
+      internal: false
   syncthing-tcp:
     port: 22000
-    expose: true
     exposedPort: 22000
     protocol: TCP
-    exposeInternal: false
+    expose:
+      default: true
+      internal: false
   syncthing-quic:
     port: 22000
-    expose: true
     exposedPort: 22000
     protocol: UDP
-    exposeInternal: false
+    expose:
+      default: true
+      internal: false
   syncthing-disc:
     port: 21027
-    expose: true
     exposedPort: 21027
     protocol: UDP
-    exposeInternal: false
+    expose:
+      default: true
+      internal: false
   db:
     port: 5432
-    expose: true
     exposedPort: 5432
     protocol: TCP
-    exposeInternal: false
+    expose:
+      default: true
+      internal: false
 
 providers:
   kubernetesCRD:

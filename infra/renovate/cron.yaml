@@ -6,7 +6,7 @@ metadata:
 data:
   config.json: |-
     {
-      "dryRun" : "true"
+      "globalExtends": ["config:recommended"]
     }
 ---
 apiVersion: batch/v1

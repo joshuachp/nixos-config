@@ -243,7 +243,7 @@ spec:
       ref: repo
     - chart: prometheus
       repoURL: https://prometheus-community.github.io/helm-charts
-      targetRevision: 25.15.0
+      targetRevision: 25.19.1
       helm:
         valueFiles:
           - $repo/infra/prometheus/values.yaml

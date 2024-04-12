@@ -69,6 +69,19 @@ extraVolumes:
           resources:
             requests:
               storage: 500Mi
+  - name: indexers-volume
+    ephemeral:
+      volumeClaimTemplate:
+        metadata:
+          labels:
+            type: forgejo-tmp-volume
+        spec:
+          accessModes:
+            - ReadWriteOnce
+          storageClassName: local-path
+          resources:
+            requests:
+              storage: 500Mi
   - name: gpg-volume
     ephemeral:
       volumeClaimTemplate:
@@ -86,17 +99,23 @@ extraVolumes:
 extraVolumeMounts:
   - name: indexers-volume
     mountPath: /data/indexers
+  - name: indexers-volume
+    mountPath: /data/tmp
   - name: gpg-volume
     mountPath: /data/git/.gnupg
 
 extraContainerVolumeMounts:
   - name: indexers-volume
     mountPath: /data/indexers
+  - name: indexers-volume
+    mountPath: /data/tmp
   - name: gpg-volume
     mountPath: /data/git/.gnupg
 
 extraInitVolumeMounts:
   - name: indexers-volume
     mountPath: /data/indexers
+  - name: indexers-volume
+    mountPath: /data/tmp
   - name: gpg-volume
     mountPath: /data/git/.gnupg

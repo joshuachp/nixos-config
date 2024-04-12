@@ -69,7 +69,7 @@ extraVolumes:
           resources:
             requests:
               storage: 500Mi
-  - name: indexers-volume
+  - name: tmp-volume
     ephemeral:
       volumeClaimTemplate:
         metadata:
@@ -99,7 +99,7 @@ extraVolumes:
 extraVolumeMounts:
   - name: indexers-volume
     mountPath: /data/indexers
-  - name: indexers-volume
+  - name: tmp-volume
     mountPath: /data/tmp
   - name: gpg-volume
     mountPath: /data/git/.gnupg
@@ -107,7 +107,7 @@ extraVolumeMounts:
 extraContainerVolumeMounts:
   - name: indexers-volume
     mountPath: /data/indexers
-  - name: indexers-volume
+  - name: tmp-volume
     mountPath: /data/tmp
   - name: gpg-volume
     mountPath: /data/git/.gnupg
@@ -115,7 +115,7 @@ extraContainerVolumeMounts:
 extraInitVolumeMounts:
   - name: indexers-volume
     mountPath: /data/indexers
-  - name: indexers-volume
+  - name: tmp-volume
     mountPath: /data/tmp
   - name: gpg-volume
     mountPath: /data/git/.gnupg

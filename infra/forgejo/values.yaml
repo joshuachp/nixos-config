@@ -13,6 +13,7 @@ persistence:
 signing:
   enabled: true
   existingSecret: forgejo-gpg-key
+  gpgHome: /local/git/.gnupg
 
 service:
   http:
@@ -56,66 +57,39 @@ gitea:
         secretName: forgejo-app-ini-secret
 
 extraVolumes:
-  - name: indexers-volume
-    ephemeral:
-      volumeClaimTemplate:
-        metadata:
-          labels:
-            type: forgejo-indexers-volume
-        spec:
-          accessModes:
-            - ReadWriteOnce
-          storageClassName: local-path
-          resources:
-            requests:
-              storage: 500Mi
-  - name: indexers-volume
-    ephemeral:
-      volumeClaimTemplate:
-        metadata:
-          labels:
-            type: forgejo-tmp-volume
-        spec:
-          accessModes:
-            - ReadWriteOnce
-          storageClassName: local-path
-          resources:
-            requests:
-              storage: 500Mi
-  - name: gpg-volume
-    ephemeral:
-      volumeClaimTemplate:
-        metadata:
-          labels:
-            type: forgejo-gpg-volume
-        spec:
-          accessModes:
-            - ReadWriteOnce
-          storageClassName: local-path
-          resources:
-            requests:
-              storage: 100Mi
+  - name: local-volume
+    emptyDir:
+      sizeLimit: 500Mi
 
 extraVolumeMounts:
-  - name: indexers-volume
-    mountPath: /data/indexers
-  - name: indexers-volume
+  - name: local-volume
+    mountPath: /local/git
+    subPath: git
+  - name: local-volume
     mountPath: /data/tmp
-  - name: gpg-volume
-    mountPath: /data/git/.gnupg
+    subPath: tmp
+  - name: local-volume
+    mountPath: /data/indexers
+    subPath: indexers
 
 extraContainerVolumeMounts:
-  - name: indexers-volume
-    mountPath: /data/indexers
-  - name: indexers-volume
+  - name: local-volume
+    mountPath: /local/git
+    subPath: git
+  - name: local-volume
     mountPath: /data/tmp
-  - name: gpg-volume
-    mountPath: /data/git/.gnupg
+    subPath: tmp
+  - name: local-volume
+    mountPath: /data/indexers
+    subPath: indexers
 
 extraInitVolumeMounts:
-  - name: indexers-volume
-    mountPath: /data/indexers
-  - name: indexers-volume
+  - name: local-volume
+    mountPath: /local/git
+    subPath: git
+  - name: local-volume
     mountPath: /data/tmp
-  - name: gpg-volume
-    mountPath: /data/git/.gnupg
+    subPath: tmp
+  - name: local-volume
+    mountPath: /data/indexers
+    subPath: indexers

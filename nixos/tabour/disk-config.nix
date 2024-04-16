@@ -46,6 +46,13 @@
               ];
             };
           };
+          swap = {
+            size = "18G";
+            content = {
+              type = "swap";
+              resumeDevice = true;
+            };
+          };
           root = {
             size = "100%FREE";
             content = {

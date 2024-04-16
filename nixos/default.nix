@@ -49,4 +49,13 @@ in
       flakeInputs.disko.nixosModules.disko
     ];
   };
+  # Tabour
+  tabour = mkSystem "tabour" {
+    modules = [
+      nixosHardware.common-cpu-intel
+      nixosHardware.common-pc
+      nixosHardware.common-pc-ssd
+      flakeInputs.disko.nixosModules.disko
+    ];
+  };
 }

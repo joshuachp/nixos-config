@@ -39,6 +39,7 @@
     "/efi" = {
       device = "/dev/disk/by-uuid/F33C-09F7";
       fsType = "vfat";
+      options = [ "umask=0077" ];
     };
 
     "/" = {

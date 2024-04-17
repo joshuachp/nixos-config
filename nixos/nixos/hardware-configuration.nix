@@ -46,6 +46,7 @@
       "/efi" = {
         device = "/dev/disk/by-uuid/7D9B-B214";
         fsType = "vfat";
+        options = [ "umask=0077" ];
       };
 
       "/boot" = {

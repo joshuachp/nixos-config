@@ -108,7 +108,7 @@ spec:
       ref: repo
     - chart: forgejo
       repoURL: codeberg.org/forgejo-contrib
-      targetRevision: 5.0.3
+      targetRevision: 5.0.4
       helm:
         valueFiles:
           - $repo/infra/forgejo/values.yaml

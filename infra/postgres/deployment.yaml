@@ -121,5 +121,5 @@ spec:
           persistentVolumeClaim:
             claimName: postgres-pvc
       securityContext:
-        runAsUser: 1001
-        runAsGroup: 1001
+        runAsUser: 70
+        runAsGroup: 70

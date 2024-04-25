@@ -68,33 +68,6 @@ spec:
     server: https://kubernetes.default.svc
     namespace: kube-system
 ---
-#apiVersion: argoproj.io/v1alpha1
-#kind: Application
-#metadata:
-#  name: firefly
-#  namespace: argocd
-#spec:
-#  project: default
-#  sources:
-#    - repoURL: https://github.com/joshuachp/nixos-config
-#      path: infra/firefly
-#      ref: repo
-#    - chart: firefly-iii
-#      repoURL: https://firefly-iii.github.io/kubernetes
-#      targetRevision: 1.8.0
-#      helm:
-#        valueFiles:
-#          - $repo/infra/firefly/values.yaml
-#    - chart: importer
-#      repoURL: https://firefly-iii.github.io/kubernetes
-#      targetRevision: 1.3.1
-#      helm:
-#        valueFiles:
-#          - $repo/infra/firefly/importer-values.yaml
-#  destination:
-#    server: https://kubernetes.default.svc
-#    namespace: firefly
-#---
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
@@ -155,27 +128,6 @@ spec:
     path: infra/homepage
   destination:
     server: https://kubernetes.default.svc
----
-apiVersion: argoproj.io/v1alpha1
-kind: Application
-metadata:
-  name: kubernetes-dashboard
-  namespace: argocd
-spec:
-  project: default
-  sources:
-    - repoURL: https://github.com/joshuachp/nixos-config
-      path: infra/kubernetes-dashboard
-      ref: repo
-    - chart: kubernetes-dashboard
-      repoURL: https://kubernetes.github.io/dashboard
-      targetRevision: 7.3.2
-      helm:
-        valueFiles:
-          - $repo/infra/kubernetes-dashboard/values.yaml
-  destination:
-    server: https://kubernetes.default.svc
-    namespace: kubernetes-dashboard
 ---
 apiVersion: argoproj.io/v1alpha1
 kind: Application

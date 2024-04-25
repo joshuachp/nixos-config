@@ -150,6 +150,7 @@ keybinds {
         bind "Alt k" "Alt Up" { Resize "Up"; }
         bind "Alt -" { Resize "Decrease"; }
         bind "Alt +" { Resize "Increase"; }
+        bind "e" { EditScrollback; SwitchToMode "Locked"; }
     }
     shared_except "locked" {
         bind "Ctrl g" { SwitchToMode "Locked"; }
@@ -241,6 +242,20 @@ pane_frames false
 // Once these themes are defined, one of them should to be selected in the "theme" section of this file
 //
 themes {
+    // Terminal 256-colors
+    kanagawa {
+        fg "#c5c9c5"
+        bg "#181616"
+        black "#0d0c0c"
+        red "#c4746e"
+        green "#8a9a7b"
+        yellow "#c4b28a"
+        blue "#8ba4b0"
+        magenta "#a292a3"
+        cyan "#8ea4a2"
+        white  "#C8C093"
+        orange "#ffa066"
+    }
     gruvbox-dark {
         fg 213 196 161
         bg 40 40 40
@@ -259,7 +274,7 @@ themes {
 // Choose the theme that is specified in the themes section.
 // Default: default
 //
-theme "gruvbox-dark"
+theme "kanagawa"
 
 // The name of the default layout to load on startup
 // Default: "default"

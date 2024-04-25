@@ -10,45 +10,50 @@
     lib.mkIf cfg.enable {
       programs.alacritty = {
         enable = true;
-        settings =
-          {
-            colors = {
-              primary = {
-                background = "0x282828";
-                foreground = "0xebdbb2";
-              };
-              normal = {
-                black = "0x282828";
-                blue = "0x458588";
-                cyan = "0x689d6a";
-                green = "0x98971a";
-                magenta = "0xb16286";
-                red = "0xcc241d";
-                white = "0xa89984";
-                yellow = "0xd79921";
-              };
-              bright = {
-                black = "0x928374";
-                blue = "0x83a598";
-                cyan = "0x8ec07c";
-                green = "0xb8bb26";
-                magenta = "0xd3869b";
-                red = "0xfb4934";
-                white = "0xebdbb2";
-                yellow = "0xfabd2f";
-              };
+        settings = {
+          # Kanagawa Dragon Alacritty Colors
+          colors = {
+            primary = {
+              background = "#181616";
+              foreground = "#c5c9c5";
             };
-            font = {
-              size =
-                if cfg.hidpi then
-                  16
-                else
-                  11;
-              normal = {
-                family = "JetBrains Mono Nerd Font";
-              };
+            normal = {
+              black = "#0d0c0c";
+              red = "#c4746e";
+              green = "#8a9a7b";
+              yellow = "#c4b28a";
+              blue = "#8ba4b0";
+              magenta = "#a292a3";
+              cyan = "#8ea4a2";
+              white = "#C8C093";
+            };
+            bright = {
+              black = "#a6a69c";
+              red = "#E46876";
+              green = "#87a987";
+              yellow = "#E6C384";
+              blue = "#7FB4CA";
+              magenta = "#938AA9";
+              cyan = "#7AA89F";
+              white = "#c5c9c5";
+            };
+            selection = {
+              background = "#2D4F67";
+              foreground = "#C8C093";
+            };
+            indexed_colors = [
+              { index = 16; color = "#b6927b"; }
+              { index = 17; color = "#b98d7b"; }
+            ];
+          };
+
+          font = {
+            size = 11;
+            normal = {
+              family = "JetBrains Mono Nerd Font";
             };
           };
+        };
       };
     };
 }

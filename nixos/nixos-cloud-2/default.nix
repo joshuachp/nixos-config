@@ -35,7 +35,7 @@
 
       nixosConfig.server.k3s = {
         enable = true;
-        main = true;
+        role = "main";
         interface = "enp7s0";
         ip = "10.1.0.2";
       };

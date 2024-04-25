@@ -1,8 +1,0 @@
-config:
-  env:
-    TZ: "Europe/Rome"
-fireflyiii:
-  url: "http://http.tcp.firefly-firefly-iii.firefly.svc.cluster.local"
-  vanityUrl: "https://firefly.k.joshuachp.dev"
-  auth:
-    existingSecret: "firefly-imp"

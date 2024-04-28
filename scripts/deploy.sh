@@ -2,20 +2,43 @@
 
 set -exEuo pipefail
 
-host="$1"
-
 cleanup_old() {
+    local host="$1"
+
     ssh "root@$host.wg" -- nix-collect-garbage -d
     ssh "$USER@$host.wg" -- nix-collect-garbage -d
 }
 
-deploy -s ".#$host"
+check_online() {
+    local host="$1"
+    while true; do
+        if ! ping -c 5 -w 10 "$host.wg"; then
+            continue
+        else
+            break
+        fi
+    done
+}
 
-cleanup_old
+deploy_host() {
+    local host="$1"
 
-ssh "root@$host.wg" -- free -h
-ssh "root@$host.wg" -- lsblk --fs
+    deploy -s ".#$host"
 
-ssh "root@$host.wg" -- reboot
+    cleanup_old "$host"
 
-ping "$host.wg"
+    ssh "root@$host.wg" -- free -h
+    ssh "root@$host.wg" -- lsblk --fs
+
+    ssh "root@$host.wg" -- reboot
+
+    check_online "$host"
+}
+
+if [ "$1" = "all" ]; then
+    for h in kuma nixos-cloud nixos-cloud-2 tabour; do
+        deploy_host $h
+    done
+else
+    deploy_host "$1"
+fi

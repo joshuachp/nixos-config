@@ -4,30 +4,14 @@
 , ...
 }:
 {
-  options =
-    let
-      inherit (lib) mkEnableOption mkOption types;
-    in
-    {
-      nixosConfig.server.k3s = {
-        enable = mkEnableOption "Enables k3s service";
-        main = mkEnableOption "Make the node as main";
-        ip = mkOption {
-          description = "Node ip";
-          type = types.str;
-        };
-        interface = mkOption {
-          description = "Interface to connect keepalived";
-          type = types.str;
-        };
-      };
-    };
   config =
     let
       cfg = config.nixosConfig.server.k3s;
+      isMain = cfg.role == "main";
+      enable = cfg.enable && (isMain || (cfg.role == "server"));
     in
-    lib.mkIf cfg.enable {
-      privateConfig.k3s.secret = true;
+    lib.mkIf enable {
+      privateConfig.k3s.token.server = true;
 
       users.users.keepalived_script = {
         isSystemUser = true;
@@ -36,40 +20,34 @@
       };
       users.groups.keepalived_script = { };
 
-      networking.firewall.interfaces.${cfg.interface} = {
-        allowedTCPPorts = [
-          # Etcd
-          2379
-          2380
-          # Api
-          6443
-          # Metrics
-          10250
-          # Embedded registry
-          5001
-
-          # Metallb
-          7472
-          7946
-        ];
-        allowedUDPPorts = [
-          # Wireguard
-          51820
-          51821
-          # Flannel VXLAN
-          8472
-          # Metallb
-          7472
-          7946
-        ];
-      };
-
       services =
         let
-          loadBalacerIp = "10.10.10.100";
-          apiPort = 56443;
+          inherit (cfg) loadBalancerIp apiPort;
         in
         {
+          # K3s server config
+          k3s = {
+            tokenFile = config.sops.secrets.k3s_server_token.path;
+            clusterInit = isMain;
+            role = "server";
+            extraFlags = builtins.toString [
+              # Prevents issues with multiple network interfaces
+              "--node-ip=${cfg.ip}"
+              "--node-external-ip=${cfg.externalIp}"
+              "--flannel-iface=${cfg.interface}"
+              # Those are managed in the cluster
+              "--disable=traefik"
+              "--disable=servicelb"
+              # Create a valid load-balancer https certificate for the keepalived IP and the custom
+              # domain name
+              "--tls-san=${cfg.loadBalancerIp}"
+              "--tls-san=kubeapi.k.joshuachp.dev"
+              # Hardening
+              "--secrets-encryption"
+              "--protect-kernel-defaults=true"
+            ];
+          };
+
           # Cluster load balancer configuration
           haproxy = {
             enable = true;
@@ -125,34 +103,18 @@
               };
               vrrpInstances.haproxy-vip = {
                 inherit (cfg) interface;
-                state = if cfg.main then "MASTER" else "BACKUP";
-                priority = if cfg.main then 200 else 100;
+                state = if isMain then "MASTER" else "BACKUP";
+                priority = if isMain then 200 else 100;
 
                 virtualRouterId = 51;
 
                 virtualIps = [{
-                  addr = "${loadBalacerIp}/24";
+                  addr = "${loadBalancerIp}/24";
                 }];
 
                 trackScripts = [ script ];
               };
             };
-
-          k3s = {
-            enable = true;
-            clusterInit = cfg.main;
-            serverAddr = lib.mkIf (!cfg.main) "https://${loadBalacerIp}:${toString apiPort}";
-            tokenFile = config.sops.secrets.k3s_token.path;
-            extraFlags = builtins.toString [
-              "--node-ip=${cfg.ip}"
-              "--secrets-encryption"
-              "--disable=traefik"
-              "--disable=servicelb"
-              "--tls-san=${loadBalacerIp}"
-              "--tls-san=kubeapi.k.joshuachp.dev"
-              "--flannel-iface=${cfg.interface}"
-            ];
-          };
         };
     };
 }

@@ -1,4 +1,5 @@
 { config
+, hostname
 , ...
 }:
 {
@@ -36,5 +37,13 @@
       '';
     };
 
+
+    nixosConfig.server.k3s = {
+      enable = true;
+      role = "agent";
+      interface = "wg0";
+      ip = "10.0.3.1";
+      externalIp = config.privateConfig.machines.${hostname}.wireguard.addressIpv4;
+    };
   };
 }

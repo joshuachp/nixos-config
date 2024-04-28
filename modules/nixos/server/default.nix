@@ -1,5 +1,5 @@
 _: {
   imports = [
-    ./k3s.nix
+    ./k3s
   ];
 }

@@ -30,7 +30,7 @@
           description = "Interface to connect keepalived";
           type = types.str;
         };
-        loadBalacerIp = mkOption {
+        loadBalancerIp = mkOption {
           default = "10.10.10.100";
           description = "Address of the API server load balancer";
           type = types.str;
@@ -88,11 +88,11 @@
 
       services.k3s =
         let
-          inherit (cfg) loadBalacerIp apiPort;
+          inherit (cfg) loadBalancerIp apiPort;
         in
         {
           enable = true;
-          serverAddr = "https://${loadBalacerIp}:${toString apiPort}";
+          serverAddr = "https://${loadBalancerIp}:${toString apiPort}";
         };
     };
 }

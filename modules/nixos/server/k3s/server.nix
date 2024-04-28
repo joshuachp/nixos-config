@@ -22,7 +22,7 @@
 
       services =
         let
-          inherit (cfg) loadBalacerIp apiPort;
+          inherit (cfg) loadBalancerIp apiPort;
         in
         {
           # K3s server config
@@ -40,7 +40,7 @@
               "--disable=servicelb"
               # Create a valid load-balancer https certificate for the keepalived IP and the custom
               # domain name
-              "--tls-san=${cfg.loadBalacerIp}"
+              "--tls-san=${cfg.loadBalancerIp}"
               "--tls-san=kubeapi.k.joshuachp.dev"
               # Hardening
               "--secrets-encryption"
@@ -109,7 +109,7 @@
                 virtualRouterId = 51;
 
                 virtualIps = [{
-                  addr = "${loadBalacerIp}/24";
+                  addr = "${loadBalancerIp}/24";
                 }];
 
                 trackScripts = [ script ];

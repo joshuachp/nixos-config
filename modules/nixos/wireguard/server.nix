@@ -22,6 +22,7 @@
           machineCfg;
         peers = lib.mapAttrsToList (n: mkPeer) peersCfg;
         ingressIp = "10.2.0.1";
+        inherit (config.nixosConfig.server.k3s) loadBalancerIp;
       in
       {
         # DNS instead of /etc/hosts
@@ -46,7 +47,7 @@
               "/syncthing.k.joshuachp.dev/${ingressIp}"
               "/traefik.k.joshuachp.dev/${ingressIp}"
               # HA proxy IP
-              "/kubeapi.k.joshuachp.dev/10.10.10.100"
+              "/kubeapi.k.joshuachp.dev/${loadBalancerIp}"
             ];
           };
         };

@@ -30,6 +30,22 @@
             tokenFile = config.sops.secrets.k3s_server_token.path;
             clusterInit = isMain;
             role = "server";
+            extraFlags = builtins.toString [
+              # Prevents issues with multiple network interfaces
+              "--node-ip=${cfg.ip}"
+              "--node-external-ip=${cfg.externalIp}"
+              "--flannel-iface=${cfg.interface}"
+              # Those are managed in the cluster
+              "--disable=traefik"
+              "--disable=servicelb"
+              # Create a valid load-balancer https certificate for the keepalived IP and the custom
+              # domain name
+              "--tls-san=${cfg.loadBalacerIp}"
+              "--tls-san=kubeapi.k.joshuachp.dev"
+              # Hardening
+              "--secrets-encryption"
+              "--protect-kernel-defaults=true"
+            ];
           };
 
           # Cluster load balancer configuration

@@ -22,6 +22,10 @@
           description = "Node ip";
           type = types.str;
         };
+        externalIp = mkOption {
+          description = "Node external ip";
+          type = types.str;
+        };
         interface = mkOption {
           description = "Interface to connect keepalived";
           type = types.str;
@@ -89,23 +93,6 @@
         {
           enable = true;
           serverAddr = "https://${loadBalacerIp}:${toString apiPort}";
-          extraFlags = builtins.toString [
-            # Prevents issues with multiple network interfaces
-            "--node-ip=${cfg.ip}"
-            "--flannel-iface=${cfg.interface}"
-            # Since all nodes should be connected
-            "--flannel-backend=host-gw"
-            # Those are managed in the cluster
-            "--disable=traefik"
-            "--disable=servicelb"
-            # Create a valid load-balancer https certificate for the keepalived IP and the custom
-            # domain name
-            "--tls-san=${loadBalacerIp}"
-            "--tls-san=kubeapi.k.joshuachp.dev"
-            # Hardening
-            "--secrets-encryption"
-            "--protect-kernel-defaults=true"
-          ];
         };
     };
 }

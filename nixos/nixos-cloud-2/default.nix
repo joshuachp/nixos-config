@@ -1,4 +1,7 @@
-{ config, ... }: {
+{ config
+, hostname
+, ...
+}: {
   imports = [
     ./hardware-configuration.nix
     ./disk-config.nix
@@ -38,6 +41,7 @@
         role = "main";
         interface = "enp7s0";
         ip = "10.1.0.2";
+        externalIp = config.privateConfig.machines.${hostname}.wireguard.addressIpv4;
       };
     };
 }

@@ -3,6 +3,9 @@
 , ...
 }:
 {
+  imports = [
+    ./wireguard.nix
+  ];
   config = {
     lib.config = {
       /**

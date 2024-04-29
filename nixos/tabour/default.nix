@@ -43,7 +43,8 @@
       role = "agent";
       interface = "wg0";
       ip = "10.0.3.1";
-      externalIp = config.privateConfig.machines.${hostname}.wireguard.addressIpv4;
+      externalIp = config.lib.config.wireguard.mkServerIpv4
+        config.privateConfig.machines.${hostname}.wireguard.id;
     };
   };
 }

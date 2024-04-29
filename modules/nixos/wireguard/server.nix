@@ -8,20 +8,45 @@
     let
       machineCfg = config.privateConfig.machines;
       enable = (builtins.hasAttr hostname machineCfg)
-        && machineCfg.${hostname}.wireguard.server;
+        && machineCfg.${hostname}.wireguard.server.enable;
     in
     lib.mkIf enable (
       let
-        hostCfg = machineCfg.${hostname}.wireguard;
-        inherit (hostCfg) port addressIpv4 privateKeyPath range;
+        inherit (machineCfg.${hostname}.wireguard) id privateKeyPath;
+        inherit (machineCfg.${hostname}.wireguard.server) port;
         # Function to create the peers
-        inherit (config.lib.config.wireguard) mkServerPeer;
-        # Extract only other peers
-        peersCfg = lib.filterAttrs (n: v: n != hostname) machineCfg;
-        dnsAddresses = lib.mapAttrsToList
-          (n: v: "/${n}.wg/${v.wireguard.addressIpv4}")
+        inherit (config.lib.config.wireguard) mkPeer mkClientAddresses mkServerIpv4 mkClientIpv4;
+        # Filter all server config
+        allServerCfg = lib.filterAttrs
+          (n: v: v.wireguard.server.enable)
           machineCfg;
-        peers = lib.mapAttrsToList (n: mkServerPeer) peersCfg;
+        # Filter only other servers
+        serverCfg = lib.filterAttrs
+          (n: v: n != hostname && v.wireguard.server.enable)
+          machineCfg;
+        # Filter only clients
+        clientsCfg = lib.filterAttrs
+          (n: v: n != hostname && !v.wireguard.server.enable)
+          machineCfg;
+        serverDnsAddresses = lib.mapAttrsToList
+          (n: v: "/${n}.wg/${mkServerIpv4 v.wireguard.id}")
+          allServerCfg;
+        mkClientDnsAddress = client: id: servers:
+          lib.mapAttrsToList
+            (n: v: "/${client}.wg/${mkClientIpv4 v.wireguard.id id}")
+            servers;
+        clientDnsAddresses = lib.flatten
+          (lib.mapAttrsToList
+            (n: v: mkClientDnsAddress n v.wireguard.id allServerCfg)
+            clientsCfg);
+        serverPeers = lib.mapAttrsToList (n: (mkPeer [ ])) serverCfg;
+        clientPeers = lib.mapAttrsToList
+          (n: v:
+            let
+              addresses = mkClientAddresses v.wireguard.id allServerCfg;
+            in
+            mkPeer addresses v)
+          clientsCfg;
         ingressIp = "10.2.0.1";
         inherit (config.nixosConfig.server.k3s) loadBalancerIp;
       in
@@ -31,7 +56,7 @@
           enable = true;
           settings = {
             interface = "wg0";
-            address = dnsAddresses ++ [
+            address = serverDnsAddresses ++ clientDnsAddresses ++ [
               "/alertmanager.k.joshuachp.dev/${ingressIp}"
               "/argocd.k.joshuachp.dev/${ingressIp}"
               "/atuin.k.joshuachp.dev/${ingressIp}"
@@ -78,10 +103,10 @@
           # Wireguard interface
           wg-quick.interfaces.wg0 = {
             # Clients IP address subnet
-            address = [ "${addressIpv4}/${toString range}" ];
+            address = [ "${mkServerIpv4 id}/24" ];
             listenPort = port;
             privateKeyFile = privateKeyPath;
-            inherit peers;
+            peers = serverPeers ++ clientPeers;
           };
         };
       }

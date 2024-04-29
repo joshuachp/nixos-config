@@ -3,35 +3,57 @@
 }:
 {
   config = {
-    lib.config =
-      let
-        /**
-         * Create a wireguard peer from a machine config.
-         */
-        mkPeer = client: machine:
-          let
-            port = toString machine.wireguard.port;
-            range = toString machine.wireguard.range;
-            inherit (machine.wireguard) peers;
-          in
-          {
-            inherit (machine.wireguard) publicKey;
-            endpoint = lib.mkIf (machine.publicIpv4 != null) "${machine.publicIpv4}:${port}";
-            allowedIPs = [
-              "${machine.wireguard.addressIpv4}/${range}"
-            ] ++ (lib.optionals client peers);
-            persistentKeepalive = 25;
-          };
-      in
-      {
-        /**
-         * Create a client peer from a machine config.
-         */
-        wireguard.mkClientPeer = mkPeer true;
-        /**
-         * Create a server peer from a machine config.
-         */
-        wireguard.mkServerPeer = mkPeer false;
-      };
+    lib.config = {
+      wireguard =
+        let
+          /**
+           * Create a wireguard peer from a machine config.
+           */
+          mkPeer = additionalPeers: machine:
+            let
+              range = if machine.wireguard.server.enable then 24 else 32;
+              allowedIPs = [
+                "${mkServerIpv4 machine.wireguard.id}/${toString range}"
+              ] ++ additionalPeers;
+              port = toString machine.wireguard.server.port;
+            in
+            {
+              inherit (machine.wireguard) publicKey;
+              inherit allowedIPs;
+              endpoint = lib.mkIf (machine.publicIpv4 != null) "${machine.publicIpv4}:${port}";
+              persistentKeepalive = 25;
+            };
+          /**
+           * Create a client IP in a server range
+           */
+          mkClientIpv4 = serverId: clientId: "10.0.${toString serverId}.${toString clientId}";
+          /**
+           * Create a server IP.
+           */
+          mkServerIpv4 = serverId: (mkClientIpv4 serverId serverId);
+        in
+        {
+          inherit mkPeer;
+          /**
+           * Create a client peer from a machine config.
+           */
+          mkClientPeer = server: mkPeer server.wireguard.server.peers server;
+
+          inherit mkClientIpv4 mkServerIpv4;
+
+          /**
+           * Maps the client addresses for all the servers.
+           */
+          mkClientAddresses = id: servers:
+            lib.mapAttrsToList
+              (n: v:
+                let
+                  ip = mkClientIpv4 v.wireguard.id id;
+                in
+                "${ip}/32")
+              servers;
+
+        };
+    };
   };
 }

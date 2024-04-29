@@ -36,7 +36,8 @@
       role = "server";
       interface = "enp7s0";
       ip = "10.1.0.4";
-      externalIp = config.privateConfig.machines.${hostname}.wireguard.addressIpv4;
+      externalIp = config.lib.config.wireguard.mkServerIpv4
+        config.privateConfig.machines.${hostname}.wireguard.id;
     };
   };
 }

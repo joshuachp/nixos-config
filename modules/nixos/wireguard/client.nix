@@ -13,7 +13,7 @@
       let
         hostCfg = machineCfg.${hostname}.wireguard;
         # Function to create peers
-        mkPeer = import ./mkPeer.nix lib;
+        inherit (config.lib.config.wireguard) mkClientPeer;
         # k3s cluster for custom Domains
         clusterDomain = config.privateConfig.k3s.domain;
         # Wg options
@@ -26,7 +26,7 @@
         nameservers = builtins.concatStringsSep " " (
           lib.mapAttrsToList (n: v: v.wireguard.addressIpv4) serverCfg
         );
-        peers = lib.mapAttrsToList (n: mkPeer) serverCfg;
+        peers = lib.mapAttrsToList (n: mkClientPeer) serverCfg;
       in
       {
         # Open the firewall port

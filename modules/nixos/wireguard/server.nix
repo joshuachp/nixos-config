@@ -14,13 +14,14 @@
       let
         hostCfg = machineCfg.${hostname}.wireguard;
         inherit (hostCfg) port addressIpv4 privateKeyPath range;
-        mkPeer = import ./mkPeer.nix lib;
+        # Function to create the peers
+        inherit (config.lib.config.wireguard) mkServerPeer;
         # Extract only other peers
         peersCfg = lib.filterAttrs (n: v: n != hostname) machineCfg;
         dnsAddresses = lib.mapAttrsToList
           (n: v: "/${n}.wg/${v.wireguard.addressIpv4}")
           machineCfg;
-        peers = lib.mapAttrsToList (n: mkPeer) peersCfg;
+        peers = lib.mapAttrsToList (n: mkServerPeer) peersCfg;
         ingressIp = "10.2.0.1";
         inherit (config.nixosConfig.server.k3s) loadBalancerIp;
       in

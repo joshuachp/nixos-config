@@ -78,7 +78,7 @@
           # Wireguard interface
           wg-quick.interfaces.wg0 = {
             # Clients IP address subnet
-            address = [ "${addressIpv4}/${toString range}" ] ++ hostCfg.peers;
+            address = [ "${addressIpv4}/${toString range}" ];
             listenPort = port;
             privateKeyFile = privateKeyPath;
             inherit peers;

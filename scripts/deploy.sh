@@ -2,6 +2,12 @@
 
 set -exEuo pipefail
 
+shell_cleanup() {
+    echo "Exiting"
+    exit 126
+}
+trap shell_cleanup SIGINT
+
 cleanup_old() {
     local host="$1"
 

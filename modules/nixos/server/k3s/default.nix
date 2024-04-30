@@ -36,6 +36,12 @@
           type = types.str;
           readOnly = true;
         };
+        ingressIp = mkOption {
+          default = "10.2.0.1";
+          description = "Address of the ingress";
+          type = types.str;
+          readOnly = true;
+        };
         apiPort = mkOption {
           default = 56443;
           description = "Port of the API load balancer";

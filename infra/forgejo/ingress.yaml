@@ -36,4 +36,4 @@ spec:
     - match: "HostSNI(`*`)"
       services:
         - name: forgejo-ssh
-          port: 22
+          port: ssh

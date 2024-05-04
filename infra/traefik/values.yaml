@@ -13,8 +13,8 @@ ports:
     tls:
       enabled: true
   ssh:
-    port: 8022
-    exposedPort: 8022
+    port: 22
+    exposedPort: 22
     protocol: TCP
     expose:
       default: true
@@ -76,5 +76,5 @@ service:
     metallb.universe.tf/loadBalancerIPs: 10.2.0.1
   loadBalancerSourceRanges:
     - 127.0.0.1/32
-    - 10.0.0.1/16
-    - 10.1.0.1/16
+    - 10.0.0.0/16
+    - 10.1.0.0/16

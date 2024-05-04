@@ -19,7 +19,7 @@ service:
   http:
     port: 3000
   ssh:
-    port: 22
+    port: 2222
 
 gitea:
   admin:
@@ -29,7 +29,9 @@ gitea:
       DOMAIN: git.k.joshuachp.dev
       ROOT_URL: https://git.k.joshuachp.dev
       SSH_DOMAIN: git.k.joshuachp.dev
-      SSH_PORT: 8022
+      START_SSH_SERVER: true
+      SSH_PORT: 22
+      SSH_LISTEN_PORT: 2222
     service:
       DISABLE_REGISTRATION: true
       REQUIRE_SIGNIN_VIEW: true

@@ -46,6 +46,7 @@
               postUp = ''
                 set -eEuo pipefail
                 ip -4 route add ${serverCdir} dev ${itf}
+                # Client cdir
                 ip route append 10.0.0.0/24 scope global nexthop dev ${itf} via ${serverIp} weight 1
               ''
               + peerRoutes

@@ -36,6 +36,12 @@
           type = types.str;
           readOnly = true;
         };
+        ingressIp = mkOption {
+          default = "10.2.0.1";
+          description = "Address of the ingress";
+          type = types.str;
+          readOnly = true;
+        };
         apiPort = mkOption {
           default = 56443;
           description = "Port of the API load balancer";
@@ -50,32 +56,42 @@
       cfg = config.nixosConfig.server.k3s;
     in
     lib.mkIf cfg.enable {
-      networking.firewall.interfaces.${cfg.interface} = {
-        allowedTCPPorts = [
-          # Etcd
-          2379
-          2380
-          # Api
-          6443
-          # Metrics
-          10250
-          # Embedded registry
-          5001
+      networking.firewall = {
+        interfaces.${cfg.interface} = {
+          allowedTCPPorts = [
+            # Etcd
+            2379
+            2380
+            # Api
+            6443
+            cfg.apiPort
 
-          # Metallb
-          7472
-          7946
-        ];
-        allowedUDPPorts = [
-          # Wireguard
-          51820
-          51821
-          # Flannel VXLAN
-          8472
-          # Metallb
-          7472
-          7946
-        ];
+            # Metrics
+            10250
+            # Embedded registry
+            5001
+
+            # Metallb
+            7472
+            7946
+          ];
+          allowedUDPPorts = [
+            # Wireguard
+            51820
+            51821
+            # Flannel VXLAN
+            8472
+            # Metallb
+            7472
+            7946
+          ];
+        };
+        extraCommands = ''
+          # Pods
+          iptables -A nixos-fw -4 --source 10.42.0.0/16 -j nixos-fw-accept
+          # Services
+          iptables -A nixos-fw -4 --source 10.43.0.0/16 -j nixos-fw-accept
+        '';
       };
 
       # Hardening

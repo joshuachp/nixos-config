@@ -20,6 +20,10 @@
         share-dir = {
           gid = 3001;
         };
+        # For network manager
+        netdev = {
+          gid = 106;
+        };
       };
 
       users.root.hashedPasswordFile = config.sops.secrets.users_passwords_root.path;
@@ -38,7 +42,6 @@
       sharedModules = [
         ../options
         ../modules/homeManager
-        flakeInputs.neovimConfig.homeManagerModules.default
         flakeInputs.privateConf.homeManagerModules.default
         {
           # Make sure the systemConfig is the same for home manager

@@ -5,21 +5,20 @@
 , lib
 , config
 , ...
-}: {
-  imports = [
-    # Pre-generated nix index database
-    flakeInputs.nix-index-database.nixosModules.nix-index
-  ];
+}:
+let
+  desktop = config.systemConfig.desktop.enable;
+  cfg = config.nixosConfig.nix;
+  inherit (flakeInputs) nixpkgs;
+in
+{
   options = {
     # Enable nix-index and command not found
-    nixosConfig.nix.index.enable = lib.options.mkEnableOption "nix-index";
+    nixosConfig.nix.index.enable = lib.options.mkEnableOption "nix-index" // {
+      default = desktop;
+    };
   };
   config =
-    let
-      desktop = config.systemConfig.desktop.enable;
-      cfg = config.nixosConfig.nix;
-      inherit (flakeInputs) nixpkgs;
-    in
     {
       nix = {
         gc = {
@@ -43,7 +42,6 @@
           "/share/nix-direnv"
         ];
       };
-
       # Nix index
       programs = {
         nix-index.enable = cfg.index.enable;

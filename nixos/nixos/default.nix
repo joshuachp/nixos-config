@@ -1,7 +1,4 @@
-{ pkgs
-, lib
-, ...
-}:
+_:
 {
   imports = [
     ./hardware-configuration.nix
@@ -12,16 +9,8 @@
 
     powerManagement.cpuFreqGovernor = "performance";
 
-    specialisation = {
-      zenKernel.configuration = {
-        system.nixos.tags = [ "zenKernel" ];
-        boot.kernelPackages = lib.mkForce pkgs.linuxPackages_zen;
-      };
-    };
-
     # Enable desktop system
     systemConfig = {
-      desktop.enable = true;
       develop.enable = true;
     };
     nixosConfig = {

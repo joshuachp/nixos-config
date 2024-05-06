@@ -1,8 +1,10 @@
 # Function to configure a nixosSystem
-# Inputs from the flake
-flakeInputs:
-# Default system (x86_64-linux)
-baseSystem:
+{
+  # Inputs from the flake
+  flakeInputs
+  # Default system (x86_64-linux)
+, baseSystem
+}:
 # Name for the current system
 name:
 # Other option to pass to nixosSystem function

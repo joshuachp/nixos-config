@@ -1,14 +1,12 @@
 flakeInputs:
 let
-  neovimConfig = flakeInputs.neovimConfig.nixosModules.default;
   nixosHardware = flakeInputs.nixos-hardware.nixosModules;
-  inherit (flakeInputs.self.lib) mkSystem;
+  inherit (flakeInputs.self.lib) mkSystem mkDesktop;
 in
 {
   # Nixos
-  nixos = mkSystem "nixos" {
+  nixos = mkDesktop "nixos" {
     modules = [
-      neovimConfig
       # Hardware configuration
       nixosHardware.common-cpu-amd
       nixosHardware.common-gpu-amd
@@ -19,9 +17,8 @@ in
     ];
   };
   # Work
-  burkstaller = mkSystem "burkstaller" {
+  burkstaller = mkDesktop "burkstaller" {
     modules = [
-      neovimConfig
       # Hardware configuration
       nixosHardware.common-cpu-intel
       nixosHardware.common-gpu-intel

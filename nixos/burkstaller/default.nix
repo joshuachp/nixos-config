@@ -18,7 +18,6 @@
     # Enable desktop system
     systemConfig = {
       desktop = {
-        enable = true;
         hidpi = true;
       };
       develop.enable = true;

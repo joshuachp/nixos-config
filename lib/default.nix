@@ -2,8 +2,14 @@
 flakeInputs:
 let
   baseSystem = flakeInputs.flake-utils.lib.system.x86_64-linux;
+  mkSystem = import ./mkSystem.nix {
+    inherit flakeInputs baseSystem;
+  };
 in
 {
-  mkSystem = import ./mkSystem.nix flakeInputs baseSystem;
-  mkHome = import ./mkHome.nix flakeInputs baseSystem;
+  inherit mkSystem;
+  mkDesktop = import ./mkDesktop.nix {
+    inherit flakeInputs baseSystem mkSystem;
+  };
+  mkHome = import./mkHome.nix flakeInputs baseSystem;
 }

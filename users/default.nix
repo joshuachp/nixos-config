@@ -38,7 +38,6 @@
       sharedModules = [
         ../options
         ../modules/homeManager
-        flakeInputs.neovimConfig.homeManagerModules.default
         flakeInputs.privateConf.homeManagerModules.default
         {
           # Make sure the systemConfig is the same for home manager

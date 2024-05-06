@@ -4,7 +4,7 @@
 {
   config = {
     nixpkgs.overlays = [
-      (super: final:
+      (final: super:
         let
           committed = pkgs.callPackage ../packages/committed.nix { };
           committedConfig = pkgs.writeText "committed.toml" ''

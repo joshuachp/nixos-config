@@ -20,6 +20,10 @@
         share-dir = {
           gid = 3001;
         };
+        # For network manager
+        netdev = {
+          gid = 106;
+        };
       };
 
       users.root.hashedPasswordFile = config.sops.secrets.users_passwords_root.path;

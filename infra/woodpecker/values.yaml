@@ -1,10 +1,15 @@
 agent:
   env:
-    WOODPECKER_BACKEND_K8S_STORAGE_CLASS: "smb"
+    WOODPECKER_BACKEND_K8S_STORAGE_CLASS: "local-path"
   extraSecretNamesForEnvFrom:
     - woodpecker-env
   persistentVolume:
-    storageClass: smb
+    storageClass: local-path
+  tolerations:
+    - key: "location"
+      operator: "Equal"
+      value: "external"
+      effect: "NoSchedule"
 server:
   env:
     WOODPECKER_ADMIN: woodpecker,admin,joshuachp

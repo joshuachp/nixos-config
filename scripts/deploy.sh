@@ -17,21 +17,17 @@ cleanup_old() {
 
 check_online() {
     local host="$1"
-    while true; do
-        if ! ping -c 5 -w 10 "$host.wg"; then
-            continue
-        else
-            break
-        fi
+    while ! ping -c 5 -w 10 "$host.wg"; do
+        echo 'Retring to connect'
     done
 }
 
 deploy_host() {
     local host="$1"
 
-    deploy -s ".#$host"
-
-    cleanup_old "$host"
+    nixos-rebuild boot --fast --flake ".#$host" \
+        --target-host "root@$host.wg" \
+        --build-host "root@$host.wg"
 
     ssh "root@$host.wg" -- free -h
     ssh "root@$host.wg" -- lsblk --fs
@@ -39,6 +35,9 @@ deploy_host() {
     ssh "root@$host.wg" -- reboot
 
     check_online "$host"
+
+    cleanup_old "$host"
+
 }
 
 if [ "$1" = "all" ]; then

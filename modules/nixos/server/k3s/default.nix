@@ -88,9 +88,9 @@
         };
         extraCommands = ''
           # Pods
-          iptables -A nixos-fw -4 --source 10.42.0.0/16 -j nixos-fw-accept
+          iptables -A INPUT -4 --source 10.42.0.0/16 -j ACCEPT
           # Services
-          iptables -A nixos-fw -4 --source 10.43.0.0/16 -j nixos-fw-accept
+          iptables -A INPUT -4 --source 10.43.0.0/16 -j ACCEPT
         '';
       };
 

@@ -22,7 +22,7 @@
         peersCfg = lib.filterAttrs
           (n: v: n != hostname)
           machineCfg;
-        dnsAddressses = lib.mapAttrsToList
+        dnsAddresses = lib.mapAttrsToList
           (n: v: "/${n}.wg/${mkIpv4 v}")
           machineCfg;
         peers = lib.mapAttrsToList (n: (mkPeer [ ])) peersCfg;
@@ -33,7 +33,7 @@
           enable = true;
           settings = {
             interface = "wg0";
-            address = dnsAddressses ++ [
+            address = dnsAddresses ++ [
               "/alertmanager.k.joshuachp.dev/${ingressIp}"
               "/argocd.k.joshuachp.dev/${ingressIp}"
               "/atuin.k.joshuachp.dev/${ingressIp}"
@@ -84,6 +84,22 @@
             listenPort = port;
             privateKeyFile = privateKeyPath;
             inherit peers;
+            #postUp = ''
+            #  set -eEuo pipefail
+
+            #  iptables -A FORWARD -i wg0 -j ACCEPT
+            #  iptables -t nat -A POSTROUTING -s 10.0.0.0/16 -o wg0 -j MASQUERADE
+            #  iptables -t nat -A POSTROUTING -s 10.0.0.0/16 -o enp1s0 -j MASQUERADE
+            #  iptables -t nat -A POSTROUTING -s 10.0.0.0/16 -o enp7s0 -j MASQUERADE
+            #'';
+            #postDown = ''
+            #  set -eEuo pipefail
+
+            #  iptables -D FORWARD -i wg0 -j ACCEPT
+            #  iptables -t nat -D POSTROUTING -s 10.0.0.0/16 -o wg0 -j MASQUERADE
+            #  iptables -t nat -D POSTROUTING -s 10.0.0.0/16 -o enp1s0 -j MASQUERADE
+            #  iptables -t nat -D POSTROUTING -s 10.0.0.0/16 -o enp7s0 -j MASQUERADE
+            #'';
           };
         };
       }

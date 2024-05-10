@@ -108,7 +108,7 @@ spec:
       ref: repo
     - chart: grafana
       repoURL: https://grafana.github.io/helm-charts
-      targetRevision: 7.3.10
+      targetRevision: 7.3.11
       helm:
         valueFiles:
           - $repo/infra/grafana/values.yaml

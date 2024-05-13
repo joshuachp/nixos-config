@@ -16,8 +16,8 @@
         role = "agent";
         extraFlags = builtins.toString [
           # Prevents issues with multiple network interfaces
-          # "--node-ip=${cfg.ip}"
-          # "--flannel-iface=${cfg.interface}"
+          "--node-ip=${cfg.ip}"
+          "--flannel-iface=${cfg.interface}"
           # Hardening
           "--protect-kernel-defaults=true"
         ];

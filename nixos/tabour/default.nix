@@ -37,12 +37,11 @@
       '';
     };
 
-
     nixosConfig.server.k3s = {
       enable = true;
       role = "agent";
-      interface = "wg0";
-      ip = "10.0.3.1";
+      interface = "wg5";
+      ip = "10.0.0.4";
       externalIp = config.lib.config.wireguard.mkServerIpv4
         config.privateConfig.machines.${hostname}.wireguard.id;
     };

@@ -42,23 +42,23 @@
         driSupport = true;
         driSupport32Bit = true;
 
-        extraPackages = with pkgs; [
+        extraPackages = (with pkgs; [
           # Vulkan
           vulkan-extension-layer
           vulkan-validation-layers
-        ] ++ lib.optionals intel [
+        ]) ++ lib.optionals intel (with pkgs; [
           intel-media-driver
           intel-compute-runtime
           # Intel vaapi drivers
           vaapiIntel
           libvdpau-va-gl
-        ] ++ lib.optionals amd [
+        ]) ++ lib.optionals amd (with pkgs;[
           # Vulkan
           amdvlk
           # Opencl
           rocmPackages.clr.icd
           rocmPackages.clr
-        ];
+        ]);
 
         extraPackages32 = (lib.optionals amd [
           pkgs.driversi686Linux.amdvlk

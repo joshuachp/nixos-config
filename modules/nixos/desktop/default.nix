@@ -23,16 +23,19 @@ in
   ];
   config = lib.mkIf cfg.enable {
     # Desktop service
-    services.xserver = {
-      enable = true;
-      xkb.layout = "us";
+    services = {
+      xserver = {
+        enable = true;
+        xkb.layout = "us";
+        # Desktop environment
+        displayManager.gdm.enable = true;
+      };
+
       # Enable touchpad support (enabled default in most desktopManager).
       libinput = {
         enable = true;
         touchpad = { tapping = true; };
       };
-      # Desktop environment
-      displayManager.gdm.enable = true;
     };
 
     environment.systemPackages = import "${self}/pkgs/desktop.nix" { inherit pkgs lib config; };

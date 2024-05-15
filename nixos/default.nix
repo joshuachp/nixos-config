@@ -21,7 +21,6 @@ in
     modules = [
       # Hardware configuration
       nixosHardware.common-cpu-intel
-      nixosHardware.common-gpu-intel
       nixosHardware.common-pc
       nixosHardware.common-pc-ssd
     ];

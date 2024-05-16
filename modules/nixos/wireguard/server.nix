@@ -14,10 +14,9 @@
       let
         inherit (config.nixosConfig.server.k3s) loadBalancerIp ingressIp;
         machine = machineCfg.${hostname};
-        inherit (machine.wireguard) id privateKeyPath;
-        inherit (machine.wireguard.server) port;
+        inherit (machine.wireguard) privateKeyPath port;
         # Function to create the peers
-        inherit (config.lib.config.wireguard) mkPeer mkClientAddresses mkServerIpv4 mkClientIpv4 mkIpv4 mkIpv4Range;
+        inherit (config.lib.config.wireguard) mkPeer mkIpv4 mkIpv4Range;
         # Filter only other peers
         peersCfg = lib.filterAttrs
           (n: v: n != hostname)
@@ -79,27 +78,12 @@
 
           # Wireguard interface
           wg-quick.interfaces.wg0 = {
+            autostart = true;
             # Clients IP address subnet
             address = [ (mkIpv4Range machine) ];
             listenPort = port;
             privateKeyFile = privateKeyPath;
             inherit peers;
-            #postUp = ''
-            #  set -eEuo pipefail
-
-            #  iptables -A FORWARD -i wg0 -j ACCEPT
-            #  iptables -t nat -A POSTROUTING -s 10.0.0.0/16 -o wg0 -j MASQUERADE
-            #  iptables -t nat -A POSTROUTING -s 10.0.0.0/16 -o enp1s0 -j MASQUERADE
-            #  iptables -t nat -A POSTROUTING -s 10.0.0.0/16 -o enp7s0 -j MASQUERADE
-            #'';
-            #postDown = ''
-            #  set -eEuo pipefail
-
-            #  iptables -D FORWARD -i wg0 -j ACCEPT
-            #  iptables -t nat -D POSTROUTING -s 10.0.0.0/16 -o wg0 -j MASQUERADE
-            #  iptables -t nat -D POSTROUTING -s 10.0.0.0/16 -o enp1s0 -j MASQUERADE
-            #  iptables -t nat -D POSTROUTING -s 10.0.0.0/16 -o enp7s0 -j MASQUERADE
-            #'';
           };
         };
       }

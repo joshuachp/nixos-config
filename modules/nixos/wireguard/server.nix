@@ -73,7 +73,6 @@
           nat = {
             enable = true;
             enableIPv6 = true;
-            internalInterfaces = [ "wg0" ];
           };
 
           # Wireguard interface
@@ -84,6 +83,28 @@
             listenPort = port;
             privateKeyFile = privateKeyPath;
             inherit peers;
+            preUp = ''
+              set -eEuo pipefail
+              # masquerading
+              iptables -t mangle -A PREROUTING -i wg0 -j MARK --set-mark 0x200
+              iptables -t nat -A POSTROUTING ! -o wg0 -m mark --mark 0x200 -j MASQUERADE
+              # forward
+              iptables -I INPUT   -i wg0 -j ACCEPT
+              iptables -I FORWARD -i wg0 -j ACCEPT
+              iptables -I FORWARD -o wg0 -j ACCEPT
+              iptables -I OUTPUT -o wg0 -j ACCEPT
+            '';
+            postDown = ''
+              set -eEuo pipefail
+              # masquerading
+              iptables -t mangle -D PREROUTING -i wg0 -j MARK --set-mark 0x200
+              iptables -t nat -D POSTROUTING ! -o wg0 -m mark --mark 0x200 -j MASQUERADE
+              # forward
+              iptables -I INPUT   -i wg0 -j ACCEPT
+              iptables -I FORWARD -i wg0 -j ACCEPT
+              iptables -I FORWARD -o wg0 -j ACCEPT
+              iptables -I OUTPUT -o wg0 -j ACCEPT
+            '';
           };
         };
       }

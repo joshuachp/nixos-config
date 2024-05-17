@@ -49,6 +49,7 @@
           inherit address peers;
           postUp = ''
             set -eEuo pipefail
+
             # DNS resolution
             resolvconf -f -d wg0
             resolvectl dns wg0 ${nameservers}

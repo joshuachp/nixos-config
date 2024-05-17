@@ -56,7 +56,7 @@
               allowedIPs = [
                 (mkCidr machine)
               ] ++ additionalPeers;
-              port = toString machine.wireguard.server.port;
+              port = toString machine.wireguard.port;
             in
             {
               inherit (machine.wireguard) publicKey;

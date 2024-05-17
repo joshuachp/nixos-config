@@ -15,9 +15,9 @@
         clusterDomain = config.privateConfig.k3s.domain;
         # Wg options
         cfg = machineCfg.${hostname};
-        inherit (machineCfg.${hostname}.wireguard) privateKeyPath;
+        inherit (cfg.wireguard) privateKeyPath port;
         # Function to create peers
-        inherit (config.lib.config.wireguard) mkClientPeer mkCidr mkServerIpv4 mkIpv4Range mkRoutes mkInterfaceName;
+        inherit (config.lib.config.wireguard) mkClientPeer mkServerIpv4 mkIpv4Range;
         # Filter only servers
         serverCfg = lib.filterAttrs
           (n: v: n != hostname && v.wireguard.server.enable)
@@ -29,48 +29,33 @@
             serverCfg);
         # Client addresses
         address = [ (mkIpv4Range cfg) ];
-        # Function to create an interface for a server
-        mkInterface = server:
-          let
-            itf = mkInterfaceName server.wireguard.id;
-            serverCdir = mkCidr server;
-            peerRoutes = mkRoutes server;
-          in
-          {
-            name = itf;
-            value = {
-              autostart = true;
-              inherit address;
-              table = "off";
-              postUp = ''
-                set -eEuo pipefail
-                ip -4 route add ${serverCdir} dev ${itf}
-              ''
-              + peerRoutes
-              + ''
-                resolvconf -f -d ${itf}
-                resolvectl dns ${itf} ${nameservers}
-                resolvectl domain ${itf} '~wg' '~${clusterDomain}'
-              '';
-              privateKeyFile = privateKeyPath;
-              peers = [
-                (mkClientPeer server)
-              ];
-            };
-          };
-        # Interfaces names
-        interfaceNames = lib.mapAttrsToList (n: v: mkInterfaceName v.wireguard.id) serverCfg;
-        # Interface values
-        interfaces = lib.mapAttrs' (n: mkInterface) serverCfg;
+        peers = lib.mapAttrsToList (n: mkClientPeer) serverCfg;
       in
       {
         # Open the firewall port
         networking.firewall = {
-          trustedInterfaces = interfaceNames;
+          trustedInterfaces = [
+            "wg0"
+          ];
+          allowedUDPPorts = [
+            port
+          ];
         };
 
         # Wireguard interface
-        networking.wg-quick = { inherit interfaces; };
+        networking.wg-quick.interfaces.wg0 = {
+          listenPort = port;
+          privateKeyFile = privateKeyPath;
+          inherit address peers;
+          postUp = ''
+            set -eEuo pipefail
+
+            # DNS resolution
+            resolvconf -f -d wg0
+            resolvectl dns wg0 ${nameservers}
+            resolvectl domain wg0 '~wg' '~${clusterDomain}'
+          '';
+        };
       }
     );
 }

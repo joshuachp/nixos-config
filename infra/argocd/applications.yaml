@@ -11,7 +11,7 @@ spec:
       ref: repo
     - chart: argo-cd
       repoURL: https://argoproj.github.io/argo-helm
-      targetRevision: 6.9.2
+      targetRevision: 6.9.3
       helm:
         valueFiles:
           - $repo/infra/argocd/values.yaml
@@ -87,7 +87,7 @@ spec:
           - $repo/infra/forgejo/values.yaml
     - chart: redis
       repoURL: https://charts.bitnami.com/bitnami
-      targetRevision: 19.3.2
+      targetRevision: 19.3.3
       helm:
         valueFiles:
           - $repo/infra/forgejo/redis-values.yaml

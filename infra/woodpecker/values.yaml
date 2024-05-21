@@ -2,6 +2,7 @@ agent:
   replicaCount: 1
   env:
     WOODPECKER_BACKEND_K8S_STORAGE_CLASS: "local-path"
+    WOODPECKER_BACKEND_K8S_STORAGE_RWX: false
   extraSecretNamesForEnvFrom:
     - woodpecker-env
   persistentVolume:

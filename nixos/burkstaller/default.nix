@@ -57,6 +57,11 @@
         };
         exec-once = [ "mattermost-desktop" "thunderbird" ];
       };
+
+      xdg.configFile = {
+        "autostart/thunderbird.desktop".source = "${pkgs.thunderbird}/share/applications/thunderbird.desktop";
+        "autostart/Mattermost.desktop".source = "${pkgs.mattermost-desktop}/share/applications/Mattermost.desktop";
+      };
     };
 
     # Enable docker

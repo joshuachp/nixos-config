@@ -1,4 +1,5 @@
 agent:
+  replicaCount: 1
   env:
     WOODPECKER_BACKEND_K8S_STORAGE_CLASS: "local-path"
   extraSecretNamesForEnvFrom:

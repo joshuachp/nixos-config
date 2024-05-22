@@ -188,6 +188,7 @@ spec:
           - $repo/infra/observability/values.yaml
   destination:
     server: https://kubernetes.default.svc
+    namespace: prometheus
 ---
 apiVersion: argoproj.io/v1alpha1
 kind: Application

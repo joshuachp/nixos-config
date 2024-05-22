@@ -1,4 +1,4 @@
-namespaceOverride: "observability"
+namespaceOverride: "prometheus"
 
 prometheusOperator:
   tolerations:
@@ -24,6 +24,7 @@ prometheus:
               storage: 10Gi
 
 grafana:
+  namespaceOverride: "grafana"
   admin:
     existingSecret: "grafana"
     userKey: "admin-user"

@@ -13,7 +13,7 @@ spec:
       kind: Rule
       services:
         - name: prometheus-server
-          port: http
+          port: http-web
     - match: "Host(`alertmanager.k.joshuachp.dev`)"
       kind: Rule
       services:
@@ -41,7 +41,7 @@ spec:
       kind: Rule
       services:
         - name: grafana
-          port: service
+          port: http-web
   tls:
     secretName: cert-k-joshuachp-dev
     domains:

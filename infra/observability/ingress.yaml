@@ -2,7 +2,7 @@ apiVersion: traefik.io/v1alpha1
 kind: IngressRoute
 metadata:
   name: prometheus
-  namespace: observability
+  namespace: prometheus
   annotations:
     kubernetes.io/ingress.class: traefik
 spec:
@@ -12,13 +12,13 @@ spec:
     - match: "Host(`prometheus.k.joshuachp.dev`)"
       kind: Rule
       services:
-        - name: prometheus-server
-          port: http
+        - name: prometheus-operated
+          port: http-web
     - match: "Host(`alertmanager.k.joshuachp.dev`)"
       kind: Rule
       services:
-        - name: prometheus-alertmanager
-          port: http
+        - name: alertmanager-operated
+          port: http-web
   tls:
     secretName: cert-k-joshuachp-dev
     domains:
@@ -30,7 +30,7 @@ apiVersion: traefik.io/v1alpha1
 kind: IngressRoute
 metadata:
   name: grafana
-  namespace: observability
+  namespace: grafana
   annotations:
     kubernetes.io/ingress.class: traefik
 spec:
@@ -40,8 +40,8 @@ spec:
     - match: "Host(`grafana.k.joshuachp.dev`)"
       kind: Rule
       services:
-        - name: grafana
-          port: service
+        - name: observability-grafana
+          port: http-web
   tls:
     secretName: cert-k-joshuachp-dev
     domains:

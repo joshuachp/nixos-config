@@ -1,3 +1,5 @@
+namespaceOverride: "observability"
+
 prometheusOperator:
   tolerations:
     - key: "location"

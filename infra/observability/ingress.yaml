@@ -2,7 +2,7 @@ apiVersion: traefik.io/v1alpha1
 kind: IngressRoute
 metadata:
   name: prometheus
-  namespace: prometheus
+  namespace: observability
   annotations:
     kubernetes.io/ingress.class: traefik
 spec:
@@ -30,7 +30,7 @@ apiVersion: traefik.io/v1alpha1
 kind: IngressRoute
 metadata:
   name: grafana
-  namespace: grafana
+  namespace: observability
   annotations:
     kubernetes.io/ingress.class: traefik
 spec:

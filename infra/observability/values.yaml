@@ -1,0 +1,28 @@
+prometheusOperator:
+  tolerations:
+    - key: "location"
+      operator: "Equal"
+      value: "external"
+      effect: "NoSchedule"
+
+prometheus:
+  tolerations:
+    - key: "location"
+      operator: "Equal"
+      value: "external"
+      effect: "NoSchedule"
+  prometheusSpec:
+    storageSpec:
+      volumeClaimTemplate:
+        spec:
+          storageClassName: local-path
+          accessModes: ["ReadWriteOnce"]
+          resources:
+            requests:
+              storage: 10Gi
+
+grafana:
+  admin:
+    existingSecret: "grafana"
+    userKey: "admin-user"
+    passwordKey: "admin-password"

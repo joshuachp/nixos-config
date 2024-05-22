@@ -172,6 +172,26 @@ spec:
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
+  name: observability
+  namespace: argocd
+spec:
+  project: default
+  sources:
+    - repoURL: https://github.com/joshuachp/nixos-config
+      path: infra/observability
+      ref: repo
+    - chart: kube-prometheus-stack
+      repoURL: https://prometheus-community.github.io/helm-charts
+      targetRevision: 58.6.0
+      helm:
+        valueFiles:
+          - $repo/infra/observability/values.yaml
+  destination:
+    server: https://kubernetes.default.svc
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
   name: postgres
   namespace: argocd
 spec:

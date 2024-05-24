@@ -5,6 +5,8 @@ metadata:
   namespace: argocd
 spec:
   project: default
+  syncPolicy:
+    automated: {}
   sources:
     - repoURL: https://github.com/joshuachp/nixos-config
       path: infra/argocd
@@ -189,6 +191,8 @@ metadata:
   namespace: argocd
 spec:
   project: default
+  syncPolicy:
+    automated: {}
   source:
     repoURL: https://github.com/joshuachp/nixos-config
     path: infra/renovate

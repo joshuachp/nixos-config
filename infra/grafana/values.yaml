@@ -1,4 +1,0 @@
-admin:
-  existingSecret: "grafana"
-  userKey: "admin-user"
-  passwordKey: "admin-password"

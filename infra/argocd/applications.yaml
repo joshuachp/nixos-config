@@ -5,6 +5,8 @@ metadata:
   namespace: argocd
 spec:
   project: default
+  syncPolicy:
+    automated: {}
   sources:
     - repoURL: https://github.com/joshuachp/nixos-config
       path: infra/argocd
@@ -98,27 +100,6 @@ spec:
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: grafana
-  namespace: argocd
-spec:
-  project: default
-  sources:
-    - repoURL: https://github.com/joshuachp/nixos-config
-      path: infra/grafana
-      ref: repo
-    - chart: grafana
-      repoURL: https://grafana.github.io/helm-charts
-      targetRevision: 7.3.11
-      helm:
-        valueFiles:
-          - $repo/infra/grafana/values.yaml
-  destination:
-    server: https://kubernetes.default.svc
-    namespace: grafana
----
-apiVersion: argoproj.io/v1alpha1
-kind: Application
-metadata:
   name: homepage
   namespace: argocd
 spec:
@@ -206,31 +187,12 @@ spec:
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: prometheus
-  namespace: argocd
-spec:
-  project: default
-  sources:
-    - repoURL: https://github.com/joshuachp/nixos-config
-      path: infra/prometheus
-      ref: repo
-    - chart: prometheus
-      repoURL: https://prometheus-community.github.io/helm-charts
-      targetRevision: 25.21.0
-      helm:
-        valueFiles:
-          - $repo/infra/prometheus/values.yaml
-  destination:
-    server: https://kubernetes.default.svc
-    namespace: prometheus
----
-apiVersion: argoproj.io/v1alpha1
-kind: Application
-metadata:
   name: renovate
   namespace: argocd
 spec:
   project: default
+  syncPolicy:
+    automated: {}
   source:
     repoURL: https://github.com/joshuachp/nixos-config
     path: infra/renovate

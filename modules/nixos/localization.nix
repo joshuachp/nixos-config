@@ -1,7 +1,5 @@
-{ config
-, lib
-, ...
-}: {
+{ config, lib, ... }:
+{
   config =
     let
       cfg = config.systemConfig.desktop;

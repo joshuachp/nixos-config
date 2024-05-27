@@ -1,4 +1,6 @@
-{ pkgs }: with pkgs; [
+{ pkgs }:
+with pkgs;
+[
   nodejs
   nodePackages."@tailwindcss/language-server"
   nodePackages.prettier

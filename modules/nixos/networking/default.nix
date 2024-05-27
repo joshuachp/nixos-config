@@ -1,12 +1,7 @@
 # Setup networking
-{ config
-, lib
-, ...
-}:
+{ config, lib, ... }:
 {
-  imports = [
-    ./dns.nix
-  ];
+  imports = [ ./dns.nix ];
   config =
     let
       isDesktop = config.systemConfig.desktop.enable;
@@ -23,14 +18,14 @@
           useDHCP = lib.mkDefault false;
         };
       }
-      (lib.mkIf isDesktop {
-        networking.networkmanager.enable = true;
-      })
+      (lib.mkIf isDesktop { networking.networkmanager.enable = true; })
       (lib.mkIf isServer {
-        assertions = [{
-          assertion = config.systemd.network.networks != { };
-          message = "networkd networks are not configured";
-        }];
+        assertions = [
+          {
+            assertion = config.systemd.network.networks != { };
+            message = "networkd networks are not configured";
+          }
+        ];
 
         networking.useNetworkd = true;
         systemd.network.enable = true;

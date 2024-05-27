@@ -1,6 +1,5 @@
-{ config
-, ...
-}: {
+{ config, ... }:
+{
   config = {
     programs.ccache = {
       enable = true;

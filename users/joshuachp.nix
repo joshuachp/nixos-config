@@ -1,9 +1,11 @@
-{ config
-, pkgs
-, hostname
-, flakeInputs
-, ...
-}: {
+{
+  config,
+  pkgs,
+  hostname,
+  flakeInputs,
+  ...
+}:
+{
   config = {
     users.groups.joshuachp = {
       gid = 1000;
@@ -24,16 +26,21 @@
       group = "joshuachp";
       hashedPasswordFile = config.sops.secrets.users_passwords_joshuachp.path;
       shell = pkgs.fish;
-      openssh.authorizedKeys.keys = [
-        config.privateConfig.ssh.publicKey
-      ];
+      openssh.authorizedKeys.keys = [ config.privateConfig.ssh.publicKey ];
     };
 
     programs.fish.enable = true;
 
     # Home manager configuration, this is for stuff that will be difficult to achieve with only
     # nixos modules
-    home-manager.users.joshuachp = { config, pkgs, lib, osConfig, ... }:
+    home-manager.users.joshuachp =
+      {
+        config,
+        pkgs,
+        lib,
+        osConfig,
+        ...
+      }:
       let
         desktop = config.systemConfig.desktop.enable;
       in

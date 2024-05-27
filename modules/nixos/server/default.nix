@@ -1,5 +1,1 @@
-_: {
-  imports = [
-    ./k3s
-  ];
-}
+_: { imports = [ ./k3s ]; }

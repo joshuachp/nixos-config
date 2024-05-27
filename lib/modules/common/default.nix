@@ -1,12 +1,11 @@
 # Package dependent library functions
-{ pkgs
-, ...
-}:
+{ pkgs, ... }:
 {
   config = {
     lib.config = {
       wrapGLIntel =
-        name: binary: (pkgs.writeShellScriptBin name ''
+        name: binary:
+        (pkgs.writeShellScriptBin name ''
            #!/usr/bin/env bash
 
            set -euo pipefail

@@ -1,7 +1,4 @@
-{ config
-, lib
-, ...
-}:
+{ config, lib, ... }:
 {
   options = {
     systemConfig = {
@@ -41,12 +38,16 @@
       };
     };
   };
-  config = let cfg = config.systemConfig; in {
-    assertions = [
-      {
-        assertion = !(cfg.develop.enable && cfg.minimal);
-        message = "Development environment cannot be minimal";
-      }
-    ];
-  };
+  config =
+    let
+      cfg = config.systemConfig;
+    in
+    {
+      assertions = [
+        {
+          assertion = !(cfg.develop.enable && cfg.minimal);
+          message = "Development environment cannot be minimal";
+        }
+      ];
+    };
 }

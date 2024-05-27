@@ -11,8 +11,7 @@
   will be given the relative ID in the subnet with range /32. For a client with ID 2 it will be
   10.5.0.2/32.
 */
-_:
-{
+_: {
   imports = [
     ./client.nix
     ./server.nix

@@ -1,8 +1,6 @@
 # Configure GPG and the GPG agent to use with home-manager
-{ config
-, pkgs
-, ...
-}: {
+{ config, pkgs, ... }:
+{
   config = {
     programs.gpg = {
       enable = true;
@@ -34,10 +32,7 @@
       defaultCacheTtlSsh = 3600;
       maxCacheTtlSsh = 60480000;
       pinentryPackage =
-        if config.systemConfig.desktop.enable then
-          pkgs.pinentry-gnome3
-        else
-          pkgs.pinentry-curses;
+        if config.systemConfig.desktop.enable then pkgs.pinentry-gnome3 else pkgs.pinentry-curses;
     };
   };
 }

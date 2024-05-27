@@ -1,5 +1,4 @@
-_:
-{
+_: {
   imports = [
     ./hardware-configuration.nix
     ./video-configuration.nix
@@ -52,7 +51,10 @@ _:
     # https://docs.syncthing.net/users/firewall.html#local-firewall
     networking.firewall = {
       allowedTCPPorts = [ 22000 ];
-      allowedUDPPorts = [ 22000 21027 ];
+      allowedUDPPorts = [
+        22000
+        21027
+      ];
     };
 
     # Enable sound.
@@ -64,7 +66,13 @@ _:
       # Enable btrfs scrubbing
       btrfs.autoScrub = {
         enable = true;
-        fileSystems = [ "/" "/nix" "/home" "/var" "/share" ];
+        fileSystems = [
+          "/"
+          "/nix"
+          "/home"
+          "/var"
+          "/share"
+        ];
       };
     };
   };

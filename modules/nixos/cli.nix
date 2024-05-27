@@ -1,19 +1,19 @@
 # Cli packages
-{ self
-, config
-, lib
-, pkgs
-, ...
+{
+  self,
+  config,
+  lib,
+  pkgs,
+  ...
 }:
 let
   inherit (config.systemConfig) minimal;
 in
 {
   config = {
-    environment. systemPackages =
+    environment.systemPackages =
       (import "${self}/pkgs/cli-minimal.nix" pkgs)
-      ++ (lib.optionals (!minimal) (import "${self}/pkgs/cli.nix" pkgs))
-    ;
+      ++ (lib.optionals (!minimal) (import "${self}/pkgs/cli.nix" pkgs));
     # Programs
     programs = {
       zsh = {

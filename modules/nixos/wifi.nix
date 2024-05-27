@@ -1,8 +1,5 @@
 # Wifi configuration
-{ config
-, lib
-, ...
-}:
+{ config, lib, ... }:
 let
   cfg = config.nixosConfig.hardware.wifi;
 in

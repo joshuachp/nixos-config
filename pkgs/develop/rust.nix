@@ -1,4 +1,6 @@
-{ pkgs, toolchain }: with pkgs; [
+{ pkgs, toolchain }:
+with pkgs;
+[
   toolchain
 
   sccache

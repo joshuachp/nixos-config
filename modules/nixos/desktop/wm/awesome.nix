@@ -1,8 +1,5 @@
 # AwesomeWm config
-{ config
-, lib
-, ...
-}:
+{ config, lib, ... }:
 let
   cfg = config.nixosConfig.desktop.awesome;
   enable = config.systemConfig.desktop.enable && cfg.enable;

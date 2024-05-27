@@ -1,18 +1,19 @@
 # Function to configure a Desktop
 {
   # Inputs from the flake
-  flakeInputs
+  flakeInputs,
   # Default system (x86_64-linux)
-, baseSystem
-, mkSystem
+  baseSystem,
+  mkSystem,
 }:
 # Name for the current system
 name:
 # Other option to pass to nixosSystem function
-{ system ? baseSystem
-, overlays ? [ ]
-, modules ? [ ]
-, nixpkgs ? flakeInputs.nixpkgs
+{
+  system ? baseSystem,
+  overlays ? [ ],
+  modules ? [ ],
+  nixpkgs ? flakeInputs.nixpkgs,
 }:
 let
   desktopModules = modules ++ [
@@ -26,9 +27,7 @@ let
       systemConfig.desktop.enable = true;
 
       home-manager = {
-        sharedModules = [
-          flakeInputs.neovimConfig.homeManagerModules.default
-        ];
+        sharedModules = [ flakeInputs.neovimConfig.homeManagerModules.default ];
       };
     }
   ];

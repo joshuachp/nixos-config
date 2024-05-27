@@ -1,14 +1,16 @@
 # Flake check
-{ stdenvNoCC
-, nixpkgs-fmt
-, statix
-, shfmt
-, shellcheck
-}: stdenvNoCC.mkDerivation {
+{
+  stdenvNoCC,
+  nixfmt-rfc-style,
+  statix,
+  shfmt,
+  shellcheck,
+}:
+stdenvNoCC.mkDerivation {
   name = "main-check";
   src = ./..;
   nativeBuildInputs = [
-    nixpkgs-fmt
+    nixfmt-rfc-style
     statix
     shfmt
     shellcheck

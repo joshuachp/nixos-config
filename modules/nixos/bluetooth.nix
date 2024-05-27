@@ -1,9 +1,11 @@
 # Enables the hardware configs for bluetooth and configures bluez service.
-{ config
-, lib
-, pkgs
-, ...
-}: {
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+{
   options = {
     nixosConfig.hardware.bluetooth.enable = lib.mkEnableOption "Bluetooth";
   };

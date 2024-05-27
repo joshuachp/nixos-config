@@ -1,8 +1,5 @@
 # Fish configuration
-{ config
-, lib
-, ...
-}:
+{ config, lib, ... }:
 let
   cfg = config.systemConfig;
 in

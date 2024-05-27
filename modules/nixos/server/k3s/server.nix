@@ -1,7 +1,8 @@
-{ config
-, lib
-, pkgs
-, ...
+{
+  config,
+  lib,
+  pkgs,
+  ...
 }:
 {
   config =
@@ -108,9 +109,7 @@
 
                 virtualRouterId = 51;
 
-                virtualIps = [{
-                  addr = "${loadBalancerIp}/24";
-                }];
+                virtualIps = [ { addr = "${loadBalancerIp}/24"; } ];
 
                 trackScripts = [ script ];
               };

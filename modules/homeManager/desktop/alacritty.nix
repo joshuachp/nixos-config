@@ -1,7 +1,4 @@
-{ config
-, lib
-, ...
-}:
+{ config, lib, ... }:
 {
   config =
     let
@@ -42,8 +39,14 @@
               foreground = "#C8C093";
             };
             indexed_colors = [
-              { index = 16; color = "#b6927b"; }
-              { index = 17; color = "#b98d7b"; }
+              {
+                index = 16;
+                color = "#b6927b";
+              }
+              {
+                index = 17;
+                color = "#b98d7b";
+              }
             ];
           };
 

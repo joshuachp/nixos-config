@@ -1,8 +1,5 @@
 # Shell configuration
-{ lib
-, config
-, ...
-}:
+{ lib, config, ... }:
 let
   inherit (config.systemConfig) minimal;
 in

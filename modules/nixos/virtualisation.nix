@@ -1,9 +1,10 @@
 # Configure virtualisation
-{ self
-, config
-, pkgs
-, lib
-, ...
+{
+  self,
+  config,
+  pkgs,
+  lib,
+  ...
 }:
 let
   cfg = config.nixosConfig.virtualisation;
@@ -19,16 +20,11 @@ in
         swtpm.enable = true;
         ovmf = {
           enable = true;
-          packages = [
-            pkgs.OVMFFull.fd
-          ];
+          packages = [ pkgs.OVMFFull.fd ];
         };
       };
     };
 
-    environment.systemPackages = import "${self}/pkgs/virtualisation.nix" pkgs
-      ++ [
-      pkgs.win-virtio
-    ];
+    environment.systemPackages = import "${self}/pkgs/virtualisation.nix" pkgs ++ [ pkgs.win-virtio ];
   };
 }

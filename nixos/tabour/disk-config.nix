@@ -1,6 +1,4 @@
-{ lib
-, ...
-}:
+{ lib, ... }:
 {
   disko.devices = {
     disk.nvme0n1 = {
@@ -42,9 +40,7 @@
               type = "filesystem";
               format = "ext4";
               mountpoint = "/boot";
-              mountOptions = [
-                "defaults"
-              ];
+              mountOptions = [ "defaults" ];
             };
           };
           swap = {
@@ -60,26 +56,38 @@
               type = "btrfs";
               extraArgs = [ "-f" ];
               mountpoint = "/partition-root";
-              mountOptions = [
-                "defaults"
-              ];
+              mountOptions = [ "defaults" ];
               subvolumes = {
                 # Subvolume name is different from mountpoint
                 "/root" = {
                   mountpoint = "/";
-                  mountOptions = [ "defaults" "compress=zstd" "noatime" ];
+                  mountOptions = [
+                    "defaults"
+                    "compress=zstd"
+                    "noatime"
+                  ];
                 };
                 # Subvolume name is the same as the mountpoint
                 "/home" = {
-                  mountOptions = [ "defaults" "compress=zstd" ];
+                  mountOptions = [
+                    "defaults"
+                    "compress=zstd"
+                  ];
                   mountpoint = "/home";
                 };
                 "/var" = {
-                  mountOptions = [ "defaults" "compress=zstd" ];
+                  mountOptions = [
+                    "defaults"
+                    "compress=zstd"
+                  ];
                   mountpoint = "/var";
                 };
                 "/nix" = {
-                  mountOptions = [ "defaults" "compress=zstd" "noatime" ];
+                  mountOptions = [
+                    "defaults"
+                    "compress=zstd"
+                    "noatime"
+                  ];
                   mountpoint = "/nix";
                 };
               };

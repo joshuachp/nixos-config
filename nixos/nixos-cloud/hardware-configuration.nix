@@ -11,7 +11,14 @@
 
   boot = {
     initrd = {
-      availableKernelModules = [ "ahci" "xhci_pci" "virtio_pci" "virtio_scsi" "sd_mod" "sr_mod" ];
+      availableKernelModules = [
+        "ahci"
+        "xhci_pci"
+        "virtio_pci"
+        "virtio_scsi"
+        "sd_mod"
+        "sr_mod"
+      ];
       kernelModules = [ ];
     };
     kernelModules = [ ];
@@ -22,10 +29,12 @@
     };
   };
 
-  swapDevices = [{
-    device = "/var/lib/swapfile";
-    size = 2 * 1024;
-  }];
+  swapDevices = [
+    {
+      device = "/var/lib/swapfile";
+      size = 2 * 1024;
+    }
+  ];
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
 }

@@ -1,4 +1,6 @@
-{ pkgs }: with pkgs; [
+{ pkgs }:
+with pkgs;
+[
   # Git
   git
   git-extras

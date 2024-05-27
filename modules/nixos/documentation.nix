@@ -1,8 +1,9 @@
 # Documentation configuration
-{ config
-, lib
-, pkgs
-, ...
+{
+  config,
+  lib,
+  pkgs,
+  ...
 }:
 let
   cfg = config.nixosConfig.documentation;
@@ -26,7 +27,7 @@ in
       };
     };
 
-    environment.systemPackages = with pkgs;[
+    environment.systemPackages = with pkgs; [
       man-pages
       # POSIX man-pages for system calls and libraries
       man-pages-posix

@@ -1,8 +1,9 @@
 # Font configuration
-{ config
-, pkgs
-, lib
-, ...
+{
+  config,
+  pkgs,
+  lib,
+  ...
 }:
 let
   cfg = config.systemConfig.desktop;
@@ -40,10 +41,16 @@ in
         fontDir.enable = true;
 
         fontconfig.defaultFonts = {
-          monospace = [ "JetBrains Mono Nerd Font" "JetBrains Mono" ];
+          monospace = [
+            "JetBrains Mono Nerd Font"
+            "JetBrains Mono"
+          ];
           sansSerif = [ "Noto Sans" ];
           serif = [ "Noto Serif" ];
-          emoji = [ "Noto Color Emoji" "Symbols Nerd Font" ];
+          emoji = [
+            "Noto Color Emoji"
+            "Symbols Nerd Font"
+          ];
         };
       };
     })

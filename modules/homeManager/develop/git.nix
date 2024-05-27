@@ -1,7 +1,8 @@
-{ config
-, lib
-, pkgs
-, ...
+{
+  config,
+  lib,
+  pkgs,
+  ...
 }:
 {
   config =
@@ -10,9 +11,7 @@
       privCfg = config.privateConfig.users;
     in
     lib.mkIf cfg.enable {
-      home.packages = [
-        pkgs.difftastic
-      ];
+      home.packages = [ pkgs.difftastic ];
 
       programs.git = {
         enable = true;
@@ -91,18 +90,19 @@
           log.date = "iso";
 
           url."git@github.com:".pushInsteadOf = "https://github.com/";
-
         };
 
-        includes = [{
-          condition = "gitdir:~/share/repos/seco";
-          contents = {
-            user = {
-              inherit (privCfg.joshuaSeco) email;
-              signingkey = privCfg.joshuaSeco.pgpPubKey;
+        includes = [
+          {
+            condition = "gitdir:~/share/repos/seco";
+            contents = {
+              user = {
+                inherit (privCfg.joshuaSeco) email;
+                signingkey = privCfg.joshuaSeco.pgpPubKey;
+              };
             };
-          };
-        }];
+          }
+        ];
       };
     };
 }

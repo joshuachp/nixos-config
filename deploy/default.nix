@@ -1,10 +1,16 @@
 # Deployment configuration
-{ self
-, privateConf
-, deploy-rs
+{
+  self,
+  privateConf,
+  deploy-rs,
 }:
 let
-  inherit (self.nixosConfigurations) nixos-cloud nixos-cloud-2 kuma tabour;
+  inherit (self.nixosConfigurations)
+    nixos-cloud
+    nixos-cloud-2
+    kuma
+    tabour
+    ;
 in
 {
 
@@ -16,7 +22,10 @@ in
       in
       {
         inherit hostname;
-        sshOpts = [ "-p" (toString port) ];
+        sshOpts = [
+          "-p"
+          (toString port)
+        ];
         # Users
         sshUser = "root";
         user = "root";
@@ -34,7 +43,10 @@ in
       in
       {
         inherit hostname;
-        sshOpts = [ "-p" (toString port) ];
+        sshOpts = [
+          "-p"
+          (toString port)
+        ];
         # Users
         sshUser = "root";
         user = "root";

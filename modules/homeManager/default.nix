@@ -1,7 +1,6 @@
 # Home-Manager config
-{ config
-, ...
-}: {
+{ config, ... }:
+{
   imports = [
     ./desktop
     ./develop

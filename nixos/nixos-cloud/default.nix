@@ -1,7 +1,4 @@
-{ config
-, hostname
-, ...
-}:
+{ config, hostname, ... }:
 {
   imports = [
     ./hardware-configuration.nix
@@ -28,13 +25,13 @@
         fail2ban.enable = true;
       };
 
-      users.users.root.openssh.authorizedKeys.keys = [
-        config.privateConfig.ssh.publicKey
-      ];
+      users.users.root.openssh.authorizedKeys.keys = [ config.privateConfig.ssh.publicKey ];
 
       systemd.network.networks = config.lib.config.mkNetworkCfg {
         "enp1s0" = { };
-        "enp7s0" = { linkConfig.RequiredForOnline = "no"; };
+        "enp7s0" = {
+          linkConfig.RequiredForOnline = "no";
+        };
       };
 
       nixosConfig.server.k3s = {
@@ -42,8 +39,9 @@
         role = "server";
         interface = "enp7s0";
         ip = "10.1.0.3";
-        externalIp = config.lib.config.wireguard.mkServerIpv4
-          config.privateConfig.machines.${hostname}.wireguard.id;
+        externalIp =
+          config.lib.config.wireguard.mkServerIpv4
+            config.privateConfig.machines.${hostname}.wireguard.id;
       };
     };
 }

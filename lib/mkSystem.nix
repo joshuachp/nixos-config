@@ -1,17 +1,18 @@
 # Function to configure a nixosSystem
 {
   # Inputs from the flake
-  flakeInputs
+  flakeInputs,
   # Default system (x86_64-linux)
-, baseSystem
+  baseSystem,
 }:
 # Name for the current system
 name:
 # Other option to pass to nixosSystem function
-{ system ? baseSystem
-, overlays ? [ ]
-, modules ? [ ]
-, nixpkgs ? flakeInputs.nixpkgs
+{
+  system ? baseSystem,
+  overlays ? [ ],
+  modules ? [ ],
+  nixpkgs ? flakeInputs.nixpkgs,
 }:
 nixpkgs.lib.nixosSystem {
   inherit system;
@@ -28,9 +29,7 @@ nixpkgs.lib.nixosSystem {
     ./modules/nixos
     # Overlays
     ../overlays
-    {
-      nixpkgs.overlays = overlays;
-    }
+    { nixpkgs.overlays = overlays; }
 
     # Options
     ../options

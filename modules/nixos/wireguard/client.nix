@@ -1,13 +1,15 @@
-{ config
-, lib
-, hostname
-, ...
-}: {
+{
+  config,
+  lib,
+  hostname,
+  ...
+}:
+{
   config =
     let
       machineCfg = config.privateConfig.machines;
-      enable = (builtins.hasAttr hostname machineCfg)
-        && (!machineCfg.${hostname}.wireguard.server.enable);
+      enable =
+        (builtins.hasAttr hostname machineCfg) && (!machineCfg.${hostname}.wireguard.server.enable);
     in
     lib.mkIf enable (
       let
@@ -19,14 +21,11 @@
         # Function to create peers
         inherit (config.lib.config.wireguard) mkClientPeer mkServerIpv4 mkIpv4Range;
         # Filter only servers
-        serverCfg = lib.filterAttrs
-          (n: v: n != hostname && v.wireguard.server.enable)
-          machineCfg;
+        serverCfg = lib.filterAttrs (n: v: n != hostname && v.wireguard.server.enable) machineCfg;
         # DNS name servers
-        nameservers = builtins.concatStringsSep " "
-          (lib.mapAttrsToList
-            (n: v: mkServerIpv4 v.wireguard.id)
-            serverCfg);
+        nameservers = builtins.concatStringsSep " " (
+          lib.mapAttrsToList (n: v: mkServerIpv4 v.wireguard.id) serverCfg
+        );
         # Client addresses
         address = [ (mkIpv4Range cfg) ];
         peers = lib.mapAttrsToList (n: mkClientPeer) serverCfg;
@@ -34,12 +33,8 @@
       {
         # Open the firewall port
         networking.firewall = {
-          trustedInterfaces = [
-            "wg0"
-          ];
-          allowedUDPPorts = [
-            port
-          ];
+          trustedInterfaces = [ "wg0" ];
+          allowedUDPPorts = [ port ];
         };
 
         # Wireguard interface

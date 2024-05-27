@@ -1,8 +1,6 @@
 # Gnome desktop configuration
-{ config
-, lib
-, ...
-}: {
+{ config, lib, ... }:
+{
   config =
     let
       cfg = config.systemConfig.desktop;
@@ -17,15 +15,15 @@
           command = "alacritty";
         };
         "org/gnome/settings-daemon/plugins/media-keys" = {
-          custom-keybindings = [ "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/" ];
+          custom-keybindings = [
+            "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/"
+          ];
         };
         "org/gnome/mutter" = {
           experimental-features = [ "scale-monitor-framebuffer" ];
         };
         "org/gnome/shell" = {
-          enabled-extensions = [
-            "appindicatorsupport@rgcjonas.gmail.com"
-          ];
+          enabled-extensions = [ "appindicatorsupport@rgcjonas.gmail.com" ];
         };
       };
     };

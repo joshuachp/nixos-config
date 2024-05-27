@@ -1,15 +1,12 @@
 # Edit this configuration file to define what should be installed on
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
-{ pkgs
-, lib
-, ...
-}: {
-  imports =
-    [
-      # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-    ];
+{ pkgs, lib, ... }:
+{
+  imports = [
+    # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+  ];
   config = {
     boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
 
@@ -55,7 +52,10 @@
         xwayland = {
           force_zero_scaling = true;
         };
-        exec-once = [ "mattermost-desktop" "thunderbird" ];
+        exec-once = [
+          "mattermost-desktop"
+          "thunderbird"
+        ];
       };
 
       xdg.configFile = {
@@ -75,7 +75,10 @@
     # https://docs.syncthing.net/users/firewall.html#local-firewall
     networking.firewall = {
       allowedTCPPorts = [ 22000 ];
-      allowedUDPPorts = [ 22000 21027 ];
+      allowedUDPPorts = [
+        22000
+        21027
+      ];
     };
 
     # Enable sound.
@@ -91,9 +94,7 @@
     };
 
     environment.systemPackages = with pkgs; [
-      (google-cloud-sdk.withExtraComponents [
-        google-cloud-sdk.components.gke-gcloud-auth-plugin
-      ])
+      (google-cloud-sdk.withExtraComponents [ google-cloud-sdk.components.gke-gcloud-auth-plugin ])
     ];
   };
 }

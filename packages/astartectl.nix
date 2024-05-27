@@ -1,7 +1,8 @@
-{ buildGoModule
-, fetchFromGitHub
-, installShellFiles
-, lib
+{
+  buildGoModule,
+  fetchFromGitHub,
+  installShellFiles,
+  lib,
 }:
 let
   version = "23.5.0";
@@ -17,9 +18,7 @@ buildGoModule {
   };
   vendorHash = "sha256-Syod7SUsjiM3cdHPZgjH/3qdsiowa0enyV9DN8k13Ws=";
   # Completion
-  nativeBuildInputs = [
-    installShellFiles
-  ];
+  nativeBuildInputs = [ installShellFiles ];
   postInstall = ''
     installShellCompletion --cmd ${pname} \
       --bash <($out/bin/${pname} completion bash) \

@@ -1,8 +1,9 @@
-{ self
-, config
-, pkgs
-, lib
-, ...
+{
+  self,
+  config,
+  pkgs,
+  lib,
+  ...
 }:
 let
   cfg = config.systemConfig.desktop;
@@ -34,7 +35,9 @@ in
       # Enable touchpad support (enabled default in most desktopManager).
       libinput = {
         enable = true;
-        touchpad = { tapping = true; };
+        touchpad = {
+          tapping = true;
+        };
       };
     };
 

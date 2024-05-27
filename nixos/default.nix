@@ -26,24 +26,16 @@ in
     ];
   };
   # Cloud
-  nixos-cloud = mkSystem "nixos-cloud" {
-    modules = [
-      flakeInputs.disko.nixosModules.disko
-    ];
-  };
+  nixos-cloud = mkSystem "nixos-cloud" { modules = [ flakeInputs.disko.nixosModules.disko ]; };
   # Cloud 2
   nixos-cloud-2 = mkSystem "nixos-cloud-2" {
     system = "aarch64-linux";
-    modules = [
-      flakeInputs.disko.nixosModules.disko
-    ];
+    modules = [ flakeInputs.disko.nixosModules.disko ];
   };
   # Kuma
   kuma = mkSystem "kuma" {
     system = "aarch64-linux";
-    modules = [
-      flakeInputs.disko.nixosModules.disko
-    ];
+    modules = [ flakeInputs.disko.nixosModules.disko ];
   };
   # Tabour
   tabour = mkSystem "tabour" {

@@ -1,14 +1,15 @@
 # Wireguard server config
-{ config
-, lib
-, hostname
-, ...
-}: {
+{
+  config,
+  lib,
+  hostname,
+  ...
+}:
+{
   config =
     let
       machineCfg = config.privateConfig.machines;
-      enable = (builtins.hasAttr hostname machineCfg)
-        && machineCfg.${hostname}.wireguard.server.enable;
+      enable = (builtins.hasAttr hostname machineCfg) && machineCfg.${hostname}.wireguard.server.enable;
     in
     lib.mkIf enable (
       let
@@ -18,12 +19,8 @@
         # Function to create the peers
         inherit (config.lib.config.wireguard) mkPeer mkIpv4 mkIpv4Range;
         # Filter only other peers
-        peersCfg = lib.filterAttrs
-          (n: v: n != hostname)
-          machineCfg;
-        dnsAddresses = lib.mapAttrsToList
-          (n: v: "/${n}.wg/${mkIpv4 v}")
-          machineCfg;
+        peersCfg = lib.filterAttrs (n: v: n != hostname) machineCfg;
+        dnsAddresses = lib.mapAttrsToList (n: v: "/${n}.wg/${mkIpv4 v}") machineCfg;
         peers = lib.mapAttrsToList (n: (mkPeer [ ])) peersCfg;
       in
       {

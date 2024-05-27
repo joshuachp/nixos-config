@@ -1,8 +1,9 @@
-{ self
-, config
-, pkgs
-, lib
-, ...
+{
+  self,
+  config,
+  pkgs,
+  lib,
+  ...
 }:
 let
   inherit (lib.options) mkEnableOption;
@@ -30,9 +31,7 @@ in
       # Required environment variables for GTK applications
       wrapperFeatures.gtk = true;
       extraPackages = import "${self}/pkgs/wm/sway.nix" pkgs;
-      extraOptions = lib.mkIf cfg.nvidia [
-        "--unsupported-gpu"
-      ];
+      extraOptions = lib.mkIf cfg.nvidia [ "--unsupported-gpu" ];
       extraSessionCommands = ''
         export WLR_NO_HARDWARE_CURSORS=1
         export XDG_CURRENT_DESKTOP=sway

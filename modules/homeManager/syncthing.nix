@@ -1,8 +1,5 @@
 # Syncthing configuration
-{ config
-, lib
-, ...
-}:
+{ config, lib, ... }:
 let
   cfg = config.homeConfig.syncthing;
   desktop = cfg.enable && config.systemConfig.desktop.enable;
@@ -12,9 +9,7 @@ in
     homeConfig.syncthing.enable = lib.mkEnableOption "Syncthing";
   };
   config = lib.mkMerge [
-    (lib.mkIf cfg.enable {
-      services.syncthing.enable = true;
-    })
+    (lib.mkIf cfg.enable { services.syncthing.enable = true; })
     # Enable the tray icon only on desktops setups
     (lib.mkIf desktop {
       services.syncthing.tray.enable = true;

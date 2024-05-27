@@ -116,14 +116,15 @@
     };
   };
   outputs =
-    { self
+    {
+      self,
       # Nixpkgs
-    , nixpkgs
-    , privateConf
-    , deploy-rs
-    , flake-utils
-    , neovimConfig
-    , ...
+      nixpkgs,
+      privateConf,
+      deploy-rs,
+      flake-utils,
+      neovimConfig,
+      ...
     }@flakeInputs:
     let
       inherit (self.lib) mkHome;
@@ -134,30 +135,29 @@
 
       # Home manager configuration
       homeConfigurations = {
-        joshuachp = mkHome "joshuachp" {
-          modules = [
-            neovimConfig.homeManagerModules.default
-          ];
-        };
+        joshuachp = mkHome "joshuachp" { modules = [ neovimConfig.homeManagerModules.default ]; };
       };
 
       # Deployment configuration
       deploy = import ./deploy { inherit self privateConf deploy-rs; };
-    } //
-    # System dependant configurations
-    flake-utils.lib.eachDefaultSystem (system:
-    let
-      pkgs = import nixpkgs { inherit system; };
-      deploy = deploy-rs.packages.${system}.default;
-      inherit (pkgs) callPackage;
-    in
-    {
-      packages = import ./packages pkgs;
-      checks = import ./checks pkgs;
-      # This is highly advised, and will prevent many possible mistakes
-      # checks = builtins.mapAttrs (system: deployLib: deployLib.deployChecks self.deploy) deploy-rs.lib;
+    }
+    //
+      # System dependant configurations
+      flake-utils.lib.eachDefaultSystem (
+        system:
+        let
+          pkgs = import nixpkgs { inherit system; };
+          deploy = deploy-rs.packages.${system}.default;
+          inherit (pkgs) callPackage;
+        in
+        {
+          packages = import ./packages pkgs;
+          checks = import ./checks pkgs;
+          # This is highly advised, and will prevent many possible mistakes
+          # checks = builtins.mapAttrs (system: deployLib: deployLib.deployChecks self.deploy) deploy-rs.lib;
 
-      # Dev-Shell
-      devShells.default = callPackage ./shells/default.nix { inherit deploy; };
-    });
+          # Dev-Shell
+          devShells.default = callPackage ./shells/default.nix { inherit deploy; };
+        }
+      );
 }

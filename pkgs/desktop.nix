@@ -1,10 +1,14 @@
 # Desktop packages
-{ config
-, pkgs
-, lib
+{
+  config,
+  pkgs,
+  lib,
 }:
-let cfg = config.systemConfig.desktop; in
-with pkgs; [
+let
+  cfg = config.systemConfig.desktop;
+in
+with pkgs;
+[
   # Terminals
   alacritty
 
@@ -35,7 +39,5 @@ with pkgs; [
   libnotify
   playerctl
   xclip
-
-] ++ lib.optionals cfg.wayland (with pkgs;[
-  wl-clipboard
-])
+]
+++ lib.optionals cfg.wayland (with pkgs; [ wl-clipboard ])

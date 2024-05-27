@@ -1,8 +1,5 @@
 # Atuin config
-{ config
-, lib
-, ...
-}:
+{ config, lib, ... }:
 let
   inherit (config.systemConfig) minimal;
 in
@@ -11,9 +8,7 @@ in
     privateConfig.atuin.key = true;
     programs.atuin = {
       enable = true;
-      flags = [
-        "--disable-up-arrow"
-      ];
+      flags = [ "--disable-up-arrow" ];
       settings = {
         sync_address = "https://atuin.k.joshuachp.dev";
       };

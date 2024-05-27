@@ -1,6 +1,4 @@
-{ lib
-, ...
-}:
+{ lib, ... }:
 {
   disko.devices = {
     disk.disk1 = {
@@ -46,9 +44,7 @@
               type = "filesystem";
               format = "ext4";
               mountpoint = "/";
-              mountOptions = [
-                "defaults"
-              ];
+              mountOptions = [ "defaults" ];
             };
           };
         };

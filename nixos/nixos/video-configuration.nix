@@ -1,13 +1,10 @@
 # NixOS video configuration
-{ lib
-, ...
-}: {
+{ lib, ... }:
+{
   config = {
     services.xserver.exportConfiguration = true;
 
-    services.xserver.videoDrivers = [
-      "nvidia"
-    ];
+    services.xserver.videoDrivers = [ "nvidia" ];
 
     hardware.nvidia = {
       # Used for compute environments

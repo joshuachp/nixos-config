@@ -1,7 +1,5 @@
-{ config
-, flakeInputs
-, ...
-}: {
+{ config, flakeInputs, ... }:
+{
   # Default user
   imports = [ ./joshuachp.nix ];
   config = {

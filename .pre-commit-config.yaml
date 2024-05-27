@@ -9,9 +9,9 @@ repos:
         args: ["--allow-multiple-documents"]
       - id: check-added-large-files
   - repo: https://github.com/joshuachp/pre-commit-hooks
-    rev: 0.1.37
+    rev: 0.1.38
     hooks:
-      - id: nix-nixpkgs-fmt
+      - id: nix-nixfmt
       - id: nix-statix
       - id: nix-flake-check
       - id: yaml-fmt-prettier

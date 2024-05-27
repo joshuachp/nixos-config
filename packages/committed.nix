@@ -1,6 +1,7 @@
-{ lib
-, fetchFromGitHub
-, rustPlatform
+{
+  lib,
+  fetchFromGitHub,
+  rustPlatform,
 }:
 let
   pname = "committed";
@@ -24,7 +25,10 @@ rustPlatform.buildRustPackage {
   meta = {
     description = "Nitpicking commit history since beabf39";
     homepage = "https://github.com/crate-ci/committed";
-    license = with lib.licenses; [ mit asl20 ];
+    license = with lib.licenses; [
+      mit
+      asl20
+    ];
     maintainer = [ ];
   };
 }

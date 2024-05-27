@@ -1,8 +1,5 @@
 # DNS config
-{ config
-, lib
-, ...
-}:
+{ config, lib, ... }:
 {
   options = {
     nixosConfig.networking = {
@@ -40,11 +37,7 @@
       # systemd-resolved config
       (lib.mkIf cfg.resolved (
         let
-          dns =
-            if cfg.privateDns then
-              privateCfg.resolved.dns
-            else
-              fallbackDns;
+          dns = if cfg.privateDns then privateCfg.resolved.dns else fallbackDns;
         in
         {
           services.resolved = {
@@ -62,11 +55,7 @@
       # dnsmasq config
       (lib.mkIf cfg.dnsmasq (
         let
-          dns =
-            if cfg.privateDns then
-              privateCfg.dnsmasq.server
-            else
-              fallbackDns;
+          dns = if cfg.privateDns then privateCfg.dnsmasq.server else fallbackDns;
         in
         {
           services.dnsmasq = {

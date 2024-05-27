@@ -1,7 +1,5 @@
-{ config
-, hostname
-, ...
-}: {
+{ config, hostname, ... }:
+{
   imports = [
     ./bluetooth.nix
     ./boot.nix

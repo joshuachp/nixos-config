@@ -1,10 +1,9 @@
-{ pkgs
-, ...
-}:
+{ pkgs, ... }:
 {
   config = {
     nixpkgs.overlays = [
-      (final: super:
+      (
+        final: super:
         let
           committed = pkgs.callPackage ../packages/committed.nix { };
           committedConfig = pkgs.writeText "committed.toml" ''
@@ -14,7 +13,10 @@
           '';
           committedWithDefault = pkgs.writeShellApplication {
             name = "committed";
-            runtimeInputs = [ pkgs.git committed ];
+            runtimeInputs = [
+              pkgs.git
+              committed
+            ];
             text = ''
               set -eEuo pipefail
 
@@ -37,7 +39,8 @@
         {
           astartectl = pkgs.callPackage ../packages/astartectl.nix { };
           inherit committed committedWithDefault;
-        })
+        }
+      )
     ];
   };
 }

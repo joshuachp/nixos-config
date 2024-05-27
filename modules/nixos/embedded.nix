@@ -1,8 +1,5 @@
 # Enable options for embedded development
-{ config
-, lib
-, ...
-}:
+{ config, lib, ... }:
 let
   cfg = config.nixosConfig.embedded;
 in

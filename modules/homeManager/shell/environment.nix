@@ -2,7 +2,12 @@
 { config, ... }:
 let
   home = config.home.homeDirectory;
-  inherit (config.xdg) cacheHome configHome dataHome stateHome;
+  inherit (config.xdg)
+    cacheHome
+    configHome
+    dataHome
+    stateHome
+    ;
   syncPath = "${home}/share/sync";
 in
 {
@@ -27,7 +32,6 @@ in
 
       # Shell variables
       CDPATH = "$CDPATH:${home}/share/repos";
-
 
       ##
       # History files
@@ -64,7 +68,6 @@ in
       COMPOSER_HOME = "${configHome}/composer";
       COMPOSER_CACHE_DIR = "${cacheHome}/composer";
       COMPOSER_VENDOR_DIR = "${dataHome}/composer/vendor";
-
 
       # Browsers
       BROWSER = "firefox";

@@ -1,4 +1,4 @@
-pkgs: with  pkgs; [
+pkgs: with pkgs; [
   kubectl
   kubernetes-helm
   cmctl

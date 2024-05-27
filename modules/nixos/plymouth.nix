@@ -1,8 +1,5 @@
 # Enables plymouth with quiet boot configuration
-{ config
-, lib
-, ...
-}:
+{ config, lib, ... }:
 let
   cfg = config.nixosConfig.boot.plymouth;
 in

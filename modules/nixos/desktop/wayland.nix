@@ -1,8 +1,5 @@
 # Wayland config
-{ config
-, lib
-, ...
-}:
+{ config, lib, ... }:
 let
   cfg = config.systemConfig.desktop;
   enable = cfg.enable && cfg.wayland;

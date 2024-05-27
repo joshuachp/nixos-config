@@ -1,9 +1,11 @@
 # OpenGL and hardware acceleration
-{ config
-, lib
-, pkgs
-, ...
-}: {
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+{
   options =
     let
       cfgSystem = config.systemConfig;
@@ -18,7 +20,12 @@
         };
         gpu = mkOption {
           description = "List of the system GPU";
-          type = types.listOf (types.enum [ "amd" "intel" ]);
+          type = types.listOf (
+            types.enum [
+              "amd"
+              "intel"
+            ]
+          );
         };
       };
     };
@@ -42,30 +49,36 @@
         driSupport = true;
         driSupport32Bit = true;
 
-        extraPackages = (with pkgs; [
-          # Vulkan
-          vulkan-extension-layer
-          vulkan-validation-layers
-        ]) ++ lib.optionals intel (with pkgs; [
-          intel-media-driver
-          intel-compute-runtime
-          # Intel vaapi drivers
-          vaapiIntel
-          libvdpau-va-gl
-        ]) ++ lib.optionals amd (with pkgs;[
-          # Vulkan
-          amdvlk
-          # Opencl
-          rocmPackages.clr.icd
-          rocmPackages.clr
-        ]);
+        extraPackages =
+          (with pkgs; [
+            # Vulkan
+            vulkan-extension-layer
+            vulkan-validation-layers
+          ])
+          ++ lib.optionals intel (
+            with pkgs;
+            [
+              intel-media-driver
+              intel-compute-runtime
+              # Intel vaapi drivers
+              vaapiIntel
+              libvdpau-va-gl
+            ]
+          )
+          ++ lib.optionals amd (
+            with pkgs;
+            [
+              # Vulkan
+              amdvlk
+              # Opencl
+              rocmPackages.clr.icd
+              rocmPackages.clr
+            ]
+          );
 
-        extraPackages32 = (lib.optionals amd [
-          pkgs.driversi686Linux.amdvlk
-        ]) ++ (lib.optionals intel [
-          pkgs.pkgsi686Linux.vaapiIntel
-        ]);
+        extraPackages32 =
+          (lib.optionals amd [ pkgs.driversi686Linux.amdvlk ])
+          ++ (lib.optionals intel [ pkgs.pkgsi686Linux.vaapiIntel ]);
       };
-
     };
 }

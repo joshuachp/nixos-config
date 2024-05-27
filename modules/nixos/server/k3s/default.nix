@@ -1,7 +1,4 @@
-{ config
-, lib
-, ...
-}:
+{ config, lib, ... }:
 {
   imports = [
     ./agent.nix
@@ -16,7 +13,11 @@
         enable = mkEnableOption "Enables k3s service";
         role = mkOption {
           description = "Make the node as main";
-          type = types.enum [ "main" "server" "agent" ];
+          type = types.enum [
+            "main"
+            "server"
+            "agent"
+          ];
         };
         ip = mkOption {
           description = "Node ip";

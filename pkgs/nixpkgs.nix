@@ -1,3 +1,1 @@
-pkgs: with pkgs; [
-  cachix
-]
+pkgs: with pkgs; [ cachix ]

@@ -1,15 +1,13 @@
 {
   description = "NixOS configuration with flakes";
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-24.05";
     # We use the unstable nixpkgs repo for some packages.
-    # We use nixpkgs-unstable instead of nixos-unstable since we usually want to use the packages as
-    # an overlay and not the nixos modules
-    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixpkgs-unstable";
+    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
 
     # Home manager
     home-manager = {
-      url = "github:nix-community/home-manager";
+      url = "github:nix-community/home-manager/release-24.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 

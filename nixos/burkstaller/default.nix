@@ -1,7 +1,12 @@
 # Edit this configuration file to define what should be installed on
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
-{ pkgs, lib, ... }:
+{
+  pkgs,
+  lib,
+  flakeInputs,
+  ...
+}:
 {
   imports = [
     # Include the results of the hardware scan.
@@ -11,6 +16,16 @@
     boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
 
     users.users.joshuachp.extraGroups = [ "docker" ];
+
+    nixpkgs.overlays = [
+      (self: super: {
+        neovim-unwrapped =
+          let
+            unstablePkgs = import flakeInputs.nixpkgs-unstable { inherit (self) system; };
+          in
+          unstablePkgs.neovim-unwrapped;
+      })
+    ];
 
     # Enable desktop system
     systemConfig = {

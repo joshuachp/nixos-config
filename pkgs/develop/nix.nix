@@ -7,5 +7,6 @@ pkgs: with pkgs; [
   statix
 
   # Language servers
+  nixd
   nil
 ]

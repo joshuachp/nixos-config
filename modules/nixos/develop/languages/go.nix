@@ -1,8 +1,9 @@
 # Go development config
-{ config
-, pkgs
-, lib
-, ...
+{
+  config,
+  pkgs,
+  lib,
+  ...
 }:
 let
   cfg = config.systemConfig.develop;

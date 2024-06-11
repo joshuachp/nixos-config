@@ -1,8 +1,9 @@
-{ config
-, lib
-, pkgs
-, osConfig ? null
-, ...
+{
+  config,
+  lib,
+  pkgs,
+  osConfig ? null,
+  ...
 }:
 {
   options =

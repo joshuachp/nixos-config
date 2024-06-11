@@ -1,8 +1,9 @@
 # Hyprland dynamic tiling window manager
-{ config
-, lib
-, pkgs
-, ...
+{
+  config,
+  lib,
+  pkgs,
+  ...
 }:
 let
   inherit (lib.options) mkEnableOption;

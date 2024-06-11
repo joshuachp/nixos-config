@@ -51,6 +51,12 @@
 
         home.username = "joshuachp";
         home.homeDirectory = "/home/joshuachp";
+
+        programs.direnv.config = {
+          global = {
+            warn_timeout = 0;
+          };
+        };
       };
   };
 }

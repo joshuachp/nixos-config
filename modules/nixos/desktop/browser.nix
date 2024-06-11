@@ -1,8 +1,9 @@
 # Browser configuration
-{ config
-, lib
-, pkgs
-, ...
+{
+  config,
+  lib,
+  pkgs,
+  ...
 }:
 {
   config = lib.mkIf config.systemConfig.desktop.enable {

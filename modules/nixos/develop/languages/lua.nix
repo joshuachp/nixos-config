@@ -1,8 +1,9 @@
 # Lua develop config
-{ config
-, lib
-, pkgs
-, ...
+{
+  config,
+  lib,
+  pkgs,
+  ...
 }:
 let
   cfg = config.systemConfig.develop;

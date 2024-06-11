@@ -1,9 +1,10 @@
 # Haskell development config
-{ self
-, config
-, lib
-, pkgs
-, ...
+{
+  self,
+  config,
+  lib,
+  pkgs,
+  ...
 }:
 let
   cfg = config.systemConfig.develop;

@@ -1,9 +1,10 @@
 # Enables k8s tools
-{ self
-, config
-, lib
-, pkgs
-, ...
+{
+  self,
+  config,
+  lib,
+  pkgs,
+  ...
 }:
 {
   options = {

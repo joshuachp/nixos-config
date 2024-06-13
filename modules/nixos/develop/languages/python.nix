@@ -1,9 +1,10 @@
 # Python develop config
-{ self
-, config
-, pkgs
-, lib
-, ...
+{
+  self,
+  config,
+  pkgs,
+  lib,
+  ...
 }:
 let
   cfg = config.systemConfig.develop;

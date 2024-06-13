@@ -1,8 +1,9 @@
 # i3 config
-{ config
-, pkgs
-, lib
-, ...
+{
+  config,
+  pkgs,
+  lib,
+  ...
 }:
 let
   cfg = config.nixosConfig.desktop.i3;

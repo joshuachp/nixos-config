@@ -1,8 +1,9 @@
 # Gnome config for NixOS
-{ config
-, pkgs
-, lib
-, ...
+{
+  config,
+  pkgs,
+  lib,
+  ...
 }:
 let
   cfg = config.systemConfig.desktop.gnome;

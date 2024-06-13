@@ -1,8 +1,9 @@
 # Configure gpg with pcscd and udev rules
-{ config
-, lib
-, pkgs
-, ...
+{
+  config,
+  lib,
+  pkgs,
+  ...
 }:
 let
   desktop = config.systemConfig.desktop.enable;

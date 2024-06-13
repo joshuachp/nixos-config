@@ -20,7 +20,7 @@
           efiSysMountPoint = "/efi";
         };
       };
-      kernelPackages = pkgs.linuxPackages_6_8;
+      kernelPackages = pkgs.linuxPackages_6_9;
       initrd = {
         availableKernelModules = [
           "xhci_pci"

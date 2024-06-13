@@ -1,10 +1,21 @@
-_: {
+{ flakeInputs, ... }:
+{
   imports = [
     ./hardware-configuration.nix
     ./video-configuration.nix
   ];
   config = {
     boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
+
+    nixpkgs.overlays = [
+      (self: super: {
+        neovim-unwrapped =
+          let
+            unstablePkgs = import flakeInputs.nixpkgs-unstable { inherit (self) system; };
+          in
+          unstablePkgs.neovim-unwrapped;
+      })
+    ];
 
     powerManagement.cpuFreqGovernor = "performance";
 

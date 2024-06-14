@@ -8,7 +8,6 @@ metadata:
 spec:
   entryPoints:
     - websecure
-    - webquic
   routes:
     - match: "Host(`ntfy.k.joshuachp.dev`)"
       kind: Rule

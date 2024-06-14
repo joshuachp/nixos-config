@@ -12,19 +12,6 @@ ports:
   websecure:
     tls:
       enabled: true
-  webquic:
-    port: 8443
-    expose:
-      default: true
-    exposedPort: 443
-    protocol: UDP
-    http3:
-      enabled: true
-    tls:
-      enabled: true
-      options: ""
-      certResolver: ""
-      domains: []
   ssh:
     port: 22
     exposedPort: 22

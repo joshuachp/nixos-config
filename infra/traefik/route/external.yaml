@@ -11,11 +11,6 @@ spec:
   routes:
     - match: "Host(`traefik.k.joshuachp.dev`)"
       kind: Rule
-      middlewares:
-        # - name: default-headers
-        #   namespace: default
-        - name: traefik-dashboard-basicauth
-          namespace: traefik
       services:
         - name: api@internal
           kind: TraefikService

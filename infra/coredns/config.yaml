@@ -6,3 +6,4 @@ metadata:
 data:
   custom.override: |
     rewrite continue name git.k.joshuachp.dev traefik.traefik.svc.cluster.local
+    rewrite continue name traefik.k.joshuachp.dev traefik.traefik.svc.cluster.local

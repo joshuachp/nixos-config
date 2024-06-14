@@ -23,7 +23,6 @@ spec:
           port: 80
           scheme: h2c
   tls:
-    secretName: cert-k-joshuachp-dev
     domains:
       - main: k.joshuachp.dev
         sans:

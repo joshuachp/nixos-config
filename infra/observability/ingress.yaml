@@ -20,7 +20,6 @@ spec:
         - name: alertmanager-operated
           port: http-web
   tls:
-    secretName: cert-k-joshuachp-dev
     domains:
       - main: k.joshuachp.dev
         sans:
@@ -43,7 +42,6 @@ spec:
         - name: observability-grafana
           port: http-web
   tls:
-    secretName: cert-k-joshuachp-dev
     domains:
       - main: k.joshuachp.dev
         sans:

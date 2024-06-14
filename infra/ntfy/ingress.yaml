@@ -15,7 +15,6 @@ spec:
         - name: ntfy
           port: http
   tls:
-    secretName: cert-k-joshuachp-dev
     domains:
       - main: k.joshuachp.dev
         sans:

@@ -15,7 +15,6 @@ spec:
         - name: syncthing-service
           port: web-ui
   tls:
-    secretName: cert-k-joshuachp-dev
     domains:
       - main: k.joshuachp.dev
         sans:

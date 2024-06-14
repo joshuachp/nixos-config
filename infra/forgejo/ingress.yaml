@@ -16,7 +16,6 @@ spec:
           scheme: http
           port: 3000
   tls:
-    secretName: cert-k-joshuachp-dev
     domains:
       - main: k.joshuachp.dev
         sans:

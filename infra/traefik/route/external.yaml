@@ -8,6 +8,7 @@ metadata:
 spec:
   entryPoints:
     - websecure
+    - webquic
   routes:
     - match: "Host(`traefik.k.joshuachp.dev`)"
       kind: Rule

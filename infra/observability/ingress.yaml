@@ -8,6 +8,7 @@ metadata:
 spec:
   entryPoints:
     - websecure
+    - webquic
   routes:
     - match: "Host(`prometheus.k.joshuachp.dev`)"
       kind: Rule
@@ -36,6 +37,7 @@ metadata:
 spec:
   entryPoints:
     - websecure
+    - webquic
   routes:
     - match: "Host(`grafana.k.joshuachp.dev`)"
       kind: Rule

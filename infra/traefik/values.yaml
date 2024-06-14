@@ -10,6 +10,8 @@ ports:
     redirectTo:
       port: websecure
   websecure:
+    http3:
+      enabled: true
     tls:
       enabled: true
   ssh:

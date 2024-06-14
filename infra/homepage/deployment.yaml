@@ -64,6 +64,9 @@ spec:
             - name: http
               containerPort: 3000
               protocol: TCP
+          envFrom:
+            - secretRef:
+                name: homepage-env
           volumeMounts:
             - mountPath: /app/config/custom.js
               name: homepage-config

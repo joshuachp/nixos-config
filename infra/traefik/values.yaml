@@ -22,6 +22,9 @@ ports:
       enabled: true
     tls:
       enabled: true
+      options: ""
+      certResolver: ""
+      domains: []
   ssh:
     port: 22
     exposedPort: 22

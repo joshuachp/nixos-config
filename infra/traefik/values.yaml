@@ -10,6 +10,13 @@ ports:
     redirectTo:
       port: websecure
   websecure:
+    tls:
+      enabled: true
+  webquic:
+    port: 8443
+    expose: true
+    exposedPort: 443
+    protocol: UDP
     http3:
       enabled: true
     tls:
@@ -64,7 +71,7 @@ rbac:
 
 logs:
   general:
-    level: DEBUG
+    level: INFO
     format: json
   # access:
   #   enabled: true

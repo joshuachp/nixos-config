@@ -8,6 +8,7 @@ metadata:
 spec:
   entryPoints:
     - websecure
+    - webquic
   routes:
     - match: "Host(`home.k.joshuachp.dev`)"
       kind: Rule

@@ -15,7 +15,6 @@ spec:
         - name: atuin
           port: http
   tls:
-    secretName: cert-k-joshuachp-dev
     domains:
       - main: k.joshuachp.dev
         sans:

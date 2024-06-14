@@ -20,7 +20,6 @@ spec:
         - name: api@internal
           kind: TraefikService
   tls:
-    secretName: cert-k-joshuachp-dev
     domains:
       - main: k.joshuachp.dev
         sans:

@@ -151,6 +151,7 @@ keybinds {
         bind "Alt -" { Resize "Decrease"; }
         bind "Alt +" { Resize "Increase"; }
         bind "e" { EditScrollback; SwitchToMode "Locked"; }
+        bind "s" { SwitchToMode "Session"; }
     }
     shared_except "locked" {
         bind "Ctrl g" { SwitchToMode "Locked"; }
@@ -213,6 +214,11 @@ plugins {
 //    - false (Default)
 //
 simplified_ui true
+ui {
+    pane_frames {
+        hide_session_name true
+    }
+}
 
 // Choose the path to the default shell that zellij will use for opening new panes
 // Default: $SHELL
@@ -331,6 +337,10 @@ copy_on_select false
 // Default: $EDITOR or $VISUAL
 //
 // scrollback_editor "/usr/bin/vim"
+
+// Session serialization
+session_serialization true
+pane_viewport_serialization false
 
 // When attaching to an existing session with other users,
 // should the session be mirrored (true)

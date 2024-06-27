@@ -13,7 +13,7 @@ spec:
       ref: repo
     - chart: argo-cd
       repoURL: https://argoproj.github.io/argo-helm
-      targetRevision: 7.1.4
+      targetRevision: 7.3.2
       helm:
         valueFiles:
           - $repo/infra/argocd/values.yaml
@@ -48,7 +48,7 @@ spec:
       ref: repo
     - chart: cert-manager
       repoURL: https://charts.jetstack.io
-      targetRevision: v1.15.0
+      targetRevision: v1.15.1
       helm:
         valueFiles:
           - $repo/infra/cert-manager/values.yaml
@@ -89,7 +89,7 @@ spec:
           - $repo/infra/forgejo/values.yaml
     - chart: redis
       repoURL: https://charts.bitnami.com/bitnami
-      targetRevision: 19.5.5
+      targetRevision: 19.6.0
       helm:
         valueFiles:
           - $repo/infra/forgejo/redis-values.yaml
@@ -163,7 +163,7 @@ spec:
       ref: repo
     - chart: kube-prometheus-stack
       repoURL: https://prometheus-community.github.io/helm-charts
-      targetRevision: 60.2.0
+      targetRevision: 60.4.0
       helm:
         valueFiles:
           - $repo/infra/observability/values.yaml

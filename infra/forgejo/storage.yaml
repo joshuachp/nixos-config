@@ -14,6 +14,22 @@ spec:
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
+  name: forgejo-pvc-local
+  namespace: forgejo
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 10Gi
+  storageClassName: local-path
+  dataSource:
+    kind: PersistentVolumeClaim
+    name: forgejo-pvc
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
   name: redis-pvc
   namespace: forgejo
 spec:

@@ -48,7 +48,7 @@ spec:
       ref: repo
     - chart: cert-manager
       repoURL: https://charts.jetstack.io
-      targetRevision: v1.15.0
+      targetRevision: v1.15.1
       helm:
         valueFiles:
           - $repo/infra/cert-manager/values.yaml
@@ -89,7 +89,7 @@ spec:
           - $repo/infra/forgejo/values.yaml
     - chart: redis
       repoURL: https://charts.bitnami.com/bitnami
-      targetRevision: 19.5.5
+      targetRevision: 19.6.0
       helm:
         valueFiles:
           - $repo/infra/forgejo/redis-values.yaml

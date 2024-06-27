@@ -9,6 +9,7 @@ in
     ./atuin.nix
     ./environment.nix
     ./fish
+    ./nushell
     ./zellij
   ];
   config = {
@@ -20,6 +21,7 @@ in
         enable = true;
         enableBashIntegration = true;
         enableFishIntegration = true;
+        enableNushellIntegration = true;
         enableZshIntegration = true;
         settings = lib.importTOML ./config/starship.toml;
       };

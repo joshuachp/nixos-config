@@ -33,6 +33,6 @@ pkgs: with pkgs; [
   rust-toolsOverlay
   shell-toolsOverlay
 
-  taskwarrior
+  taskwarrior3
   timewarrior
 ]

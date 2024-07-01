@@ -13,7 +13,7 @@ spec:
       ref: repo
     - chart: argo-cd
       repoURL: https://argoproj.github.io/argo-helm
-      targetRevision: 7.3.2
+      targetRevision: 7.3.3
       helm:
         valueFiles:
           - $repo/infra/argocd/values.yaml
@@ -163,7 +163,7 @@ spec:
       ref: repo
     - chart: kube-prometheus-stack
       repoURL: https://prometheus-community.github.io/helm-charts
-      targetRevision: 61.0.0
+      targetRevision: 61.1.0
       helm:
         valueFiles:
           - $repo/infra/observability/values.yaml

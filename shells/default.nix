@@ -2,17 +2,15 @@
 {
   mkShell,
   nixos-anywhere,
-  deploy,
   pre-commit,
-  nixpkgs-fmt,
   statix,
+  nixfmt-rfc-style,
 }:
 mkShell {
   packages = [
     nixos-anywhere
-    deploy
     pre-commit
-    nixpkgs-fmt
+    nixfmt-rfc-style
     statix
   ];
 }

@@ -3,7 +3,6 @@
   pkgs,
   lib,
   system,
-  nil,
   nixgl,
   config,
   ...
@@ -48,8 +47,7 @@
     ];
 
     home.packages =
-      with pkgs;
-      [
+      (with pkgs; [
         tmux
 
         polybarFull
@@ -59,7 +57,8 @@
 
         ccache
         bmap-tools
-
+      ])
+      ++ [
         pkgs.nixgl.nixGLIntel
         pkgs.nixgl.nixVulkanIntel
       ]
@@ -68,10 +67,7 @@
       ++ import "${self}/pkgs/nixpkgs.nix" pkgs
       # Develop
       ++ import "${self}/pkgs/develop" { inherit pkgs; }
-      ++ import "${self}/pkgs/develop/nix.nix" {
-        inherit pkgs;
-        nil = nil.packages.${system}.default;
-      }
+      ++ import "${self}/pkgs/develop/nix.nix" { inherit pkgs; }
       ++ import "${self}/pkgs/develop/rust.nix" {
         inherit pkgs;
         toolchain = pkgs.rust-bin.stable.latest.default;

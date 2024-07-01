@@ -85,21 +85,6 @@
     };
 
     # Packages provided via flakes for having the latest version
-    deploy-rs = {
-      url = "github:serokell/deploy-rs";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-        utils.follows = "flake-utils";
-      };
-    };
-    nil = {
-      url = "github:oxalica/nil";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-        flake-utils.follows = "flake-utils";
-        rust-overlay.follows = "rust-overlay";
-      };
-    };
     nixgl = {
       url = "github:guibou/nixGL";
       inputs = {
@@ -117,8 +102,6 @@
       self,
       # Nixpkgs
       nixpkgs,
-      privateConf,
-      deploy-rs,
       flake-utils,
       neovimConfig,
       ...
@@ -134,27 +117,19 @@
       homeConfigurations = {
         joshuachp = mkHome "joshuachp" { modules = [ neovimConfig.homeManagerModules.default ]; };
       };
-
-      # Deployment configuration
-      deploy = import ./deploy { inherit self privateConf deploy-rs; };
     }
-    //
-      # System dependant configurations
-      flake-utils.lib.eachDefaultSystem (
-        system:
-        let
-          pkgs = import nixpkgs { inherit system; };
-          deploy = deploy-rs.packages.${system}.default;
-          inherit (pkgs) callPackage;
-        in
-        {
-          packages = import ./packages pkgs;
-          checks = import ./checks pkgs;
-          # This is highly advised, and will prevent many possible mistakes
-          # checks = builtins.mapAttrs (system: deployLib: deployLib.deployChecks self.deploy) deploy-rs.lib;
-
-          # Dev-Shell
-          devShells.default = callPackage ./shells/default.nix { inherit deploy; };
-        }
-      );
+    # System dependant configurations
+    // flake-utils.lib.eachDefaultSystem (
+      system:
+      let
+        pkgs = import nixpkgs { inherit system; };
+        inherit (pkgs) callPackage;
+      in
+      {
+        packages = import ./packages pkgs;
+        checks = import ./checks pkgs;
+        # Dev-Shell
+        devShells.default = callPackage ./shells/default.nix { };
+      }
+    );
 }

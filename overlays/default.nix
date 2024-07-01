@@ -6,7 +6,6 @@
     let
       inherit (flakeInputs)
         jump
-        nil
         nixosAnywhere
         note
         rust-overlay
@@ -31,7 +30,6 @@
           rust-toolsOverlay = tools.packages.${system}.rust-tools;
           shell-toolsOverlay = tools.packages.${system}.shell-tools;
 
-          nil = nil.packages.${system}.default;
           nixos-anywhere = nixosAnywhere.packages.${system}.default;
         })
       ];

@@ -8,7 +8,12 @@ in
     programs.fish = {
       enable = true;
 
-      interactiveShellInit = builtins.readFile ./config/config.fish;
+      interactiveShellInit =
+        lib.pipe ([ ./config/config.minimal.fish ] ++ (lib.optional (!cfg.minimal) ./config/config.fish))
+          [
+            (builtins.map builtins.readFile)
+            builtins.toString
+          ];
 
       functions = lib.mkMerge [
         (lib.mkIf (!cfg.minimal) {
@@ -17,6 +22,12 @@ in
             description = "Function callback for CWD change";
             onVariable = "PWD";
             body = builtins.readFile ./functions/__cwd_callback_hook.fish;
+          };
+          # task-warrior wrapper
+          tasks = {
+            description = "A command line todo manager, customized.";
+            wraps = "task";
+            body = builtins.readFile ./functions/tasks.fish;
           };
           # Jump function to change directory
           j = {

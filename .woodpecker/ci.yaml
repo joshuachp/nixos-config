@@ -5,10 +5,13 @@ when:
     - pull_request
 steps:
   - name: flake check
-    image: joshuachp/nixos:0.1.1
+    image: joshuachp/nixos:0.1.2
     environment:
       NIX_CONFIG:
         from_secret: NIX_CONFIG
+    secrets: [BUILDERS, BUILDER_KEY]
     commands:
-      - git config --global --replace-all safe.directory /woodpecker/src/git.k.joshuachp.dev/joshuachp/nixos-config
-      - nix flake check
+      - mkdir -p ~/.ssh
+      - echo "$BUILDER_KEY" > ~/.ssh/id_ed25519
+      - chmod -R 600 ~/.ssh
+      - nix flake check --builders "$BUILDERS"

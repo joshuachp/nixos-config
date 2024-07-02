@@ -9,6 +9,8 @@
 
     nixosConfig.networking.resolved = true;
 
+    privateConfig.remote-builder.enable = true;
+
     services = {
       openssh = {
         enable = true;

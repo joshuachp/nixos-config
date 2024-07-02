@@ -46,6 +46,8 @@
               # Hardening
               "--secrets-encryption"
               "--protect-kernel-defaults=true"
+              # Features
+              "--kube-apiserver-arg=\"--enable-admission-plugins=NodeRestriction,PodTolerationRestriction\""
             ];
           };
 

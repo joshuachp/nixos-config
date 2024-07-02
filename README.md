@@ -1,5 +1,7 @@
 # nixos-config
 
+[![status-badge](https://ci.k.joshuachp.dev/api/badges/1/status.svg)](https://ci.k.joshuachp.dev/repos/1)
+
 This repository contains the configuration files for managing NixOS systems.
 
 ## Architecture

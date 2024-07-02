@@ -11,9 +11,12 @@ repos:
   - repo: https://github.com/joshuachp/pre-commit-hooks
     rev: 0.1.40
     hooks:
+      - id: typos
+      - id: committed
       - id: nix-nixfmt
       - id: nix-statix
       - id: nix-flake-check
-      - id: yaml-fmt-prettier
-      - id: typos
-      - id: committed
+      - id: run-prettier
+        types_or: [json, yaml]
+      - id: run-dprint
+        types_or: [markdown]

@@ -5,14 +5,8 @@ let
 in
 {
   options = {
-    nixosConfig.boot.plymouth.enable = lib.options.mkOption {
-      default = false;
-      defaultText = "Enable plymouth boot splash screen";
-      description = ''
-        Make the plymouth boot splash screen available with the kernel parameters configuration for
-        silent boot.
-      '';
-      type = lib.types.bool;
+    nixosConfig.boot.plymouth.enable = lib.mkEnableOption "plymouth boot splash screen" // {
+      default = config.systemConfig.desktop.enable;
     };
   };
   config = lib.mkIf cfg.enable {

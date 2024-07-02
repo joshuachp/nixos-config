@@ -15,8 +15,6 @@
   config = {
     boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
 
-    users.users.joshuachp.extraGroups = [ "docker" ];
-
     nixpkgs.overlays = [
       (self: super: {
         neovim-unwrapped =
@@ -29,13 +27,10 @@
 
     # Enable desktop system
     systemConfig = {
-      desktop = {
-        hidpi = true;
-      };
+      desktop.hidpi = true;
       develop.enable = true;
     };
     nixosConfig = {
-      boot.plymouth.enable = true;
       hardware = {
         bluetooth.enable = true;
         wifi.enable = true;
@@ -45,10 +40,7 @@
         sway.enable = true;
         hyprland.enable = true;
       };
-      develop.k8s = true;
-      nix.index.enable = true;
       embedded.enable = true;
-      networking.privateDns = true;
       virtualisation.enable = true;
     };
 
@@ -79,13 +71,6 @@
       };
     };
 
-    # Enable docker
-    virtualisation.docker = {
-      enable = true;
-      # Only for dev
-      enableOnBoot = false;
-    };
-
     # Syncthing local firewall
     # https://docs.syncthing.net/users/firewall.html#local-firewall
     networking.firewall = {
@@ -96,12 +81,7 @@
       ];
     };
 
-    # Enable sound.
-    sound.enable = true;
-    hardware.pulseaudio.enable = false;
-
     services = {
-      fwupd.enable = true;
       # Enable btrfs scrubbing
       btrfs.autoScrub.enable = true;
       # Yubikey

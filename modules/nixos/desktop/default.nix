@@ -39,6 +39,9 @@ in
           tapping = true;
         };
       };
+
+      # Firmware updates
+      fwupd.enable = true;
     };
 
     environment.systemPackages = import "${self}/pkgs/desktop.nix" { inherit pkgs lib config; };

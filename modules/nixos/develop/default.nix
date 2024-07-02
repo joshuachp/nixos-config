@@ -8,6 +8,7 @@
 }:
 {
   imports = [
+    ./docker.nix
     ./kubernetes.nix
     ./languages/c_cpp.nix
     ./languages/elixir.nix
@@ -21,13 +22,22 @@
     ./languages/sh.nix
     ./languages/tex.nix
   ];
-  config = lib.mkIf config.systemConfig.develop.enable {
-    environment.systemPackages = import "${self}/pkgs/develop" { inherit pkgs; };
-
-    # Enable direnv
-    programs.direnv = {
-      enable = true;
-      nix-direnv.enable = true;
+  options = {
+    nixosConfig.develop.enable = lib.mkEnableOption "develop environment" // {
+      default = config.systemConfig.develop.enable;
     };
   };
+  config =
+    let
+      cfg = config.nixosConfig.develop;
+    in
+    lib.mkIf cfg.enable {
+      environment.systemPackages = import "${self}/pkgs/develop" { inherit pkgs; };
+
+      # Enable direnv
+      programs.direnv = {
+        enable = true;
+        nix-direnv.enable = true;
+      };
+    };
 }

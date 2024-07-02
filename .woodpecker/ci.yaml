@@ -5,7 +5,7 @@ when:
     - pull_request
 steps:
   - name: flake check
-    image: joshuachp/nixos:0.1.0
+    image: joshuachp/nixos:0.1.1
     environment:
       NIX_CONFIG:
         from_secret: NIX_CONFIG

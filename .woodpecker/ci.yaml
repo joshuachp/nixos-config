@@ -5,16 +5,11 @@ when:
     - pull_request
 steps:
   - name: flake check
-    image: joshuachp/nixos:0.1.2
+    image: joshuachp/nixos:0.1.3
     environment:
       NIX_CONFIG:
         from_secret: NIX_CONFIG
     secrets: [BUILDERS, BUILDER_KEY, BUILDER_HOST_KEYS]
     commands:
-      - mkdir -p ~/.ssh
-      - echo "$BUILDER_KEY" >> ~/.ssh/id_ed25519
-      - echo "$BUILDER_HOST_KEYS" >> ~/.ssh/known_hosts
-      - chmod -R 600 ~/.ssh
-      - nix store ping --store "$BUILDERS"
-      - echo "$BUILDERS" >> /etc/nix/machines
+      - /setup-remote.sh
       - nix flake check

@@ -4,6 +4,7 @@ when:
   event:
     - push
     - manual
+skip_clone: true
 steps:
   - name: renovate
     image: renovate/renovate:37.423.0

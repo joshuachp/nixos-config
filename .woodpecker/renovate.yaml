@@ -18,13 +18,12 @@ steps:
         RENOVATE_GIT_PRIVATE_KEY,
       ]
     environment:
-      RENOVATE_CONFIG_FILE: "/opt/renovate/config.json"
+      RENOVATE_CONFIG_FILE: "config.json"
       RENOVATE_PLATFORM: gitea
     commands:
-      - mkdir -p /opt/renovate
       - |
         echo '{
           "repositories": ["joshuachp/nixos-config"],
           "extends":["config:recommended"]
-        }' > /opt/renovate/config.json
+        }' > config.json
       - renovate

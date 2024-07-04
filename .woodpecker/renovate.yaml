@@ -1,0 +1,29 @@
+# Run renovate on push to main
+when:
+  branch: main
+  event:
+    - push
+    - manual
+steps:
+  - name: renovate
+    image: renovate/renovate:37.423.0
+    secrets:
+      [
+        GITHUB_COM_TOKEN,
+        RENOVATE_ENDPOINT,
+        RENOVATE_GIT_AUTHOR,
+        RENOVATE_USERNAME,
+        RENOVATE_TOKEN,
+        RENOVATE_GIT_PRIVATE_KEY,
+      ]
+    environment:
+      RENOVATE_CONFIG_FILE: "/opt/renovate/config.json"
+      RENOVATE_PLATFORM: gitea
+    commands:
+      - mkdir -p /opt/renovate
+      - |
+        echo '{
+          "repositories": ["joshuachp/nixos-config"],
+          "extends":["config:recommended"]
+        }' > /opt/renovate/config.json
+      - renovate

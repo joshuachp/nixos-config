@@ -7,7 +7,7 @@ when:
 skip_clone: true
 steps:
   - name: renovate
-    image: renovate/renovate:37.424.1
+    image: renovate/renovate:37.424.4
     secrets:
       [
         GITHUB_COM_TOKEN,

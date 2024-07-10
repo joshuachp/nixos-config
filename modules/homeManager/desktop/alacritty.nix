@@ -53,7 +53,7 @@
           font = {
             size = 11;
             normal = {
-              family = "JetBrains Mono Nerd Font";
+              family = "JetBrains Mono Nerd Font Mono";
             };
           };
         };

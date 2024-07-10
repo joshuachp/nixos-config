@@ -67,10 +67,6 @@ symbol = " "
 [kotlin]
 symbol = " "
 
-[kubernetes]
-disabled = false
-symbol = "󱃾 "
-
 [lua]
 symbol = " "
 

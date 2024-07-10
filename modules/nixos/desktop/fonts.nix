@@ -42,7 +42,7 @@ in
 
         fontconfig.defaultFonts = {
           monospace = [
-            "JetBrains Mono Nerd Font"
+            "JetBrains Mono Nerd Font Mono"
             "JetBrains Mono"
           ];
           sansSerif = [ "Noto Sans" ];

@@ -24,6 +24,7 @@
       url = "github:numtide/nixos-anywhere";
       inputs = {
         nixpkgs.follows = "nixpkgs";
+        nixos-stable.follows = "nixpkgs";
         disko.follows = "disko";
       };
     };
@@ -80,8 +81,10 @@
     # Private configuration
     privateConf = {
       url = "github:joshuachp/nixos-private-config";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.flake-utils.follows = "flake-utils";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        flake-utils.follows = "flake-utils";
+      };
     };
 
     # Packages provided via flakes for having the latest version

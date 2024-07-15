@@ -31,7 +31,12 @@ grafana:
     passwordKey: "admin-password"
 
 alertmanager:
-  alertmanagerSpec:
-    alertmanagerConfigSelector:
-      matchLabels:
-        role: observability
+  extraSecretMounts:
+    - name: alertmanager-file-config
+      mountPath: /etc/alertmanager/config/secrets
+      subpath: webhook
+  config:
+    receivers:
+      - name: webhook
+        webhookConfigs:
+          - url_file: /etc/alertmanager/config/secrets/webhook

@@ -29,3 +29,9 @@ grafana:
     existingSecret: "grafana"
     userKey: "admin-user"
     passwordKey: "admin-password"
+
+alertmanager:
+  alertmanagerSpec:
+    alertmanagerConfigSelector:
+      matchLabels:
+        role: observability

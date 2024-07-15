@@ -40,7 +40,7 @@ alertmanager:
       operator: "Equal"
       value: "external"
       effect: "NoSchedule"
-  alertManagerSpec:
+  alertmanagerSpec:
     alertmanagerConfigSelector:
       matchLabels:
         role: observability

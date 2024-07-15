@@ -41,6 +41,5 @@ alertmanager:
       value: "external"
       effect: "NoSchedule"
   alertmanagerSpec:
-    alertmanagerConfigSelector:
-      matchLabels:
-        role: observability
+    alertmanagerConfiguration:
+      name: alertmanager-config

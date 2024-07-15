@@ -24,12 +24,22 @@ prometheus:
               storage: 10Gi
 
 grafana:
+  tolerations:
+    - key: "location"
+      operator: "Equal"
+      value: "external"
+      effect: "NoSchedule"
   admin:
     existingSecret: "grafana"
     userKey: "admin-user"
     passwordKey: "admin-password"
 
 alertmanager:
+  tolerations:
+    - key: "location"
+      operator: "Equal"
+      value: "external"
+      effect: "NoSchedule"
   alertManagerSpec:
     alertmanagerConfigSelector:
       matchLabels:

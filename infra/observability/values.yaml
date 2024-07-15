@@ -29,14 +29,3 @@ grafana:
     existingSecret: "grafana"
     userKey: "admin-user"
     passwordKey: "admin-password"
-
-alertmanager:
-  extraSecretMounts:
-    - name: alertmanager-file-config
-      mountPath: /etc/alertmanager/config/secrets
-      subpath: webhook
-  config:
-    receivers:
-      - name: webhook
-        webhookConfigs:
-          - url_file: /etc/alertmanager/config/secrets/webhook

@@ -140,6 +140,19 @@ spec:
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
+  name: minio
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/joshuachp/nixos-config
+    path: infra/minio
+  destination:
+    server: https://kubernetes.default.svc
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
   name: ntfy
   namespace: argocd
 spec:

@@ -28,14 +28,14 @@ spec:
             - minio server /data --console-address :9001
           volumeMounts:
             - mountPath: /data
-              name: localVolume
+              name: data
           ports:
             - containerPort: 9000
               name: web
             - containerPort: 9001
               name: console
       volumes:
-        - name: localVolume
+        - name: data
           persistentVolumeClaim:
             claimName: minio-pvc
 ---

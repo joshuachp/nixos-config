@@ -25,4 +25,4 @@ server:
     - woodpecker-env
     - woodpecker-server-env
   persistentVolume:
-    storageClass: smb
+    storageClass: local-path

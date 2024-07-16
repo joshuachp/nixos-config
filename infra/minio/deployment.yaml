@@ -11,7 +11,7 @@ spec:
     metadata:
       namespace: minio
       labels:
-        app.kubernetes.io/name: ntfy
+        app.kubernetes.io/name: minio
     spec:
       tolerations:
         - key: "location"

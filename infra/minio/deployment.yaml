@@ -1,0 +1,56 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: minio
+  namespace: minio
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: minio
+  template:
+    metadata:
+      namespace: minio
+      labels:
+        app.kubernetes.io/name: ntfy
+    spec:
+      tolerations:
+        - key: "location"
+          operator: "Equal"
+          value: "external"
+          effect: "NoSchedule"
+      containers:
+        - name: minio
+          image: bitnami/minio:2024.7.15
+          command:
+            - /bin/bash
+            - -c
+          args:
+            - minio server /data --console-address :9001
+          volumeMounts:
+            - mountPath: /data
+              name: localVolume
+          ports:
+            - containerPort: 9000
+              name: web
+            - containerPort: 9001
+              name: console
+      volumes:
+        - name: localVolume
+          persistentVolumeClaim:
+            claimName: minio-pvc
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: minio
+  namespace: minio
+spec:
+  selector:
+    app.kubernetes.io/name: minio
+  ports:
+    - name: console
+      port: 9001
+      targetPort: 9001
+    - name: web
+      port: 9000
+      targetPort: 9000

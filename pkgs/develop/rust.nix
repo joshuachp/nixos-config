@@ -1,7 +1,5 @@
-{ pkgs, toolchain }:
-with pkgs;
-[
-  toolchain
+pkgs: with pkgs; [
+  rustup
 
   sccache
 

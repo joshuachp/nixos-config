@@ -17,9 +17,6 @@
       hardware.bluetooth = {
         enable = true;
 
-        # To enable bluetooth experimental features, like the battery level
-        package = pkgs.bluez5-experimental;
-
         # Enables the experimental features like battery status for the device.
         settings = {
           General = {

@@ -2,7 +2,6 @@
   config,
   pkgs,
   hostname,
-  flakeInputs,
   ...
 }:
 {
@@ -36,7 +35,6 @@
     home-manager.users.joshuachp =
       {
         config,
-        pkgs,
         lib,
         osConfig,
         ...
@@ -53,6 +51,7 @@
         home.homeDirectory = "/home/joshuachp";
 
         programs.direnv.config = {
+          enable = true;
           global = {
             warn_timeout = 0;
           };

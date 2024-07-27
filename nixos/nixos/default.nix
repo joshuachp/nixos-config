@@ -19,6 +19,8 @@
 
     powerManagement.cpuFreqGovernor = "performance";
 
+    programs.steam.enable = true;
+
     # Enable desktop system
     systemConfig = {
       develop.enable = true;

@@ -29,7 +29,7 @@ spec:
             - name: renovate
               # Update this to the latest available and then enable Renovate on
               # the manifest
-              image: renovate/renovate:38.21.0
+              image: renovate/renovate:38.24.0
               # Environment Variables
               env:
                 - name: RENOVATE_BASE_DIR

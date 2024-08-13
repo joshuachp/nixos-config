@@ -10,7 +10,7 @@
       # Used for compute environments
       nvidiaPersistenced = false;
       modesetting.enable = true;
-      forceFullCompositionPipeline = true;
+      forceFullCompositionPipeline = false;
       prime = {
         sync.enable = true;
         amdgpuBusId = "PCI:5:0:0";

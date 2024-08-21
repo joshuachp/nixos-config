@@ -86,6 +86,26 @@
       btrfs.autoScrub.enable = true;
       # Yubikey
       udev.packages = [ pkgs.yubikey-personalization ];
+
+      # Reduce audio lag and stutter
+      pipewire.extraConfig.pipewire = {
+        "10-clock-rate" = {
+          "context.properties" = {
+            "default.clock.rate" = 48000;
+            # This can be found with
+            # grep -E 'Codec|Audio Output|rates' /proc/asound/card*/codec#*
+            "default.clock.allowed-rates" = [
+              44100
+              48000
+              96000
+              192000
+            ];
+            "default.clock.quantum" = 1024;
+            "default.clock.min-quantum" = 32;
+          };
+
+        };
+      };
     };
 
     environment.systemPackages = with pkgs; [

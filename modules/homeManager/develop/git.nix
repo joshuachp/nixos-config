@@ -94,7 +94,7 @@
 
         includes = [
           {
-            condition = "gitdir:~/share/repos/seco";
+            condition = "gitdir:~/share/repos/seco/";
             contents = {
               user = {
                 inherit (privCfg.joshuaSeco) email;

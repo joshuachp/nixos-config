@@ -83,7 +83,7 @@ spec:
       ref: repo
     - chart: forgejo
       repoURL: codeberg.org/forgejo-contrib
-      targetRevision: 8.1.2
+      targetRevision: 8.2.0
       helm:
         valueFiles:
           - $repo/infra/forgejo/values.yaml

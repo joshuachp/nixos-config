@@ -3,7 +3,6 @@
 # to /etc/nixos/configuration.nix instead.
 {
   lib,
-  pkgs,
   modulesPath,
   system,
   ...
@@ -20,7 +19,6 @@
           efiSysMountPoint = "/efi";
         };
       };
-      # kernelPackages = pkgs.linuxPackages_6_9;
       initrd = {
         availableKernelModules = [
           "xhci_pci"

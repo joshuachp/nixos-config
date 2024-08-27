@@ -4,7 +4,6 @@
 {
   config,
   lib,
-  pkgs,
   modulesPath,
   ...
 }:
@@ -20,7 +19,6 @@
       efi.efiSysMountPoint = "/efi";
     };
 
-    kernelPackages = pkgs.linuxPackages_6_9;
     initrd = {
       availableKernelModules = [
         "vmd"

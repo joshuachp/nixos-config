@@ -40,7 +40,7 @@ alertmanager:
       - key: "location"
         operator: "Equal"
         value: "external"
-        effect: "NoSchedule"
+        effect: "PreferNoSchedule"
     alertmanagerConfigSelector:
       matchLabels:
         alertmanagerConfig: observability

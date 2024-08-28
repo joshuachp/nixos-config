@@ -28,6 +28,8 @@ metadata:
   namespace: argocd
 spec:
   project: default
+  syncPolicy:
+    automated: {}
   sources:
     - repoURL: https://github.com/joshuachp/nixos-config
       path: infra/atuin
@@ -42,6 +44,8 @@ metadata:
   namespace: argocd
 spec:
   project: default
+  syncPolicy:
+    automated: {}
   sources:
     - repoURL: https://github.com/joshuachp/nixos-config
       path: infra/cert-manager
@@ -63,6 +67,8 @@ metadata:
   namespace: argocd
 spec:
   project: default
+  syncPolicy:
+    automated: {}
   sources:
     - repoURL: https://github.com/joshuachp/nixos-config
       path: infra/coredns
@@ -77,6 +83,8 @@ metadata:
   namespace: argocd
 spec:
   project: default
+  syncPolicy:
+    automated: {}
   sources:
     - repoURL: https://github.com/joshuachp/nixos-config
       path: infra/forgejo
@@ -104,6 +112,8 @@ metadata:
   namespace: argocd
 spec:
   project: default
+  syncPolicy:
+    automated: {}
   source:
     repoURL: https://github.com/joshuachp/nixos-config
     path: infra/homepage
@@ -117,6 +127,8 @@ metadata:
   namespace: argocd
 spec:
   project: default
+  syncPolicy:
+    automated: {}
   sources:
     - repoURL: https://github.com/joshuachp/nixos-config
       path: infra/metallb
@@ -144,6 +156,8 @@ metadata:
   namespace: argocd
 spec:
   project: default
+  syncPolicy:
+    automated: {}
   source:
     repoURL: https://github.com/joshuachp/nixos-config
     path: infra/minio
@@ -157,6 +171,8 @@ metadata:
   namespace: argocd
 spec:
   project: default
+  syncPolicy:
+    automated: {}
   source:
     repoURL: https://github.com/joshuachp/nixos-config
     path: infra/ntfy
@@ -170,6 +186,10 @@ metadata:
   namespace: argocd
 spec:
   project: default
+  syncPolicy:
+    automated: {}
+    syncOptions:
+      - ServerSideApply=true
   sources:
     - repoURL: https://github.com/joshuachp/nixos-config
       path: infra/observability
@@ -220,6 +240,8 @@ metadata:
   namespace: argocd
 spec:
   project: default
+  syncPolicy:
+    automated: {}
   source:
     repoURL: https://github.com/joshuachp/nixos-config
     path: infra/syncthing
@@ -233,6 +255,8 @@ metadata:
   namespace: argocd
 spec:
   project: default
+  syncPolicy:
+    automated: {}
   sources:
     - repoURL: https://github.com/joshuachp/nixos-config
       path: infra/traefik
@@ -254,6 +278,8 @@ metadata:
   namespace: argocd
 spec:
   project: default
+  syncPolicy:
+    automated: {}
   sources:
     - repoURL: https://github.com/joshuachp/nixos-config
       path: infra/woodpecker

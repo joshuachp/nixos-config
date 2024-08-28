@@ -35,12 +35,12 @@ grafana:
     passwordKey: "admin-password"
 
 alertmanager:
-  tolerations:
-    - key: "location"
-      operator: "Equal"
-      value: "external"
-      effect: "NoSchedule"
   alertmanagerSpec:
+    tolerations:
+      - key: "location"
+        operator: "Equal"
+        value: "external"
+        effect: "PreferNoSchedule"
     alertmanagerConfigSelector:
       matchLabels:
         alertmanagerConfig: observability

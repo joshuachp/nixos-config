@@ -8,12 +8,12 @@ prometheusOperator:
       effect: "NoSchedule"
 
 prometheus:
-  tolerations:
-    - key: "location"
-      operator: "Equal"
-      value: "external"
-      effect: "NoSchedule"
   prometheusSpec:
+    tolerations:
+      - key: "location"
+        operator: "Equal"
+        value: "external"
+        effect: "NoSchedule"
     storageSpec:
       volumeClaimTemplate:
         spec:

@@ -1,5 +1,5 @@
 # NixOS video configuration
-{ lib, ... }:
+{ config, lib, ... }:
 {
   config = {
     services.xserver.exportConfiguration = true;
@@ -7,6 +7,8 @@
     services.xserver.videoDrivers = [ "nvidia" ];
 
     hardware.nvidia = {
+      package = config.boot.kernelPackages.nvidiaPackages.production;
+
       # Used for compute environments
       nvidiaPersistenced = false;
       modesetting.enable = true;

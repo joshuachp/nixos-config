@@ -11,6 +11,10 @@ in
       flags = [ "--disable-up-arrow" ];
       settings = {
         sync_address = "https://atuin.k.joshuachp.dev";
+        style = "compact";
+        sync = {
+          records = true;
+        };
       };
       enableBashIntegration = true;
       enableFishIntegration = true;

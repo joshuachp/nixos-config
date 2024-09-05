@@ -38,6 +38,7 @@
         in
         {
           astartectl = pkgs.callPackage ../packages/astartectl.nix { };
+          customLocale = pkgs.callPackage ../packages/customLocale.nix { };
           inherit committed committedWithDefault;
         }
       )

@@ -39,6 +39,7 @@
       useGlobalPkgs = true;
       sharedModules = [
         ../options
+        ../modules/common
         ../modules/homeManager
         flakeInputs.privateConf.homeManagerModules.default
         {

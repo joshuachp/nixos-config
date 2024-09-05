@@ -3,5 +3,6 @@ _: {
   imports = [
     ./desktop/qt.nix
     ./nix
+    ./theme.nix
   ];
 }

@@ -1,62 +1,100 @@
 { config, lib, ... }:
 {
+  options =
+    let
+      inherit (lib) mkEnableOption;
+    in
+    {
+      homeConfig.alacritty.theme = {
+        base16 = mkEnableOption "Alacritty base16 theme";
+      };
+    };
   config =
     let
-      cfg = config.systemConfig.desktop;
+      cfg = config.homeConfig.alacritty;
     in
-    lib.mkIf cfg.enable {
+    lib.mkIf config.systemConfig.desktop {
       programs.alacritty = {
         enable = true;
-        settings = {
-          # Kanagawa Dragon Alacritty Colors
-          colors = {
-            primary = {
-              background = "#181616";
-              foreground = "#c5c9c5";
+        settings = lib.mkMerge [
+          {
+            font = {
+              size = 11;
+              normal = {
+                family = "JetBrains Mono Nerd Font Mono";
+              };
             };
-            normal = {
-              black = "#0d0c0c";
-              red = "#c4746e";
-              green = "#8a9a7b";
-              yellow = "#c4b28a";
-              blue = "#8ba4b0";
-              magenta = "#a292a3";
-              cyan = "#8ea4a2";
-              white = "#C8C093";
-            };
-            bright = {
-              black = "#a6a69c";
-              red = "#E46876";
-              green = "#87a987";
-              yellow = "#E6C384";
-              blue = "#7FB4CA";
-              magenta = "#938AA9";
-              cyan = "#7AA89F";
-              white = "#c5c9c5";
-            };
-            selection = {
-              background = "#2D4F67";
-              foreground = "#C8C093";
-            };
-            indexed_colors = [
-              {
-                index = 16;
-                color = "#b6927b";
+          }
+          (lib.mkIf (!cfg.theme.base16) (
+            config.lib.mkBase16Theme (
+              theme: with theme; {
+                colors = {
+                  primary = {
+                    background = "#${base00}";
+                    foreground = "#${base05}";
+                  };
+                  cursor = {
+                    text = "#${base00}";
+                    cursor = "#${base05}";
+                  };
+                  normal = {
+                    black = "#${base00}";
+                    red = "#${base08}";
+                    green = "#${base0B}";
+                    yellow = "#${base0A}";
+                    blue = "#${base0D}";
+                    magenta = "#${base0E}";
+                    cyan = "#${base0C}";
+                    white = "#${base05}";
+                  };
+                };
               }
-              {
-                index = 17;
-                color = "#b98d7b";
-              }
-            ];
-          };
-
-          font = {
-            size = 11;
-            normal = {
-              family = "JetBrains Mono Nerd Font Mono";
+            )
+          ))
+          (lib.mkIf (!cfg.theme.base16) {
+            # Kanagawa Dragon Alacritty Colors
+            colors = {
+              primary = {
+                background = "#181616";
+                foreground = "#c5c9c5";
+              };
+              normal = {
+                black = "#0d0c0c";
+                red = "#c4746e";
+                green = "#8a9a7b";
+                yellow = "#c4b28a";
+                blue = "#8ba4b0";
+                magenta = "#a292a3";
+                cyan = "#8ea4a2";
+                white = "#C8C093";
+              };
+              bright = {
+                black = "#a6a69c";
+                red = "#E46876";
+                green = "#87a987";
+                yellow = "#E6C384";
+                blue = "#7FB4CA";
+                magenta = "#938AA9";
+                cyan = "#7AA89F";
+                white = "#c5c9c5";
+              };
+              selection = {
+                background = "#2D4F67";
+                foreground = "#C8C093";
+              };
+              indexed_colors = [
+                {
+                  index = 16;
+                  color = "#b6927b";
+                }
+                {
+                  index = 17;
+                  color = "#b98d7b";
+                }
+              ];
             };
-          };
-        };
+          })
+        ];
       };
     };
 }

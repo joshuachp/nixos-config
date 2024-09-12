@@ -11,20 +11,29 @@ let
 in
 {
   options = {
-    nixosConfig.virtualisation.enable = lib.mkEnableOption "virtualisation";
+    nixosConfig.virtualisation = {
+      enable = lib.mkEnableOption "virtualisation";
+      virtualbox = lib.mkEnableOption "virtualbox";
+    };
   };
-  config = lib.mkIf cfg.enable {
-    virtualisation.libvirtd = {
-      enable = true;
-      qemu = {
-        swtpm.enable = true;
-        ovmf = {
-          enable = true;
-          packages = [ pkgs.OVMFFull.fd ];
+  config = lib.mkMerge [
+    (lib.mkIf cfg.virtualbox {
+      virtualisation.virtualbox.host.enable = true;
+      users.users.joshuachp.extraGroups = [ "vboxusers" ];
+    })
+    (lib.mkIf cfg.enable {
+      virtualisation.libvirtd = {
+        enable = true;
+        qemu = {
+          swtpm.enable = true;
+          ovmf = {
+            enable = true;
+            packages = [ pkgs.OVMFFull.fd ];
+          };
         };
       };
-    };
 
-    environment.systemPackages = import "${self}/pkgs/virtualisation.nix" pkgs ++ [ pkgs.win-virtio ];
-  };
+      environment.systemPackages = import "${self}/pkgs/virtualisation.nix" pkgs ++ [ pkgs.win-virtio ];
+    })
+  ];
 }

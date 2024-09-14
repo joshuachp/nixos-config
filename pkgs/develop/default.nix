@@ -6,6 +6,8 @@ with pkgs;
   git-extras
   pre-commit
 
+  github-cli
+
   # Code
   dprint
   delta

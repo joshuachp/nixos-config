@@ -1,6 +1,6 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": ["config:recommended",":rebaseStalePrs"],
+  "extends": ["config:recommended", ":rebaseStalePrs"],
   "dependencyDashboard": true,
   "argocd": {
     "fileMatch": ["infra/argocd/applications\\.yaml$"]
@@ -10,5 +10,21 @@
   },
   "pre-commit": {
     "enabled": true
-  }
+  },
+  "nix": {
+    "enabled": true,
+    "schedule": ["after 7am on saturday"]
+  },
+  "packageRules": [
+    {
+      "description": "Update renovate only daily",
+      "matchDepNames": ["renovate/renovate"],
+      "extends": [
+        "schedule:daily",
+        ":automergePatch",
+        ":automergePr",
+        ":automergeRequireAllStatusChecks"
+      ]
+    }
+  ]
 }

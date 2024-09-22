@@ -10,7 +10,8 @@ data:
         "$schema": "https://docs.renovatebot.com/renovate-schema.json",
         "extends":["config:recommended"],
         "dependencyDashboard": true
-      }
+      },
+      "globalExtends": ["config:recommended", ":rebaseStalePrs"]
     }
 ---
 apiVersion: batch/v1

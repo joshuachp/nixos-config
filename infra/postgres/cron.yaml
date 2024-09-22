@@ -36,7 +36,7 @@ spec:
         spec:
           containers:
             - name: backup
-              image: joshuachp/pg-backup-container:0.1.2
+              image: joshuachp/pg-backup-container:0.1.2@sha256:f1c15e33c09d4212ab28432c58de3c9943a3b067a79dd1233e4a1d725b6e44b9
               env:
                 - name: NTFY_URL
                   value: "http://http.tcp.ntfy.ntfy.svc.cluster.local"

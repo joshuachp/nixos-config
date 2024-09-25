@@ -71,13 +71,18 @@
       };
     };
 
-    # Syncthing local firewall
-    # https://docs.syncthing.net/users/firewall.html#local-firewall
     networking.firewall = {
-      allowedTCPPorts = [ 22000 ];
+      allowedTCPPorts = [
+        # Syncthing local firewall
+        # https://docs.syncthing.net/users/firewall.html#local-firewall
+        22000
+      ];
       allowedUDPPorts = [
+        # Syncthing local firewall
         22000
         21027
+        # mdns
+        5353
       ];
     };
 

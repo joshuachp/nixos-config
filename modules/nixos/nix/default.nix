@@ -40,7 +40,10 @@ in
         registry.nixpkgs.flake = nixpkgs;
         # Disable nix channels, but keep the system compatible
         channel.enable = false;
-        settings.nix-path = "nixpkgs=${nixpkgs}";
+        settings = {
+          nix-path = "nixpkgs=${nixpkgs}";
+          commit-lockfile-summary = "chore(nix): update flake.lock";
+        };
       };
       environment = {
         systemPackages = import "${self}/pkgs/nixpkgs.nix" pkgs;

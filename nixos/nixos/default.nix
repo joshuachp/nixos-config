@@ -57,6 +57,8 @@
       ];
     };
 
+    programs.gamescope.enable = true;
+
     services = {
       # Enable btrfs scrubbing
       btrfs.autoScrub = {

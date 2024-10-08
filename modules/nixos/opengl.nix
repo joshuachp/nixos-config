@@ -60,8 +60,8 @@
             [
               intel-media-driver
               intel-compute-runtime
-              # Intel vaapi drivers
-              vaapiIntel
+              # imported in nixos-hardware
+              # intel-vaapi-driver
               libvdpau-va-gl
             ]
           )
@@ -78,7 +78,11 @@
 
         extraPackages32 =
           (lib.optionals amd [ pkgs.driversi686Linux.amdvlk ])
-          ++ (lib.optionals intel [ pkgs.pkgsi686Linux.vaapiIntel ]);
+          ++ (lib.optionals intel [
+            pkgs.pkgsi686Linux.intel-media-driver
+            # imported in nixos-hardware
+            # pkgs.pkgsi686Linux.intel-vaapi-driver
+          ]);
       };
     };
 }

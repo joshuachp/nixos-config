@@ -6,5 +6,4 @@ with pkgs;
   nodePackages.prettier
   nodePackages.typescript
   nodePackages.typescript-language-server
-  nodePackages.vscode-langservers-extracted
 ]

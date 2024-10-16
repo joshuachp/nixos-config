@@ -35,6 +35,8 @@
       '';
     };
 
+    services.fwupd.enable = true;
+
     nixosConfig.server.k3s = {
       enable = true;
       role = "agent";

@@ -9,6 +9,7 @@ prometheusOperator:
 
 prometheus:
   prometheusSpec:
+    externalUrl: "https://prometheus.k.joshuachp.dev"
     tolerations:
       - key: "location"
         operator: "Equal"
@@ -36,6 +37,7 @@ grafana:
 
 alertmanager:
   alertmanagerSpec:
+    externalUrl: "https://alertmanager.k.joshuachp.dev"
     tolerations:
       - key: "location"
         operator: "Equal"

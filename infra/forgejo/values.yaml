@@ -54,6 +54,9 @@ gitea:
       REPO_INDEXER_ENABLED: true
     webhook:
       ALLOWED_HOST_LIST: private,external
+    cron:
+      ENABLED: true
+      RUN_AT_START: true
   additionalConfigSources:
     - secret:
         secretName: forgejo-app-ini-secret

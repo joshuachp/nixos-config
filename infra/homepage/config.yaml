@@ -30,6 +30,10 @@ data:
               type: gitea
               url: https://git.k.joshuachp.dev
               key: {{HOMEPAGE_VAR_FORGEJO_TOKEN}}
+        - Woodpecker:
+            href: http://ci.k.joshuachp.dev/
+            icon: woodpecker.png
+            description: Woodpecker Ci
         - Syncthing:
             href: http://syncthing.k.joshuachp.dev/
             icon: syncthing.png
@@ -49,14 +53,18 @@ data:
             widget:
               type: traefik
               url: https://traefik.k.joshuachp.dev
-        - Prometheus:
-            href: http://prometheus.k.joshuachp.dev/
-            icon: prometheus.png
-            description: Prometheus
         - Grafana:
             href: http://grafana.k.joshuachp.dev/
             icon: grafana.png
             description: Grafana
+        - Prometheus:
+            href: http://prometheus.k.joshuachp.dev/
+            icon: prometheus.png
+            description: Prometheus
+        - AlertManager:
+            href: http://alertmanager.k.joshuachp.dev/
+            icon: alertmanager.png
+            description: AlertManager
   widgets.yaml: |
     - kubernetes:
         cluster:

@@ -21,19 +21,24 @@ data:
             - abbr: GH
               href: https://github.com/
   services.yaml: |
-    - Kube services:
+    - Dev:
         - Git:
             href: http://git.k.joshuachp.dev/
             icon: forgejo.png
-            description: Gitea instance
+            description: Forgejo
             widget:
               type: gitea
               url: https://git.k.joshuachp.dev
               key: {{HOMEPAGE_VAR_FORGEJO_TOKEN}}
         - Woodpecker:
             href: http://ci.k.joshuachp.dev/
-            icon: woodpecker.png
+            icon: woodpecker-ci-light.png
             description: Woodpecker Ci
+        - ArgoCD:
+            href: http://argocd.k.joshuachp.dev/
+            icon: argocd.png
+            description: ArgoCD
+    - Services:
         - Syncthing:
             href: http://syncthing.k.joshuachp.dev/
             icon: syncthing.png
@@ -42,17 +47,7 @@ data:
             href: http://ntfy.k.joshuachp.dev/
             icon: ntfy.png
             description: Ntfy web UI
-        - ArgoCD:
-            href: http://argocd.k.joshuachp.dev/
-            icon: argocd.png
-            description: ArgoCD
-        - Traefik:
-            href: http://traefik.k.joshuachp.dev/
-            icon: traefik.png
-            description: Traefik dashboard
-            widget:
-              type: traefik
-              url: https://traefik.k.joshuachp.dev
+    - Observability:
         - Grafana:
             href: http://grafana.k.joshuachp.dev/
             icon: grafana.png
@@ -65,6 +60,18 @@ data:
             href: http://alertmanager.k.joshuachp.dev/
             icon: alertmanager.png
             description: AlertManager
+    - Infrastructure:
+        - Minio:
+            href: http://minio-console.k.joshuachp.dev/
+            icon: minio-light.png
+            description: Minio Console
+        - Traefik:
+            href: http://traefik.k.joshuachp.dev/
+            icon: traefik.png
+            description: Traefik dashboard
+            widget:
+              type: traefik
+              url: https://traefik.k.joshuachp.dev
   widgets.yaml: |
     - kubernetes:
         cluster:

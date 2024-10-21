@@ -10,9 +10,6 @@ steps:
     image: renovate/renovate:38.128.6@sha256:260019e4621db78e2b1f6a70c8c8369d8274163cf37b399683d768d3e460c3fe
     volumes:
       - renovate-ci-pvc:/renovate-cache
-    settings:
-      mount:
-        - "renovate-ci-pvc"
     secrets:
       [
         GITHUB_COM_TOKEN,
@@ -28,9 +25,9 @@ steps:
       RENOVATE_PLATFORM: gitea
     commands:
       - |
-        echo '{
-          "repositories": ["joshuachp/nixos-config"],
+        printf '{
+          "repositories": ["%s"],
           "extends":["config:recommended"],
           "dependencyDashboard": true
-        }' > /tmp/config.json
+        }' "$CI_REPO" > /tmp/config.json
       - renovate

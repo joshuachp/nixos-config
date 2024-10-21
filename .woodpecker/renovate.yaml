@@ -4,6 +4,7 @@ when:
   event:
     - push
     - manual
+skip_clone: true
 steps:
   - name: renovate
     image: renovate/renovate:38.128.6@sha256:260019e4621db78e2b1f6a70c8c8369d8274163cf37b399683d768d3e460c3fe
@@ -22,6 +23,12 @@ steps:
       RENOVATE_CONFIG_FILE: /tmp/config.json
       RENOVATE_CACHE_DIR: /renovate-cache
       RENOVATE_PLATFORM: gitea
+    # TODO: remove when non root containers work
+    backend_options:
+      kubernetes:
+        securityContext:
+          runAsUser: 0
+          runAsGroup: 0
     commands:
       - |
         printf '{

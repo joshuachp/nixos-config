@@ -76,9 +76,12 @@
       (lib.mkIf cfg.mDNS {
         services.avahi = {
           enable = true;
+          ipv4 = true;
           nssmdns4 = true;
+          ipv6 = true;
           nssmdns6 = true;
         };
+        networking.firewall.allowedUDPPorts = [ 5353 ];
       })
       # Disable mDNS if Avahi is enable
       (lib.mkIf config.services.avahi.enable {

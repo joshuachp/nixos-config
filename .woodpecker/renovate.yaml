@@ -25,9 +25,9 @@ steps:
       RENOVATE_PLATFORM: gitea
     commands:
       - |
-        echo '{
-          "repositories": ["joshuachp/nixos-config"],
+        printf '{
+          "repositories": ["%s"],
           "extends":["config:recommended"],
           "dependencyDashboard": true
-        }' > /tmp/config.json
+        }' "$CI_REPO" > /tmp/config.json
       - renovate

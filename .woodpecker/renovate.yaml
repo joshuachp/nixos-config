@@ -23,6 +23,14 @@ steps:
       RENOVATE_CONFIG_FILE: /tmp/config.json
       RENOVATE_CACHE_DIR: /renovate-cache
       RENOVATE_PLATFORM: gitea
+    # TODO: remove when non root containers work
+    backend_options:
+      kubernetes:
+        securityContext:
+          runAsUser: 0
+          runAsGroup: 0
+          fsGroup: 0
+          privileged: true
     commands:
       - |
         printf '{

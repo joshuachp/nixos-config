@@ -44,6 +44,8 @@
       virtualisation.enable = true;
     };
 
+    virtualisation.podman.enable = true;
+
     # User homeManager configurations
     home-manager.users.joshuachp = {
       homeConfig.syncthing.enable = true;

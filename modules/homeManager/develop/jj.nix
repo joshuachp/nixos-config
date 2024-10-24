@@ -27,6 +27,7 @@
               "-FRX"
             ];
             diff-editor = "nvimdiff";
+            default-command = "log";
           };
           signing = {
             sign-all = true;

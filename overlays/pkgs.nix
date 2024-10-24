@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 {
   config = {
     nixpkgs.overlays = [
@@ -35,11 +35,28 @@
               committed --config ${committedConfig} "$@"
             '';
           };
+          jujutsuDynamicConfig =
+            let
+              jj = lib.getExe pkgs.jujutsu;
+            in
+            pkgs.writeShellApplication {
+              name = "jj-dynamic-config";
+              runtimeInputs = [ pkgs.jujutsu ];
+              text = ''
+                set -eEuo pipefail
+
+                if [[ "$PWD" == "$HOME/share/repos/seco/"* ]]; then
+                  ${jj} --config-toml "$(cat "$HOME/share/seco/.jjconfig.toml")" "$@"
+                else
+                  ${jj} "$@"
+                fi
+              '';
+            };
         in
         {
           astartectl = pkgs.callPackage ../packages/astartectl.nix { };
           customLocale = pkgs.callPackage ../packages/customLocale.nix { };
-          inherit committed committedWithDefault;
+          inherit committed committedWithDefault jujutsuDynamicConfig;
         }
       )
     ];

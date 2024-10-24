@@ -5,7 +5,10 @@
   ...
 }:
 {
-  imports = [ ./git.nix ];
+  imports = [
+    ./git.nix
+    ./jj.nix
+  ];
   options = {
     homeConfig = {
       docker.config = lib.mkEnableOption "docker config";

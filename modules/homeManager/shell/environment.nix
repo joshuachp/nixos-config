@@ -73,6 +73,8 @@ in
       BROWSER = "firefox";
       TUI_BROWSER = "w3m";
 
+      # Auto pager
+      PAGER = "less -FRX";
       # Editor
       EDITOR = "nvim";
       # Visual

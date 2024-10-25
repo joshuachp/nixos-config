@@ -28,6 +28,12 @@
             ];
             diff-editor = "nvimdiff";
             default-command = "log";
+            diff.tool = [
+              "difft"
+              "--color=always"
+              "$left"
+              "$right"
+            ];
           };
           signing = {
             sign-all = true;
@@ -42,6 +48,18 @@
         };
         signing = {
           key = privCfg.joshuaSeco.pgpPubKey;
+        };
+        templates = {
+          draft_commit_description = ''
+            concat(
+              description,
+              "\n\nSigned-off-by: ${privCfg.joshuaSeco.name} <${privCfg.joshuaSeco.email}>"
+              surround(
+                "\nJJ: This commit contains the following changes:\n", "",
+                indent("JJ:     ", diff.stat(72)),
+              ),
+            )
+          '';
         };
       };
     };

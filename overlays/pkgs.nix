@@ -1,10 +1,18 @@
-{ pkgs, lib, ... }:
+{
+  pkgs,
+  lib,
+  flakeInputs,
+  system,
+  ...
+}:
 {
   config = {
     nixpkgs.overlays = [
       (
         final: super:
         let
+          unstablePkgs = import flakeInputs.nixpkgs-unstable { inherit system; };
+
           committed = pkgs.callPackage ../packages/committed.nix { };
           committedConfig = pkgs.writeText "committed.toml" ''
             subject_capitalized = false
@@ -37,11 +45,11 @@
           };
           jujutsuDynamicConfig =
             let
-              jj = lib.getExe pkgs.jujutsu;
+              jj = lib.getExe unstablePkgs.jujutsu;
             in
             pkgs.writeShellApplication {
               name = "jj-dynamic-config";
-              runtimeInputs = [ pkgs.jujutsu ];
+              runtimeInputs = [ unstablePkgs.jujutsu ];
               text = ''
                 set -eEuo pipefail
 
@@ -56,6 +64,7 @@
         {
           astartectl = pkgs.callPackage ../packages/astartectl.nix { };
           customLocale = pkgs.callPackage ../packages/customLocale.nix { };
+          inherit (unstablePkgs) jujutsu;
           inherit committed committedWithDefault jujutsuDynamicConfig;
         }
       )

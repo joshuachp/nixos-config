@@ -64,7 +64,7 @@
         {
           astartectl = pkgs.callPackage ../packages/astartectl.nix { };
           customLocale = pkgs.callPackage ../packages/customLocale.nix { };
-          inherit (unstablePkgs) jujutsu;
+          inherit (unstablePkgs) jujutsu cargo-edit;
           inherit committed committedWithDefault jujutsuDynamicConfig;
         }
       )

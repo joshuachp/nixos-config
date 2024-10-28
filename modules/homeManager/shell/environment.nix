@@ -74,7 +74,7 @@ in
       TUI_BROWSER = "w3m";
 
       # Auto pager
-      PAGER = "less -FRX";
+      PAGER = "less";
       # Editor
       EDITOR = "nvim";
       # Visual
@@ -83,6 +83,8 @@ in
       MANPAGER = "nvim +Man!";
       # Diff
       DIFFPROG = "nvim -d";
+      # Less options
+      LESS = "-FRX--mouse";
 
       # Terminal Emulator
       TERMINAL = "alacritty";

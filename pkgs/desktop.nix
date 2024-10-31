@@ -6,9 +6,13 @@
 }:
 let
   cfg = config.systemConfig.desktop;
+  mattermost =
+    if cfg.wayland then
+      config.lib.config.wrapElectronWayland pkgs.mattermost-desktop
+    else
+      pkgs.mattermost-desktop;
 in
-with pkgs;
-[
+(with pkgs; [
   # Terminals
   alacritty
 
@@ -29,7 +33,6 @@ with pkgs;
   zathura
 
   # Chat apps
-  mattermost-desktop
   signal-desktop
   element-desktop
   tdesktop
@@ -39,5 +42,6 @@ with pkgs;
   libnotify
   playerctl
   xclip
-]
+])
+++ [ mattermost ]
 ++ lib.optionals cfg.wayland (with pkgs; [ wl-clipboard ])

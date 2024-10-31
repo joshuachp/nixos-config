@@ -1,5 +1,5 @@
 # Package dependent library functions
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 {
   config = {
     lib.config = {
@@ -12,6 +12,21 @@
 
           ${pkgs.nixgl.nixGLIntel}/bin/nixGLIntel ${binary} $@
         '');
+      wrapElectronWayland =
+        derivation:
+        let
+          name = lib.strings.getName derivation;
+          exe = builtins.baseNameOf (lib.getExe derivation);
+        in
+        pkgs.symlinkJoin {
+          name = "${name}-wayland";
+          paths = [ derivation ];
+          nativeBuildInputs = [ pkgs.makeWrapper ];
+          postBuild = ''
+            wrapProgram "$out/bin/${exe}" \
+              --set NIXOS_OZONE_WL 1
+          '';
+        };
     };
   };
 }

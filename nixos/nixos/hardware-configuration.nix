@@ -48,6 +48,7 @@
           "defaults"
           "subvol=root"
           "compress=zstd"
+          "autodefrag"
           "noatime"
         ];
       };
@@ -59,6 +60,7 @@
           "defaults"
           "subvol=nix"
           "compress=zstd"
+          "autodefrag"
           "noatime"
         ];
       };
@@ -81,6 +83,7 @@
           "defaults"
           "subvol=home"
           "compress=zstd"
+          "autodefrag"
           "noatime"
         ];
       };
@@ -93,6 +96,7 @@
           "user"
           "exec"
           "compress=zstd"
+          "autodefrag"
           "noatime"
         ];
       };
@@ -104,6 +108,7 @@
           "defaults"
           "subvol=var"
           "compress=zstd"
+          "autodefrag"
           "noatime"
         ];
       };

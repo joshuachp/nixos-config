@@ -43,46 +43,45 @@
         }
       ];
       services.xserver.videoDrivers = [ "modesetting" ];
-      hardware.opengl = {
-        enable = true;
+      hardware = {
+        opengl = {
+          enable = true;
 
-        driSupport = true;
-        driSupport32Bit = true;
+          driSupport = true;
+          driSupport32Bit = true;
 
-        extraPackages =
-          (with pkgs; [
-            # Vulkan
-            vulkan-extension-layer
-            vulkan-validation-layers
-          ])
-          ++ lib.optionals intel (
-            with pkgs;
-            [
-              intel-media-driver
-              intel-compute-runtime
-              # imported in nixos-hardware
-              # intel-vaapi-driver
-              libvdpau-va-gl
-            ]
-          )
-          ++ lib.optionals amd (
-            with pkgs;
-            [
+          extraPackages =
+            (with pkgs; [
               # Vulkan
-              amdvlk
-              # Opencl
-              rocmPackages.clr.icd
-              rocmPackages.clr
-            ]
-          );
+              vulkan-extension-layer
+              vulkan-validation-layers
+            ])
+            ++ lib.optionals intel (
+              with pkgs;
+              [
+                intel-media-driver
+                intel-compute-runtime
+                # imported in nixos-hardware
+                # intel-vaapi-driver
+                libvdpau-va-gl
+              ]
+            );
 
-        extraPackages32 =
-          (lib.optionals amd [ pkgs.driversi686Linux.amdvlk ])
-          ++ (lib.optionals intel [
+          extraPackages32 = lib.optionals intel [
             pkgs.pkgsi686Linux.intel-media-driver
             # imported in nixos-hardware
             # pkgs.pkgsi686Linux.intel-vaapi-driver
-          ]);
+          ];
+        };
+
+        amdgpu = lib.mkIf amd {
+          opencl.enable = true;
+          initrd.enable = true;
+          amdvlk = {
+            enable = true;
+            support32Bit.enable = true;
+          };
+        };
       };
     };
 }

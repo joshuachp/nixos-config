@@ -64,11 +64,8 @@
       btrfs.autoScrub = {
         enable = true;
         fileSystems = [
-          "/"
-          "/nix"
-          "/home"
-          "/var"
-          "/share"
+          "/dev/Linux/root"
+          "/dev/Linux/share"
         ];
       };
 

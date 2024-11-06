@@ -13,12 +13,17 @@ in
   options = {
     nixosConfig.virtualisation = {
       enable = lib.mkEnableOption "virtualisation";
-      virtualbox = lib.mkEnableOption "virtualbox";
+      virtualbox = {
+        enable = lib.mkEnableOption "virtualbox";
+      };
     };
   };
   config = lib.mkMerge [
-    (lib.mkIf cfg.virtualbox {
-      virtualisation.virtualbox.host.enable = true;
+    (lib.mkIf cfg.virtualbox.enable {
+      virtualisation.virtualbox.host = {
+        enable = true;
+        enableKvm = true;
+      };
       users.users.joshuachp.extraGroups = [ "vboxusers" ];
     })
     (lib.mkIf cfg.enable {

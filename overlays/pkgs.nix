@@ -1,4 +1,5 @@
 {
+  config,
   pkgs,
   lib,
   flakeInputs,
@@ -60,12 +61,22 @@
                 fi
               '';
             };
+          mattermost-desktop =
+            if config.systemConfig.desktop.wayland then
+              config.lib.config.wrapElectronWayland super.mattermost-desktop
+            else
+              super.mattermost-desktop;
         in
         {
           astartectl = pkgs.callPackage ../packages/astartectl.nix { };
           customLocale = pkgs.callPackage ../packages/customLocale.nix { };
           inherit (unstablePkgs) jujutsu cargo-edit;
-          inherit committed committedWithDefault jujutsuDynamicConfig;
+          inherit
+            committed
+            committedWithDefault
+            jujutsuDynamicConfig
+            mattermost-desktop
+            ;
         }
       )
     ];

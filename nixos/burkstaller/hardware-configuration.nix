@@ -33,6 +33,11 @@
       kernelModules = [ "dm-snapshot" ];
     };
     kernelModules = [ "kvm-intel" ];
+    kernelParams = [
+      "acpi_osi=Linux"
+      # Deeper suspend
+      "mem_sleep_default=deep"
+    ];
     extraModulePackages = [ ];
   };
 

@@ -6,11 +6,6 @@
 }:
 let
   cfg = config.systemConfig.desktop;
-  mattermost =
-    if cfg.wayland then
-      config.lib.config.wrapElectronWayland pkgs.mattermost-desktop
-    else
-      pkgs.mattermost-desktop;
 in
 (with pkgs; [
   # Terminals
@@ -36,6 +31,7 @@ in
   signal-desktop
   element-desktop
   tdesktop
+  mattermost-desktop
 
   # CLI tools for desktop
   gnuplot
@@ -43,5 +39,4 @@ in
   playerctl
   xclip
 ])
-++ [ mattermost ]
 ++ lib.optionals cfg.wayland (with pkgs; [ wl-clipboard ])

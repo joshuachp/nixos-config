@@ -32,7 +32,7 @@ deploy_host() {
     ssh "root@$host.wg" -- free -h
     ssh "root@$host.wg" -- lsblk --fs
 
-    ssh "root@$host.wg" -- reboot
+    ssh "root@$host.wg" 'bootctl is-installed && systemctl kexec || reboot'
 
     check_online "$host"
 

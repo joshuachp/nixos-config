@@ -10,6 +10,13 @@
   ];
 
   boot = {
+    loader = {
+      systemd-boot.enable = true;
+      efi = {
+        canTouchEfiVariables = true;
+        efiSysMountPoint = "/boot";
+      };
+    };
     initrd = {
       availableKernelModules = [
         "ahci"
@@ -23,10 +30,6 @@
     };
     kernelModules = [ ];
     extraModulePackages = [ ];
-    loader.grub = {
-      efiSupport = true;
-      efiInstallAsRemovable = true;
-    };
   };
 
   swapDevices = [

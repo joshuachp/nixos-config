@@ -61,6 +61,8 @@
           "nvidia_modeset"
         ];
 
+        nixosConfig.desktop.sway.nvidia = lib.mkForce false;
+
         services = {
           # battery management
           power-profiles-daemon.enable = false;

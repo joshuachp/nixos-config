@@ -33,6 +33,10 @@
       };
       desktop = {
         hyprland.enable = true;
+        sway = {
+          enable = true;
+          nvidia = true;
+        };
       };
       embedded.enable = true;
       virtualisation.enable = true;

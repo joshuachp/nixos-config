@@ -12,7 +12,7 @@
     in
     {
       homeConfig.desktop.hyprland.enable = mkEnableOption "hyprland window manager" // {
-        default = if osConfig == null then false else osConfig.nixosConfig.desktop.hyprland.enable;
+        default = osConfig.nixosConfig.desktop.hyprland.enable or false;
       };
     };
   config =

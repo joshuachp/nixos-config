@@ -12,8 +12,10 @@ let
 in
 {
   options = {
-    nixosConfig.desktop.sway.enable = mkEnableOption "Sway window manager";
-    nixosConfig.desktop.sway.nvidia = mkEnableOption "Nvidia with Sway";
+    nixosConfig.desktop.sway = {
+      enable = mkEnableOption "Sway window manager";
+      nvidia = mkEnableOption "Nvidia with Sway";
+    };
   };
   config = lib.mkIf enable {
     assertions = [
@@ -32,11 +34,6 @@ in
       wrapperFeatures.gtk = true;
       extraPackages = import "${self}/pkgs/wm/sway.nix" pkgs;
       extraOptions = lib.mkIf cfg.nvidia [ "--unsupported-gpu" ];
-      extraSessionCommands = ''
-        export WLR_NO_HARDWARE_CURSORS=1
-        export XDG_CURRENT_DESKTOP=sway
-        systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
-      '';
     };
 
     # XDG desktop portal compatibility with `wlroots`
@@ -47,6 +44,10 @@ in
       # extraPortals = with pkgs; [
       #   xdg-desktop-portal-gtk
       # ];
+      config.sway = {
+        "org.freedesktop.impl.portal.GlobalShortcuts" = "none";
+        "org.freedesktop.impl.portal.Secret" = [ "gnome-keyring" ];
+      };
     };
   };
 }

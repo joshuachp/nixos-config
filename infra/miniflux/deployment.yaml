@@ -17,7 +17,7 @@ spec:
         app.kubernetes.io/name: miniflux
     spec:
       containers:
-        - image: miniflux/miniflux:2.2.3
+        - image: miniflux/miniflux:2.2.3@sha256:e21953092096579daaad39ba69729f01b08380b03bae4544a943f549c8e11a67
           name: miniflux
           ports:
             - name: http

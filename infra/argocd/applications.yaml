@@ -152,6 +152,22 @@ spec:
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
+  name: miniflux
+  namespace: argocd
+spec:
+  project: default
+  syncPolicy:
+    automated: {}
+  source:
+    repoURL: https://github.com/joshuachp/nixos-config
+    path: infra/miniflux
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: miniflux
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
   name: minio
   namespace: argocd
 spec:

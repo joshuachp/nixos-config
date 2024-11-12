@@ -39,6 +39,14 @@ data:
             icon: argocd.png
             description: ArgoCD
     - Services:
+        - Miniflux:
+          href: https://miniflux.k.joshuachp.dev/
+          icon: miniflux.png
+          description: Miniflux RSS reader
+          widget:
+            type: miniflux
+            url: https://miniflux.k.joshuachp.dev
+            key: {{HOMEPAGE_VAR_MINIFLUX_TOKEN}}
         - Syncthing:
             href: http://syncthing.k.joshuachp.dev/
             icon: syncthing.png

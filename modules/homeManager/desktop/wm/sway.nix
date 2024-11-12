@@ -312,7 +312,7 @@
           {
             event = "after-resume";
             command = ''
-              ${swaymsg} 'output * dpms on'
+              ${swaymsg} "output * dpms on"
             '';
           }
         ];
@@ -324,7 +324,7 @@
           {
             timeout = 360;
             command = ''
-              ${swaymsg} 'output * dpms off'
+              ${swaymsg} "output * dpms off"
             '';
           }
           {

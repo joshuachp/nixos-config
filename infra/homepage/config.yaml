@@ -45,7 +45,7 @@ data:
             description: Miniflux RSS reader
             widget:
               type: miniflux
-              url: https://miniflux.k.joshuachp.dev
+              url: http://http.tcp.miniflux.miniflux.svc.cluster.local:8080
               key: {{HOMEPAGE_VAR_MINIFLUX_TOKEN}}
         - Syncthing:
             href: http://syncthing.k.joshuachp.dev/

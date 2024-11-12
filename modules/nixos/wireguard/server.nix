@@ -40,6 +40,7 @@
               "/home.k.joshuachp.dev/${ingressIp}"
               "/importer.k.joshuachp.dev/${ingressIp}"
               "/kubernetes-dashboard.k.joshuachp.dev/${ingressIp}"
+              "/miniflux.k.joshuachp.dev/${ingressIp}"
               "/minio-console.k.joshuachp.dev/${ingressIp}"
               "/minio.k.joshuachp.dev/${ingressIp}"
               "/ntfy.k.joshuachp.dev/${ingressIp}"

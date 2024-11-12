@@ -53,7 +53,7 @@
           draft_commit_description = ''
             concat(
               description,
-              "\n\nSigned-off-by: ${privCfg.joshuaSeco.name} <${privCfg.joshuaSeco.email}>"
+              "\n\nSigned-off-by: ${privCfg.joshuaSeco.name} <${privCfg.joshuaSeco.email}>",
               surround(
                 "\nJJ: This commit contains the following changes:\n", "",
                 indent("JJ:     ", diff.stat(72)),

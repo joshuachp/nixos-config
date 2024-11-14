@@ -26,7 +26,8 @@
               "less"
               "-FRX"
             ];
-            diff-editor = "nvimdiff";
+            #diff-editor = "nvim";
+            diff-editor = ":builtin";
             default-command = "log";
             diff.tool = [
               "difft"
@@ -39,6 +40,11 @@
             sign-all = true;
             backend = "gpg";
             key = privCfg.joshuachp.pgpPubKey;
+          };
+          template-aliases = {
+            "signoff(author)" = ''
+              "\n\nSigned-off-by: " ++ author.name() ++ " <" ++ author.email() ++ ">\n"
+            '';
           };
         };
       };
@@ -53,7 +59,7 @@
           draft_commit_description = ''
             concat(
               description,
-              "\n\nSigned-off-by: ${privCfg.joshuaSeco.name} <${privCfg.joshuaSeco.email}>",
+              if(!description.contains("Signed-off-by"), signoff(self.committer())),
               surround(
                 "\nJJ: This commit contains the following changes:\n", "",
                 indent("JJ:     ", diff.stat(72)),

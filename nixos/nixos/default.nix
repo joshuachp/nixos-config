@@ -1,4 +1,9 @@
-{ flakeInputs, ... }:
+{
+  pkgs,
+  lib,
+  flakeInputs,
+  ...
+}:
 {
   imports = [
     ./hardware-configuration.nix
@@ -61,7 +66,19 @@
       ];
     };
 
-    programs.gamescope.enable = true;
+    programs = {
+      gamescope.enable = true;
+      gamemode.enable = true;
+    };
+    users.users.joshuachp.extraGroups = [ "gamemode" ];
+
+    specialisation = {
+      gaming.configuration = {
+        system.nixos.tags = [ "gaming" ];
+
+        boot.kernelPackages = lib.mkForce pkgs.linuxPackages_xanmod;
+      };
+    };
 
     services = {
       # Enable btrfs scrubbing
@@ -71,25 +88,6 @@
           "/dev/Linux/root"
           "/dev/Linux/share"
         ];
-      };
-
-      # Reduce audio lag and stutter
-      pipewire.extraConfig.pipewire = {
-        "10-clock-rate" = {
-          "context.properties" = {
-            "default.clock.rate" = 48000;
-            # This can be found with
-            # grep -E 'Codec|Audio Output|rates' /proc/asound/card*/codec#*
-            "default.clock.allowed-rates" = [
-              44100
-              48000
-              96000
-            ];
-            "default.clock.quantum" = 1024;
-            "default.clock.min-quantum" = 32;
-          };
-
-        };
       };
     };
   };

@@ -20,8 +20,7 @@ in
     };
     security.rtkit.enable = true;
 
-    # Enable sound.
-    sound.enable = true;
+    # use pipewire instead of pulse
     hardware.pulseaudio.enable = false;
 
     environment.systemPackages = with pkgs; [

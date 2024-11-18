@@ -23,16 +23,16 @@ in
       };
 
       # Udev
-      udev.packages = with pkgs; [ gnome.gnome-settings-daemon ];
+      udev.packages = with pkgs; [ gnome-settings-daemon ];
     };
 
     environment.gnome.excludePackages = with pkgs; [ epiphany ];
 
     environment.systemPackages = with pkgs; [
       gnome-podcasts
-      gnome.dconf-editor
-      gnome.gnome-tweaks
-      gnome.gnome-sound-recorder
+      dconf-editor
+      gnome-tweaks
+      gnome-sound-recorder
       gnomeExtensions.appindicator
     ];
   };

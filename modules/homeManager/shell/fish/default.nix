@@ -32,7 +32,16 @@ in
           # Jump function to change directory
           j = {
             description = "Jumps to a directory using jump";
-            body = "cd (jump print $argv)";
+            body = ''
+              set jump_to (jump print $argv)
+              set j_status $status
+
+              if test $j_status -ne 0
+                return $j_status
+              end
+
+              cd $jump_to
+            '';
           };
         })
       ];

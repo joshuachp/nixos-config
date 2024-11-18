@@ -22,10 +22,6 @@
       })
     ];
 
-    powerManagement.cpuFreqGovernor = "performance";
-
-    programs.steam.enable = true;
-
     # Enable desktop system
     systemConfig = {
       develop.enable = true;
@@ -66,19 +62,13 @@
       ];
     };
 
+    powerManagement.cpuFreqGovernor = "performance";
     programs = {
+      steam.enable = true;
       gamescope.enable = true;
       gamemode.enable = true;
     };
     users.users.joshuachp.extraGroups = [ "gamemode" ];
-
-    specialisation = {
-      gaming.configuration = {
-        system.nixos.tags = [ "gaming" ];
-
-        boot.kernelPackages = lib.mkForce pkgs.linuxPackages_xanmod;
-      };
-    };
 
     services = {
       # Enable btrfs scrubbing

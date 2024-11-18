@@ -13,7 +13,10 @@
     # Use the systemd-boot EFI boot loader.
     boot = {
       loader = {
-        systemd-boot.enable = true;
+        systemd-boot = {
+          enable = true;
+          xbootldrMountPoint = "/boot";
+        };
         efi = {
           canTouchEfiVariables = true;
           efiSysMountPoint = "/efi";
@@ -75,8 +78,9 @@
       };
 
       "/boot" = {
-        device = "/dev/disk/by-uuid/0f114536-503f-45ea-bf38-c866320bda2c";
-        fsType = "ext4";
+        device = "/dev/disk/by-partuuid/66ca8d8e-aaf6-4d93-bba9-d2826a99c145";
+        fsType = "vfat";
+        options = [ "umask=0077" ];
       };
 
       "/home" = {

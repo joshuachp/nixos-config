@@ -3,7 +3,7 @@
   options = {
     systemConfig = {
       version = lib.options.mkOption {
-        default = "24.05";
+        default = "24.11";
         description = "The current version of the system";
         type = lib.types.str;
       };

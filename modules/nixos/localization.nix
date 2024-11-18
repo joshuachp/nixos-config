@@ -29,7 +29,10 @@
       }
       (lib.mkIf cfg.enable {
         # Enable ibus for accented letters
-        i18n.inputMethod.enabled = "ibus";
+        i18n.inputMethod = {
+          enable = true;
+          type = "ibus";
+        };
       })
     ];
 }

@@ -40,6 +40,9 @@
       # '';
     };
 
+    hardware.i2c.enable = true;
+    users.users.joshuachp.extraGroups = [ "i2c" ];
+
     fileSystems = {
       "/" = {
         device = "/dev/Linux/root";

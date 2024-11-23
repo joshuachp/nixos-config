@@ -1,5 +1,6 @@
 {
   flakeInputs,
+  pkgs,
   ...
 }:
 {
@@ -60,10 +61,29 @@
       ];
     };
 
+    specialisation = {
+      gaming.configuration = {
+        system.nixos.tags = [ "gaming" ];
+
+        boot = {
+          kernelPackages = pkgs.linuxPackages_xanmod;
+          kernel.sysctl = {
+            "vm.max_map_count" = 2147483642;
+          };
+        };
+      };
+    };
+
     powerManagement.cpuFreqGovernor = "performance";
     programs = {
-      steam.enable = true;
-      gamescope.enable = true;
+      steam = {
+        enable = true;
+        gamescopeSession.enable = true;
+      };
+      gamescope = {
+        enable = true;
+        capSysNice = true;
+      };
       gamemode.enable = true;
     };
     users.users.joshuachp.extraGroups = [ "gamemode" ];

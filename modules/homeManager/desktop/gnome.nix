@@ -25,6 +25,11 @@
         "org/gnome/shell" = {
           enabled-extensions = [ "appindicatorsupport@rgcjonas.gmail.com" ];
         };
+        "org/gnome/desktop/interface" = {
+          font-name = "Inter 11";
+          document-font-name = "Atkinson Hyperlegible 12";
+          monospace-font-name = "JetBrainsMono Nerd Font 11";
+        };
       };
     };
 }

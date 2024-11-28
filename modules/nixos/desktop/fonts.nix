@@ -26,8 +26,8 @@ in
           noto-fonts-emoji
           noto-fonts-extra
 
-          dejavu_fonts
-
+          atkinson-hyperlegible
+          inter
           jetbrains-mono
 
           # Microsoft fonts
@@ -45,7 +45,10 @@ in
             "JetBrains Mono Nerd Font Mono"
             "JetBrains Mono"
           ];
-          sansSerif = [ "Noto Sans" ];
+          sansSerif = [
+            "Atkinson Hyperlegible"
+            "Noto Sans"
+          ];
           serif = [ "Noto Serif" ];
           emoji = [
             "Noto Color Emoji"

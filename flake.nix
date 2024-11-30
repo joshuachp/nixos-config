@@ -61,7 +61,6 @@
       inputs = {
         nixpkgs.follows = "nixpkgs";
         flake-utils.follows = "flake-utils";
-        crane.follows = "crane";
         rust-overlay.follows = "rust-overlay";
       };
     };

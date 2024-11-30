@@ -6,14 +6,16 @@
 
     services.xserver.videoDrivers = [ "nvidia" ];
 
-    environment.variables = {
-      DRI_PRIME = "pci-0000_01_00_0";
-      __VK_LAYER_NV_optimus = "NVIDIA_only";
-      __GLX_VENDOR_LIBRARY_NAME = "nvidia";
-    };
+    #environment.variables = {
+    # DRI_PRIME = "pci-0000_01_00_0";
+    # __VK_LAYER_NV_optimus = "NVIDIA_only";
+    # __GLX_VENDOR_LIBRARY_NAME = "nvidia";
+    #};
 
     hardware.nvidia = {
-      package = config.boot.kernelPackages.nvidiaPackages.production;
+      # production version has a use after free
+      package = config.boot.kernelPackages.nvidiaPackages.stable;
+      open = true;
 
       # Used for compute environments
       modesetting.enable = true;

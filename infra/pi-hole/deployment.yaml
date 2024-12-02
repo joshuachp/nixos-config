@@ -1,0 +1,72 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dnsmasq
+  namespace: pi-hole
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: dnsmasq
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: dnsmasq
+    spec:
+      tolerations:
+        - key: location
+          value: external
+          effect: NoSchedule
+      nodeName: kani
+      containers:
+        - name: ntfy
+          image: "joshuachp/dnsmasq:0.1.1"
+          resources:
+            limits:
+              memory: "128Mi"
+              cpu: "500m"
+            requests:
+              cpu: "10m"
+              memory: "10Mi"
+          ports:
+            - containerPort: 53
+              name: dns
+          volumeMounts:
+            - name: config
+              mountPath: "/etc/dnsmasq.d/"
+              readOnly: true
+          securityContext:
+            readOnlyRootFilesystem: true
+      volumes:
+        - name: config
+          configMap:
+            name: dnsmasq
+            optional: false
+      securityContext:
+        runAsUser: 100
+        runAsGroup: 101
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: dns
+  namespace: pi-hole
+  annotations:
+    metallb.universe.tf/loadBalancerIPs: 192.168.1.240
+    metallb.universe.tf/address-pool: external-pool
+spec:
+  selector:
+    app.kubernetes.io/name: dnsmasq
+  type: LoadBalancer
+  ports:
+    - name: dns
+      port: 53
+      protocol: UDP
+      targetPort: 53
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: dnsmasq
+  namespace: pi-hole
+data:
+  10-deployment.conf: ""

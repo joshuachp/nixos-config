@@ -8,6 +8,27 @@ spec:
     - 10.2.0.1/16
 ---
 apiVersion: metallb.io/v1beta1
+kind: IPAddressPool
+metadata:
+  name: external-pool
+  namespace: metallb
+spec:
+  addresses:
+    - 192.168.1.240-192.168.1.250
+---
+apiVersion: metallb.io/v1beta1
+kind: L2Advertisement
+metadata:
+  name: external-advertisement
+  namespace: metallb
+spec:
+  ipAddressPools:
+    - external-advertisement
+  nodeSelectors:
+    - matchLabels:
+        kubernetes.io/hostname: kani
+---
+apiVersion: metallb.io/v1beta1
 kind: L2Advertisement
 metadata:
   name: advertisement

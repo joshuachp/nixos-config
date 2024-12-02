@@ -110,6 +110,10 @@
         {
           enable = true;
           serverAddr = "https://${loadBalancerIp}:${toString apiPort}";
+          extraFlags = [
+            "--kube-proxy-arg='proxy-mode=ipvs'"
+            "--kube-proxy-arg='ipvs-strict-arp=true'"
+          ];
         };
     };
 }

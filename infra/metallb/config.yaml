@@ -19,20 +19,20 @@ spec:
 apiVersion: metallb.io/v1beta1
 kind: L2Advertisement
 metadata:
-  name: external-advertisement
-  namespace: metallb
-spec:
-  ipAddressPools:
-    - external-advertisement
-  nodeSelectors:
-    - matchLabels:
-        kubernetes.io/hostname: kani
----
-apiVersion: metallb.io/v1beta1
-kind: L2Advertisement
-metadata:
   name: advertisement
   namespace: metallb
 spec:
   ipAddressPools:
     - default
+---
+apiVersion: metallb.io/v1beta1
+kind: L2Advertisement
+metadata:
+  name: external-advertisement
+  namespace: metallb
+spec:
+  ipAddressPools:
+    - external-pool
+  nodeSelectors:
+    - matchLabels:
+        kubernetes.io/hostname: kani

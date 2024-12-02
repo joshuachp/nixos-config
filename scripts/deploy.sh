@@ -41,7 +41,7 @@ deploy_host() {
 }
 
 if [ "$1" = "all" ]; then
-    for h in kuma nixos-cloud nixos-cloud-2 tabour; do
+    for h in kuma nixos-cloud nixos-cloud-2 tabour kani; do
         deploy_host $h
     done
 else

@@ -8,6 +8,7 @@
         type = "gpt";
         partitions = {
           ESP = {
+            priority = 1;
             name = "ESP";
             start = "1M";
             end = "500M";
@@ -20,9 +21,10 @@
             };
           };
           BOOT = {
+            priority = 2;
             name = "BOOT";
-            start = "500M";
-            end = "1500M";
+            start = "501M";
+            end = "+1G";
             type = "EA00";
             content = {
               type = "filesystem";

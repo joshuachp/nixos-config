@@ -37,6 +37,9 @@
     };
     kernelModules = [ "kvm-intel" ];
     extraModulePackages = [ ];
+    kernelParams = [
+      "consoleblank=60"
+    ];
   };
 
   swapDevices = [ ];

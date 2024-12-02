@@ -47,4 +47,16 @@ in
       flakeInputs.disko.nixosModules.disko
     ];
   };
+  # The crab
+  kani = mkSystem "kani" {
+    modules = [
+      nixosHardware.common-cpu-intel
+      nixosHardware.common-pc
+      nixosHardware.common-pc-laptop
+      nixosHardware.common-pc-laptop-hdd
+      nixosHardware.common-pc-laptop-acpi_call
+      nixosHardware.common-gpu-nvidia-nonprime
+      flakeInputs.disko.nixosModules.disko
+    ];
+  };
 }

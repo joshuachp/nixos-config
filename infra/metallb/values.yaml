@@ -1,0 +1,6 @@
+speaker:
+  tolerations:
+    tolerations:
+      - key: location
+        value: external
+        effect: NoSchedule

@@ -96,7 +96,7 @@ spec:
         valueFiles:
           - $repo/infra/forgejo/values.yaml
     - chart: redis
-      repoURL: https://charts.bitnami.com/bitnami
+      repoURL: "registry-1.docker.io/bitnamicharts"
       targetRevision: 20.4.0
       helm:
         valueFiles:

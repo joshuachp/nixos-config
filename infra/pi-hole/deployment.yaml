@@ -19,7 +19,7 @@ spec:
       nodeName: kani
       containers:
         - name: ntfy
-          image: "joshuachp/dnsmasq:0.1.1"
+          image: "joshuachp/dnsmasq:0.1.1@sha256:85de4ed07d8401120b9bef0290bf78b2b3d46758d7cfe6320be4d90cb6e3b9d2"
           resources:
             limits:
               memory: "128Mi"

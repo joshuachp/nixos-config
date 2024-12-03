@@ -20,8 +20,9 @@ metadata:
     argocd.argoproj.io/secret-type: repository
 stringData:
   name: bitnami
+  enableOCI: "true"
   type: helm
-  url: https://charts.bitnami.com/bitnami
+  url: registry-1.docker.io/bitnamicharts
 ---
 apiVersion: v1
 kind: Secret

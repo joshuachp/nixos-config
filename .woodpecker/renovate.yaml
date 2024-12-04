@@ -7,7 +7,7 @@ when:
 skip_clone: true
 steps:
   - name: renovate
-    image: renovate/renovate:39.46.1@sha256:81630be1056665f6e9b02307167118168f9e0bef48608a58ae0cefe39d7eb6dd
+    image: renovate/renovate:39.48.1@sha256:2cbac9142042fb40317faaea51a8377ca00962db79479a2c9f72aed1268eb2e2
     # TODO: Add when non root containers work in woodpacker
     # volumes:
     #   - renovate-ci-pvc:/renovate-cache

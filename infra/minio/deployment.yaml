@@ -20,7 +20,7 @@ spec:
           effect: "NoSchedule"
       containers:
         - name: minio
-          image: bitnami/minio:2024.11.7@sha256:9f2d9c45006a2ada1bc485e1393291ce7d54ae1a46260dd491381a4eb8b2fd47
+          image: bitnami/minio:2024.11.7@sha256:81cd091fb9f14b2e9e9bfa6dbc2bf2d46fdd5eafa6c5e7c9213baf4256ff13d6
           command:
             - /bin/bash
             - -c

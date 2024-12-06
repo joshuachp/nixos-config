@@ -44,13 +44,48 @@
               committed --config ${committedConfig} "$@"
             '';
           };
+
+          jujutsu =
+            let
+              src = pkgs.fetchFromGitHub {
+                owner = "martinvonz";
+                repo = "jj";
+                rev = "v0.24.0";
+                hash = "sha256-XsD4P2UygZFcnlV2o3E/hRRgsGjwKw1r9zniEeAk758";
+              };
+            in
+            unstablePkgs.jujutsu.overrideAttrs (
+              final: super: {
+                inherit src;
+                version = "0.24.0";
+
+                cargoDeps = super.cargoDeps.overrideAttrs {
+                  inherit src;
+                  outputHash = "sha256-5vqRfNRh4QD8CIGK1tgy61A+b6qrZS+OduiJf/ejiZw=";
+                };
+
+                postInstall =
+                  let
+                    jj = "$out/bin/jj";
+                  in
+                  ''
+                    ${jj} util mangen > ./jj.1
+                    installManPage ./jj.1
+
+                    installShellCompletion --cmd jj \
+                      --bash <(COMPLETE=bash ${jj}) \
+                      --fish <(COMPLETE=fish ${jj}) \
+                      --zsh <(COMPLETE=zsh ${jj})
+                  '';
+              }
+            );
           jujutsuDynamicConfig =
             let
-              jj = lib.getExe unstablePkgs.jujutsu;
+              jj = lib.getExe jujutsu;
             in
             pkgs.writeShellApplication {
               name = "jj-dynamic-config";
-              runtimeInputs = [ unstablePkgs.jujutsu ];
+              runtimeInputs = [ jujutsu ];
               text = ''
                 set -eEuo pipefail
 
@@ -70,8 +105,9 @@
         {
           astartectl = pkgs.callPackage ../packages/astartectl.nix { };
           customLocale = pkgs.callPackage ../packages/customLocale.nix { };
-          inherit (unstablePkgs) jujutsu cargo-edit;
+          inherit (unstablePkgs) cargo-edit;
           inherit
+            jujutsu
             committed
             committedWithDefault
             jujutsuDynamicConfig

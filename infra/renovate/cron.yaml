@@ -26,6 +26,10 @@ spec:
     spec:
       template:
         spec:
+          tolerations:
+            - key: location
+              value: external
+              effect: NoSchedule
           containers:
             - name: renovate
               # Update this to the latest available and then enable Renovate on

@@ -19,10 +19,12 @@
     let
       cfg = config.nixosConfig.networking;
       privateCfg = config.privateConfig;
-      fallbackDns = [
+      pubDns = [
         "1.1.1.1"
-        "1.0.0.1"
         "2606:4700:4700::1111"
+      ];
+      pubFallbackDns = [
+        "1.0.0.1"
         "2606:4700:4700::1001"
       ];
     in
@@ -38,12 +40,13 @@
       # systemd-resolved config
       (lib.mkIf cfg.resolved (
         let
-          dns = if cfg.privateDns then privateCfg.resolved.dns else fallbackDns;
+          dns = if cfg.privateDns then privateCfg.resolved.dns else pubDns;
+          fallbackDns = if cfg.privateDns then privateCfg.resolved.fallbackDns else pubFallbackDns;
         in
         {
           services.resolved = {
             enable = true;
-            fallbackDns = dns;
+            inherit fallbackDns;
             dnssec = "false";
             extraConfig = ''
               DNSOverTLS=opportunistic
@@ -56,12 +59,13 @@
       # dnsmasq config
       (lib.mkIf cfg.dnsmasq (
         let
-          dns = if cfg.privateDns then privateCfg.dnsmasq.server else fallbackDns;
+          dns = if cfg.privateDns then privateCfg.dnsmasq.server else (pubFallbackDns ++ pubDns);
         in
         {
           services.dnsmasq = {
             enable = true;
             settings = {
+              strict-order = true;
               server = dns;
               add-cpe-id = lib.mkIf cfg.privateDns privateCfg.dnsmasq.add-cpe-id;
             };

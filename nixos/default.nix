@@ -13,7 +13,6 @@ in
       nixosHardware.common-gpu-nvidia-nonprime
       nixosHardware.common-pc-laptop
       nixosHardware.common-pc-laptop-ssd
-      nixosHardware.common-pc-laptop-acpi_call
     ];
   };
   # Work
@@ -54,7 +53,6 @@ in
       nixosHardware.common-pc
       nixosHardware.common-pc-laptop
       nixosHardware.common-pc-laptop-hdd
-      nixosHardware.common-pc-laptop-acpi_call
       nixosHardware.common-gpu-nvidia-nonprime
       flakeInputs.disko.nixosModules.disko
     ];

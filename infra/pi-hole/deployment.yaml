@@ -28,8 +28,9 @@ spec:
               cpu: "10m"
               memory: "10Mi"
           ports:
-            - containerPort: 53
-              name: dns
+            - name: dns
+              containerPort: 53
+              protocol: UDP
           volumeMounts:
             - name: config
               mountPath: "/etc/dnsmasq.d/"
@@ -51,7 +52,7 @@ metadata:
   name: dns
   namespace: pi-hole
   annotations:
-    metallb.universe.tf/loadBalancerIPs: 192.168.3.240
+    metallb.universe.tf/loadBalancerIPs: 192.168.3.1
     metallb.universe.tf/address-pool: external-pool
 spec:
   selector:
@@ -59,7 +60,7 @@ spec:
   type: LoadBalancer
   ports:
     - name: dns
-      port: 53
+      port: 8080
       protocol: UDP
       targetPort: 53
 ---

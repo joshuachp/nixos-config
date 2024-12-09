@@ -15,6 +15,7 @@
         extraFlags = [
           # Prevents issues with multiple network interfaces
           "--node-ip=${cfg.ip}"
+          "--node-external-ip=${cfg.externalIp}"
           "--flannel-iface=${cfg.interface}"
           # Hardening
           "--protect-kernel-defaults=true"

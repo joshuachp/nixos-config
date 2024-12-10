@@ -86,24 +86,24 @@
             preUp = ''
               set -eEuo pipefail
               # masquerading
-              iptables -t mangle -A PREROUTING -i wg0 -j MARK --set-mark 0x200
-              iptables -t nat -A POSTROUTING ! -o wg0 -m mark --mark 0x200 -j MASQUERADE
+              iptables-nft -t mangle -A PREROUTING -i wg0 -j MARK --set-mark 0x200
+              iptables-nft -t nat -A POSTROUTING ! -o wg0 -m mark --mark 0x200 -j MASQUERADE
               # forward
-              iptables -I INPUT   -i wg0 -j ACCEPT
-              iptables -I FORWARD -i wg0 -j ACCEPT
-              iptables -I FORWARD -o wg0 -j ACCEPT
-              iptables -I OUTPUT -o wg0 -j ACCEPT
+              iptables-nft -I INPUT   -i wg0 -j ACCEPT
+              iptables-nft -I FORWARD -i wg0 -j ACCEPT
+              iptables-nft -I FORWARD -o wg0 -j ACCEPT
+              iptables-nft -I OUTPUT  -o wg0 -j ACCEPT
             '';
             postDown = ''
               set -eEuo pipefail
               # masquerading
-              iptables -t mangle -D PREROUTING -i wg0 -j MARK --set-mark 0x200
-              iptables -t nat -D POSTROUTING ! -o wg0 -m mark --mark 0x200 -j MASQUERADE
+              iptables-nft -t mangle -D PREROUTING -i wg0 -j MARK --set-mark 0x200
+              iptables-nft -t nat -D POSTROUTING ! -o wg0 -m mark --mark 0x200 -j MASQUERADE
               # forward
-              iptables -I INPUT   -i wg0 -j ACCEPT
-              iptables -I FORWARD -i wg0 -j ACCEPT
-              iptables -I FORWARD -o wg0 -j ACCEPT
-              iptables -I OUTPUT -o wg0 -j ACCEPT
+              iptables-nft -I INPUT   -i wg0 -j ACCEPT
+              iptables-nft -I FORWARD -i wg0 -j ACCEPT
+              iptables-nft -I FORWARD -o wg0 -j ACCEPT
+              iptables-nft -I OUTPUT  -o wg0 -j ACCEPT
             '';
           };
         };

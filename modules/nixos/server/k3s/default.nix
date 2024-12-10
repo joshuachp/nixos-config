@@ -87,11 +87,9 @@
             7946
           ];
         };
-        extraCommands = ''
-          # Pods
-          iptables -A INPUT -4 --source 10.42.0.0/16 -j ACCEPT
-          # Services
-          iptables -A INPUT -4 --source 10.43.0.0/16 -j ACCEPT
+        extraInputRules = ''
+          # Pods & services
+          ip saddr { 10.42.0.0/16, 10.43.0.0/16 } accept
         '';
       };
 

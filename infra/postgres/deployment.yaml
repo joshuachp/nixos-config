@@ -72,7 +72,7 @@ spec:
     spec:
       containers:
         - name: postgres
-          image: postgres:17.2-alpine3.20@sha256:85c6511b7a85a9022fad3e372638f8472fe187d27979ab2bb66e16f53e87a515
+          image: postgres:17.2-alpine3.20@sha256:33dcd1b47520712a02640c3c714a0c71c4b2eb6314ae2f8a0ed138e55c052f5f
           env:
             - name: POSTGRES_USER
               value: postgres

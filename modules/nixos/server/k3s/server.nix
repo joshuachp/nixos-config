@@ -97,7 +97,7 @@
             in
             {
               enable = true;
-              openFirewall = true;
+              openFirewall = false;
               enableScriptSecurity = true;
               vrrpScripts.${script} = {
                 user = "keepalived_script";
@@ -117,5 +117,10 @@
               };
             };
         };
+      networking.firewall = {
+        extraInputRules = ''
+          iifname "${cfg.interface}" ip protocol { ah, vrrp } accept
+        '';
+      };
     };
 }

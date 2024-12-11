@@ -10,9 +10,13 @@
     lib.mkMerge [
       {
         networking = {
-          firewall.enable = true;
-          # Allow PMTU / DHCP
-          firewall.allowPing = true;
+          firewall = {
+            enable = true;
+            # Allow PMTU / DHCP
+            allowPing = true;
+          };
+
+          nftables.enable = true;
 
           # Use networkd by default, except on desktops
           useDHCP = lib.mkDefault false;

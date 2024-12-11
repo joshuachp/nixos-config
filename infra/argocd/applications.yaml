@@ -279,7 +279,7 @@ spec:
       ref: repo
     - chart: traefik
       repoURL: https://traefik.github.io/charts
-      targetRevision: 33.1.0
+      targetRevision: 33.2.0
       helm:
         valueFiles:
           - $repo/infra/traefik/values.yaml

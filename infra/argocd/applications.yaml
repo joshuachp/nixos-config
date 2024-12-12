@@ -123,6 +123,29 @@ spec:
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
+  name: ingress-nginx
+  namespace: argocd
+spec:
+  project: default
+  syncPolicy:
+    automated: {}
+  sources:
+    - repoURL: https://github.com/joshuachp/nixos-config
+      path: infra/ingress-nginx
+      ref: repo
+    - chart: ingress-nginx
+      repoURL: https://kubernetes.github.io/ingress-nginx
+      targetRevision: 4.11.3
+      helm:
+        valueFiles:
+          - $repo/infra/ingress-nginx/values.yaml
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: ingress-nginx
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
   name: metallb
   namespace: argocd
 spec:

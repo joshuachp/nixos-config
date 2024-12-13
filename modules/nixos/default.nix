@@ -1,4 +1,8 @@
-{ config, hostname, ... }:
+{
+  config,
+  hostname,
+  ...
+}:
 {
   imports = [
     ./bluetooth.nix
@@ -22,6 +26,7 @@
     ./wifi.nix
     ./wireguard
   ];
+
   config = {
     networking.hostName = hostname;
 

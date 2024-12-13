@@ -7,5 +7,6 @@ in
 {
   inherit mkSystem;
   mkDesktop = import ./mkDesktop.nix { inherit flakeInputs baseSystem mkSystem; };
-  mkHome = import./mkHome.nix flakeInputs baseSystem;
+  mkServer = import ./mkServer.nix { inherit flakeInputs baseSystem mkSystem; };
+  mkHome = import ./mkHome.nix flakeInputs baseSystem;
 }

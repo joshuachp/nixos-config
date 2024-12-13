@@ -62,8 +62,10 @@ in
       );
       nix.daemonIOSchedClass = lib.mkDefault "idle";
       nix.daemonIOSchedPriority = lib.mkDefault 7;
-
     }
+    (lib.mkIf config.systemConfig.minimal {
+      programs.command-not-found.enable = false;
+    })
     # Show update diff
     (lib.mkIf cfg.update-diff.enable {
       system.activationScripts.update-diff = {

@@ -1,7 +1,7 @@
 flakeInputs:
 let
   nixosHardware = flakeInputs.nixos-hardware.nixosModules;
-  inherit (flakeInputs.self.lib) mkSystem mkDesktop;
+  inherit (flakeInputs.self.lib) mkSystem mkDesktop mkServer;
 in
 {
   # Nixos
@@ -26,16 +26,14 @@ in
     ];
   };
   # Cloud
-  nixos-cloud = mkSystem "nixos-cloud" { modules = [ flakeInputs.disko.nixosModules.disko ]; };
+  nixos-cloud = mkServer "nixos-cloud" { };
   # Cloud 2
-  nixos-cloud-2 = mkSystem "nixos-cloud-2" {
+  nixos-cloud-2 = mkServer "nixos-cloud-2" {
     system = "aarch64-linux";
-    modules = [ flakeInputs.disko.nixosModules.disko ];
   };
   # Kuma
-  kuma = mkSystem "kuma" {
+  kuma = mkServer "kuma" {
     system = "aarch64-linux";
-    modules = [ flakeInputs.disko.nixosModules.disko ];
   };
   # Tabour
   tabour = mkSystem "tabour" {

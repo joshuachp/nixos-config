@@ -7,8 +7,6 @@
   config = {
     zramSwap.enable = true;
 
-    systemConfig.minimal = true;
-
     services = {
       openssh = {
         enable = true;

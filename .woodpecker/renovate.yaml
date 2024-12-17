@@ -11,19 +11,22 @@ steps:
     # TODO: Add when non root containers work in woodpacker
     # volumes:
     #   - renovate-ci-pvc:/renovate-cache
-    secrets:
-      [
-        GITHUB_COM_TOKEN,
-        RENOVATE_ENDPOINT,
-        RENOVATE_GIT_AUTHOR,
-        RENOVATE_USERNAME,
-        RENOVATE_TOKEN,
-        RENOVATE_GIT_PRIVATE_KEY,
-      ]
     environment:
       RENOVATE_CONFIG_FILE: /tmp/config.json
       # RENOVATE_CACHE_DIR: /renovate-cache
       RENOVATE_PLATFORM: gitea
+      GITHUB_COM_TOKEN:
+        from_secret: GITHUB_COM_TOKEN
+      RENOVATE_ENDPOINT:
+        from_secret: RENOVATE_ENDPOINT
+      RENOVATE_GIT_AUTHOR:
+        from_secret: RENOVATE_GIT_AUTHOR
+      RENOVATE_USERNAME:
+        from_secret: RENOVATE_USERNAME
+      RENOVATE_TOKEN:
+        from_secret: RENOVATE_TOKEN
+      RENOVATE_GIT_PRIVATE_KEY:
+        from_secret: RENOVATE_GIT_PRIVATE_KEY
     backend_options:
       kubernetes:
         securityContext:

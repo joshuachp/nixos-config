@@ -10,7 +10,12 @@ steps:
     environment:
       NIX_CONFIG:
         from_secret: NIX_CONFIG
-    secrets: [BUILDERS, BUILDER_KEY, BUILDER_HOST_KEYS]
+      BUILDERS:
+        from_secret: BUILDERS
+      BUILDER_KEY:
+        from_secret: BUILDER_KEY
+      BUILDER_HOST_KEYS:
+        from_secret: BUILDER_HOST_KEYS
     commands:
       - /setup-remote.sh
       - nix flake check

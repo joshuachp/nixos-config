@@ -51,7 +51,6 @@ metadata:
   name: dns
   namespace: pi-hole
   annotations:
-    metallb.universe.tf/loadBalancerIPs: 192.168.1.240
     metallb.universe.tf/address-pool: external-pool
 spec:
   selector:
@@ -62,6 +61,7 @@ spec:
       port: 53
       protocol: UDP
       targetPort: 53
+  loadBalancerIP: 192.168.3.1
 ---
 apiVersion: v1
 kind: ConfigMap

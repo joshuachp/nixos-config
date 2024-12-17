@@ -5,6 +5,10 @@
     ./disk-config.nix
   ];
   config = {
+    boot.kernelParams = [
+      "panic=1"
+    ];
+
     systemConfig.minimal = true;
 
     nixosConfig.networking.resolved = true;
@@ -25,6 +29,11 @@
     systemd.network.networks = config.lib.config.mkNetworkCfg {
       "enp1s0" = {
         networkConfig.MulticastDNS = "yes";
+        routes = [
+          {
+            Destination = "192.168.3.0/24";
+          }
+        ];
       };
       "wlp2s0" = {
         networkConfig.MulticastDNS = "yes";

@@ -35,7 +35,10 @@
       '';
     };
 
-    services.fwupd.enable = true;
+    services = {
+      fwupd.enable = true;
+      thermald.enable = true;
+    };
 
     nixosConfig.server.k3s = {
       enable = true;

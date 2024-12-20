@@ -47,7 +47,10 @@
       '';
     };
 
-    services.fwupd.enable = true;
+    services = {
+      fwupd.enable = true;
+      thermald.enable = true;
+    };
 
     # Never suspend
     services.logind.lidSwitch = "ignore";

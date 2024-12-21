@@ -71,7 +71,7 @@
         {
           astartectl = pkgs.callPackage ../packages/astartectl.nix { };
           customLocale = pkgs.callPackage ../packages/customLocale.nix { };
-          inherit (unstablePkgs) cargo-edit jujutsu;
+          inherit (unstablePkgs) cargo-edit jujutsu proton-ge-bin;
           inherit
             committed
             committedWithDefault

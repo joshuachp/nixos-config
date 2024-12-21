@@ -66,7 +66,12 @@
         system.nixos.tags = [ "gaming" ];
 
         boot = {
-          kernelPackages = pkgs.linuxPackages_xanmod;
+          kernelParams = [
+            # Low latency kernel parameters
+            "preempt=full"
+            "threadirqs"
+            "mitigations=off"
+          ];
           kernel.sysctl = {
             "vm.max_map_count" = 2147483642;
           };

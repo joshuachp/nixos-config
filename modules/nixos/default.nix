@@ -7,6 +7,7 @@
   imports = [
     ./bluetooth.nix
     ./boot.nix
+    ./cache.nix
     ./cli.nix
     ./desktop
     ./develop
@@ -22,6 +23,7 @@
     ./security.nix
     ./server
     ./services.nix
+    ./swap.nix
     ./virtualisation.nix
     ./wifi.nix
     ./wireguard

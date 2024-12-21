@@ -28,8 +28,9 @@ spec:
               cpu: "10m"
               memory: "10Mi"
           ports:
-            - containerPort: 53
-              name: dns
+            - name: dns
+              protocol: UDP
+              containerPort: 53
           volumeMounts:
             - name: config
               mountPath: "/etc/dnsmasq.d/"

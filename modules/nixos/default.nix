@@ -23,7 +23,7 @@
     ./security.nix
     ./server
     ./services.nix
-    ./swap.nix
+    ./system.nix
     ./virtualisation.nix
     ./wifi.nix
     ./wireguard

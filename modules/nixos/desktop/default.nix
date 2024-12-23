@@ -13,6 +13,7 @@ in
     ./audio.nix
     ./browser.nix
     ./fonts.nix
+    ./games.nix
     ./keyboard.nix
     ./qt.nix
     ./services.nix

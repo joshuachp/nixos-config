@@ -13,7 +13,7 @@
     in
     lib.mkIf enable (
       let
-        inherit (config.nixosConfig.server.k3s) loadBalancerIp ingressIp;
+        inherit (config.nixosConfig.server.k3s) ingressIp;
         machine = machineCfg.${hostname};
         inherit (machine.wireguard) privateKeyPath port;
         # Function to create the peers
@@ -50,7 +50,9 @@
               "/syncthing.k.joshuachp.dev/${ingressIp}"
               "/traefik.k.joshuachp.dev/${ingressIp}"
               # HA proxy IP
-              "/kubeapi.k.joshuachp.dev/${loadBalancerIp}"
+              "/kubeapi.k.joshuachp.dev/10.1.0.2"
+              "/kubeapi.k.joshuachp.dev/10.1.0.3"
+              "/kubeapi.k.joshuachp.dev/10.1.0.4"
             ];
           };
         };

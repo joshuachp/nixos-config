@@ -41,6 +41,12 @@
     };
     networking.firewall.allowedUDPPorts = [ 5353 ];
 
+    # Pi-hole local
+    networking.firewall.extraInputRules = "
+      ip saddr 192.168.1.0/24 tcp dport 53 accept
+      ip saddr 192.168.1.0/24 udp dport { 53, 67 } accept
+    ";
+
     services.resolved = {
       extraConfig = ''
         MulticastDNS=true

@@ -45,6 +45,7 @@
               "/minio.k.joshuachp.dev/${ingressIp}"
               "/ntfy.k.joshuachp.dev/${ingressIp}"
               "/pg.k.joshuachp.dev/${ingressIp}"
+              "/pi-hole.k.joshuachp.dev/${ingressIp}"
               "/prometheus.k.joshuachp.dev/${ingressIp}"
               "/syncthing.k.joshuachp.dev/${ingressIp}"
               "/traefik.k.joshuachp.dev/${ingressIp}"

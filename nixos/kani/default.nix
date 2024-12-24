@@ -6,7 +6,7 @@
   ];
   config = {
     boot.kernelParams = [
-      "panic=1"
+      "panic=10"
     ];
 
     systemConfig.minimal = true;

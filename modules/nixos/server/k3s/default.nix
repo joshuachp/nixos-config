@@ -31,22 +31,10 @@
           description = "Interface to connect keepalived";
           type = types.str;
         };
-        loadBalancerIp = mkOption {
-          default = "10.10.10.100";
-          description = "Address of the API server load balancer";
-          type = types.str;
-          readOnly = true;
-        };
         ingressIp = mkOption {
           default = "10.2.0.1";
           description = "Address of the ingress";
           type = types.str;
-          readOnly = true;
-        };
-        apiPort = mkOption {
-          default = 56443;
-          description = "Port of the API load balancer";
-          type = types.port;
           readOnly = true;
         };
       };
@@ -65,7 +53,6 @@
             2380
             # Api
             6443
-            cfg.apiPort
 
             # Metrics
             10250
@@ -101,17 +88,13 @@
         "kernel.panic_on_oops" = 1;
       };
 
-      services.k3s =
-        let
-          inherit (cfg) loadBalancerIp apiPort;
-        in
-        {
-          enable = true;
-          serverAddr = "https://${loadBalancerIp}:${toString apiPort}";
-          extraFlags = [
-            "--kube-proxy-arg='proxy-mode=ipvs'"
-            "--kube-proxy-arg='ipvs-strict-arp=true'"
-          ];
-        };
+      services.k3s = {
+        enable = true;
+        serverAddr = "https://kubeapi.k.joshuachp.dev:6443";
+        extraFlags = [
+          "--kube-proxy-arg='proxy-mode=ipvs'"
+          "--kube-proxy-arg='ipvs-strict-arp=true'"
+        ];
+      };
     };
 }

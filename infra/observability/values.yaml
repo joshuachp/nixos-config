@@ -9,6 +9,7 @@ prometheusOperator:
 
 prometheus:
   prometheusSpec:
+    replicas: 2
     externalUrl: "https://prometheus.k.joshuachp.dev"
     tolerations:
       - key: "location"

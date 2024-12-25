@@ -24,7 +24,10 @@
         };
       };
 
-      users.root.hashedPasswordFile = config.sops.secrets.users_passwords_root.path;
+      users.root = {
+        hashedPasswordFile = config.sops.secrets.users_passwords_root.path;
+        openssh.authorizedKeys.keys = [ config.privateConfig.ssh.publicKey ];
+      };
     };
 
     # Environment variables, useful for the root user

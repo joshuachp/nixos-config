@@ -1,7 +1,12 @@
 # Configure GPG and the GPG agent to use with home-manager
-{ config, pkgs, ... }:
 {
-  config = {
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+{
+  config = lib.mkIf (!config.systemConfig.minimal) {
     programs.gpg = {
       enable = true;
       homedir = "${config.xdg.configHome}/gnupg";

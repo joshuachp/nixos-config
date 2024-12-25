@@ -52,7 +52,8 @@ deploy_host() {
     ssh "root@$host.wg" -- free -h
     ssh "root@$host.wg" -- lsblk --fs
 
-    ssh "root@$host.wg" 'reboot'
+    # This prevent the script exiting if the ssh connection is terminated by the reboot
+    ssh "root@$host.wg" 'reboot' || true
 
     wait_online "$host"
 

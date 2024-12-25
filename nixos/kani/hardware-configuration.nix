@@ -31,9 +31,9 @@
         "usb_storage"
         "sd_mod"
         "sr_mod"
-        "rtsx_usb_sdmmc "
+        "rtsx_usb_sdmmc"
       ];
-      kernelModules = [ ];
+      kernelModules = [ "dm-snapshot" ];
     };
     kernelModules = [ "kvm-intel" ];
     extraModulePackages = [ ];

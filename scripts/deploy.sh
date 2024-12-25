@@ -26,8 +26,8 @@ deploy_host() {
     local host="$1"
 
     nixos-rebuild boot --fast --flake ".#$host" \
-        --target-host "root@$host.wg" \
-        --build-host "root@$host.wg"
+        --use-substitutes \
+        --target-host "root@$host.wg"
 
     ssh "root@$host.wg" -- free -h
     ssh "root@$host.wg" -- lsblk --fs

@@ -26,8 +26,9 @@
         "sd_mod"
         "sr_mod"
       ];
-      kernelModules = [ ];
+      kernelModules = [ "virtio_gpu" ];
     };
+    kernelParams = [ "console=tty" ];
     kernelModules = [ ];
     extraModulePackages = [ ];
   };

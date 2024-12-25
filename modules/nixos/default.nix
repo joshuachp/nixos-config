@@ -7,7 +7,6 @@
   imports = [
     ./bluetooth.nix
     ./boot.nix
-    ./cache.nix
     ./cli.nix
     ./desktop
     ./develop

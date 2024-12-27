@@ -1,6 +1,7 @@
 flakeInputs:
 let
   nixosHardware = flakeInputs.nixos-hardware.nixosModules;
+  privateConf = flakeInputs.privateConf.nixosModules;
   inherit (flakeInputs.self.lib) mkDesktop mkServer;
 in
 {
@@ -26,14 +27,24 @@ in
     ];
   };
   # Cloud
-  nixos-cloud = mkServer "nixos-cloud" { };
+  nixos-cloud = mkServer "nixos-cloud" {
+    modules = [
+      privateConf.nixosCloud
+    ];
+  };
   # Cloud 2
   nixos-cloud-2 = mkServer "nixos-cloud-2" {
     system = "aarch64-linux";
+    modules = [
+      privateConf.nixosCloud2
+    ];
   };
   # Kuma
   kuma = mkServer "kuma" {
     system = "aarch64-linux";
+    modules = [
+      privateConf.kuma
+    ];
   };
   # Tabour
   tabour = mkServer "tabour" {
@@ -51,6 +62,7 @@ in
       nixosHardware.common-pc-laptop
       nixosHardware.common-pc-laptop-hdd
       nixosHardware.common-gpu-nvidia-nonprime
+      privateConf.kani
     ];
   };
 }

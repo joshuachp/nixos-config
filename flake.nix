@@ -84,13 +84,6 @@
     };
 
     # Packages provided via flakes for having the latest version
-    nixgl = {
-      url = "github:guibou/nixGL";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-        flake-utils.follows = "flake-utils";
-      };
-    };
     nix-index-database = {
       url = "github:Mic92/nix-index-database";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -98,24 +91,14 @@
   };
   outputs =
     {
-      self,
       # Nixpkgs
       nixpkgs,
       flake-utils,
-      neovimConfig,
       ...
     }@flakeInputs:
-    let
-      inherit (self.lib) mkHome;
-    in
     {
       lib = import ./lib flakeInputs;
       nixosConfigurations = import ./nixos flakeInputs;
-
-      # Home manager configuration
-      homeConfigurations = {
-        joshuachp = mkHome "joshuachp" { modules = [ neovimConfig.homeManagerModules.default ]; };
-      };
     }
     # System dependant configurations
     // flake-utils.lib.eachDefaultSystem (

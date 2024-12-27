@@ -5,7 +5,9 @@
     ./disk-config.nix
   ];
   config = {
-    systemConfig.minimal = true;
+    boot.kernelParams = [
+      "panic=10"
+    ];
 
     nixosConfig.networking.resolved = true;
 
@@ -31,6 +33,7 @@
       '';
     };
 
+    security.tpm2.enable = true;
     services = {
       fwupd.enable = true;
       thermald.enable = true;

@@ -7,7 +7,9 @@
         description = "The current version of the system";
         type = lib.types.str;
       };
-      develop.enable = lib.mkEnableOption "develop environment";
+      develop.enable = lib.mkEnableOption "develop environment" // {
+        default = config.systemConfig.desktop.enable;
+      };
       minimal = lib.mkEnableOption "minimal system for cloud deployment";
       homeManager.enable = lib.options.mkOption {
         default = false;
@@ -22,7 +24,6 @@
           description = "Whether to enable the desktop environment";
           type = lib.types.bool;
         };
-        hidpi = lib.mkEnableOption "HIDPI desktop configuration";
         wayland = lib.options.mkOption {
           default = true;
           defaultText = "Enable wayland backend";
@@ -38,16 +39,4 @@
       };
     };
   };
-  config =
-    let
-      cfg = config.systemConfig;
-    in
-    {
-      assertions = [
-        {
-          assertion = !(cfg.develop.enable && cfg.minimal);
-          message = "Development environment cannot be minimal";
-        }
-      ];
-    };
 }

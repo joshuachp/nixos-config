@@ -39,23 +39,10 @@
         osConfig,
         ...
       }:
-      let
-        desktop = config.systemConfig.desktop.enable;
-      in
       {
-        homeConfig.docker.config = desktop && osConfig.virtualisation.docker.enable;
-
-        privateConfig.u2f.enable = lib.mkIf desktop hostname;
-
         home.username = "joshuachp";
         home.homeDirectory = "/home/joshuachp";
 
-        programs.direnv.config = {
-          enable = true;
-          global = {
-            warn_timeout = 0;
-          };
-        };
       };
   };
 }

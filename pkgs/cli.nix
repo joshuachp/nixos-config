@@ -1,4 +1,16 @@
 pkgs: with pkgs; [
+  # Rust CLI programs
+  bat
+  eza
+  fd
+  ripgrep
+
+  htop
+  imagemagick
+  file
+  pciutils
+  usbutils
+
   # Configuration
   chezmoi
 

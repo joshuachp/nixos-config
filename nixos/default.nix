@@ -1,7 +1,7 @@
 flakeInputs:
 let
   nixosHardware = flakeInputs.nixos-hardware.nixosModules;
-  inherit (flakeInputs.self.lib) mkSystem mkDesktop mkServer;
+  inherit (flakeInputs.self.lib) mkDesktop mkServer;
 in
 {
   # Nixos
@@ -36,23 +36,21 @@ in
     system = "aarch64-linux";
   };
   # Tabour
-  tabour = mkSystem "tabour" {
+  tabour = mkServer "tabour" {
     modules = [
       nixosHardware.common-cpu-intel
       nixosHardware.common-pc
       nixosHardware.common-pc-ssd
-      flakeInputs.disko.nixosModules.disko
     ];
   };
   # The crab
-  kani = mkSystem "kani" {
+  kani = mkServer "kani" {
     modules = [
       nixosHardware.common-cpu-intel
       nixosHardware.common-pc
       nixosHardware.common-pc-laptop
       nixosHardware.common-pc-laptop-hdd
       nixosHardware.common-gpu-nvidia-nonprime
-      flakeInputs.disko.nixosModules.disko
     ];
   };
 }

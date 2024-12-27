@@ -14,37 +14,44 @@ name:
   modules ? [ ],
   nixpkgs ? flakeInputs.nixpkgs,
 }:
-nixpkgs.lib.nixosSystem {
-  inherit system;
 
+let
   specialArgs = {
     inherit system flakeInputs;
     inherit (flakeInputs) self;
     hostname = name;
   };
+in
+nixpkgs.lib.nixosSystem {
+  inherit system specialArgs;
 
-  modules = [
+  modules = modules ++ [
     # Lib
     ./modules/common
     ./modules/nixos
+
     # Overlays
     ../overlays
-    { nixpkgs.overlays = overlays; }
 
     # Options
     ../options
 
     # Secrets
     flakeInputs.privateConf.nixosModules.nixos
-
     # Home manager
     flakeInputs.home-manager.nixosModules.home-manager
+
     # Default modules
     ../modules/common
-    ../modules/nixos
+    ../modules/nixos/base
     ../users
 
     # Config
     ../nixos/${name}
-  ] ++ modules;
+
+    {
+      nixpkgs.overlays = overlays;
+      home-manager.extraSpecialArgs = specialArgs;
+    }
+  ];
 }

@@ -1,8 +1,9 @@
 { config, modulesPath, ... }:
 {
   imports = [
-    ./k3s
     (modulesPath + "/profiles/minimal.nix")
+    ./k3s
+    ./sysupdate.nix
   ];
   config = {
     assertions = [

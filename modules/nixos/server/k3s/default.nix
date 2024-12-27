@@ -54,6 +54,9 @@
             # Api
             6443
 
+            # ingress-nginx admission controller
+            8443
+
             # Metrics
             10250
             # Embedded registry

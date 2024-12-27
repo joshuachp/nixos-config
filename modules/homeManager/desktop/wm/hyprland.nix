@@ -18,9 +18,8 @@
   config =
     let
       cfg = config.homeConfig.desktop.hyprland;
-      enable = config.systemConfig.desktop.enable && cfg.enable;
     in
-    lib.mkIf enable {
+    lib.mkIf cfg.enable {
       wayland.windowManager.hyprland = {
         enable = true;
         systemd = {

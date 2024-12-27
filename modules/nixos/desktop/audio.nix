@@ -1,15 +1,10 @@
 # Desktop audio configuration
 {
-  config,
   pkgs,
-  lib,
   ...
 }:
-let
-  cfg = config.systemConfig.desktop;
-in
 {
-  config = lib.mkIf cfg.enable {
+  config = {
     # Sound
     services.pipewire = {
       enable = true;

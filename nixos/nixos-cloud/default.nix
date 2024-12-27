@@ -5,10 +5,6 @@
     ./disk-config.nix
   ];
   config = {
-    zramSwap.enable = true;
-
-    systemConfig.minimal = true;
-
     systemd.network.networks = config.lib.config.mkNetworkCfg {
       "enp1s0" = { };
       "enp7s0" = {

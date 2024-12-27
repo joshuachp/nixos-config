@@ -4,7 +4,6 @@
 {
   pkgs,
   lib,
-  flakeInputs,
   ...
 }:
 {
@@ -15,26 +14,14 @@
   config = {
     boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
 
-    nixpkgs.overlays = [
-      (self: super: {
-        neovim-unwrapped =
-          let
-            unstablePkgs = import flakeInputs.nixpkgs-unstable { inherit (self) system; };
-          in
-          unstablePkgs.neovim-unwrapped;
-      })
-    ];
+    powerManagement.cpuFreqGovernor = lib.mkDefault "performance";
 
     # Enable desktop system
-    systemConfig = {
-      desktop.hidpi = true;
-      develop.enable = true;
-    };
     nixosConfig = {
       hardware = {
         bluetooth.enable = true;
         wifi.enable = true;
-        opengl.gpu = [ "intel" ];
+        graphics.gpu = [ "intel" ];
       };
       desktop = {
         sway.enable = true;
@@ -48,11 +35,6 @@
 
     # User homeManager configurations
     home-manager.users.joshuachp = {
-      homeConfig.syncthing.enable = true;
-      privateConfig = {
-        syncthing.enable = true;
-        kubeConfig = true;
-      };
       wayland.windowManager.hyprland.settings = {
         monitor = lib.mkForce [
           "DP-3,preferred,0x0,1"
@@ -68,52 +50,15 @@
       };
 
       xdg.configFile = {
-        "autostart/thunderbird.desktop".source = "${pkgs.thunderbird}/share/applications/thunderbird.desktop";
-        "autostart/Mattermost.desktop".source = "${pkgs.mattermost-desktop}/share/applications/Mattermost.desktop";
+        "autostart/thunderbird.desktop".source =
+          "${pkgs.thunderbird}/share/applications/thunderbird.desktop";
+        "autostart/Mattermost.desktop".source =
+          "${pkgs.mattermost-desktop}/share/applications/Mattermost.desktop";
       };
     };
 
-    networking.firewall = {
-      allowedTCPPorts = [
-        # Syncthing local firewall
-        # https://docs.syncthing.net/users/firewall.html#local-firewall
-        22000
-      ];
-      allowedUDPPorts = [
-        # Syncthing local firewall
-        22000
-        21027
-        # mdns
-        5353
-      ];
-    };
-
-    services = {
-      # Enable btrfs scrubbing
-      btrfs.autoScrub.enable = true;
-      # Yubikey
-      udev.packages = [ pkgs.yubikey-personalization ];
-
-      # Reduce audio lag and stutter
-      pipewire.extraConfig.pipewire = {
-        "10-clock-rate" = {
-          "context.properties" = {
-            "default.clock.rate" = 48000;
-            # This can be found with
-            # grep -E 'Codec|Audio Output|rates' /proc/asound/card*/codec#*
-            "default.clock.allowed-rates" = [
-              44100
-              48000
-              96000
-              192000
-            ];
-            "default.clock.quantum" = 1024;
-            "default.clock.min-quantum" = 32;
-          };
-
-        };
-      };
-    };
+    # Enable btrfs scrubbing
+    services.btrfs.autoScrub.enable = true;
 
     environment.systemPackages = with pkgs; [
       (google-cloud-sdk.withExtraComponents [ google-cloud-sdk.components.gke-gcloud-auth-plugin ])

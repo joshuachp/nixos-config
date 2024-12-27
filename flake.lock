@@ -168,29 +168,6 @@
         "type": "github"
       }
     },
-    "nixgl": {
-      "inputs": {
-        "flake-utils": [
-          "flake-utils"
-        ],
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1713543440,
-        "narHash": "sha256-lnzZQYG0+EXl/6NkGpyIz+FEOc/DSEG57AP1VsdeNrM=",
-        "owner": "guibou",
-        "repo": "nixGL",
-        "rev": "310f8e49a149e4c9ea52f1adf70cdc768ec53f8a",
-        "type": "github"
-      },
-      "original": {
-        "owner": "guibou",
-        "repo": "nixGL",
-        "type": "github"
-      }
-    },
     "nixos-hardware": {
       "locked": {
         "lastModified": 1734954597,
@@ -370,7 +347,6 @@
         "jump": "jump",
         "neovimConfig": "neovimConfig",
         "nix-index-database": "nix-index-database",
-        "nixgl": "nixgl",
         "nixos-hardware": "nixos-hardware",
         "nixosAnywhere": "nixosAnywhere",
         "nixpkgs": "nixpkgs",

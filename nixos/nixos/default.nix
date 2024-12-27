@@ -11,25 +11,12 @@
   config = {
     boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
 
-    nixpkgs.overlays = [
-      (self: super: {
-        neovim-unwrapped =
-          let
-            unstablePkgs = import flakeInputs.nixpkgs-unstable { inherit (self) system; };
-          in
-          unstablePkgs.neovim-unwrapped;
-      })
-    ];
-
     # Enable desktop system
-    systemConfig = {
-      develop.enable = true;
-    };
     nixosConfig = {
       hardware = {
         bluetooth.enable = true;
         wifi.enable = true;
-        opengl.gpu = [ "amd" ];
+        graphics.gpu = [ "amd" ];
       };
       desktop = {
         hyprland.enable = true;
@@ -45,7 +32,6 @@
 
     # User homeManager configurations
     home-manager.users.joshuachp = {
-      homeConfig.syncthing.enable = true;
       privateConfig = {
         syncthing.enable = true;
         kubeConfig = true;

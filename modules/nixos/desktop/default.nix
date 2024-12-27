@@ -3,27 +3,34 @@
   config,
   pkgs,
   lib,
+  flakeInputs,
   ...
 }:
-let
-  cfg = config.systemConfig.desktop;
-in
 {
   imports = [
     ./audio.nix
     ./browser.nix
+    ./cli.nix
+    ./develop
+    ./documentation.nix
     ./fonts.nix
     ./games.nix
     ./keyboard.nix
+    ./plymouth.nix
     ./qt.nix
+    ./security.nix
     ./services.nix
+    ./virtualisation.nix
     ./wayland.nix
-    ./wm/gnome.nix
-    ./wm/hyprland.nix
-    ./wm/i3.nix
-    ./wm/sway.nix
+    ./wm
   ];
-  config = lib.mkIf cfg.enable {
+  config = {
+    assertions = [
+      {
+        assertion = !config.systemConfig.minimal;
+        message = "Desktop cannot be minimal";
+      }
+    ];
     # Desktop service
     services = {
       xserver = {
@@ -46,5 +53,27 @@ in
     };
 
     environment.systemPackages = import "${self}/pkgs/desktop.nix" { inherit pkgs lib config; };
+
+    home-manager = {
+      sharedModules = [
+        flakeInputs.neovimConfig.homeManagerModules.default
+        ../../homeManager/desktop
+      ];
+    };
+
+    networking.firewall = {
+      allowedTCPPorts = [
+        # Syncthing local firewall
+        # https://docs.syncthing.net/users/firewall.html#local-firewall
+        22000
+      ];
+      allowedUDPPorts = [
+        # Syncthing local firewall
+        22000
+        21027
+        # mdns
+        5353
+      ];
+    };
   };
 }

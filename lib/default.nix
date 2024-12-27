@@ -6,7 +6,6 @@ let
 in
 {
   inherit mkSystem;
-  mkDesktop = import ./mkDesktop.nix { inherit flakeInputs baseSystem mkSystem; };
-  mkServer = import ./mkServer.nix { inherit flakeInputs baseSystem mkSystem; };
-  mkHome = import ./mkHome.nix flakeInputs baseSystem;
+  mkDesktop = import ./mkDesktop.nix { inherit flakeInputs mkSystem; };
+  mkServer = import ./mkServer.nix { inherit flakeInputs mkSystem; };
 }

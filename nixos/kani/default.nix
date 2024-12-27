@@ -9,8 +9,6 @@
       "panic=10"
     ];
 
-    systemConfig.minimal = true;
-
     nixosConfig.networking.resolved = true;
 
     privateConfig.remote-builder.enable = true;
@@ -49,6 +47,7 @@
       '';
     };
 
+    security.tpm2.enable = true;
     services = {
       fwupd.enable = true;
       thermald.enable = true;

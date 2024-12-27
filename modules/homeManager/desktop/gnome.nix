@@ -3,10 +3,9 @@
 {
   config =
     let
-      cfg = config.systemConfig.desktop;
-      cfgEnable = cfg.enable && cfg.gnome.enable;
+      cfg = config.systemConfig.desktop.gnome;
     in
-    lib.mkIf cfgEnable {
+    lib.mkIf cfg.enable {
       dconf.settings = {
         # Terminal shortcut for Gnome
         "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0" = {

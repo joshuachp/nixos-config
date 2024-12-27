@@ -1,12 +1,10 @@
 # Browser configuration
 {
-  config,
-  lib,
   pkgs,
   ...
 }:
 {
-  config = lib.mkIf config.systemConfig.desktop.enable {
+  config = {
     programs.firefox = {
       enable = true;
       package = pkgs.firefox-bin;

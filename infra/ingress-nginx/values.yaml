@@ -7,3 +7,10 @@ controller:
       - 127.0.0.1/32
       - 10.0.0.0/16
       - 10.1.0.0/16
+  extraArgs:
+    default-ssl-certificate: traefik/cert-k-joshuachp-dev
+  config:
+    hsts: true
+    hsts-preload: true
+    enable-brotli: true
+    use-http2: true

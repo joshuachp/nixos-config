@@ -325,11 +325,11 @@
         "sops-nix": "sops-nix"
       },
       "locked": {
-        "lastModified": 1735126339,
-        "narHash": "sha256-laztLCyxW42Rs5VPyRrgic29Mgmkuw+rYFChHIrmz+Q=",
+        "lastModified": 1735318499,
+        "narHash": "sha256-Mbov0B4Xd/bk0UK7cWWV2wjpwBferM8u9leSw7n7gIU=",
         "owner": "joshuachp",
         "repo": "nixos-private-config",
-        "rev": "ccb87a38b9f6f657b02b8969f310d52284f6b3e3",
+        "rev": "027c9d6a503263d2e0111488e36cc71318f63f31",
         "type": "github"
       },
       "original": {

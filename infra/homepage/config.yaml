@@ -77,13 +77,6 @@ data:
             href: https://minio-console.k.joshuachp.dev/
             icon: minio-light.png
             description: Minio Console
-        - Traefik:
-            href: https://traefik.k.joshuachp.dev/
-            icon: traefik.png
-            description: Traefik dashboard
-            widget:
-              type: traefik
-              url: https://traefik.k.joshuachp.dev
   widgets.yaml: |
     - kubernetes:
         cluster:

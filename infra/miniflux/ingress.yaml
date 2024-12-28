@@ -16,25 +16,3 @@ spec:
                 name: miniflux
                 port:
                   name: http
----
-apiVersion: traefik.io/v1alpha1
-kind: IngressRoute
-metadata:
-  name: miniflux
-  namespace: miniflux
-  annotations:
-    kubernetes.io/ingress.class: traefik
-spec:
-  entryPoints:
-    - websecure
-  routes:
-    - match: "Host(`miniflux.k.joshuachp.dev`)"
-      kind: Rule
-      services:
-        - name: miniflux
-          port: http
-  tls:
-    domains:
-      - main: k.joshuachp.dev
-        sans:
-          - "*.k.joshuachp.dev"

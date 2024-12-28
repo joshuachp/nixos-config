@@ -48,7 +48,6 @@
               "/pi-hole.k.joshuachp.dev/${ingressIp}"
               "/prometheus.k.joshuachp.dev/${ingressIp}"
               "/syncthing.k.joshuachp.dev/${ingressIp}"
-              "/traefik.k.joshuachp.dev/${ingressIp}"
               # HA proxy IP
               "/kubeapi.k.joshuachp.dev/10.1.0.2"
               "/kubeapi.k.joshuachp.dev/10.1.0.3"

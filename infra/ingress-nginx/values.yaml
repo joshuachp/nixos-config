@@ -16,9 +16,9 @@ controller:
     use-http2: true
 
 tcp:
-  22: "forgejo/forgejo-ssh:2222"
-  5432: "postgres/postgres:5432"
-  22000: "syncthing/syncthing-service:22000"
+  "22": "forgejo/forgejo-ssh:2222"
+  "5432": "postgres/postgres:5432"
+  "22000": "syncthing/syncthing-service:22000"
 udp:
-  22000: "syncthing/syncthing-service:22000"
-  21027: "syncthing/syncthing-service:21027"
+  "22000": "syncthing/syncthing-service:22000"
+  "21027": "syncthing/syncthing-service:21027"

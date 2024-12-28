@@ -17,6 +17,8 @@ server:
   ingress:
     enabled: true
     ingressClassName: nginx
+    hosts:
+      - host: ci.k.joshuachp.dev
   env:
     WOODPECKER_ADMIN: woodpecker,admin,joshuachp
     WOODPECKER_GITEA: true

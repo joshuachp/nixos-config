@@ -19,25 +19,3 @@ spec:
                 name: ntfy
                 port:
                   name: http
----
-apiVersion: traefik.io/v1alpha1
-kind: IngressRoute
-metadata:
-  name: ntfy
-  namespace: ntfy
-  annotations:
-    kubernetes.io/ingress.class: traefik
-spec:
-  entryPoints:
-    - websecure
-  routes:
-    - match: "Host(`ntfy.k.joshuachp.dev`)"
-      kind: Rule
-      services:
-        - name: ntfy
-          port: http
-  tls:
-    domains:
-      - main: k.joshuachp.dev
-        sans:
-          - "*.k.joshuachp.dev"

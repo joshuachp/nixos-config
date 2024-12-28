@@ -16,25 +16,3 @@ spec:
                 name: pi-hole
                 port:
                   name: web
----
-apiVersion: traefik.io/v1alpha1
-kind: IngressRoute
-metadata:
-  name: pi-hole
-  namespace: pi-hole
-  annotations:
-    kubernetes.io/ingress.class: traefik
-spec:
-  entryPoints:
-    - websecure
-  routes:
-    - match: "Host(`pi-hole.k.joshuachp.dev`)"
-      kind: Rule
-      services:
-        - name: pi-hole
-          port: web
-  tls:
-    domains:
-      - main: k.joshuachp.dev
-        sans:
-          - "*.k.joshuachp.dev"

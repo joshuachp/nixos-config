@@ -11,6 +11,8 @@ prometheus:
   ingress:
     enabled: true
     ingressClassName: nginx
+    hosts:
+      - prometheus.k.joshuachp.dev
   prometheusSpec:
     replicas: 2
     externalUrl: "https://prometheus.k.joshuachp.dev"
@@ -32,6 +34,8 @@ grafana:
   ingress:
     enabled: true
     ingressClassName: nginx
+    hosts:
+      - grafana.k.joshuachp.dev
   tolerations:
     - key: "location"
       operator: "Equal"
@@ -46,6 +50,8 @@ alertmanager:
   ingress:
     enabled: true
     ingressClassName: nginx
+    hosts:
+      - alertmanager.k.joshuachp.dev
   alertmanagerSpec:
     externalUrl: "https://alertmanager.k.joshuachp.dev"
     tolerations:

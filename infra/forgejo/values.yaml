@@ -1,6 +1,11 @@
 ingress:
   enabled: true
   className: nginx
+  hosts:
+    - host: git.k.joshuachp.dev
+      paths:
+        - path: /
+          pathType: Prefix
 
 redis-cluster:
   enabled: false

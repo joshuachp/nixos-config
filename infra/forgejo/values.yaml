@@ -1,3 +1,7 @@
+ingress:
+  enabled: true
+  className: nginx
+
 redis-cluster:
   enabled: false
 postgresql:

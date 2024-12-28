@@ -23,7 +23,7 @@ data:
   services.yaml: |
     - Dev:
         - Git:
-            href: http://git.k.joshuachp.dev/
+            href: https://git.k.joshuachp.dev/
             icon: forgejo.png
             description: Forgejo
             widget:
@@ -31,11 +31,11 @@ data:
               url: https://git.k.joshuachp.dev
               key: {{HOMEPAGE_VAR_FORGEJO_TOKEN}}
         - Woodpecker:
-            href: http://ci.k.joshuachp.dev/
+            href: https://ci.k.joshuachp.dev/
             icon: woodpecker-ci-light.png
             description: Woodpecker Ci
         - ArgoCD:
-            href: http://argocd.k.joshuachp.dev/
+            href: https://argocd.k.joshuachp.dev/
             icon: argocd.png
             description: ArgoCD
     - Services:
@@ -45,36 +45,40 @@ data:
             description: Miniflux RSS reader
             widget:
               type: miniflux
-              url: http://http.tcp.miniflux.miniflux.svc.cluster.local:8080
+              url: https://http.tcp.miniflux.miniflux.svc.cluster.local:8080
               key: {{HOMEPAGE_VAR_MINIFLUX_TOKEN}}
         - Syncthing:
-            href: http://syncthing.k.joshuachp.dev/
+            href: https://syncthing.k.joshuachp.dev/
             icon: syncthing.png
             description: Syncthing web UI
         - Ntfy:
-            href: http://ntfy.k.joshuachp.dev/
+            href: https://ntfy.k.joshuachp.dev/
             icon: ntfy.png
             description: Ntfy web UI
+        - Pi-Hole:
+            href: https://pi-hole.k.joshuachp.dev/
+            icon: pi-hole.png
+            description: Pi-Hole web UI
     - Observability:
         - Grafana:
-            href: http://grafana.k.joshuachp.dev/
+            href: https://grafana.k.joshuachp.dev/
             icon: grafana.png
             description: Grafana
         - Prometheus:
-            href: http://prometheus.k.joshuachp.dev/
+            href: https://prometheus.k.joshuachp.dev/
             icon: prometheus.png
             description: Prometheus
         - AlertManager:
-            href: http://alertmanager.k.joshuachp.dev/
+            href: https://alertmanager.k.joshuachp.dev/
             icon: alertmanager.png
             description: AlertManager
     - Infrastructure:
         - Minio:
-            href: http://minio-console.k.joshuachp.dev/
+            href: https://minio-console.k.joshuachp.dev/
             icon: minio-light.png
             description: Minio Console
         - Traefik:
-            href: http://traefik.k.joshuachp.dev/
+            href: https://traefik.k.joshuachp.dev/
             icon: traefik.png
             description: Traefik dashboard
             widget:

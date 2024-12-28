@@ -14,6 +14,9 @@ agent:
       value: "external"
       effect: "NoSchedule"
 server:
+  ingress:
+    enabled: true
+    ingressClassName: nginx
   env:
     WOODPECKER_ADMIN: woodpecker,admin,joshuachp
     WOODPECKER_GITEA: true

@@ -8,6 +8,9 @@ prometheusOperator:
       effect: "NoSchedule"
 
 prometheus:
+  ingress:
+    enabled: true
+    ingressClassName: nginx
   prometheusSpec:
     replicas: 2
     externalUrl: "https://prometheus.k.joshuachp.dev"
@@ -26,6 +29,9 @@ prometheus:
               storage: 10Gi
 
 grafana:
+  ingress:
+    enabled: true
+    ingressClassName: nginx
   tolerations:
     - key: "location"
       operator: "Equal"
@@ -37,6 +43,9 @@ grafana:
     passwordKey: "admin-password"
 
 alertmanager:
+  ingress:
+    enabled: true
+    ingressClassName: nginx
   alertmanagerSpec:
     externalUrl: "https://alertmanager.k.joshuachp.dev"
     tolerations:

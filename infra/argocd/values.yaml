@@ -375,4 +375,5 @@ notifications:
 
 server:
   ingress:
-    enabled: false
+    enabled: true
+    ingressClassName: nginx

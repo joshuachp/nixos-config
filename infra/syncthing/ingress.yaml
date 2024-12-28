@@ -1,3 +1,22 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: syncthing-web
+  namespace: syncthing
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: syncthing.k.joshuachp.dev
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: syncthing-service
+                port:
+                  name: web-ui
+---
 apiVersion: traefik.io/v1alpha1
 kind: IngressRoute
 metadata:

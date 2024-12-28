@@ -19,6 +19,9 @@ server:
     ingressClassName: nginx
     hosts:
       - host: ci.k.joshuachp.dev
+        paths:
+          - path: /
+            pathType: Prefix
   env:
     WOODPECKER_ADMIN: woodpecker,admin,joshuachp
     WOODPECKER_GITEA: true

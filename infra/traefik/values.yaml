@@ -67,7 +67,7 @@ logs:
 
 service:
   annotations:
-    metallb.universe.tf/loadBalancerIPs: 10.2.0.1
+    metallb.universe.tf/loadBalancerIPs: 10.2.0.2
   loadBalancerSourceRanges:
     - 127.0.0.1/32
     - 10.0.0.0/16

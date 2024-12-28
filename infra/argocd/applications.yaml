@@ -206,6 +206,29 @@ spec:
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
+  name: nextcloud
+  namespace: argocd
+spec:
+  project: default
+  syncPolicy:
+    automated: {}
+  sources:
+    - repoURL: https://github.com/joshuachp/nixos-config
+      path: infra/nextcloud
+      ref: repo
+    - chart: nextcloud
+      repoURL: https://nextcloud.github.io/helm/
+      targetRevision: 6.5.2
+      helm:
+        valueFiles:
+          - $repo/infra/nextcloud/values.yaml
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: nextcloud
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
   name: ntfy
   namespace: argocd
 spec:

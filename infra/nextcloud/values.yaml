@@ -1,0 +1,41 @@
+ingress:
+  enabled: true
+  className: nginx
+  annotations:
+    nginx.ingress.kubernetes.io/affinity: cookie
+
+tolerations:
+  - key: "location"
+    operator: "Equal"
+    value: "external"
+    effect: "NoSchedule"
+
+nextcloud:
+  host: nextcloud.k.joshuachp.dev
+
+internalDatabase:
+  enabled: false
+
+persistence:
+  enabled: true
+  existingClaim: nextcloud-pvc
+  nextcloudData:
+    enabled: true
+    existingClaim: nextcloud-data-pvc
+
+redis:
+  enabled: true
+
+cronjob:
+  enabled: true
+
+externalDatabase:
+  enabled: true
+  type: postgresql
+
+postgresql:
+  enabled: true
+  primary:
+    persistence:
+      enabled: true
+      existingClaim: nextcloud-postgres-pvc

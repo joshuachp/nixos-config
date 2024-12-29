@@ -44,6 +44,7 @@
               "/minio-console.k.joshuachp.dev/${ingressIp}"
               "/minio.k.joshuachp.dev/${ingressIp}"
               "/ntfy.k.joshuachp.dev/${ingressIp}"
+              "/nextcloud.k.joshuachp.dev/${ingressIp}"
               "/pg.k.joshuachp.dev/${ingressIp}"
               "/pi-hole.k.joshuachp.dev/${ingressIp}"
               "/prometheus.k.joshuachp.dev/${ingressIp}"

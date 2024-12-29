@@ -1,6 +1,3 @@
-image:
-  flavor: fpm
-
 ingress:
   enabled: true
   className: nginx
@@ -8,8 +5,6 @@ ingress:
     nginx.ingress.kubernetes.io/affinity: cookie
     nginx.ingress.kubernetes.io/enable-cors: "true"
     nginx.ingress.kubernetes.io/cors-allow-headers: "X-Forwarded-For"
-    nginx.ingress.kubernetes.io/backend-protocol: "FCGI"
-    nginx.ingress.kubernetes.io/fastcgi-index: "index.php"
 
 tolerations:
   - key: "location"

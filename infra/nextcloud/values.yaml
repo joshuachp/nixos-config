@@ -12,12 +12,20 @@ tolerations:
 
 nextcloud:
   host: nextcloud.k.joshuachp.dev
+  existingSecret:
+    enabled: true
+    secretName: nextcloud-secret
+  mail:
+    enabled: true
+    # the user we send email as
+    fromAddress: Nextcloud <noreplay@k.joshuachp.dev>
 
 internalDatabase:
   enabled: false
 
 persistence:
   enabled: true
+  storageClass: local-path
   existingClaim: nextcloud-pvc
   nextcloudData:
     enabled: true
@@ -25,6 +33,22 @@ persistence:
 
 redis:
   enabled: true
+  architecture: standalone
+  global:
+    storageClass: local-path
+  auth:
+    enabled: false
+  networkPolicy:
+    enabled: true
+  master:
+    resourcesPreset: nano
+    persistence:
+      existingClaim: nextcloud-redis-pvc
+    tolerations:
+      - key: "location"
+        operator: "Equal"
+        value: "external"
+        effect: "NoSchedule"
 
 cronjob:
   enabled: true
@@ -32,10 +56,30 @@ cronjob:
 externalDatabase:
   enabled: true
   type: postgresql
+  existingSecret:
+    enabled: true
+    secretName: nextcloud-secret
+    hostKey: db-host
+    databaseKey: db-name
+    usernameKey: db-username
+    passwordKey: db-password
 
 postgresql:
   enabled: true
+  architecture: standalone
+  global:
+    storageClass: local-path
+  auth:
+    database: nextcloud
+    username: nextcloud
+    existingSecret: nextcloud-postgres
   primary:
+    resourcesPreset: nano
+    tolerations:
+      - key: "location"
+        operator: "Equal"
+        value: "external"
+        effect: "NoSchedule"
     persistence:
       enabled: true
       existingClaim: nextcloud-postgres-pvc

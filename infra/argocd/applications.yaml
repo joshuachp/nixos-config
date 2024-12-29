@@ -269,6 +269,22 @@ spec:
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
+  name: pi-hole
+  namespace: argocd
+spec:
+  project: default
+  syncPolicy:
+    automated: {}
+  source:
+    repoURL: https://github.com/joshuachp/nixos-config
+    path: infra/pi-hole
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: pi-hole
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
   name: postgres
   namespace: argocd
 spec:

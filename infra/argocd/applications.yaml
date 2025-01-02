@@ -135,7 +135,7 @@ spec:
       ref: repo
     - chart: ingress-nginx
       repoURL: https://kubernetes.github.io/ingress-nginx
-      targetRevision: 4.11.3
+      targetRevision: 4.12.0
       helm:
         valueFiles:
           - $repo/infra/ingress-nginx/values.yaml

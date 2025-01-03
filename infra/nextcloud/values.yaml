@@ -46,6 +46,11 @@ nextcloud:
     # the user we send email as
     fromAddress: Nextcloud <noreplay@k.joshuachp.dev>
   configs:
+    cron.config.php: |
+      <?php
+      $CONFIG = array (
+        'maintenance_window_start' => 1,
+      );
     proxy.config.php: |-
       <?php
       $CONFIG = array (

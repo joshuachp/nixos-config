@@ -27,6 +27,7 @@ nextcloud:
       $CONFIG = array (
         'maintenance_window_start' => 1,
         'default_phone_region' => 'IT',
+        'overwriteprotocol' => 'https',
       );
     proxy.config.php: |-
       <?php

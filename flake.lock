@@ -325,11 +325,11 @@
         "sops-nix": "sops-nix"
       },
       "locked": {
-        "lastModified": 1735318499,
-        "narHash": "sha256-Mbov0B4Xd/bk0UK7cWWV2wjpwBferM8u9leSw7n7gIU=",
+        "lastModified": 1735902620,
+        "narHash": "sha256-ppt/kMhqbtD7ldi6c2H7pVn9ZoGd5gLaDLSMn9Nxqgk=",
         "owner": "joshuachp",
         "repo": "nixos-private-config",
-        "rev": "027c9d6a503263d2e0111488e36cc71318f63f31",
+        "rev": "5f4d95558f6559f188ed05904088718e570bd24e",
         "type": "github"
       },
       "original": {
@@ -385,11 +385,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1734546875,
-        "narHash": "sha256-6OvJbqQ6qPpNw3CA+W8Myo5aaLhIJY/nNFDk3zMXLfM=",
+        "lastModified": 1735468296,
+        "narHash": "sha256-ZjUjbvS06jf4fElOF4ve8EHjbpbRVHHypStoY8HGzk8=",
         "owner": "Mic92",
         "repo": "sops-nix",
-        "rev": "ed091321f4dd88afc28b5b4456e0a15bd8374b4d",
+        "rev": "bcb8b65aa596866eb7e5c3e1a6cccbf5d1560b27",
         "type": "github"
       },
       "original": {

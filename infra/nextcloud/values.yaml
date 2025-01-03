@@ -20,7 +20,8 @@ nextcloud:
   mail:
     enabled: true
     # the user we send email as
-    fromAddress: Nextcloud <noreplay@k.joshuachp.dev>
+    fromAddress: noreplay@k.joshuachp.dev
+    domain: k.joshuachp.dev
   configs:
     main.config.php: |
       <?php

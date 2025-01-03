@@ -6,8 +6,7 @@ ingress:
     nginx.ingress.kubernetes.io/enable-cors: "true"
     nginx.ingress.kubernetes.io/cors-allow-headers: "X-Forwarded-For"
     # .htaccess redirect
-    nginx.ingress.kubernetes.io/proxy-redirect-from: "http://$proxy_host"
-    nginx.ingress.kubernetes.io/proxy-redirect-to: "https://$proxy_host"
+    nginx.ingress.kubernetes.io/proxy-redirect-from: "default"
 
 phpClientHttpsFix:
   enabled: true

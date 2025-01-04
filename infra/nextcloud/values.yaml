@@ -34,6 +34,7 @@ nextcloud:
       $CONFIG = array (
         'maintenance_window_start' => 1,
         'default_phone_region' => 'IT',
+        'overwrite.cli.url' => 'https://nextcloud.k.joshuachp.dev',
       );
     proxy.config.php: |-
       <?php

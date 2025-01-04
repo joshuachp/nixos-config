@@ -3,8 +3,6 @@ ingress:
   className: nginx
   annotations:
     nginx.ingress.kubernetes.io/affinity: cookie
-    nginx.ingress.kubernetes.io/enable-cors: "true"
-    nginx.ingress.kubernetes.io/cors-allow-headers: "X-Forwarded-For"
     # .htaccess redirect
     nginx.ingress.kubernetes.io/proxy-redirect-from: "http://nextcloud.k.joshuachp.dev/"
     nginx.ingress.kubernetes.io/proxy-redirect-to: "https://nextcloud.k.joshuachp.dev/"

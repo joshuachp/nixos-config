@@ -39,6 +39,10 @@ nextcloud:
     proxy.config.php: |-
       <?php
       $CONFIG = array (
+        'trusted_domains' => array(
+          0 => 'localhost',
+          1 => 'nextcloud.k.joshuachp.dev',
+        ),
         'trusted_proxies' => array(
           0 => '127.0.0.1',
           1 => '10.0.0.0/8',

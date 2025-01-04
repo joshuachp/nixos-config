@@ -27,32 +27,32 @@ notifications:
       - description: Application is synced and healthy. Triggered once per commit.
         oncePer: app.status.sync.revision
         send:
-        - app-deployed
+          - app-deployed
         when: app.status.operationState.phase in ['Succeeded'] and app.status.health.status == 'Healthy'
     trigger.on-health-degraded: |
       - description: Application has degraded
         send:
-        - app-health-degraded
+          - app-health-degraded
         when: app.status.health.status == 'Degraded'
     trigger.on-sync-failed: |
       - description: Application syncing has failed
         send:
-        - app-sync-failed
+          - app-sync-failed
         when: app.status.operationState.phase in ['Error', 'Failed']
     trigger.on-sync-running: |
       - description: Application is being synced
         send:
-        - app-sync-running
+          - app-sync-running
         when: app.status.operationState.phase in ['Running']
     trigger.on-sync-status-unknown: |
       - description: Application status is 'Unknown'
         send:
-        - app-sync-status-unknown
+          - app-sync-status-unknown
         when: app.status.sync.status == 'Unknown'
     trigger.on-sync-succeeded: |
       - description: Application syncing has succeeded
         send:
-        - app-sync-succeeded
+          - app-sync-succeeded
         when: app.status.operationState.phase in ['Succeeded']
     defaultTriggers: |
       - on-deployed
@@ -136,7 +136,8 @@ notifications:
               ],
               "title": "Application {{.app.metadata.name}} has degraded.",
               "message": "Application {{.app.metadata.name}} has degraded.\nApplication details: {{.context.argocdUrl}}/applications/{{.app.metadata.name}}.",
-              "click": "{{.context.argocdUrl}}/applications/{{.app.metadata.name}}"
+              "click": "{{.context.argocdUrl}}/applications/{{.app.metadata.name}}",
+              "priorify": 4
             }
       slack:
         attachments: |-
@@ -186,7 +187,8 @@ notifications:
               ],
               "title": "Failed to sync application {{.app.metadata.name}}.",
               "message": "The sync operation of application {{.app.metadata.name}} has failed at {{.app.status.operationState.finishedAt}} with the following error: {{.app.status.operationState.message}}\nSync operation details are available at: {{.context.argocdUrl}}/applications/{{.app.metadata.name}}?operation=true .",
-              "click": "{{.context.argocdUrl}}/applications/{{.app.metadata.name}}"
+              "click": "{{.context.argocdUrl}}/applications/{{.app.metadata.name}}",
+              "priorify": 4
             }
       slack:
         attachments: |-
@@ -342,7 +344,8 @@ notifications:
               "title": "Application {{.app.metadata.name}} has been successfully synced.",
               "markdown": true,
               "message": "Application {{.app.metadata.name}} has been successfully synced at {{.app.status.operationState.finishedAt}}.\nSync operation details are available at: {{.context.argocdUrl}}/applications/{{.app.metadata.name}}?operation=true .",
-              "click": "{{.context.argocdUrl}}/applications/{{.app.metadata.name}}"
+              "click": "{{.context.argocdUrl}}/applications/{{.app.metadata.name}}",
+              "priorify": 2
             }
       slack:
         attachments: |-

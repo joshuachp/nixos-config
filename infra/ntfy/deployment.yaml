@@ -30,12 +30,17 @@ spec:
             - name: config
               mountPath: "/etc/ntfy"
               readOnly: true
+            - name: store
+              mountPath: "/var/cache/ntfy"
           securityContext:
             readOnlyRootFilesystem: true
       volumes:
         - name: config
           configMap:
             name: ntfy
+        - name: store
+          emptyDir:
+            sizeLimit: 500Mi
       securityContext:
         runAsUser: 1001
         runAsGroup: 1001

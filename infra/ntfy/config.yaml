@@ -8,7 +8,7 @@ data:
     base-url: https://ntfy.k.joshuachp.dev
     behind-proxy: true
     attachment-cache-dir: "/var/cache/ntfy/attachments"
-    attachment-total-size-limit: "400Mi"
+    attachment-total-size-limit: "400M"
     cache-file: "/var/cache/ntfy/cache.db"
     cache-startup-queries: |
       PRAGMA journal_mode = WAL;

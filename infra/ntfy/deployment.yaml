@@ -16,6 +16,10 @@ spec:
         - name: ntfy
           image: "binwiederhier/ntfy:v2.11.0@sha256:4a7d0f0adc6d5d9fc36e64ab55ef676e76e124a2bdd50ce115b6d9c1c7430294"
           args: ["serve"]
+          envFrom:
+            - secretRef:
+                name: nty-env
+                optional: false
           resources:
             limits:
               memory: "128Mi"
@@ -30,12 +34,17 @@ spec:
             - name: config
               mountPath: "/etc/ntfy"
               readOnly: true
+            - name: store
+              mountPath: "/var/cache/ntfy"
           securityContext:
             readOnlyRootFilesystem: true
       volumes:
         - name: config
           configMap:
             name: ntfy
+        - name: store
+          emptyDir:
+            sizeLimit: 500Mi
       securityContext:
         runAsUser: 1001
         runAsGroup: 1001

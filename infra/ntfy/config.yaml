@@ -6,3 +6,28 @@ metadata:
 data:
   server.yml: |
     base-url: https://ntfy.k.joshuachp.dev
+    behind-proxy: true
+    attachment-cache-dir: "/var/cache/ntfy/attachments"
+    attachment-total-size-limit: "400Mi"
+    cache-file: "/var/cache/ntfy/cache.db"
+    cache-startup-queries: |
+      PRAGMA journal_mode = WAL;
+      PRAGMA synchronous = NORMAL;
+      -- 64Mb
+      PRAGMA journal_size_limit = 67108864;
+      -- PRAGMA auto_vacuum = INCREMENTAL;
+      -- per connection
+      PRAGMA busy_timeout = 5000;
+      PRAGMA temp_store = MEMORY;
+      -- VACUUM;
+    web-push-file: /var/cache/ntfy/webpush.db
+    web-push-startup-queries: |
+      PRAGMA journal_mode = WAL;
+      PRAGMA synchronous = NORMAL;
+      -- 64Mb
+      PRAGMA journal_size_limit = 67108864;
+      -- PRAGMA auto_vacuum = INCREMENTAL;
+      -- per connection
+      PRAGMA busy_timeout = 5000;
+      PRAGMA temp_store = MEMORY;
+      -- VACUUM;

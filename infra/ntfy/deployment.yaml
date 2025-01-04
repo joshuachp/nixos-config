@@ -18,7 +18,7 @@ spec:
           args: ["serve"]
           envFrom:
             - secretRef:
-                name: nty-env
+                name: ntfy-env
                 optional: false
           resources:
             limits:

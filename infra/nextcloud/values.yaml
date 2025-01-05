@@ -6,6 +6,8 @@ ingress:
     # .htaccess redirect
     nginx.ingress.kubernetes.io/proxy-redirect-from: "http://nextcloud.k.joshuachp.dev/"
     nginx.ingress.kubernetes.io/proxy-redirect-to: "https://nextcloud.k.joshuachp.dev/"
+    # Upload size
+    nginx.ingress.kubernetes.io/proxy-body-size: 512m
 
 phpClientHttpsFix:
   enabled: true

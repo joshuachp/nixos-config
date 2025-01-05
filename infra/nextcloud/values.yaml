@@ -82,7 +82,7 @@ redis:
   networkPolicy:
     enabled: true
   master:
-    resourcesPreset: nano
+    resourcesPreset: small
     persistence:
       existingClaim: nextcloud-redis-pvc
     tolerations:
@@ -115,7 +115,7 @@ postgresql:
     username: nextcloud
     existingSecret: nextcloud-postgres
   primary:
-    resourcesPreset: nano
+    resourcesPreset: small
     tolerations:
       - key: "location"
         operator: "Equal"

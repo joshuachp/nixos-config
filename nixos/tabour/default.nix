@@ -11,7 +11,13 @@
 
     nixosConfig.networking.resolved = true;
 
-    privateConfig.remote-builder.enable = true;
+    privateConfig.remoteBuilder.enable = true;
+
+    # limit the resources used
+    nix.settings = {
+      max-jobs = 2;
+      cores = 4;
+    };
 
     services = {
       openssh = {

@@ -50,8 +50,10 @@ in
   tabour = mkServer "tabour" {
     modules = [
       nixosHardware.common-cpu-intel
+      nixosHardware.common-gpu-intel
       nixosHardware.common-pc
       nixosHardware.common-pc-ssd
+      privateConf.tabour
     ];
   };
   # The crab

@@ -1,0 +1,77 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: backup
+  namespace: nextcloud
+spec:
+  # 12h jobs should is probably stuck
+  concurrencyPolicy: Replace
+  failedJobsHistoryLimit: 1
+  successfulJobsHistoryLimit: 1
+  schedule: "0 */12 * * *"
+  jobTemplate:
+    metadata:
+      name: backup
+      namespace: nextcloud
+    spec:
+      ttlSecondsAfterFinished: 259200
+      template:
+        metadata:
+          namespace: nextcloud
+        spec:
+          containers:
+            - name: backup
+              image: joshuachp/restic:0.1.1
+              envFrom:
+                - secretRef:
+                    name: nextcloud-backup
+              env:
+                - name: RESTIC_CACHE_DIR
+                  value: /tmp/restic
+              volumeMounts:
+                - name: ssh-config
+                  mountPath: /etc/ssh/ssh_config.d/restic.conf
+                  subPath: config
+                  readOnly: true
+                - name: ssh-config
+                  mountPath: /etc/ssh/ssh_known_hosts
+                  subPath: knownHosts
+                  readOnly: true
+                - name: ssh-config
+                  mountPath: /etc/ssh/restic-key
+                  subPath: privateKey
+                  readOnly: true
+                  mode:
+                - name: store
+                  mountPath: /tmp
+                  subPath: tmp
+                - name: data
+                  mountPath: /data
+              securityContext:
+                readOnlyRootFilesystem: true
+              command:
+                - "/bin/sh"
+                - "-c"
+                - "restic --verbose backup --skip-if-unchanged --one-file-system /data"
+          restartPolicy: OnFailure
+          volumes:
+            - name: ssh-config
+              secret:
+                secretName: restic-ssh-key
+                defaultMode: 0400
+                items:
+                  - key: config
+                    path: config
+                  - key: knownHosts
+                    path: knownHosts
+                  - key: privateKey
+                    path: privateKey
+            - name: store
+              emptyDir:
+                sizeLimit: 500Mi
+            - name: data
+              persistentVolumeClaim:
+                claimName: nextcloud-data-pvc
+          securityContext:
+            runAsUser: 0
+            runAsGroup: 0

@@ -16,6 +16,16 @@ steps:
         from_secret: BUILDER_KEY
       BUILDER_HOST_KEYS:
         from_secret: BUILDER_HOST_KEYS
+      GC_MAXIMUM_HEAP_SIZE: 7G
+    backend_options:
+      kubernetes:
+        resources:
+          requests:
+            memory: 200Mi
+            cpu: 100m
+          limits:
+            memory: 8192Mi
+            cpu: 1000m
     commands:
       - /setup-remote.sh
       - nix flake check

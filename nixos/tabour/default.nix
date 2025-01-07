@@ -20,6 +20,8 @@
     };
 
     services = {
+      earlyoom.enable = true;
+
       openssh = {
         openFirewall = true;
       };

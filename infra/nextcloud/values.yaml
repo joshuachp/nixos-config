@@ -31,39 +31,41 @@ nextcloud:
     fromAddress: noreplay
     domain: k.joshuachp.dev
   configs:
-    main.config.php: |
+    zz-user.config.php: |
       <?php
-      $CONFIG = array (
+      $CONFIG = [
         'maintenance_window_start' => 1,
         'default_phone_region' => 'IT',
         'overwrite.cli.url' => 'https://nextcloud.k.joshuachp.dev',
-        'enabledPreviewProviders' => array(
-          0 => 'OC\Preview\BMP',
-          1 => 'OC\Preview\GIF',
-          2 => 'OC\Preview\JPEG',
-          3 => 'OC\Preview\Krita',
-          4 => 'OC\Preview\MarkDown',
-          5 => 'OC\Preview\MP3',
-          6 => 'OC\Preview\OpenDocument',
-          7 => 'OC\Preview\PNG',
-          8 => 'OC\Preview\TXT',
-          9 => 'OC\Preview\XBitmap',
-          10 => 'OC\Preview\Movie',
-        ),
-      );
-    proxy.config.php: |-
-      <?php
-      $CONFIG = array (
-        'trusted_domains' => array(
-          0 => 'localhost',
-          1 => 'nextcloud.k.joshuachp.dev',
-        ),
-        'trusted_proxies' => array(
-          0 => '127.0.0.1',
-          1 => '10.0.0.0/8',
-        ),
-        'forwarded_for_headers' => array('HTTP_X_FORWARDED_FOR'),
-      );
+        'trusted_domains' => [
+          'localhost',
+          'nextcloud.k.joshuachp.dev',
+        ],
+        'trusted_proxies' => [
+          '127.0.0.1',
+          '10.0.0.0/8',
+        ],
+        'forwarded_for_headers' => ['HTTP_X_FORWARDED_FOR'],
+        'enabledPreviewProviders' => [
+          'OC\Preview\Imaginary',
+          'OC\Preview\ImaginaryPDF',
+          'OC\Preview\Movie',
+          /*
+            defaults:
+            https://docs.nextcloud.com/server/latest/admin_manual/configuration_server/config_sample_php_parameters.html#enabledpreviewproviders
+          */
+          'OC\Preview\BMP',
+          // 'OC\Preview\GIF',
+          // 'OC\Preview\JPEG',
+          'OC\Preview\Krita',
+          'OC\Preview\MarkDown',
+          'OC\Preview\MP3',
+          'OC\Preview\OpenDocument',
+          // 'OC\Preview\PNG',
+          'OC\Preview\TXT',
+          'OC\Preview\XBitmap',
+        ],
+      ];
   phpConfigs:
     zz-opcache-setup.ini: |-
       opcache.enable_cli = 1

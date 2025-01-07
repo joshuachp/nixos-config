@@ -39,6 +39,10 @@ data:
             icon: argocd.png
             description: ArgoCD
     - Services:
+        - Nextcloud:
+            href: https://nextcloud.k.joshuachp.dev/
+            icon: nextcloud.png
+            description: Nextcloud
         - Miniflux:
             href: https://miniflux.k.joshuachp.dev/
             icon: miniflux.png

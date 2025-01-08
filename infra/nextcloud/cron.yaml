@@ -55,6 +55,7 @@ spec:
                 - "/bin/sh"
                 - "-c"
                 - |
+                  set -uex
                   restic --verbose backup --skip-if-unchanged --one-file-system /data
           restartPolicy: OnFailure
           volumes:
@@ -134,6 +135,7 @@ spec:
                 - "/bin/sh"
                 - "-c"
                 - |
+                  set -uex
                   restic forget --keep-daily 7 --keep-weekly 3 --keep-within 1d --prune --group-by '' &&
                   restic check --read-data-subset=1/10
           restartPolicy: OnFailure

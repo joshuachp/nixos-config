@@ -28,6 +28,8 @@ spec:
               env:
                 - name: RESTIC_CACHE_DIR
                   value: /tmp/restic
+                - name: RESTIC_HOST
+                  value: backup
               volumeMounts:
                 - name: ssh-config
                   mountPath: /etc/ssh/ssh_config.d/restic.conf
@@ -52,7 +54,88 @@ spec:
               command:
                 - "/bin/sh"
                 - "-c"
-                - "restic --verbose backup --skip-if-unchanged --one-file-system /data"
+                - |
+                  restic --verbose backup --skip-if-unchanged --one-file-system /data
+          restartPolicy: OnFailure
+          volumes:
+            - name: ssh-config
+              secret:
+                secretName: restic-ssh-key
+                defaultMode: 0400
+                items:
+                  - key: config
+                    path: config
+                  - key: knownHosts
+                    path: knownHosts
+                  - key: privateKey
+                    path: privateKey
+            - name: store
+              emptyDir:
+                sizeLimit: 500Mi
+            - name: data
+              persistentVolumeClaim:
+                claimName: nextcloud-data-pvc
+          securityContext:
+            runAsUser: 0
+            runAsGroup: 0
+---
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: backup-maintenance
+  namespace: nextcloud
+spec:
+  # 12h jobs should is probably stuck
+  concurrencyPolicy: Replace
+  failedJobsHistoryLimit: 1
+  successfulJobsHistoryLimit: 1
+  schedule: "0 4 * * *"
+  jobTemplate:
+    metadata:
+      name: backup-maintenance
+      namespace: nextcloud
+    spec:
+      ttlSecondsAfterFinished: 259200
+      template:
+        metadata:
+          namespace: nextcloud
+        spec:
+          containers:
+            - name: backup-maintenance
+              image: joshuachp/restic:0.1.1@sha256:778b040fb04b0366fbacc49ff9b2fbd0e5c78badedde06590fda97c7155ca887
+              envFrom:
+                - secretRef:
+                    name: nextcloud-backup
+              env:
+                - name: RESTIC_CACHE_DIR
+                  value: /tmp/restic
+              volumeMounts:
+                - name: ssh-config
+                  mountPath: /etc/ssh/ssh_config.d/restic.conf
+                  subPath: config
+                  readOnly: true
+                - name: ssh-config
+                  mountPath: /etc/ssh/ssh_known_hosts
+                  subPath: knownHosts
+                  readOnly: true
+                - name: ssh-config
+                  mountPath: /etc/ssh/restic-key
+                  subPath: privateKey
+                  readOnly: true
+                  mode:
+                - name: store
+                  mountPath: /tmp
+                  subPath: tmp
+                - name: data
+                  mountPath: /data
+              securityContext:
+                readOnlyRootFilesystem: true
+              command:
+                - "/bin/sh"
+                - "-c"
+                - |
+                  restic forget --keep-daily 7 --keep-weekly 3 --keep-within 1d --prune --group-by '' &&
+                  restic check --read-data-subset=1/10
           restartPolicy: OnFailure
           volumes:
             - name: ssh-config

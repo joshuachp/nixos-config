@@ -9,6 +9,8 @@
       "panic=10"
     ];
 
+    boot.loader.systemd-boot.memtest86.enable = true;
+
     nixosConfig.networking.resolved = true;
 
     privateConfig.remoteBuilder.enable = true;

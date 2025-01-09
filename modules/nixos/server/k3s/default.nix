@@ -98,6 +98,15 @@
           "--kube-proxy-arg='proxy-mode=ipvs'"
           "--kube-proxy-arg='ipvs-strict-arp=true'"
         ];
+        extraKubeletConfig = {
+          failSwapOn = false;
+          featureGates = {
+            NodeSwap = true;
+          };
+          memorySwap = {
+            swapBehavior = "LimitedSwap";
+          };
+        };
       };
     };
 }

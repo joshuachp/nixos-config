@@ -46,7 +46,7 @@
           "--scope" = [
             # Work
             {
-              "--when".repositories = [ "~/share/seco" ];
+              "--when".repositories = [ "~/share/repos/seco" ];
               user = {
                 inherit (privCfg.joshuaSeco) email;
               };

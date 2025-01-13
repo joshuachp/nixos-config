@@ -13,6 +13,7 @@ pkgs: with pkgs; [
 
   # Configuration
   chezmoi
+  restic
 
   # Shells
   babelfish

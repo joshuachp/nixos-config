@@ -4,50 +4,45 @@ set -exEuo pipefail
 
 changed=''
 
-is_git_clean() {
-    if [[ -z "$(git status -s)" ]]; then
-        return
+has_changed() {
+    if [[ -n "$(jj diff --name-only)" ]]; then
+        return 0
     fi
 
-    git status
-    exit 1
+    return 1
 }
 
-is_git_clean
+# Fetch remotes
+jj git fetch --all-remotes
 
-git switch main
+if [[ -n "$(jj bookmark list 'chore/update')" ]]; then
+    echo "Bookmark chore/update already exists"
+    exit 1
+fi
 
-git pull
+jj new main
 
-git switch --create chore/update
-
+# Pre-commit
 pre-commit autoupdate
-
-if ! git diff --quiet .pre-commit-config.yaml; then
-    git add .pre-commit-config.yaml
-    git commit -m 'chore(pre-commit): update pre-commit-config.yaml'
+if has_changed; then
+    jj commit -m 'chore(pre-commit): update pre-commit-config.yaml'
 
     changed+=', pre-commit-config.yaml'
 fi
 
-is_git_clean
-
+# Nix flake
 nix flake update
-
-if ! git diff --quiet flake.lock; then
-    git add flake.lock
-    git commit -m 'chore(nix): update flake.lock'
+if has_changed; then
+    jj commit -m 'chore(nix): update flake.lock'
 
     changed+=', flake.lock'
 fi
 
-is_git_clean
-
 changed="${changed#, }"
-
 if [ -z "$changed" ]; then
     echo 'nothing changed'
     exit 0
 fi
 
-git push
+jj bookmark create chore/update -r '@-'
+jj git push --bookmark chore/update --allow-new

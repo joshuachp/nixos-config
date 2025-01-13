@@ -45,23 +45,6 @@
             '';
           };
 
-          jujutsuDynamicConfig =
-            let
-              jj = lib.getExe unstablePkgs.jujutsu;
-            in
-            pkgs.writeShellApplication {
-              name = "jj-dynamic-config";
-              runtimeInputs = [ unstablePkgs.jujutsu ];
-              text = ''
-                set -eEuo pipefail
-
-                if [[ "$PWD" == "$HOME/share/repos/seco/"* ]]; then
-                  ${jj} --config-toml "$(cat "$HOME/share/seco/.jjconfig.toml")" "$@"
-                else
-                  ${jj} "$@"
-                fi
-              '';
-            };
           mattermost-desktop =
             if config.systemConfig.desktop.wayland then
               config.lib.config.wrapElectronWayland super.mattermost-desktop
@@ -75,7 +58,6 @@
           inherit
             committed
             committedWithDefault
-            jujutsuDynamicConfig
             mattermost-desktop
             ;
         }

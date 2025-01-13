@@ -2,6 +2,7 @@
 _:
 let
   abbreviations = {
+    # Git
     ga = "git add";
     gaa = "git add -A";
     gap = "git add --patch";
@@ -29,6 +30,11 @@ let
     gwr = "git worktree remove";
     glo = "git log --oneline";
     grc = "git rebase --continue";
+    # Kubernetes
+    k = "kubectl";
+    kgp = "kubectl get pods";
+    kgn = "kubectl get nodes";
+    kgs = "kubectl get services";
   };
   ls = {
     # Eza as ls

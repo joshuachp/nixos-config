@@ -71,19 +71,16 @@ in
     })
     # Show update diff
     (lib.mkIf cfg.update-diff.enable {
-      system.activationScripts.update-diff = {
-        supportsDryActivation = true;
-        text =
-          let
-            nix = config.nix.package;
-          in
-          ''
-            if [[ -e /run/current-system ]]; then
-              echo "Packages updated:"
-              ${nix}/bin/nix store diff-closures /run/current-system "$systemConfig"
-            fi
-          '';
-      };
+      system.preSwitchChecks.update-diff =
+        let
+          nix = config.nix.package;
+        in
+        ''
+          if [[ -e /run/current-system && "''${incoming-}" ]]; then
+            echo "Packages updated:"
+            ${nix}/bin/nix store diff-closures /run/current-system "''${incoming-}"
+          fi
+        '';
     })
   ];
 }

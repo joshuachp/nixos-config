@@ -1,0 +1,28 @@
+# Source: forgejo/templates/gitea/ingress.yaml
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: forgejo
+  namespace: "forgejo"
+  labels:
+    helm.sh/chart: forgejo-11.0.0
+    app: forgejo
+    app.kubernetes.io/name: forgejo
+    app.kubernetes.io/instance: forgejo
+    app.kubernetes.io/version: "10.0.0"
+    version: "10.0.0"
+    app.kubernetes.io/managed-by: Helm
+  annotations:
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: "git.k.joshuachp.dev"
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: forgejo-http
+                port:
+                  name: http

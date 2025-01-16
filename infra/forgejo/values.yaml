@@ -1,6 +1,5 @@
 ingress:
-  # FIXME: https://code.forgejo.org/forgejo-helm/forgejo-helm/pulls/1056
-  enabled: false
+  enabled: true
   className: nginx
   hosts:
     - host: git.k.joshuachp.dev

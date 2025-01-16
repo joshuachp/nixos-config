@@ -24,7 +24,7 @@ steps:
             memory: 200Mi
             cpu: 100m
           limits:
-            memory: 8192Mi
+            memory: 5120Mi
             cpu: 1000m
     commands:
       - /setup-remote.sh

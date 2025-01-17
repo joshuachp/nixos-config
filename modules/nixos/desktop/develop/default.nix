@@ -31,6 +31,8 @@
     lib.mkIf cfg.enable {
       environment.systemPackages = import "${self}/pkgs/develop" { inherit pkgs; };
 
+      programs.nix-ld.enable = true;
+
       # Enable direnv
       programs.direnv = {
         enable = true;

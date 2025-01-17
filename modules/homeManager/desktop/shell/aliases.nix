@@ -35,6 +35,12 @@ let
     kgp = "kubectl get pods";
     kgn = "kubectl get nodes";
     kgs = "kubectl get services";
+    # Jujutsu
+    jpa = "jj git push --all";
+    jfa = "jj git fetch --all-remotes";
+    jrm = "jj rebase -d 'trunk()'";
+    jbc = "jj bookmark create";
+    jbcp = "jj bookmark create -r '@-'";
   };
   ls = {
     # Eza as ls

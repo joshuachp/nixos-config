@@ -73,6 +73,14 @@ nextcloud:
       opcache.jit = 1255
       opcache.jit_buffer_size = 8M
 
+lifecycle:
+  postStartCommand:
+    [
+      "/bin/sh",
+      "-c",
+      "apt-get update -y && apt-get install ffmpeg -y --no-install-recommends",
+    ]
+
 imaginary:
   enabled: true
 

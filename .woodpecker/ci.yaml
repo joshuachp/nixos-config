@@ -6,7 +6,7 @@ when:
     - manual
 steps:
   - name: flake check
-    image: joshuachp/nixos:0.1.5@sha256:294bfbe75986862321af7ed6cb8e6c8f1ebc43eb882ac39a10249f3a7ccf9aee
+    image: joshuachp/nixos:0.1.6@sha256:0db982d507f245c78e9ef685ab493204c4a78f28de1bd04adf4f4a22a0a1c897
     environment:
       NIX_CONFIG:
         from_secret: NIX_CONFIG

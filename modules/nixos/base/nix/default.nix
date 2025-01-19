@@ -76,6 +76,7 @@ in
           nix = config.nix.package;
         in
         ''
+          incoming="''${1-}"
           if [[ -e /run/current-system && "''${incoming-}" ]]; then
             echo "Packages updated:"
             ${nix}/bin/nix store diff-closures /run/current-system "''${incoming-}"

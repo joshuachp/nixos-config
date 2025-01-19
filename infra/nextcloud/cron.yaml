@@ -21,7 +21,7 @@ spec:
         spec:
           containers:
             - name: backup
-              image: joshuachp/restic:0.1.1@sha256:778b040fb04b0366fbacc49ff9b2fbd0e5c78badedde06590fda97c7155ca887
+              image: joshuachp/restic:0.1.2@sha256:f3150fc6c7653711e5156b175a6bc3ed2f8e161ffd964e465eaa7644efc87352
               envFrom:
                 - secretRef:
                     name: nextcloud-backup
@@ -103,7 +103,7 @@ spec:
         spec:
           containers:
             - name: backup-maintenance
-              image: joshuachp/restic:0.1.1@sha256:778b040fb04b0366fbacc49ff9b2fbd0e5c78badedde06590fda97c7155ca887
+              image: joshuachp/restic:0.1.2@sha256:f3150fc6c7653711e5156b175a6bc3ed2f8e161ffd964e465eaa7644efc87352
               envFrom:
                 - secretRef:
                     name: nextcloud-backup

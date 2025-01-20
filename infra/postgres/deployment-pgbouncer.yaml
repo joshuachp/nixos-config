@@ -1,0 +1,83 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pgbouncer
+  namespace: postgres
+  labels:
+    app.kubernetes.io/name: pgbouncer
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: pgbouncer
+  template:
+    metadata:
+      namespace: postgres
+      labels:
+        app.kubernetes.io/name: pgbouncer
+    spec:
+      containers:
+        - name: pgbouncer
+          image: bitnami/pgbouncer:1.24.0
+          lifecycle:
+            preStop:
+              exec:
+                # https://www.pgbouncer.org/usage.html#signals
+                command:
+                  - "/bin/sh"
+                  - "-c"
+                  - "pkill -SIGTERM pgbouncer"
+          env:
+            - name: POSTGRESQL_USERNAME
+              value: postgres
+            - name: PGBOUNCER_POOL_MODE
+              value: transaction
+            - name: POSTGRESQL_HOST
+              value: "postgres.postgres.svc.cluster.local"
+            - name: PGBOUNCER_PORT
+              value: "5432"
+            - name: POSTGRESQL_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-secret
+                  key: password
+          ports:
+            - containerPort: 5432
+              name: db
+          volumeMounts:
+            - name: store
+              mountPath: /tmp
+              subPath: tmp
+            - name: store
+              mountPath: /opt/bitnami/pgbouncer/tmp
+              subPath: tmp-pgbouncer
+            - name: store
+              mountPath: /opt/bitnami/pgbouncer/conf
+              subPath: conf
+          resources:
+            limits:
+              memory: "500Mi"
+              cpu: "500m"
+            requests:
+              cpu: "20m"
+              memory: "50"
+          securityContext:
+            readOnlyRootFilesystem: true
+            runAsUser: 1001
+            runAsGroup: 1001
+      volumes:
+        - name: store
+          emptyDir:
+            sizeLimit: 500Mi
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: pgbouncer
+  namespace: postgres
+spec:
+  selector:
+    app.kubernetes.io/name: pgbouncer
+  ports:
+    - name: db
+      port: 5432

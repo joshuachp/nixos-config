@@ -2,7 +2,7 @@ apiVersion: batch/v1
 kind: CronJob
 metadata:
   name: backup-db
-  namespace: nextcloud
+  namespace: postgres
 spec:
   # 12h jobs should is probably stuck
   concurrencyPolicy: Replace
@@ -12,24 +12,19 @@ spec:
   jobTemplate:
     metadata:
       name: backup-db
-      namespace: nextcloud
+      namespace: postgres
     spec:
       ttlSecondsAfterFinished: 259200
       template:
         metadata:
-          namespace: nextcloud
+          namespace: postgres
         spec:
-          tolerations:
-            - key: "location"
-              operator: "Equal"
-              value: "external"
-              effect: "NoSchedule"
           containers:
             - name: backup-db
               image: joshuachp/restic-pg:0.1.0
               envFrom:
                 - secretRef:
-                    name: nextcloud-backup-db
+                    name: backup
               env:
                 - name: RESTIC_CACHE_DIR
                   value: /tmp/restic
@@ -84,7 +79,7 @@ apiVersion: batch/v1
 kind: CronJob
 metadata:
   name: backup-db-maintenance
-  namespace: nextcloud
+  namespace: postgres
 spec:
   # 12h jobs should is probably stuck
   concurrencyPolicy: Replace
@@ -94,19 +89,19 @@ spec:
   jobTemplate:
     metadata:
       name: backup-db-maintenance
-      namespace: nextcloud
+      namespace: postgres
     spec:
       ttlSecondsAfterFinished: 259200
       template:
         metadata:
-          namespace: nextcloud
+          namespace: postgres
         spec:
           containers:
             - name: backup-db-maintenance
               image: joshuachp/restic:0.1.1@sha256:778b040fb04b0366fbacc49ff9b2fbd0e5c78badedde06590fda97c7155ca887
               envFrom:
                 - secretRef:
-                    name: nextcloud-backup-db
+                    name: backup
               env:
                 - name: RESTIC_CACHE_DIR
                   value: /tmp/restic

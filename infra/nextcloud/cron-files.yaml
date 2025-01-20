@@ -18,6 +18,11 @@ spec:
         metadata:
           namespace: nextcloud
         spec:
+          tolerations:
+            - key: "location"
+              operator: "Equal"
+              value: "external"
+              effect: "NoSchedule"
           containers:
             - name: backup
               image: joshuachp/restic:0.1.1@sha256:778b040fb04b0366fbacc49ff9b2fbd0e5c78badedde06590fda97c7155ca887

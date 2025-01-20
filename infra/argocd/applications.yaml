@@ -90,7 +90,7 @@ spec:
       path: infra/forgejo
       ref: repo
     - chart: forgejo
-      repoURL: codeberg.org/forgejo-contrib
+      repoURL: code.forgejo.org/forgejo-helm/
       targetRevision: 11.0.1
       helm:
         valueFiles:

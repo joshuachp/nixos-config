@@ -9,7 +9,7 @@ stringData:
   name: forgejo
   enableOCI: "true"
   type: helm
-  url: codeberg.org/forgejo-contrib/
+  url: code.forgejo.org/forgejo-helm/
 ---
 apiVersion: v1
 kind: Secret

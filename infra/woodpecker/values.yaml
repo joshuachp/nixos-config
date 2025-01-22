@@ -33,6 +33,7 @@ server:
     WOODPECKER_LIMIT_MEM_SWAP: "2147483648" # 2GB
     WOODPECKER_LIMIT_CPU_SET: "1,2"
     WOODPECKER_LIMIT_CPU_QUOTA: "200"
+  createAgentSecret: false
   extraSecretNamesForEnvFrom:
     - woodpecker-env
     - woodpecker-server-env

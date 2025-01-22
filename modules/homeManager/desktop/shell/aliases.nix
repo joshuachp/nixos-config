@@ -38,6 +38,7 @@ let
     # Jujutsu
     jn = "jj new 'trunk()'";
     jc = "jj commit";
+    jpc = "jj git push --change @-";
     jpa = "jj git push --all";
     jfa = "jj git fetch --all-remotes";
     jrm = "jj rebase -d 'trunk()'";

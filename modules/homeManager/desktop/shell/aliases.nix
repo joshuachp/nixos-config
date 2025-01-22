@@ -36,6 +36,8 @@ let
     kgn = "kubectl get nodes";
     kgs = "kubectl get services";
     # Jujutsu
+    jn = "jj new 'trunk()'";
+    jc = "jj commit";
     jpa = "jj git push --all";
     jfa = "jj git fetch --all-remotes";
     jrm = "jj rebase -d 'trunk()'";

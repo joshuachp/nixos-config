@@ -1,4 +1,6 @@
 agent:
+  image:
+    tag: 3.0.1
   replicaCount: 1
   env:
     WOODPECKER_BACKEND_K8S_STORAGE_CLASS: "local-path"
@@ -14,6 +16,8 @@ agent:
       value: "external"
       effect: "NoSchedule"
 server:
+  image:
+    tag: 3.0.1
   ingress:
     enabled: true
     ingressClassName: nginx

@@ -6,3 +6,4 @@ metadata:
 data:
   custom.override: |
     rewrite continue name git.k.joshuachp.dev ingress-nginx-controller.ingress-nginx.svc.cluster.local
+    rewrite continue name ci.k.joshuachp.dev ingress-nginx-controller.ingress-nginx.svc.cluster.local

@@ -26,7 +26,7 @@ spec:
               effect: "NoSchedule"
           containers:
             - name: backup-db
-              image: joshuachp/restic-pg:0.1.0@sha256:5fe3e7faadb770ccf689c2fbbf7916d7d86f4600dd6d22c0194c4959c2e3b689
+              image: joshuachp/restic-pg:0.1.0@sha256:b0b5045d179314c42d0b3c8afedcbd9c71958ccf2d0ed2b91d2d351b230fac45
               envFrom:
                 - secretRef:
                     name: nextcloud-backup-db

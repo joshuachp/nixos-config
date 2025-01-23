@@ -21,7 +21,7 @@ spec:
         spec:
           containers:
             - name: backup-db
-              image: joshuachp/restic-pg:0.1.0@sha256:b0b5045d179314c42d0b3c8afedcbd9c71958ccf2d0ed2b91d2d351b230fac45
+              image: joshuachp/restic-pg:0.1.0@sha256:1e58ef216279d94d03a208f2d9b73199e53232208d9b8eea55042d3433c1c3ee
               envFrom:
                 - secretRef:
                     name: backup

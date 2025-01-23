@@ -98,7 +98,7 @@ spec:
         spec:
           containers:
             - name: backup-db-maintenance
-              image: joshuachp/restic:0.1.2@sha256:a0a278c605157b7ce2b6f1574d73f47c892cb652aa3b7918a415773be3b52594
+              image: joshuachp/restic:0.1.2@sha256:9bae9082d82d344bf63d9c99b84deb9c49aa64c0cba66471696edde11f55de6f
               envFrom:
                 - secretRef:
                     name: backup

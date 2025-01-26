@@ -17,7 +17,8 @@ repos:
       - id: sh-check
       - id: nix-nixfmt
       - id: nix-statix
-      - id: nix-flake-check
+      # Too much memory
+      # - id: nix-flake-check
       - id: run-prettier
         types_or: [json, yaml]
       - id: run-dprint

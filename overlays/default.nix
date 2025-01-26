@@ -1,5 +1,9 @@
 # Default overlays for all systems
-{ system, flakeInputs, ... }:
+{
+  system,
+  flakeInputs,
+  ...
+}:
 {
   imports = [ ./pkgs.nix ];
   config =

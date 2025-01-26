@@ -16,7 +16,7 @@ steps:
         from_secret: BUILDER_KEY
       BUILDER_HOST_KEYS:
         from_secret: BUILDER_HOST_KEYS
-      GC_MAXIMUM_HEAP_SIZE: 7G
+      GC_MAXIMUM_HEAP_SIZE: 5G
     backend_options:
       kubernetes:
         resources:
@@ -28,4 +28,7 @@ steps:
             cpu: 1000m
     commands:
       - /setup-remote.sh
-      - nix flake check
+      # TODO: cache the pre-commit repos
+      - |
+        nix develop -c pre-commit -- run --from-ref "$CI_COMMIT_TARGET_BRANCH" \
+          --to-ref "$CI_COMMIT_SOURCE_BRANCH"

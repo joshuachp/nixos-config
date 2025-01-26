@@ -1,7 +1,7 @@
 {
+  self,
   config,
   pkgs,
-  lib,
   flakeInputs,
   system,
   ...
@@ -50,6 +50,7 @@
               config.lib.config.wrapElectronWayland super.mattermost-desktop
             else
               super.mattermost-desktop;
+          packages = self.packages.${system};
         in
         {
           astartectl = pkgs.callPackage ../packages/astartectl.nix { };
@@ -60,6 +61,7 @@
             committedWithDefault
             mattermost-desktop
             ;
+          inherit (packages) jj-p;
         }
       )
     ];

@@ -11,6 +11,7 @@
       privCfg = config.privateConfig.users;
     in
     lib.mkIf cfg.enable {
+      home.packages = [ pkgs.jj-p ];
       programs.jujutsu = {
         enable = true;
         settings = {

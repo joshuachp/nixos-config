@@ -1,0 +1,120 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pgbouncer
+  namespace: postgres
+  labels:
+    app.kubernetes.io/name: pgbouncer
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: pgbouncer
+  template:
+    metadata:
+      namespace: postgres
+      labels:
+        app.kubernetes.io/name: pgbouncer
+    spec:
+      containers:
+        - name: pgbouncer
+          image: joshuachp/pgbouncer:0.1.4
+          lifecycle:
+            preStop:
+              exec:
+                # https://www.pgbouncer.org/usage.html#signals
+                command:
+                  - "/bin/sh"
+                  - "-c"
+                  - "pkill -SIGTERM pgbouncer"
+          livenessProbe:
+            exec:
+              command:
+                - "/bin/sh"
+                - "-c"
+                - "pg_isready -h localhost -p 5432 -U postgres"
+          readinessProbe:
+            exec:
+              command:
+                - "/bin/sh"
+                - "-c"
+                - "pg_isready -h localhost -p 5432 -U postgres"
+          ports:
+            - containerPort: 5432
+              name: db
+          volumeMounts:
+            - name: store
+              mountPath: /run/postgresql
+              subPath: run
+            - name: config
+              mountPath: /etc/pgbouncer/config.d/main.ini
+              readOnly: true
+              subPath: main.ini
+            - name: secret
+              mountPath: /etc/pgbouncer/config.d/private.ini
+              readOnly: true
+              subPath: private.ini
+            - name: secret
+              mountPath: /etc/pgbouncer/userlist.txt
+              readOnly: true
+              subPath: userlist.txt
+          resources:
+            limits:
+              memory: "500Mi"
+              cpu: "500m"
+            requests:
+              cpu: "20m"
+              memory: "50Mi"
+          securityContext:
+            readOnlyRootFilesystem: true
+            runAsUser: 100
+            runAsGroup: 70
+      volumes:
+        - name: store
+          emptyDir:
+            sizeLimit: 500Mi
+        - name: config
+          configMap:
+            name: pgbouncer-config
+            items:
+              - key: main.ini
+                path: main.ini
+        - name: secret
+          secret:
+            secretName: pgbouncer-secret
+            items:
+              - key: private.ini
+                path: private.ini
+              - key: userlist.txt
+                path: userlist.txt
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: pgbouncer
+  namespace: postgres
+spec:
+  selector:
+    app.kubernetes.io/name: pgbouncer
+  ports:
+    - name: db
+      port: 5432
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: pgbouncer-config
+  namespace: postgres
+data:
+  main.ini: |
+    [pgbouncer]
+    admin_users = postgres
+    pool_mode = session
+    listen_addr = *
+    listen_port = 5432
+    unix_socket_dir = /run/postgresql
+    unix_socket_mode = 0777
+    unix_socket_group = postgres
+    auth_type = scram-sha-256
+    auth_file = /etc/pgbouncer/userlist.txt
+    ignore_startup_parameters = extra_float_digits

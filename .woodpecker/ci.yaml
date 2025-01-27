@@ -6,7 +6,7 @@ when:
     - manual
 steps:
   - name: check
-    image: joshuachp/nixos:0.1.6@sha256:34a7bd794e6ec1ce91f4a32a35dde2514b91a4f173ae31bb9ecc284b8b875a2f
+    image: joshuachp/nixos:0.1.6@sha256:138512a513d91c45b083dc8d16ca570c2a0bdc42786c0cbe30b5b5f18761841e
     environment:
       NIX_CONFIG:
         from_secret: NIX_CONFIG

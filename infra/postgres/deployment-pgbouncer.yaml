@@ -16,6 +16,16 @@ spec:
       labels:
         app.kubernetes.io/name: pgbouncer
     spec:
+      affinity:
+        podAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            - labelSelector:
+                matchExpressions:
+                  - key: app.kubernetes.io/name
+                    operator: In
+                    values:
+                      - postgres
+              topologyKey: "kubernetes.io/hostname"
       containers:
         - name: pgbouncer
           image: joshuachp/pgbouncer:0.1.4

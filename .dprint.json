@@ -1,0 +1,11 @@
+{
+  "lineWidth": 100,
+  "useTabs": false,
+  "indentWidth": 2,
+  "markdown": {
+    "lineWidth": 100,
+    "textWrap": "always"
+  },
+  "excludes": [],
+  "plugins": ["https://plugins.dprint.dev/markdown-0.17.8.wasm"]
+}

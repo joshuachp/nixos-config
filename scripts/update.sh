@@ -30,6 +30,14 @@ if has_changed; then
     changed+=', pre-commit-config.yaml'
 fi
 
+# dprint
+drpint config update
+if has_changed; then
+    jj commit -m 'chore(dprint): update dprint plugins'
+
+    changed+=', dprint'
+fi
+
 # Nix flake
 nix flake update
 if has_changed; then

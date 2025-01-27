@@ -5,7 +5,7 @@ when:
     - pull_request
     - manual
 steps:
-  - name: flake check
+  - name: check
     image: joshuachp/nixos:0.1.6@sha256:34a7bd794e6ec1ce91f4a32a35dde2514b91a4f173ae31bb9ecc284b8b875a2f
     environment:
       NIX_CONFIG:
@@ -30,5 +30,5 @@ steps:
       - /setup-remote.sh
       # TODO: cache the pre-commit repos
       - |
-        nix develop -c pre-commit -- run --from-ref "$CI_COMMIT_TARGET_BRANCH" \
-          --to-ref "$CI_COMMIT_SOURCE_BRANCH"
+        nix develop -c pre-commit -- \
+          run --show-diff-on-failure --color=always --all-files

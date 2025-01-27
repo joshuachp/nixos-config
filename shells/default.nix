@@ -1,16 +1,30 @@
 # Default devShell
 {
   mkShell,
-  nixos-anywhere,
   pre-commit,
   statix,
   nixfmt-rfc-style,
+  shellcheck,
+  shfmt,
+  nodePackages,
+  dprint,
+  typos,
+  committed,
 }:
 mkShell {
   packages = [
-    nixos-anywhere
     pre-commit
+
+    typos
+    committed
+
     nixfmt-rfc-style
     statix
+
+    shellcheck
+    shfmt
+
+    nodePackages.prettier
+    dprint
   ];
 }

@@ -28,7 +28,7 @@ spec:
               topologyKey: "kubernetes.io/hostname"
       containers:
         - name: pgbouncer
-          image: joshuachp/pgbouncer:0.1.4
+          image: joshuachp/pgbouncer:0.1.4@sha256:f591740d0a36eb4c902012b528ecf8d9692452d1db3af329b9120d9f4b4b00ee
           lifecycle:
             preStop:
               exec:

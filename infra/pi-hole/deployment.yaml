@@ -20,7 +20,7 @@ spec:
         kubernetes.io/hostname: kani
       containers:
         - name: pi-hole
-          image: "pihole/pihole:latest@sha256:528e4044f67da14f3aecedda92f939c87b7b1e69fe67d09ac2b3e7fdc1f72515"
+          image: "pihole/pihole:latest@sha256:d83cd1ca243eace24c9d2f7320634eb47dee06dcdacb15247fdc1e30efd69438"
           resources:
             limits:
               memory: "252Mi"

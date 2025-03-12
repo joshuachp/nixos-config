@@ -20,7 +20,7 @@ spec:
     spec:
       containers:
         - name: syncthing
-          image: syncthing/syncthing:1.29@sha256:3f5c9776aac65e92a1c7d49f3443c35e4da92ae0d8e40308af6b7fae6e9b301a
+          image: syncthing/syncthing:1.29@sha256:59580c71260ea38d50247a0acebd6c608c6d59b78e651b0194943a8649841f82
           env:
             - name: PUID
               value: "1001"
